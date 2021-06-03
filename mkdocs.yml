@@ -32,8 +32,8 @@ theme:
     repo: fontawesome/brands/github
   palette:
     #scheme: slate
-    primary: deep purple
-    accent: orange
+    primary: red
+    accent: pink
   font:
     code: JetBrains Mono
   features:
