@@ -25,6 +25,7 @@ nav:
     - references/index.md
   - Background:
     - background/index.md
+    - background/documentation.md
 
 theme:
   name: material
