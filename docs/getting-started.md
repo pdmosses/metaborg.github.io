@@ -7,14 +7,16 @@ The recommended way to get started with Spoofax is to download an [Eclipse][1] i
 === "Eclipse Bundle"
     Download an Eclipse instance with an embedded Java Runtime Environment (JRE) and the latest Spoofax plugin pre-installed for your platform:
 
-    [:fontawesome-brands-apple:<br>macOS Intel (64-bit)]({{ releases.stable.eclipse.bundle_jre.macos.intel }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-linux:<br>Linux x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.linux.x64 }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-microsoft:<br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-apple:<span class="small-icons">+ :fontawesome-brands-java:</span><br>macOS Intel (64-bit)]({{ releases.stable.eclipse.bundle_jre.macos.intel }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-linux:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Linux x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.linux.x64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-microsoft:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
     [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x86 }}){ .md-button .md-button--primary .md-button-download }
 
     [Installation instructions](howtos/install-eclipse-bundle.md).
 
     [Download Eclipse with Spoofax without an embedded JRE](howtos/install-eclipse-bundle.md).
+
+    [Nightly releases](nightly.md).
 
 === "Eclipse Plugin"
     Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer through the update site:
@@ -25,7 +27,7 @@ The recommended way to get started with Spoofax is to download an [Eclipse][1] i
 
     [Installation instructions](howtos/install-eclipse-plugin-manually.md).
 
-=== "Homebrew {{ os.macos }}"
+=== "Homebrew ({{ os.macos }})"
     On _macOS_ Spoofax can be installed easily using [Homebrew][2].
 
     Install the _latest release_ of Spoofax Eclipse as follows:

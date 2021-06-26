@@ -130,7 +130,9 @@
           class="md-button"
           >{{ page.meta.hero.source_button }}
         </a>
-        <p><a href="{{ base_url }}">Nightly</a></p>
+        <p><a href="{{ base_url }}/nightly/" style="color:white;"><span class="twemoji">
+          {% include ".icons/fontawesome/solid/cloud-moon.svg" %}
+        </span> Nightly</a></p>
       </div>
     </div>
   </div>
@@ -141,7 +143,7 @@
 <div class="mdx-features">
   {% for feature in page.meta.features %}
   <div>
-    <img src="{{ feature.image }}" alt="{{ feature.title }}" />
+    <img src="{{ base_url }}{{ feature.image }}" alt="{{ feature.title }}" />
     <h2>{{ feature.title }}</h2>
     <p>{{ feature.description }}</p>
   </div>

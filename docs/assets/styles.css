@@ -41,10 +41,17 @@
 .md-button-download {
     width: 200px;
     text-align: center;
-
+    margin: 0.15em 0 0.15em 0;
 }
 .md-button-download .twemoji {
     font-size: 2em;
+}
+.md-button-download .small-icons {
+    font-size: 1em;
+    vertical-align: bottom;
+}
+.md-button-download .small-icons .twemoji {
+    font-size: inherit;
 }
 .wrap code {
     word-wrap: break-word;

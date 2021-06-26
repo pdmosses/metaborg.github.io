@@ -1,4 +1,4 @@
-# Install the Spoofax Eclipse Plugin
+# Install the Spoofax Eclipse Plugin Manually
 Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer.
     
 1.  In Eclipse, go to menu _Help_ --> _Install New Software_.
@@ -8,7 +8,7 @@ Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer
     {{ releases.stable.eclipse.plugin }}
     ```
 
-    ([Nightly releases](/nightly.md)).
+    ([Nightly releases](../nightly.md)).
 
 3.  Uncheck _Group items by category_ to make the plugin visible.
 4.  Check _Spoofax Eclipse meta-tooling_, _Spoofax Eclipse meta-tooling M2E integration_ and _Spoofax Eclipse runtime_.

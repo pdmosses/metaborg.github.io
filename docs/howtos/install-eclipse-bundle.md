@@ -5,10 +5,10 @@ Install an Eclipse instance with the latest stable release of the Spoofax plugin
 
     Eclipse bundle including the Spoofax plugin _with embedded Java Runtime Environment (JRE)_ (recommended):
 
-    [:fontawesome-brands-apple:<br>macOS Intel (64-bit)]({{ releases.stable.eclipse.bundle_jre.macos.intel }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-linux:<br>Linux x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.linux.x64 }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-microsoft:<br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x86 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-apple:<span class="small-icons">+ :fontawesome-brands-java:</span><br>macOS Intel (64-bit)]({{ releases.stable.eclipse.bundle_jre.macos.intel }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-linux:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Linux x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.linux.x64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-microsoft:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-microsoft:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Windows x86 (32-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x86 }}){ .md-button .md-button--primary .md-button-download }
 
 === "Eclipse"
 
@@ -19,7 +19,7 @@ Install an Eclipse instance with the latest stable release of the Spoofax plugin
     [:fontawesome-brands-microsoft:<br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_nojre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
     [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ releases.stable.eclipse.bundle_nojre.windows.x86 }}){ .md-button .md-button--primary .md-button-download }
 
-[Nightly releases](/nightly.md).
+[Nightly releases](../nightly.md).
 
 ## Troubleshooting
 

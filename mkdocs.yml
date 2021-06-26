@@ -19,7 +19,7 @@ nav:
     - howtos/index.md
     - howtos/install-eclipse-bundle.md
     - howtos/install-eclipse-plugin-manually.md
-    - howtos/install-cli.md
+    - howtos/install-from-source.md
   - Reference:
     - reference/index.md
   - Background:
