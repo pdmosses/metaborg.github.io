@@ -1,6 +1,7 @@
 site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
+site_url: https://www.spoofax.dev/spoofax-docs/
 
 copyright: "Copyright &copy; 2010-2021 Spoofax Team"
 
