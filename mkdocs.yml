@@ -21,8 +21,8 @@ nav:
     - howtos/install-eclipse-bundle.md
     - howtos/install-eclipse-plugin-manually.md
     - howtos/install-from-source.md
-  - Reference:
-    - reference/index.md
+  - References:
+    - references/index.md
   - Background:
     - background/index.md
 
