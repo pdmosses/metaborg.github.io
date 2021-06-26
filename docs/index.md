@@ -10,13 +10,13 @@ hero:
   source_button: Source Code
 features:
   - title: Syntax
-    image: /assets/syntax.svg
+    image: /assets/syntax.png
     description: Declaratively specify your syntax and pretty-printer using the Syntax Definition Formalism 3 (SDF3) language.
   - title: Static Semantics
-    image: /assets/semantics.svg
+    image: /assets/semantics.png
     description: Use Statix to declare the type system and name binding using <em>scope graphs</em>.
   - title: Term Transformations
-    image: /assets/terms.svg
+    image: /assets/transformation.png
     description: Write an interpreter or compiler using term transformations in Stratego.
 ---
 
