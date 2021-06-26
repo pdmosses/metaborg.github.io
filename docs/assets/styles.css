@@ -37,3 +37,16 @@
 
     --md-typeset-a-color: var(--md-accent-fg-color);
 }
+
+.md-button-download {
+    width: 200px;
+    text-align: center;
+
+}
+.md-button-download .twemoji {
+    font-size: 2em;
+}
+.wrap code {
+    word-wrap: break-word;
+    white-space: normal;
+}

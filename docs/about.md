@@ -1,2 +1,0 @@
-# About Spoofax
-About Spoofax.
