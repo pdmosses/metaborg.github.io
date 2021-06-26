@@ -2,6 +2,8 @@ site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
 
+copyright: "Copyright &copy; 2010-2021 Spoofax Team"
+
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
 edit_uri: https://github.com/metaborg/spoofax-docs/edit/main/docs
@@ -26,6 +28,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   logo: assets/logo.svg
   favicon: assets/favicon.png

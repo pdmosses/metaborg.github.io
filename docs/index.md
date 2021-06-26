@@ -1,3 +1,25 @@
+---
+template: index.html
+title: Spoofax Language Designer's Workbench
+hide:
+  - navigation
+hero:
+  title: Spoofax Language Designer's Workbench
+  subtitle: An open-source language designer's workbench with everything you need for designing your next (domain-specific) programming language.
+  install_button: Getting Started
+  source_button: Source Code
+features:
+  - title: Syntax
+    image: /assets/syntax.svg
+    description: Declaratively specify your syntax and pretty-printer using the Syntax Definition Formalism 3 (SDF3) language.
+  - title: Static Semantics
+    image: /assets/semantics.svg
+    description: Use Statix to declare the type system and name binding using <em>scope graphs</em>.
+  - title: Term Transformations
+    image: /assets/terms.svg
+    description: Write an interpreter or compiler using term transformations in Stratego.
+---
+
 # Spoofax Language Workbench
 Spoofax is a platform for developing textual (domain-specific) programming languages.
 The platform provides the following ingredients:
