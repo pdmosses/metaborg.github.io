@@ -1,6 +1,8 @@
 site_name: Spoofax
-site_description: Documentation of the Spoofax language workbench.
+site_author: Spoofax Team
+site_description: Spoofax language workbench
 
+repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
 edit_uri: https://github.com/metaborg/spoofax-docs/edit/main/docs
 
@@ -31,9 +33,18 @@ theme:
     logo: fontawesome/solid/sticky-note
     repo: fontawesome/brands/github
   palette:
-    #scheme: slate
-    primary: red
-    accent: pink
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: spoofax
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   font:
     code: JetBrains Mono
   features:
@@ -42,6 +53,9 @@ theme:
     - navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
+
+extra_css:
+  - assets/styles.css
     
 markdown_extensions:
   - abbr
