@@ -595,32 +595,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/analyzer/" class="md-nav__link">
-        Analyzer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/transformations/" class="md-nav__link">
         Transformations
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/file-operations/" class="md-nav__link">
-        Files
       </a>
     </li>
   
@@ -1294,8 +1270,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../builders/" class="md-nav__link">
-        Builders
+      <a href="../analysis/" class="md-nav__link">
+        Analysis
       </a>
     </li>
   
@@ -1331,7 +1307,7 @@
   
     <li class="md-nav__item">
       <a href="../hover/" class="md-nav__link">
-        Hover
+        Hover Tooltips
       </a>
     </li>
   
@@ -1343,7 +1319,19 @@
   
     <li class="md-nav__item">
       <a href="../menus/" class="md-nav__link">
-        Menus
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on-save/" class="md-nav__link">
+        On-Save Handlers
       </a>
     </li>
   
@@ -1355,7 +1343,7 @@
   
     <li class="md-nav__item">
       <a href="../outline/" class="md-nav__link">
-        Outline
+        Outline View
       </a>
     </li>
   
@@ -1392,6 +1380,18 @@
     <li class="md-nav__item">
       <a href="../renaming/" class="md-nav__link">
         Renaming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stratego/" class="md-nav__link">
+        Stratego
       </a>
     </li>
   
@@ -1646,17 +1646,41 @@ colorer<span class="w"></span>
 <p>The following configuration sections are currently defined:</p>
 <!-- Keep this list sorted: -->
 <ul>
+<li><code>colorer</code><ul>
+<li><a href="../syntax-highlighting/">Syntax Highlighting</a></li>
+</ul>
+</li>
+<li><code>language</code><ul>
+<li><a href="../file-extensions/">Language File Extensions</a></li>
+<li><a href="../parsing/">Parsing</a></li>
+<li><a href="../analysis/">Analysis</a></li>
+<li><a href="../on-save/">On-Save Handlers</a></li>
+<li><a href="../stratego/">Stratego Strategies</a></li>
+</ul>
+</li>
+<li><code>menus</code><ul>
+<li><a href="../menus/">Action menus</a></li>
+</ul>
+</li>
+<li><code>references</code><ul>
+<li><a href="../hover/">Hover Tooltips</a></li>
+<li><a href="../reference-resolution/">Reference Resolutions</a></li>
+</ul>
+</li>
+<li><code>views</code><ul>
+<li><a href="../outline/">Outline View</a></li>
+</ul>
+</li>
+</ul>
+<p>The following sections have been deprecated:</p>
+<!-- Keep this list sorted: -->
+<ul>
 <li><code>analysis</code></li>
-<li><a href="../builders/"><code>builders</code></a> (<span class="twemoji warning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346 7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg></span> deprecated)</li>
-<li><code>colorer</code></li>
+<li><code>builders</code></li>
 <li><code>completions</code></li>
 <li><code>folding</code></li>
-<li><code>language</code> (<a href="../file-extensions/">Extensions</a>, <a href="../parsing/">Parsing</a>)</li>
-<li><a href="../menus/"><code>menus</code></a></li>
 <li><code>outliner</code></li>
 <li><code>refactorings</code></li>
-<li><code>references</code></li>
-<li><code>views</code></li>
 </ul>
                 
               
@@ -1695,13 +1719,13 @@ colorer<span class="w"></span>
         </a>
       
       
-        <a href="../builders/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../analysis/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Builders
+              Analysis
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/editor-services/builders/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/editor-services/stratego/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Builders - Spoofax</title>
+        <title>Stratego - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Builders" />
+<meta property="og:title" content="Spoofax - Stratego" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/builders/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/stratego/" />
 <meta property="og:image" content="../../../assets/screenshot.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#builders" class="md-skip">
+        <a href="#stratego" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Builders
+              Stratego
             
           </span>
         </div>
@@ -595,32 +595,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/analyzer/" class="md-nav__link">
-        Analyzer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/transformations/" class="md-nav__link">
         Transformations
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/file-operations/" class="md-nav__link">
-        Files
       </a>
     </li>
   
@@ -1225,21 +1201,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Builders
+    <li class="md-nav__item">
+      <a href="../analysis/" class="md-nav__link">
+        Analysis
       </a>
-      
     </li>
   
 
@@ -1274,7 +1240,7 @@
   
     <li class="md-nav__item">
       <a href="../hover/" class="md-nav__link">
-        Hover
+        Hover Tooltips
       </a>
     </li>
   
@@ -1286,7 +1252,19 @@
   
     <li class="md-nav__item">
       <a href="../menus/" class="md-nav__link">
-        Menus
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on-save/" class="md-nav__link">
+        On-Save Handlers
       </a>
     </li>
   
@@ -1298,7 +1276,7 @@
   
     <li class="md-nav__item">
       <a href="../outline/" class="md-nav__link">
-        Outline
+        Outline View
       </a>
     </li>
   
@@ -1336,6 +1314,28 @@
       <a href="../renaming/" class="md-nav__link">
         Renaming
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Stratego
+      </a>
+      
     </li>
   
 
@@ -1486,17 +1486,30 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/editor-services/builders.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/editor-services/stratego.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="builders">Builders<a class="headerlink" href="#builders" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Deprecated</p>
-<p>Use <a href="../menus/">menus</a> instead.</p>
-</div>
-<p>Builders are a deprecated configuration section in ESV files.</p>
+                <h1 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h1>
+<p>The Java JAR and CTree files that will be loaded into the Stratego runtime for your language can be configured with the <code>provider</code> key in an <a href="../esv/">ESV file</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Path<span class="w"></span>
+</code></pre></div>
+<p>The path is a path to a <code>.jar</code> or <code>.ctree</code> file, relative to the root of the project. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree<span class="w"></span>
+</code></pre></div>
+<p>The extension of the provider should match the format in the <code>metaborg.yaml</code> file of your language.
+Multiple files can be set by setting the option multiple times:</p>
+<p>``esv
+language</p>
+<p>provider : target/metaborg/stratego.ctree
+  provider : target/custom1.jar
+  provider : target/custom2.ctree
+```</p>
                 
               
               
@@ -1519,7 +1532,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../esv/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../renaming/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1528,19 +1541,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              ESV
+              Renaming
             </div>
           </div>
         </a>
       
       
-        <a href="../code-completion/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../syntax-highlighting/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Code completion
+              Syntax Highlighting
             </div>
           </div>
           <div class="md-footer__button md-icon">

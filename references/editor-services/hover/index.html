@@ -20,7 +20,7 @@
     
     
       
-        <title>Hover - Spoofax</title>
+        <title>Hover Tooltips - Spoofax</title>
       
     
     
@@ -60,7 +60,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Hover" />
+<meta property="og:title" content="Spoofax - Hover Tooltips" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/hover/" />
 <meta property="og:image" content="../../../assets/screenshot.png" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hover" class="md-skip">
+        <a href="#hover-tooltips" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hover
+              Hover Tooltips
             
           </span>
         </div>
@@ -595,32 +595,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/analyzer/" class="md-nav__link">
-        Analyzer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/transformations/" class="md-nav__link">
         Transformations
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/file-operations/" class="md-nav__link">
-        Files
       </a>
     </li>
   
@@ -1227,8 +1203,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../builders/" class="md-nav__link">
-        Builders
+      <a href="../analysis/" class="md-nav__link">
+        Analysis
       </a>
     </li>
   
@@ -1273,7 +1249,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Hover
+        Hover Tooltips
       </a>
       
     </li>
@@ -1286,7 +1262,19 @@
   
     <li class="md-nav__item">
       <a href="../menus/" class="md-nav__link">
-        Menus
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on-save/" class="md-nav__link">
+        On-Save Handlers
       </a>
     </li>
   
@@ -1298,7 +1286,7 @@
   
     <li class="md-nav__item">
       <a href="../outline/" class="md-nav__link">
-        Outline
+        Outline View
       </a>
     </li>
   
@@ -1335,6 +1323,18 @@
     <li class="md-nav__item">
       <a href="../renaming/" class="md-nav__link">
         Renaming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stratego/" class="md-nav__link">
+        Stratego
       </a>
     </li>
   
@@ -1491,14 +1491,28 @@
                   </a>
                 
                 
-                <h1 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h1>
-<p>ESV:</p>
+                <h1 id="hover-tooltips">Hover Tooltips<a class="headerlink" href="#hover-tooltips" title="Permanent link">&para;</a></h1>
+<p>Hover tooltips show a textual tooltip with extra information, when hovering part of the text. Hover tooltips are created by a Stratego strategy, but are configured in an <a href="../esv/">ESV file</a> under the <code>references</code> section:</p>
+<div class="highlight"><pre><span></span><code>references<span class="w"></span>
+
+<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Strategy<span class="w"></span>
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>references<span class="w"></span>
+
+<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-hover<span class="w"></span>
+</code></pre></div>
+<p>The identifier after the colon refers to the Stratego strategy that creates the hover tooltip. The Stratego strategy takes an AST node, and either fails if no tooltip should be produced, or returns a tooltip string.</p>
+<p>The string may contain a few simple HTML tag to style the output. The following tags are supported:</p>
 <ul>
-<li>References<ul>
-<li>Hover </li>
+<li><code>&lt;br/&gt;</code> — line break</li>
+<li><code>&lt;b&gt;text&lt;/b&gt;</code> — bold</li>
+<li><code>&lt;i&gt;text&lt;/i&gt;</code> — italic</li>
+<li><code>&lt;pre&gt;code&lt;/pre&gt;</code> — preformatted (code) text</li>
 </ul>
-</li>
-</ul>
+<div class="admonition note">
+<p>Unrecognized HTML tags are stripped from the hover tooltip. Escape angled brackets and ampersands to show them verbatim in the tooltip.</p>
+</div>
                 
               
               
@@ -1542,7 +1556,7 @@
               <span class="md-footer__direction">
                 Next
               </span>
-              Menus
+              Action Menus
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -20,7 +20,7 @@
     
     
       
-        <title>Outline - Spoofax</title>
+        <title>Outline View - Spoofax</title>
       
     
     
@@ -60,7 +60,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Outline" />
+<meta property="og:title" content="Spoofax - Outline View" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/outline/" />
 <meta property="og:image" content="../../../assets/screenshot.png" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#outline" class="md-skip">
+        <a href="#outline-view" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Outline
+              Outline View
             
           </span>
         </div>
@@ -595,32 +595,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/analyzer/" class="md-nav__link">
-        Analyzer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/transformations/" class="md-nav__link">
         Transformations
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/file-operations/" class="md-nav__link">
-        Files
       </a>
     </li>
   
@@ -1227,8 +1203,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../builders/" class="md-nav__link">
-        Builders
+      <a href="../analysis/" class="md-nav__link">
+        Analysis
       </a>
     </li>
   
@@ -1264,7 +1240,7 @@
   
     <li class="md-nav__item">
       <a href="../hover/" class="md-nav__link">
-        Hover
+        Hover Tooltips
       </a>
     </li>
   
@@ -1276,7 +1252,19 @@
   
     <li class="md-nav__item">
       <a href="../menus/" class="md-nav__link">
-        Menus
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on-save/" class="md-nav__link">
+        On-Save Handlers
       </a>
     </li>
   
@@ -1297,7 +1285,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Outline
+        Outline View
       </a>
       
     </li>
@@ -1335,6 +1323,18 @@
     <li class="md-nav__item">
       <a href="../renaming/" class="md-nav__link">
         Renaming
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stratego/" class="md-nav__link">
+        Stratego
       </a>
     </li>
   
@@ -1491,14 +1491,35 @@
                   </a>
                 
                 
-                <h1 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h1>
-<p>ESV:</p>
-<ul>
-<li>Views<ul>
-<li>Outline</li>
-</ul>
-</li>
-</ul>
+                <h1 id="outline-view">Outline View<a class="headerlink" href="#outline-view" title="Permanent link">&para;</a></h1>
+<p>An outline is a summary of the structure of a file, shown in a separate view next to a textual editor. An outline is created by a Stratego strategy, but is configured in an <a href="../esv/">ESV file</a> under the <code>views</code> section:</p>
+<div class="highlight"><pre><span></span><code>views<span class="w"></span>
+
+<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>$Strategy<span class="w"></span>
+<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>$Int<span class="w"></span>
+</code></pre></div>
+<p>The Stratego strategy specified as <code>$Strategy</code> must have the following signature:</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">Node</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Label</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Children</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Node</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">editor-outline</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">position</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">outline</span><span class="w"></span>
+</code></pre></div>
+<p>Where the input is the default tuple used for <a href="../menus/"><em>builders</em></a>, and the result is a list of <code>Node</code> terms, each carrying a label and a (possibly empty) list of child nodes.</p>
+<div class="admonition note">
+<p>Preserve origins on the node's label to allow navigating to the corresponding code from the outline.</p>
+</div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>views<span class="w"></span>
+
+<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>editor-outline<span class="w"></span>
+<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>3<span class="w"></span>
+</code></pre></div>
+<p>This configures the <code>editor-outline</code> Stratego strategy to be used to create outlines, and that outline nodes should be expanded 3 levels deep by default.</p>
                 
               
               
@@ -1521,7 +1542,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../menus/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../on-save/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1530,7 +1551,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Menus
+              On-Save Handlers
             </div>
           </div>
         </a>
