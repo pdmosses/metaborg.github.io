@@ -1287,6 +1287,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#identity-and-failure" class="md-nav__link">
+    Identity and Failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-composition" class="md-nav__link">
+    Sequential Composition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#left-choice" class="md-nav__link">
+    Left Choice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guarded-choice" class="md-nav__link">
+    Guarded Choice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#match" class="md-nav__link">
     Match
   </a>
@@ -1301,22 +1329,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sequential-composition" class="md-nav__link">
-    Sequential Composition
+  <a href="#variable-scope" class="md-nav__link">
+    Variable Scope
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#all" class="md-nav__link">
-    All
+  <a href="#calling-primitives" class="md-nav__link">
+    Calling Primitives
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#one" class="md-nav__link">
-    One
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -1325,6 +1353,30 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strategy-combinators-traversal/" class="md-nav__link">
+        Traversal Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strategy-combinators-type-unifying/" class="md-nav__link">
+        Type Unifying Transformations
+      </a>
     </li>
   
 
@@ -1817,6 +1869,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#identity-and-failure" class="md-nav__link">
+    Identity and Failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-composition" class="md-nav__link">
+    Sequential Composition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#left-choice" class="md-nav__link">
+    Left Choice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guarded-choice" class="md-nav__link">
+    Guarded Choice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#match" class="md-nav__link">
     Match
   </a>
@@ -1831,22 +1911,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sequential-composition" class="md-nav__link">
-    Sequential Composition
+  <a href="#variable-scope" class="md-nav__link">
+    Variable Scope
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#all" class="md-nav__link">
-    All
+  <a href="#calling-primitives" class="md-nav__link">
+    Calling Primitives
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#one" class="md-nav__link">
-    One
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -1869,11 +1949,32 @@
                 
                 
                 <h1 id="strategy-combinators">Strategy Combinators<a class="headerlink" href="#strategy-combinators" title="Permanent link">&para;</a></h1>
-<h3 id="match">Match<a class="headerlink" href="#match" title="Permanent link">&para;</a></h3>
-<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
-<h3 id="sequential-composition">Sequential Composition<a class="headerlink" href="#sequential-composition" title="Permanent link">&para;</a></h3>
-<h3 id="all">All<a class="headerlink" href="#all" title="Permanent link">&para;</a></h3>
-<h3 id="one">One<a class="headerlink" href="#one" title="Permanent link">&para;</a></h3>
+<p>Rather than building in rewrite rules and high-level strategies, Stratego provides <em>strategy combinators</em> as basic building blocks from which these can defined</p>
+<p>strategies <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>core language [VisserB98] to which more complex strategies can be desugared</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs where possible.</p>
+</div>
+<h2 id="identity-and-failure">Identity and Failure<a class="headerlink" href="#identity-and-failure" title="Permanent link">&para;</a></h2>
+<p>The most basic operations in Stratego are id and fail. The identity strategy id always succeeds and behaves as the identity function on terms. The failure strategy fail always fails. The operations have no side effects.</p>
+<h2 id="sequential-composition">Sequential Composition<a class="headerlink" href="#sequential-composition" title="Permanent link">&para;</a></h2>
+<p>The sequential composition s1 ; s2 of the strategies s1 and s2 first applies the strategy s1 to the subject term and then s2 to the result of that first application. The strategy fails if either s1 or s2 fails.</p>
+<h2 id="left-choice">Left Choice<a class="headerlink" href="#left-choice" title="Permanent link">&para;</a></h2>
+<h2 id="guarded-choice">Guarded Choice<a class="headerlink" href="#guarded-choice" title="Permanent link">&para;</a></h2>
+<h2 id="match">Match<a class="headerlink" href="#match" title="Permanent link">&para;</a></h2>
+<h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h2>
+<h2 id="variable-scope">Variable Scope<a class="headerlink" href="#variable-scope" title="Permanent link">&para;</a></h2>
+<h2 id="calling-primitives">Calling Primitives<a class="headerlink" href="#calling-primitives" title="Permanent link">&para;</a></h2>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Eelco Visser, Zine-El-Abidine Benaissa, and Andrew P. Tolmach. Building program optimizers with rewriting strategies. In Matthias Felleisen, Paul Hudak, and Christian Queinnec, editors, <em>Proceedings of the third ACM SIGPLAN international conference on Functional programming</em>, 13&ndash;26. Baltimore, Maryland, United States, 1998. ACM. URL: <a href="http://doi.acm.org/10.1145/289423.289425">http://doi.acm.org/10.1145/289423.289425</a>, <a href="https://doi.org/10.1145/289423.289425">doi:10.1145/289423.289425</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
@@ -1911,13 +2012,13 @@
         </a>
       
       
-        <a href="../dynamic-rules/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../strategy-combinators-traversal/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Dynamic Rewrite Rules
+              Traversal Combinators
             </div>
           </div>
           <div class="md-footer__button md-icon">
