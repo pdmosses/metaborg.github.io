@@ -1270,6 +1270,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rules-with-the-same-name" class="md-nav__link">
+    Rules with the Same Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conditional-rewrite-rules" class="md-nav__link">
     Conditional Rewrite Rules
   </a>
@@ -1831,6 +1838,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rules-with-the-same-name" class="md-nav__link">
+    Rules with the Same Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conditional-rewrite-rules" class="md-nav__link">
     Conditional Rewrite Rules
   </a>
@@ -1892,13 +1906,34 @@
 <p>It consists of a name that identifies the rule, a left-hand side term pattern, and a right-hand side term pattern.</p>
 <p>Applying a rule to a term <code>t</code> entails <a href="../patterns/">matching</a> <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
 <p>For example, the rewrite rule <code>DeMorgan</code></p>
-<div class="highlight"><pre><span></span><code><span class="nv">DeMorgan</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">DeMorgan</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <p>transforms a negation of a conjunction to a disjunction of negations.
 Applying this rule to the term <code>Not(And(Var(p), Var(q)))</code> results in a substitution binding <code>Var(p)</code> to <code>e1</code> and <code>Var(q)</code> to <code>e2</code>, and the instantiation <code>Or(Not(Var(p)), Not(Var(q)))</code> of the right-hand side of the rule.</p>
 <p>Note that a rewrite rule defines a <em>partial computation</em>.
 Only if the pattern match succeeds is the transformation applied.
 Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with <a href="../strategy-combinators/">strategy combinators</a>.</p>
+<h2 id="rules-with-the-same-name">Rules with the Same Name<a class="headerlink" href="#rules-with-the-same-name" title="Permanent link">&para;</a></h2>
+<p>Multiple rewrite rules may have the same name.
+When a (simple) rewrite rule fails to apply to a term, the next rule with the same name is tried.</p>
+<p>For examples, the following rules define desugaring of different kinds of expressions.</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"> </span><span class="nv">desugar-exp</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">desugar-exp</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Seq</span><span class=" -Punctuation">([],</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">desugar-exp</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Seq</span><span class=" -Punctuation">(</span><span class="nv">e</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)])</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">e</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">])</span><span class="w"></span>
+</code></pre></div>
+<p>When one rule fails to apply, the next rule is tried.
+When the left-hand sides are non-overlapping, the order of the rules does not matter.
+In case of overlap, the rules are tried in textual order.
+When non-overlapping rules are defined in different modules, the order is undefined.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We should consider specificity ordering.</p>
+</div>
 <h2 id="conditional-rewrite-rules">Conditional Rewrite Rules<a class="headerlink" href="#conditional-rewrite-rules" title="Permanent link">&para;</a></h2>
 <p>A <em>conditional</em> rewrite rule checks a condition or performs a side computation before instantiating the right-hand side of the rule.</p>
 <p>The basic form of a conditional rewrite rule in Stratego is</p>
@@ -1908,22 +1943,31 @@ Such (pattern match) failure is a first-class citizen in Stratego and its effect
 </code></pre></div>
 <p>where the <a href="../strategy-combinators/">strategy expression</a> represents a computation that may fail.
 When the condition fails, the expectation is that some other rule will pick up the computation.</p>
-<p>For example, the conditional rewrite rule</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">foo</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">e</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">term</span><span class="w"></span>
-<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">is</span><span class=" -Punctuation">(</span><span class="nv">string</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w"></span>
+<p>For example, the following conditional rewrite rules combine pattern matching with the predicate <code>is-atom</code> to select the rule to apply:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">rco-atom</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Dec</span><span class=" -Punctuation">)</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">rco-atom</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w">   </span>
+<span class="w">    </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">e</span><span class=" -Punctuation">])</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">is-atom</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w">  </span>
+
+<span class="w">  </span><span class="nv">rco-atom</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w">   </span>
+<span class="w">    </span><span class="nv">e</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">([],</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">is-atom</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">rco-atom</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">e</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Tid</span><span class=" -Punctuation">(</span><span class="s">&quot;int&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)],</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="k">not</span><span class=" -Punctuation">(</span><span class="nv">is-atom</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w"></span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">newname</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="s">&quot;tmp&quot;</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
 </code></pre></div>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>come up with a sensible example</p>
-</div>
-<p>When the condition fails, the application of the rule fails in the sense above.</p>
+<p>When the condition fails, the application of the rule fails (and the next rule is tried if there is one).</p>
 <h2 id="side-computations-with-with">Side Computations with With<a class="headerlink" href="#side-computations-with-with" title="Permanent link">&para;</a></h2>
 <p>Failure is not always expected.
 When a condition is used to express a side computation, the expection may be that it should always succeed.
 However, due to a programming error (e.g. a missed case), the condition may fail in some cases.
-To guard agains such cases the <code>with</code> condition expresses that the programmer expects a side computation to always succeed.
-When this fails, the program should fail with an exception (and a stack trace).</p>
+To guard against such programming errors, the <code>with</code> condition expresses that the programmer expects a side computation to always succeed.
+When a <code>with</code> clause fails, the program should fail with an exception (and a stack trace).</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
@@ -1948,7 +1992,7 @@ Therefore a <code>with</code> is used.</p>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
 <p>The only rule is that <code>with</code> clauses should always succeed.</p>
-<p>For example, the following <code>explicate-exp</code> rule defines the translation of an operator expression in one language to an operator expression in a different language.</p>
+<p>For example, the following <code>explicate-exp</code> rule defines the translation of an operator expression in a source language to an operator expression in a target language.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">explicate-exp</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">CExp</span><span class="w"></span>
 <span class="nv">explicate-exp</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span><span class="nv">op</span>#<span class=" -Punctuation">(</span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">cop</span>#<span class=" -Punctuation">(</span><span class="nv">atms</span><span class=" -Punctuation">)</span><span class="w"></span>
@@ -1957,15 +2001,28 @@ Therefore a <code>with</code> is used.</p>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">operator-to-coperator</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">op</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">cop</span><span class="w"></span>
 </code></pre></div>
 <p>The <code>where</code> condition tests whether the rule should be applied using the <code>is-operator</code> strategy.
-(By using generic term deconstruction to obtain the term constructor.)
+(By using <a href="../strategy-combinators/">generic term deconstruction</a> to obtain the term constructor.)
 The <code>with</code> premises define side computations.</p>
 <h2 id="parameterized-rewrite-rules">Parameterized Rewrite Rules<a class="headerlink" href="#parameterized-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<p>Rewrite rules can be parameterized with transformation strategies and with terms.
+In general, a parameterized rule has the form:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+<span class="w">  </span>...<span class="w"></span>
 </code></pre></div>
-<p>term parameters</p>
-<p>strategy parameters</p>
+<p>The strategy parameters represent computations that can be applied in the body of the rule.
+The term parameters are terms that are evaluated eagerly at the call site.
+The (arity of the) parameters of a rule are part of its identity.
+That is, rules with the same name, but different numbers of parameters are different.</p>
+<p>For example, the following rules define reversal of a list with an accumulator:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reverse</span><span class="w">           </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reverse</span><span class=" -Punctuation">(|</span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="nv">s</span><span class="w">  </span>
+<span class="w">  </span><span class="nv">reverse</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">xs</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">reverse</span><span class=" -Punctuation">(|[])&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reverse</span><span class=" -Punctuation">(|</span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reverse</span><span class=" -Punctuation">(|</span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">y</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">ys</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">reverse-acc</span><span class=" -Punctuation">(|[</span><span class="nv">y</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">xs</span><span class=" -Punctuation">])&gt;</span><span class="w"> </span><span class="nv">ys</span><span class="w"></span>
+</code></pre></div>
 <p>When leaving out the term parameters, the bar can be left out as well</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
@@ -1976,6 +2033,8 @@ The <code>with</code> premises define side computations.</p>
 <span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"></span>
 <span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">hd</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">tl</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">hd</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">tl</span><span class=" -Punctuation">]</span><span class="w"></span>
 </code></pre></div>
+<p>The simple rewrite rules are above are the special case in which there are no strategy and term parameters.
+In that case, the parentheses can be left out as well.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
