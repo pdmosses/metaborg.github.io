@@ -68,15 +68,17 @@ To cite a paper or work, first ensure the citation is in a bibliography (`.bib`)
 
 Then reference the work like this:
 
-<div class="highlight"><pre id="__code_2"><code>The Spoofax language workbench&lsqb;@KatsV10&rsqb; is a vital to declarative language development.</code></pre></div>
+<div class="highlight"><pre id="__code_2"><code>The Spoofax language workbench&lsqb;@KatsV10&rsqb; is vital to declarative language development.</code></pre></div>
 
 Finally, add a place for the bibliography footnotes to be added (usually at the end of the file) by adding the following line to the file:
 
 <div class="highlight"><pre id="__code_2"><code>&bsol;bibliography</code></pre></div>
 
-It will be rendered as:
+The line will be rendered as:
 
-> The Spoofax language workbench[@KatsV10] is a vital to declarative language development.
+> The Spoofax language workbench[@KatsV10] is vital to declarative language development.
+
+And the references will be at the bottom of this page.
 
 !!! tip ""
     If the citation appears rendered as `Spoofax language workbench[^1]`, then you might have forgotten to add a place for the bibliography.
