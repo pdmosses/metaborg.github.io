@@ -72,6 +72,8 @@ nav:
       - references/stratego/rewrite-rules.md
       - references/stratego/strategies.md
       - references/stratego/strategy-combinators.md
+      - references/stratego/strategy-combinators-traversal.md
+      - references/stratego/strategy-combinators-type-unifying.md
       - references/stratego/dynamic-rules.md
       - references/stratego/concrete-syntax.md
       - references/stratego/overlays.md
