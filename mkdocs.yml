@@ -23,6 +23,13 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
+    - Data Flow Analysis:
+      - references/flowspec/introduction.md
+      - references/flowspec/structure.md
+      - references/flowspec/Stratego_API.md
+      - references/flowspec/testing.md
+      - references/flowspec/glossary.md
+      - references/flowspec/references.md
   - Background:
     - background/index.md
     - background/documentation.md
