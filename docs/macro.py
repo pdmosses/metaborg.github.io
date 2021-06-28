@@ -3,6 +3,8 @@ from typing import Optional
 windows_icon = ":fontawesome-brands-windows:"
 macos_icon = ":fontawesome-brands-apple:"
 linux_icon = ":fontawesome-brands-linux:"
+warning_icon = ":fontawesome-solid-exclamation-triangle:"
+stop_icon = ":fontawesome-solid-times-circle:"
 
 def artifacts_download_link(repo: str, artifact: str, classifier: str, packaging: str, version="LATEST", group="org.metaborg"):
     return f"https://artifacts.metaborg.org/service/local/artifact/maven/redirect?r={repo}&g={group}&a={artifact}&c={classifier}&p={packaging}&v={version}"
@@ -84,11 +86,15 @@ development_version = "2.6.0-SNAPSHOT"
 
 
 def define_env(env):
+    env.variables['warning'] = f"{warning_icon}{{.warning}}"
+    env.variables['stop'] = f"{stop_icon}{{.stop}}"
+
     env.variables.os = {
         "windows": f"{windows_icon} Windows",
         "linux": f"{linux_icon} Linux",
         "macos": f"{macos_icon} macOS",
     }
+
     env.variables.release = {}
     for version, date in release_versions.items():
         fill_env_with_release(env, version, version, version, date)
