@@ -21,6 +21,8 @@ nav:
     - howtos/install-eclipse-bundle.md
     - howtos/install-eclipse-plugin-manually.md
     - howtos/install-from-source.md
+    - Editor Services:
+      - howtos/editor-services/rename-refactoring.md
   - References:
     - references/index.md
     - Configuation:
@@ -69,7 +71,6 @@ nav:
       - references/editor-services/index.md
       - references/editor-services/esv.md
       - references/editor-services/analysis.md
-      - references/editor-services/code-completion.md
       - references/editor-services/file-extensions.md
       - references/editor-services/hover.md
       - references/editor-services/menus.md
