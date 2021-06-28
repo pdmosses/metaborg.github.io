@@ -943,13 +943,13 @@
                 
                 <h1 id="rewrite-rules">Rewrite Rules<a class="headerlink" href="#rewrite-rules" title="Permanent link">&para;</a></h1>
 <h2 id="simple-rewrite-rules">Simple Rewrite Rules<a class="headerlink" href="#simple-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$Label:
-  $Term -&gt; $Term
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 </code></pre></div>
 <h2 id="conditional-rewrite-rules">Conditional Rewrite Rules<a class="headerlink" href="#conditional-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$Label :
-  $Term -&gt; $Term
-  where $Strategy
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
 <h2 id="with-vs-where">With vs Where<a class="headerlink" href="#with-vs-where" title="Permanent link">&para;</a></h2>
 <p>use a where clause when the condition is to determine whether to apply the rule</p>
