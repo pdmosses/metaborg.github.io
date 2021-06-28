@@ -23,6 +23,8 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
+    - Configuation:
+      - references/config/index.md
     - Syntax:
       - references/syntax/sdf3.md
       - references/syntax/structure.md
