@@ -7,15 +7,19 @@ Rewrite rules are used to define basic transformations in Stratego.
 A simple rewrite rule has the form
 
 ```stratego
-$Label:
+$Id:
   $Term -> $Term
 ```
 
-It consists of a label that identifies the rule, a left-hand side term, and a right-hand side term.
+It consists of a name that identifies the rule, a left-hand side term, and a right-hand side term.
 
-When a rule is invoked through its label, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.
+Applying a rule to a term `t` entails matching `t` against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.
 
-A rewrite rule is invoked by applying its label as 
+## Simple Rule Application
+
+When a rule is invoked through its identifier, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.
+
+A rewrite rule is invoked by applying its label as
 
 ## Conditional Rewrite Rules
 
