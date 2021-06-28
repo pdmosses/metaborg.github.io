@@ -53,6 +53,8 @@ nav:
       - references/statix/types.md
       - references/statix/tests.md
       - references/statix/stratego-api.md
+    - Editor Services:
+      - references/esv/index.md
   - Background:
     - background/index.md
     - background/documentation.md
