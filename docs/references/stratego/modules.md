@@ -23,7 +23,7 @@ For example, consider the following directory structure
     - desugar.str2
 ```
 
-If `trans` is declared as a root, then the module names are
+If `trans` is [declared as a root](../config/), then the module names are
 
 ```
 - trans
@@ -33,9 +33,6 @@ If `trans` is declared as a root, then the module names are
   - desugaring
     - desugaring/desugar
 ```
-
-!!! check
-    terminology
 
 
 ## Module Structure
@@ -66,7 +63,7 @@ modules can extend definitions
 
 ## Libraries
 
-pre-compiled libraries 
+pre-compiled libraries
 
 external definitions
 
