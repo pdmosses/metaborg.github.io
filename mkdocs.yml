@@ -143,11 +143,3 @@ extra:
             x64: "http://buildfarm.metaborg.org/job/metaborg/job/spoofax-releng/job/master/lastSuccessfulBuild/artifact/dist/spoofax/eclipse/spoofax-windows-x64.zip"
             x86: "http://buildfarm.metaborg.org/job/metaborg/job/spoofax-releng/job/master/lastSuccessfulBuild/artifact/dist/spoofax/eclipse/spoofax-windows-x86.zip"
         plugin: "http://buildfarm.metaborg.org/job/metaborg/job/spoofax-releng/job/master/lastSuccessfulBuild/artifact/dist/spoofax/eclipse/site/"
-
-
-
-    base_url: "http://artifacts.metaborg.org/service/local/repositories/releases/content/org/metaborg/org.metaborg.spoofax.eclipse.dist/"
-    version: "2.5.15"
-    base_file: "/org.metaborg.spoofax.eclipse.dist-"
-    macos-file: "-macosx-x64-jre.tar.gz"
-    macos: "{{ releases.base_url }}{{ releases.version }}{{ releases.base_file }}{{ releases.version }}{{ releases.macos-file }}"
