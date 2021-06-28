@@ -4,7 +4,8 @@
 Stratego transformations can transform such data, but require at least that the arities of term constructors that are used in rules are declared.
 Further, starting with Stratego 2, the types of terms and term transformations _may_ be declared _and_ checked in more detail[@SmitsV20].
 
-## Signatures
+
+## Term Signatures
 
 A signature declares sorts and constructors for these sorts using a definition of the form:
 
@@ -12,20 +13,39 @@ A signature declares sorts and constructors for these sorts using a definition o
 signature
   sorts $Sort ...
   constructors
-    $Constructor : $Type * ... -> $Type
+    $Constructor : $Type * ... -> $Sort
 ```
 
+A sort is determined by an identifier and optionally has arguments.
+
 For each constructor, a signature declares the number and types of its arguments.
+
+The Stratego1 compiler only checks the arity of constructor applications against the signature.
+The Stratego2 compiler uses signature definitions to type check term patterns in rules.
+
+
+## Injections
+
+An injection is a constructor without name and with a single domain argument.
+
+```stratego
+signature
+  constructors
+     : $Sort -> $Sort
+```
+
+Injections include an entire type as a subtype of another type without cluttering the tree structure.
+
 
 ## Example Signature
 
 For example, the following signature declares some typical constructors for constructing abstract syntax trees of expressions in a programming language:
 
-```
+```stratego
 signature
   sorts Id Exp
   constructors
-           : String -> Id
+           : string -> Id
     Var    : Id -> Exp
     Int    : Int -> Exp
     Plus   : Exp * Exp -> Exp
@@ -33,19 +53,28 @@ signature
     Call   : Id  * List(Exp) -> Exp
 ```
 
-The Stratego1 compiler only checks the arity of constructor applications against the signature.
-The Stratego2 compiler uses signature definitions to type check term patterns in rules.
+Note that the first injection allows strings to be used as identifiers (`Id`).
+
 
 ## The List Type
 
 The `List(Exp)` type used above is built-in and correspons to homogenous lists of terms of the same type (`Exp` in this case).
 
+
 ## Polymorphic Types
 
 Stratego2 also supports user-defined polymorphic types.
+That is, sorts can have parameters.
 
-!!! todo
-    describe polymorphic types & give example 
+For example, the following signature defines the type of priority queues, polymorphic in the carrier type, in which the priority is determined by the length of the list.
+
+```stratego
+signature
+  sorts PrioQ
+  constructors
+    NilQ  : PrioQ(a)
+    ConsQ : a * int * List(a) * PrioQ(a) -> PrioQ(a)
+```
 
 ## Signature from Syntax Definition
 
@@ -56,26 +85,58 @@ Furthermore, an automatically generated pretty-printer maps terms conforming to 
 !!! todo
     link to pretty-printer generation
 
+
 ## Transformation Types
 
 Starting with Stratego2, the language also supports the definition of types for transformation definitions.
 
-The general form of a type definition is
+The general form of a transformation type definition is
 
 ```stratego
-$Label($StrategyType, ... | $TermType, ...) :: $TermType -> $TermType
+$Id($StrategyType, ... | $TermType, ...) :: $TermType -> $TermType
 ```
 
-If
+defining the signature of a transformation with name `$Id` with the types of its strategy arguments and term arguments, the type of the 'current term' to which the transformation is applied, and the type of the term that is returned, if the transformation succeeds.
+
+When a transformation only has strategy parameters, the bar can be left out, resulting in a signature of the form:
 
 ```stratego
-$Label($StrategyType, ...) :: $TermType -> $TermType
+$Id($StrategyType, ...) :: $TermType -> $TermType
 ```
 
+When a transformation also has no strategy parameters, the parentheses can be left out as well, resulting in a signature of the form:
 
 ```stratego
-$Label :: $TermType -> $TermType
+$Id :: $TermType -> $TermType
 ```
+
+
+## Type Dynamic
+
+Stratego2 is a gradually typed language in order to facilitate the migration from (mostly) untyped Stratego1 code to typed Stratego2 code.
+Furthermore, some patterns in Stratego cannot be typed statically.
+
+Type _dynamic_, written `?`, represents the unknown type.
+
+
+## Type Preserving Transformations
+
+A _type preserving_ transformation transforms _any_ type to itself (or fails).
+
+In signatures, a type preserving transformation is indicated with `TP`.
+
+For example, the topdown traversal is type preserving if its argument strategy is. Thus, its signature is defined as
+
+```stratego
+topdown(s : TP) :: TP
+```
+
+
+## Is Type
+
+Given the definition of a term signature, the `is(S)` strategy checks whether a term is of sort `S` and fails if that is not the case.
+
+For example, the strategy `<is(Exp)>t` checks that term `t` conforms to the signature of sort `Exp`.
 
 
 ## References
