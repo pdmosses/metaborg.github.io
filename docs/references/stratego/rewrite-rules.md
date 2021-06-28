@@ -71,23 +71,24 @@ $Id :
   with $Strategy
 ```
 
+For example, a `translate` transformation from expressions to list of (stack machine) instructions may use side computations to recursively apply the transformation.
 
 ```stratego
+translate :: Exp -> List(Instr)
 translate :
   Plus(e1, e2) -> <concat>[instrs1, instrs2, [ADD()]]
   with <translate>e1 => instrs1
   with <translate>e2 => instrs2
 ```
 
-use a where clause when the condition is to determine whether to apply the rule
+The recursive applications are not expected to fail.
+Therefore a `with` is used.
 
-
-use a with clause to perform a side computation; has to succeed; will try an exception when it fails
+Thus, use a `where` clause when the condition is to determine whether to apply the rule, and use a `with` clause to perform a side computation, which has to succeed and will trow an exception when it fails.
 
 ## Combining With and Where
 
-multiple with/where clauses
-
+Rewrite rules can combine multiple with/where clauses in any order.
 
 ```stratego
 $Id :
@@ -98,9 +99,12 @@ $Id :
   where $Strategy
 ```
 
+The only rule is that `with` clauses should always succeed.
+
 For example, the following `explicate-exp` rule defines the translation of an operator expression in one language to an operator expression in a different language.
 
 ```stratego
+explicate-exp :: Exp -> CExp
 explicate-exp :
   op#(es) -> cop#(atms)
   where <is-operator> op
@@ -142,7 +146,7 @@ map(s) : [hd | tl] -> [<s>hd | <map(s)> tl]
 ```
 
 !!! note
-    In the absence of a type system, the distinction between strategy arguments and term arguments was maded based on the syntactic distinction.
+    In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
     In a future version of the language, this syntactic distiction may no longer be necessary based on types.
 
 
