@@ -5,7 +5,7 @@ Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer
 2.  In the _Work with:_ text area, type:
 
     ```{.text .wrap}
-    {{ releases.stable.eclipse.plugin }}
+    {{ release.rel.eclipse.repository }}
     ```
 
     ([Nightly releases](../nightly.md)).
