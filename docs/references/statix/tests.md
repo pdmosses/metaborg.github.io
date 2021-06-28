@@ -4,8 +4,8 @@
 
 ## Test Output
 
-### Substitution
+- Substitution
 
-### Scope Graph
+- Scope Graph
 
-### Messages
+- Messages
