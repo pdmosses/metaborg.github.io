@@ -1081,13 +1081,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sections" class="md-nav__link">
-    Sections
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1503,13 +1496,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sections" class="md-nav__link">
-    Sections
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1528,21 +1514,30 @@
                 
                 
                 <h1 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h1>
-<p>The Stratego language caters for the definition of term transformations.</p>
+<p>The Stratego language caters for the definition of program transformations.</p>
+<p>Transformations operate on the abstract syntax trees of programs.
+Abstract syntax trees are represented by means of first-order <a href="terms/">terms</a>.
+By using the <a href="concrete-syntax/">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
+<p>A program is structured as a collection of <a href="modules/">modules</a>, which may import each other.</p>
+<p>Transformations are defined by means of named <a href="rewrite-rules/">rewrite rules</a>.
+Rules may explicitly invoke rules.
+Alternatively, rules may be invoked by <a href="strategies/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategy-combinators/">strategy combinators</a>.
+Context-sensitive transformations can be expressed using <a href="dynamic-rules/">dynamic rewrite rules</a>.</p>
+<p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="types/">typed</a>.</p>
 <h2 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
-<p>github repo with the definition / implementation</p>
-<h2 id="sections">Sections<a class="headerlink" href="#sections" title="Permanent link">&para;</a></h2>
+<p>The sources of the Stratego implementation can be found at</p>
 <ul>
-<li><a href="terms/">Terms</a>: the representation of programs with terms</li>
-<li><a href="types/">Types</a>: typing terms and transformations</li>
-<li><a href="strategies/">Strategies</a>: defining transformation strategies</li>
 <li>
-<p><a href="modules/">Modules</a>: structuring transformation definitions</p>
+<p><a href="https://github.com/metaborg/stratego">https://github.com/metaborg/stratego</a>: The Stratego language implementation</p>
 </li>
 <li>
-<p><a href="concrete-syntax/">Concrete Syntax</a></p>
+<p><a href="https://github.com/metaborg/strategoxt">https://github.com/metaborg/strategoxt</a>: The Stratego/XT ecosystem</p>
 </li>
 </ul>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Give more specific links to syntax definition etc.</p>
+</div>
                 
               
               
