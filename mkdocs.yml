@@ -43,7 +43,7 @@ nav:
       - references/stratego/strategy-combinators.md
       - references/stratego/dynamic-rules.md
       - references/stratego/concrete-syntax.md
-    - Statix:
+    - Static Semantics:
       - references/statix/index.md
       - references/statix/modules.md
       - references/statix/signatures.md
