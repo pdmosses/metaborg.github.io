@@ -39,6 +39,7 @@ nav:
       - references/syntax/configuration.md
     - Static Semantics:
       - references/statix/index.md
+      - references/statix/concepts.md
       - references/statix/modules.md
       - references/statix/rules.md
       - references/statix/terms.md
