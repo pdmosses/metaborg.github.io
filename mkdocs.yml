@@ -23,6 +23,16 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
+    - Syntax Definition:
+      - references/syntax/sdf3.md
+      - references/syntax/structure.md
+      - references/syntax/concepts.md
+      - references/syntax/constructs.md
+      - references/syntax/normalization.md
+      - references/syntax/disambiguation.md
+      - references/syntax/layout-sensitive.md
+      - references/syntax/recovery.md
+      - references/syntax/configuration.md
     - Transformation:
       - references/stratego/index.md
       - references/stratego/modules.md
