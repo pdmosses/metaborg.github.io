@@ -1,31 +1,22 @@
 # Terms
 
-Stratego programs transform terms. When using Stratego for program
-transformation, terms typically represent the abstract syntax tree of a
-program. But Stratego does not much care what a term represents. Terms
-can just as well represent structured documents, software models, or
-anything else that can be rendered in a structured format.
-
+Stratego programs transform terms.
+When using Stratego for program transformation, terms typically represent the abstract syntax tree of a program.
+But Stratego does not much care what a term represents.
+Terms can just as well represent structured documents, software models, or anything else that can be rendered in a structured format.
 Generally program text is transformed into a term by means of parsing,
-and turned back into program text by means of pretty-printing. One way
-to achieve this is by using
-[[SDF3]{.doc}](../../sdf3/index.html){.reference .internal}. For most of
-the examples, we will just assume that we have terms that should be
-transformed and ignore parsing and pretty-printing. However, when we
-turn to running examples in the Spoofax environment in the Eclipse IDE,
-we will rely on SDF3 as that is the primary way to produce terms in
-Spoofax/Eclipse.
+and turned back into program text by means of pretty-printing.
+One way to achieve this is by using [SDF3](../../syntax/).
 
 ## Annotated Term Format
 
 Terms in Stratego are terms in the *Annotated Term Format*, or *ATerms*
-for short. The ATerm format provides a set of constructs for
-representing trees, comparable to XML or abstract data types in
-functional programming languages. For example, the code
-`4 + f(5 * x)` might be represented in
-a term as:
+for short [@BrandJKO00].
+The ATerm format provides a set of constructs for representing trees, comparable to XML or abstract data types in
+functional programming languages.
+For example, the code `4 + f(5 * x)` might be represented in a term as:
 
-```
+```aterm
 Plus(Int("4"), Call("f", [Mul(Int("5"), Var("x"))]))
 ```
 
@@ -90,6 +81,9 @@ this is completely hidden from the Stratego programmer.
 
 ## Namespaces
 
-qualified names ... 
+Currently, the constructors of terms live in a global namespace.
+In the future, we want to support qualified names. 
 
-!!! todo
+## References
+
+\bibliography
