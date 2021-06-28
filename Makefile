@@ -1,8 +1,10 @@
 SELF_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-ROOT_DIR := $(SELF_DIR).
-DOCKER_IMAGE := metaborg/spoofax-docs
-DOCKER_FILE := ${ROOT_DIR}/Dockerfile
+ROOT_DIR     := $(SELF_DIR).
+DOCKER_IMAGE ?= metaborg/spoofax-docs
+DOCKER_FILE  ?= ${ROOT_DIR}/Dockerfile
+RESEARCHR    ?= metaborg-spoofax
+BIB_FILE     ?= $(ROOT_DIR)/bibliographies/spoofax.bib
 
 # SSH Agent Socket
 ifeq ($(OS),Windows_NT)         # WSL2 (Windows)
@@ -43,6 +45,21 @@ help: build-image
 
 build-image: Dockerfile
 	docker build -t ${DOCKER_IMAGE} -f ${DOCKER_FILE} ${ROOT_DIR}
+
+bib: clean-bib $(BIB_FILE)
+$(BIB_FILE): download-bib fix-bib
+
+download-bib:
+	curl "https://researchr.org/downloadbibtex/bibliography/$(RESEARCHR)" -o $(BIB_FILE)
+
+fix-bib:
+	sed -i '' '1 s/^/% /' $(BIB_FILE)
+	sed -i '' 's/doi = {http.*\/\(10\..*\)}/doi = {\1}/' $(BIB_FILE)
+	sed -i '' '/doi = {http.*}/d' $(BIB_FILE)
+	sed -i '' 's/\&uuml;/ü/' $(BIB_FILE)
+
+clean-bib:
+	rm -f $(BIB_FILE)
 
 .PHONY: serve new build deploy help build-image
 SILENT:
