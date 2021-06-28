@@ -1101,8 +1101,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#signatures" class="md-nav__link">
-    Signatures
+  <a href="#term-signatures" class="md-nav__link">
+    Term Signatures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injections" class="md-nav__link">
+    Injections
   </a>
   
 </li>
@@ -1138,6 +1145,27 @@
         <li class="md-nav__item">
   <a href="#transformation-types" class="md-nav__link">
     Transformation Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-dynamic" class="md-nav__link">
+    Type Dynamic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-preserving-transformations" class="md-nav__link">
+    Type Preserving Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-type" class="md-nav__link">
+    Is Type
   </a>
   
 </li>
@@ -1582,8 +1610,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#signatures" class="md-nav__link">
-    Signatures
+  <a href="#term-signatures" class="md-nav__link">
+    Term Signatures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injections" class="md-nav__link">
+    Injections
   </a>
   
 </li>
@@ -1624,6 +1659,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#type-dynamic" class="md-nav__link">
+    Type Dynamic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-preserving-transformations" class="md-nav__link">
+    Type Preserving Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-type" class="md-nav__link">
+    Is Type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1651,36 +1707,49 @@
 <p><a href="../terms/">Annotated Terms</a> provide a generic, untyped format to represent tree-structured data.
 Stratego transformations can transform such data, but require at least that the arities of term constructors that are used in rules are declared.
 Further, starting with Stratego 2, the types of terms and term transformations <em>may</em> be declared <em>and</em> checked in more detail<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<h2 id="signatures">Signatures<a class="headerlink" href="#signatures" title="Permanent link">&para;</a></h2>
+<h2 id="term-signatures">Term Signatures<a class="headerlink" href="#term-signatures" title="Permanent link">&para;</a></h2>
 <p>A signature declares sorts and constructors for these sorts using a definition of the form:</p>
 <div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
 <span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">Sort</span><span class="w"> </span>...<span class="w"></span>
 <span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">Constructor</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span>*<span class="w"> </span>...<span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+<span class="w">    </span>$<span class="nv">Constructor</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span>*<span class="w"> </span>...<span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Sort</span><span class="w"></span>
 </code></pre></div>
+<p>A sort is determined by an identifier and optionally has arguments.</p>
 <p>For each constructor, a signature declares the number and types of its arguments.</p>
-<h2 id="example-signature">Example Signature<a class="headerlink" href="#example-signature" title="Permanent link">&para;</a></h2>
-<p>For example, the following signature declares some typical constructors for constructing abstract syntax trees of expressions in a programming language:</p>
-<div class="highlight"><pre><span></span><code>signature
-  sorts Id Exp
-  constructors
-           : String -&gt; Id
-    Var    : Id -&gt; Exp
-    Int    : Int -&gt; Exp
-    Plus   : Exp * Exp -&gt; Exp
-    Mul    : Exp * Exp -&gt; Exp
-    Call   : Id  * List(Exp) -&gt; Exp
-</code></pre></div>
 <p>The Stratego1 compiler only checks the arity of constructor applications against the signature.
 The Stratego2 compiler uses signature definitions to type check term patterns in rules.</p>
+<h2 id="injections">Injections<a class="headerlink" href="#injections" title="Permanent link">&para;</a></h2>
+<p>An injection is a constructor without name and with a single domain argument.</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>$<span class="nv">Sort</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Sort</span><span class="w"></span>
+</code></pre></div>
+<p>Injections include an entire type as a subtype of another type without cluttering the tree structure.</p>
+<h2 id="example-signature">Example Signature<a class="headerlink" href="#example-signature" title="Permanent link">&para;</a></h2>
+<p>For example, the following signature declares some typical constructors for constructing abstract syntax trees of expressions in a programming language:</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Id</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">           </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Id</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Var</span><span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Id</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Int</span><span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Int</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Plus</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Mul</span><span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Call</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Id</span><span class="w">  </span>*<span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Exp</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+</code></pre></div>
+<p>Note that the first injection allows strings to be used as identifiers (<code>Id</code>).</p>
 <h2 id="the-list-type">The List Type<a class="headerlink" href="#the-list-type" title="Permanent link">&para;</a></h2>
 <p>The <code>List(Exp)</code> type used above is built-in and correspons to homogenous lists of terms of the same type (<code>Exp</code> in this case).</p>
 <h2 id="polymorphic-types">Polymorphic Types<a class="headerlink" href="#polymorphic-types" title="Permanent link">&para;</a></h2>
-<p>Stratego2 also supports user-defined polymorphic types.</p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>describe polymorphic types &amp; give example </p>
-</div>
+<p>Stratego2 also supports user-defined polymorphic types.
+That is, sorts can have parameters.</p>
+<p>For example, the following signature defines the type of priority queues, polymorphic in the carrier type, in which the priority is determined by the length of the list.</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">PrioQ</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span><span class="nv">NilQ</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">ConsQ</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span>*<span class="w"> </span><span class="nv">int</span><span class="w"> </span>*<span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span>*<span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
 <h2 id="signature-from-syntax-definition">Signature from Syntax Definition<a class="headerlink" href="#signature-from-syntax-definition" title="Permanent link">&para;</a></h2>
 <p>Signatures can be generated automatically from a syntax definition in <a href="../../syntax/">SDF3</a>.
 That ensures that the signature describes exactly the abstract syntax terms generated by a parser generated from that syntax definition.
@@ -1691,14 +1760,29 @@ Furthermore, an automatically generated pretty-printer maps terms conforming to 
 </div>
 <h2 id="transformation-types">Transformation Types<a class="headerlink" href="#transformation-types" title="Permanent link">&para;</a></h2>
 <p>Starting with Stratego2, the language also supports the definition of types for transformation definitions.</p>
-<p>The general form of a type definition is</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
+<p>The general form of a transformation type definition is</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
 </code></pre></div>
-<p>If</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
+<p>defining the signature of a transformation with name <code>$Id</code> with the types of its strategy arguments and term arguments, the type of the 'current term' to which the transformation is applied, and the type of the term that is returned, if the transformation succeeds.</p>
+<p>When a transformation only has strategy parameters, the bar can be left out, resulting in a signature of the form:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyType</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
+<p>When a transformation also has no strategy parameters, the parentheses can be left out as well, resulting in a signature of the form:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">TermType</span><span class="w"></span>
 </code></pre></div>
+<h2 id="type-dynamic">Type Dynamic<a class="headerlink" href="#type-dynamic" title="Permanent link">&para;</a></h2>
+<p>Stratego2 is a gradually typed language in order to facilitate the migration from (mostly) untyped Stratego1 code to typed Stratego2 code.
+Furthermore, some patterns in Stratego cannot be typed statically.</p>
+<p>Type <em>dynamic</em>, written <code>?</code>, represents the unknown type.</p>
+<h2 id="type-preserving-transformations">Type Preserving Transformations<a class="headerlink" href="#type-preserving-transformations" title="Permanent link">&para;</a></h2>
+<p>A <em>type preserving</em> transformation transforms <em>any</em> type to itself (or fails).</p>
+<p>In signatures, a type preserving transformation is indicated with <code>TP</code>.</p>
+<p>For example, the topdown traversal is type preserving if its argument strategy is. Thus, its signature is defined as</p>
+<div class="highlight"><pre><span></span><code><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">TP</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">TP</span><span class="w"></span>
+</code></pre></div>
+<h2 id="is-type">Is Type<a class="headerlink" href="#is-type" title="Permanent link">&para;</a></h2>
+<p>Given the definition of a term signature, the <code>is(S)</code> strategy checks whether a term is of sort <code>S</code> and fails if that is not the case.</p>
+<p>For example, the strategy <code>&lt;is(Exp)&gt;t</code> checks that term <code>t</code> conforms to the signature of sort <code>Exp</code>.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
