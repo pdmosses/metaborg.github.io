@@ -1,9 +1,10 @@
 # Rules
 
 User-defined constraints and their rules make up the main part of a Statix specification.
+In this section, we describe the definition and usage of user-defined constraints
+and their rules.
 
-
-## Constraint Definitions.
+## Constraint Definitions
 
 In order to define a custom constraint, its type must be declared first. A
 constraint can be declared in a `rules` section, or in a `constraints` subsection
@@ -84,6 +85,7 @@ This rule is similar to a regular rule, but lacks a body. When applying such a
 rule, no new constraints are introduced, reflecting the fact that the constraint
 trivially holds for these arguments.
 
+
 ## Functional Rules
 
 Some user-defined constraints can be thought of more naturally as a function:
@@ -126,6 +128,7 @@ position of the application of the functional predicate.
     explicit, we usually refer to either groups with 'predicative constraint
     declarations' and 'predicative constraints', versus 'functional constraint
     declarations' and 'functional constraints', respectively.
+
 
 ## Mapping rules
 
