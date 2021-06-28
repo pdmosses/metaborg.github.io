@@ -1109,6 +1109,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1574,6 +1581,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1592,28 +1606,20 @@
                 
                 
                 <h1 id="terms">Terms<a class="headerlink" href="#terms" title="Permanent link">&para;</a></h1>
-<p>Stratego programs transform terms. When using Stratego for program
-transformation, terms typically represent the abstract syntax tree of a
-program. But Stratego does not much care what a term represents. Terms
-can just as well represent structured documents, software models, or
-anything else that can be rendered in a structured format.</p>
-<p>Generally program text is transformed into a term by means of parsing,
-and turned back into program text by means of pretty-printing. One way
-to achieve this is by using
-<a class="reference internal" href="../../sdf3/index.html">[SDF3]{.doc}</a>. For most of
-the examples, we will just assume that we have terms that should be
-transformed and ignore parsing and pretty-printing. However, when we
-turn to running examples in the Spoofax environment in the Eclipse IDE,
-we will rely on SDF3 as that is the primary way to produce terms in
-Spoofax/Eclipse.</p>
+<p>Stratego programs transform terms.
+When using Stratego for program transformation, terms typically represent the abstract syntax tree of a program.
+But Stratego does not much care what a term represents.
+Terms can just as well represent structured documents, software models, or anything else that can be rendered in a structured format.
+Generally program text is transformed into a term by means of parsing,
+and turned back into program text by means of pretty-printing.
+One way to achieve this is by using <a href="../../syntax/">SDF3</a>.</p>
 <h2 id="annotated-term-format">Annotated Term Format<a class="headerlink" href="#annotated-term-format" title="Permanent link">&para;</a></h2>
 <p>Terms in Stratego are terms in the <em>Annotated Term Format</em>, or <em>ATerms</em>
-for short. The ATerm format provides a set of constructs for
-representing trees, comparable to XML or abstract data types in
-functional programming languages. For example, the code
-<code>4 + f(5 * x)</code> might be represented in
-a term as:</p>
-<div class="highlight"><pre><span></span><code>Plus(Int(&quot;4&quot;), Call(&quot;f&quot;, [Mul(Int(&quot;5&quot;), Var(&quot;x&quot;))]))
+for short <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+The ATerm format provides a set of constructs for representing trees, comparable to XML or abstract data types in
+functional programming languages.
+For example, the code <code>4 + f(5 * x)</code> might be represented in a term as:</p>
+<div class="highlight"><pre><span></span><code>Plus<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;4&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Call<span class=" -Punctuation">(</span><span class="s">&quot;f&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>Mul<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;5&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Var<span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">))]))</span><span class="w"></span>
 </code></pre></div>
 <p>ATerms are constructed from the following elements:</p>
 <ul>
@@ -1674,9 +1680,16 @@ internally a Stratego program uses a data-structure in memory with
 pointers rather than manipulating a textual representation of terms. But
 this is completely hidden from the Stratego programmer.</p>
 <h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
-<p>qualified names ... </p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
+<p>Currently, the constructors of terms live in a global namespace.
+In the future, we want to support qualified names. </p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Mark G. J. van den Brand, H. A. de Jong, Paul Klint, and Pieter A. Olivier. Efficient annotated terms. <em>Software: Practice and Experience</em>, 30(3):259&ndash;291, 2000.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
                 
               
