@@ -78,14 +78,28 @@ The configuration sections are hard-coded in the ESV language, but mostly use a 
 The following configuration sections are currently defined:
 
 <!-- Keep this list sorted: -->
-- `analysis`
-- [`builders`](builders.md) ({{warning}} deprecated)
 - `colorer`
+    - [Syntax Highlighting](syntax-highlighting.md)
+- `language`
+    - [Language File Extensions](file-extensions.md)
+    - [Parsing](parsing.md)
+    - [Analysis](analysis.md)
+    - [On-Save Handlers](on-save.md)
+    - [Stratego Strategies](stratego.md)
+- `menus`
+    - [Action menus](menus.md)
+- `references`
+    - [Hover Tooltips](hover.md)
+    - [Reference Resolutions](reference-resolution.md)
+- `views`
+    - [Outline View](outline.md)
+
+The following sections have been deprecated:
+
+<!-- Keep this list sorted: -->
+- `analysis`
+- `builders`
 - `completions`
 - `folding`
-- `language` ([Extensions](file-extensions.md), [Parsing](parsing.md))
-- [`menus`](menus.md)
 - `outliner`
 - `refactorings`
-- `references`
-- `views`

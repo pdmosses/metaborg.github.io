@@ -1,4 +1,4 @@
-# Menus
+# Action Menus
 Menus are used to bind actions of your language, such as transformations, to a menu in the IDE. Menus are defined using the `menu` keyword under a `menus` section in an [ESV file](esv.md), and can themselves contain submenus, actions, and separators.
 
 ```esv
