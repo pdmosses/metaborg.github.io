@@ -14,5 +14,4 @@ Most editor services are configured in an [ESV file](esv.md). This way the follo
 
 Additionally, the following editor services are configured in a different way:
 
-- [Code Completion](code-completion.md)
-- [Renaming](renaming.md)
+- [Rename Refactoring](renaming.md)
