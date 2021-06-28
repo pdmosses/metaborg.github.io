@@ -60,6 +60,7 @@ nav:
       - references/stratego/modules.md
       - references/stratego/terms.md
       - references/stratego/types.md
+      - references/stratego/patterns.md
       - references/stratego/rewrite-rules.md
       - references/stratego/strategies.md
       - references/stratego/strategy-combinators.md
