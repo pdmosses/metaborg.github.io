@@ -92,8 +92,7 @@ theme:
 
 extra_css:
   - assets/styles.css
-  - assets/fonts.css
-
+    
 markdown_extensions:
   - abbr
   - admonition
