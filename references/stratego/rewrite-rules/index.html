@@ -481,6 +481,27 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Installiation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installiation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installiation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../howtos/install-eclipse-bundle/" class="md-nav__link">
         Install the Eclipse with Spoofax Plugin Bundle
@@ -513,6 +534,12 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
             
   
   
@@ -521,14 +548,89 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
-      <label class="md-nav__link" for="__nav_3_5">
+      <label class="md-nav__link" for="__nav_3_3">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/run-stratego-programs/" class="md-nav__link">
+        How to Run Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/exchange-terms/" class="md-nav__link">
+        How to Exchange Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/inspect-terms/" class="md-nav__link">
+        How To Inspect Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/debug-stratego/" class="md-nav__link">
+        How to Debug Stratego Programs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
         Editor Services
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_5">
+        <label class="md-nav__title" for="__nav_3_4">
           <span class="md-nav__icon md-icon"></span>
           Editor Services
         </label>
@@ -1168,13 +1270,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#simple-rule-application" class="md-nav__link">
-    Simple Rule Application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#conditional-rewrite-rules" class="md-nav__link">
     Conditional Rewrite Rules
   </a>
@@ -1182,8 +1277,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-vs-where" class="md-nav__link">
-    With vs Where
+  <a href="#side-computations-with-with" class="md-nav__link">
+    Side Computations with With
   </a>
   
 </li>
@@ -1736,13 +1831,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#simple-rule-application" class="md-nav__link">
-    Simple Rule Application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#conditional-rewrite-rules" class="md-nav__link">
     Conditional Rewrite Rules
   </a>
@@ -1750,8 +1838,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with-vs-where" class="md-nav__link">
-    With vs Where
+  <a href="#side-computations-with-with" class="md-nav__link">
+    Side Computations with With
   </a>
   
 </li>
@@ -1797,50 +1885,111 @@
                 <h1 id="rewrite-rules">Rewrite Rules<a class="headerlink" href="#rewrite-rules" title="Permanent link">&para;</a></h1>
 <p>Rewrite rules are used to define basic transformations in Stratego.</p>
 <h2 id="simple-rewrite-rules">Simple Rewrite Rules<a class="headerlink" href="#simple-rewrite-rules" title="Permanent link">&para;</a></h2>
-<p>A simple rewrite rule has the form</p>
+<p>A <em>simple</em> rewrite rule has the form</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 </code></pre></div>
-<p>It consists of a name that identifies the rule, a left-hand side term, and a right-hand side term.</p>
-<p>Applying a rule to a term <code>t</code> entails matching <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
-<h2 id="simple-rule-application">Simple Rule Application<a class="headerlink" href="#simple-rule-application" title="Permanent link">&para;</a></h2>
-<p>When a rule is invoked through its identifier, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.</p>
-<p>A rewrite rule is invoked by applying its label as</p>
+<p>It consists of a name that identifies the rule, a left-hand side term pattern, and a right-hand side term pattern.</p>
+<p>Applying a rule to a term <code>t</code> entails <a href="../patterns/">matching</a> <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
+<p>For example, the rewrite rule <code>DeMorgan</code></p>
+<div class="highlight"><pre><span></span><code><span class="nv">DeMorgan</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>transforms a negation of a conjunction to a disjunction of negations.
+Applying this rule to the term <code>Not(And(Var(p), Var(q)))</code> results in a substitution binding <code>Var(p)</code> to <code>e1</code> and <code>Var(q)</code> to <code>e2</code>, and the instantiation <code>Or(Not(Var(p)), Not(Var(q)))</code> of the right-hand side of the rule.</p>
+<p>Note that a rewrite rule defines a <em>partial computation</em>.
+Only if the pattern match succeeds is the transformation applied.
+Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with <a href="../strategy-combinators/">strategy combinators</a>.</p>
 <h2 id="conditional-rewrite-rules">Conditional Rewrite Rules<a class="headerlink" href="#conditional-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<p>A <em>conditional</em> rewrite rule checks a condition or performs a side computation before instantiating the right-hand side of the rule.</p>
+<p>The basic form of a conditional rewrite rule in Stratego is</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
-<h2 id="with-vs-where">With vs Where<a class="headerlink" href="#with-vs-where" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<p>where the <a href="../strategy-combinators/">strategy expression</a> represents a computation that may fail.
+When the condition fails, the expectation is that some other rule will pick up the computation.</p>
+<p>For example, the conditional rewrite rule</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">foo</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">e</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">term</span><span class="w"></span>
+<span class="w">    </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">is</span><span class=" -Punctuation">(</span><span class="nv">string</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">e</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>come up with a sensible example</p>
+</div>
+<p>When the condition fails, the application of the rule fails in the sense above.</p>
+<h2 id="side-computations-with-with">Side Computations with With<a class="headerlink" href="#side-computations-with-with" title="Permanent link">&para;</a></h2>
+<p>Failure is not always expected.
+When a condition is used to express a side computation, the expection may be that it should always succeed.
+However, due to a programming error (e.g. a missed case), the condition may fail in some cases.
+To guard agains such cases the <code>with</code> condition expresses that the programmer expects a side computation to always succeed.
+When this fails, the program should fail with an exception (and a stack trace).</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
-<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
-<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+<p>For example, a <code>translate</code> transformation from expressions to list of (stack machine) instructions may use side computations to recursively apply the transformation.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Instr</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">concat</span><span class=" -Punctuation">&gt;[</span><span class="nv">instrs1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">instrs2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">ADD</span><span class=" -Punctuation">()]]</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="nv">e1</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs1</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="nv">e2</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs2</span><span class="w"></span>
 </code></pre></div>
-<p>use a where clause when the condition is to determine whether to apply the rule</p>
-<p>use a with clause to perform a side computation; has to succeed; will try an exception when it fails</p>
+<p>The recursive applications are not expected to fail.
+Therefore a <code>with</code> is used.</p>
+<p>Thus, use a <code>where</code> clause when the condition is to determine whether to apply the rule, and use a <code>with</code> clause to perform a side computation, which has to succeed and will trow an exception when it fails.</p>
 <h2 id="combining-with-and-where">Combining With and Where<a class="headerlink" href="#combining-with-and-where" title="Permanent link">&para;</a></h2>
-<p>multiple with/where clauses</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<p>Rewrite rules can combine multiple with/where clauses in any order.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
+<p>The only rule is that <code>with</code> clauses should always succeed.</p>
+<p>For example, the following <code>explicate-exp</code> rule defines the translation of an operator expression in one language to an operator expression in a different language.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">explicate-exp</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">CExp</span><span class="w"></span>
+<span class="nv">explicate-exp</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">op</span>#<span class=" -Punctuation">(</span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">cop</span>#<span class=" -Punctuation">(</span><span class="nv">atms</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">is-operator</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">op</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">explicate-atom</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">es</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">atms</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">operator-to-coperator</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">op</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">cop</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>where</code> condition tests whether the rule should be applied using the <code>is-operator</code> strategy.
+(By using generic term deconstruction to obtain the term constructor.)
+The <code>with</code> premises define side computations.</p>
 <h2 id="parameterized-rewrite-rules">Parameterized Rewrite Rules<a class="headerlink" href="#parameterized-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
 <p>term parameters</p>
 <p>strategy parameters</p>
-<h2 id="typing-rewrite-rules">Typing Rewrite Rules<a class="headerlink" href="#typing-rewrite-rules" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>  $Label($StrategyTypes | $TermTypes) :: $Type -&gt; $Type
+<p>When leaving out the term parameters, the bar can be left out as well</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
+<p>For example, the <code>map(s)</code> strategy applies transformation <code>s</code> to each element of a list:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">b</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">b</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"></span>
+<span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">hd</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">tl</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">hd</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">tl</span><span class=" -Punctuation">]</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
+In a future version of the language, this syntactic distiction may no longer be necessary based on types.</p>
+</div>
+<h2 id="typing-rewrite-rules">Typing Rewrite Rules<a class="headerlink" href="#typing-rewrite-rules" title="Permanent link">&para;</a></h2>
+<p>As noted in the <a href="../types/">type</a> section, rewrite rules can be typed using a signature of the form</p>
+<div class="highlight"><pre><span></span><code>  $Id($StrategyTypes | $TermTypes) :: $Type -&gt; $Type
+</code></pre></div>
+<p>Not providing a type signature amounts to declaring the rule as having signature</p>
+<div class="highlight"><pre><span></span><code>  $Id(?|?) :: ? -&gt; ?
+</code></pre></div>
+<p>That is, nothing is known about the term that is transformed or the strategies and terms that are passed.</p>
+<p>But do note that the arity of the strategy and term arguments is relevant for identifying the transformation rule that is defined.</p>
                 
               
               

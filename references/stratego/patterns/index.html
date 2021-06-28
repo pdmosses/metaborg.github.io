@@ -481,6 +481,27 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Installiation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installiation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installiation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../howtos/install-eclipse-bundle/" class="md-nav__link">
         Install the Eclipse with Spoofax Plugin Bundle
@@ -513,6 +534,12 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
             
   
   
@@ -521,14 +548,89 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
-      <label class="md-nav__link" for="__nav_3_5">
+      <label class="md-nav__link" for="__nav_3_3">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/run-stratego-programs/" class="md-nav__link">
+        How to Run Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/exchange-terms/" class="md-nav__link">
+        How to Exchange Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/inspect-terms/" class="md-nav__link">
+        How To Inspect Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/debug-stratego/" class="md-nav__link">
+        How to Debug Stratego Programs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
         Editor Services
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_5">
+        <label class="md-nav__title" for="__nav_3_4">
           <span class="md-nav__icon md-icon"></span>
           Editor Services
         </label>
@@ -1156,6 +1258,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linear-vs-non-linear" class="md-nav__link">
+    Linear vs Non-Linear
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#substitution" class="md-nav__link">
     Substitution
   </a>
@@ -1708,6 +1817,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linear-vs-non-linear" class="md-nav__link">
+    Linear vs Non-Linear
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#substitution" class="md-nav__link">
     Substitution
   </a>
@@ -1745,14 +1861,16 @@
 <div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;0&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <p>the identifier <code>e</code> is a variable that stands for any term.</p>
+<h2 id="linear-vs-non-linear">Linear vs Non-Linear<a class="headerlink" href="#linear-vs-non-linear" title="Permanent link">&para;</a></h2>
 <p>A pattern is <em>linear</em> if each variable occurs at most once, <em>non-linear</em> otherwise.
 The <em>non-linear</em> pattern</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>stands for a <code>Plus</code> term with identical arguments.</p>
-<p>A term pattern without variables is <em>ground</em>.</p>
+<p>A term pattern without variables (aka <a href="../terms/">term</a>) is <em>ground</em>.</p>
 <h2 id="substitution">Substitution<a class="headerlink" href="#substitution" title="Permanent link">&para;</a></h2>
 <p><em>Substitution</em> is the process of applying a map from variables to terms to a term pattern, replacing occurrence of variables in the domain of the map with the corresponding terms in the codomain of the map.</p>
+<p><em>Substitution</em> is also the name for the mapping of variables to terms.</p>
 <h2 id="pattern-matching">Pattern Matching<a class="headerlink" href="#pattern-matching" title="Permanent link">&para;</a></h2>
 <p><em>Pattern matching</em> is the process of matching a ground term against a term pattern.</p>
 <p>A term <code>t</code> matches a term pattern <code>p</code> iff there is a substition <code>S</code> such that applying the substitution to the pattern <code>S(p)</code> yields the term <code>t</code>.</p>
