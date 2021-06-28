@@ -17,7 +17,7 @@ Each module declares its name, and subsequently contains a number of sections.
 The module name should coincide with the relative path of the module with respect
 to the closest source root.
 
-!!! check
+!!! todo
     Link to documentation on source roots.
 
 ## Imports
@@ -34,7 +34,9 @@ Modules can only be imported with their fully qualified name. That is, for each
 `$ModuleName` in an `imports` section, a module with exactly the same name must exist.
 
 Imports of sorts, constructors and predicates are transitive, while imports of
-labels and relations are non-transitive.
+labels and relations are non-transitive. Furthermore, overloading by type,
+shadowing of top-level definitions, and duplicate imports of specification
+entities are not allowed.
 
 ## Signatures
 
