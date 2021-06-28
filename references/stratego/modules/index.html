@@ -1038,8 +1038,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#file-extension" class="md-nav__link">
-    File Extension
+  <a href="#file-name-and-file-extension" class="md-nav__link">
+    File Name and File Extension
   </a>
   
 </li>
@@ -1068,6 +1068,13 @@
         <li class="md-nav__item">
   <a href="#libraries" class="md-nav__link">
     Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-inclusion" class="md-nav__link">
+    Source Inclusion
   </a>
   
 </li>
@@ -1166,6 +1173,18 @@
     <li class="md-nav__item">
       <a href="../concrete-syntax/" class="md-nav__link">
         Concrete Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overlays/" class="md-nav__link">
+        Overlays
       </a>
     </li>
   
@@ -1536,8 +1555,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#file-extension" class="md-nav__link">
-    File Extension
+  <a href="#file-name-and-file-extension" class="md-nav__link">
+    File Name and File Extension
   </a>
   
 </li>
@@ -1571,6 +1590,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#source-inclusion" class="md-nav__link">
+    Source Inclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#concrete-syntax" class="md-nav__link">
     Concrete Syntax
   </a>
@@ -1595,33 +1621,43 @@
                 
                 
                 <h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h1>
-<p>A Stratego program is organised as a collection of modules.</p>
-<h2 id="file-extension">File Extension<a class="headerlink" href="#file-extension" title="Permanent link">&para;</a></h2>
-<p>A Stratego is a file with the extension <code>.str2</code> for Stratego 2.</p>
-<p>Modules for the Stratego 1 version of the language have extension <code>.str</code>.</p>
+<p>A Stratego program is organised as a collection of modules, which are imported from a main module.</p>
+<h2 id="file-name-and-file-extension">File Name and File Extension<a class="headerlink" href="#file-name-and-file-extension" title="Permanent link">&para;</a></h2>
+<p>A module coincides with the file it resides in. It is not possible to define more than one module in a file, which precludes nested modules.
+The name of a module coincides with the file name, which should be fully qualified relative to a root directory.</p>
+<p>A Stratego is a file with the extension <code>.str2</code> for Stratego 2.
+Modules for the Stratego 1 version of the language have extension <code>.str</code>.
+The file extension does not feature in the module names used in the language.
+Consider the following example of a module header:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">compilation</span>/<span class="nv">translation</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">desugaring</span>/<span class="nv">desugar</span><span class="w"></span>
+</code></pre></div>
 <h2 id="module-names">Module Names<a class="headerlink" href="#module-names" title="Permanent link">&para;</a></h2>
-<p>Module names can be hierarchical</p>
-<p>For example, consider the following directory structure</p>
-<div class="highlight"><pre><span></span><code>- trans
+<p>Module names can be hierarchical.
+For example, consider the following directory structure</p>
+<p><div class="highlight"><pre><span></span><code>- trans
   - compilation
     - optimization.str2
     - translation.str2
   - desugaring
     - desugar.str2
 </code></pre></div>
-<p>If <code>trans</code> is <a href="../config/">declared as a root</a>, then the module names are</p>
-<div class="highlight"><pre><span></span><code>- trans
-  - compilation
-    - compilation/optimization
-    - compilation/translation
-  - desugaring
-    - desugaring/desugar
+A declaration of or reference to a module uses its fully qualified name, with <code>/</code> to indicate the directory structure, relative to a 'root' directory.</p>
+<p>For example, if <code>trans</code> is <a href="../config/">declared as a root</a>, then the module names for the modules above are</p>
+<div class="highlight"><pre><span></span><code>- compilation/optimization
+- compilation/translation
+- desugaring/desugar
 </code></pre></div>
 <h2 id="module-structure">Module Structure<a class="headerlink" href="#module-structure" title="Permanent link">&para;</a></h2>
-<p>A Stratego module has the following structure, where a single occurrence of a construct can actually be multiplied:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">FileName</span><span class="w"></span>
+<p>A Stratego module has the following structure, where a single occurrence of a construct can be multiplied:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="w"></span>
 
-<span class="k">imports</span><span class="w"> </span>$<span class="nv">FileName</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="w"></span>
+
+<span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="nv">sort</span><span class="w"> </span>$<span class="nv">Sort</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span>$<span class="nv">ConstructorDef</span><span class="w"></span>
 
 <span class="k">rules</span><span class="w"></span>
 
@@ -1631,15 +1667,27 @@
 
 <span class="w">  </span>$<span class="nv">StrategyDef</span><span class="w"></span>
 </code></pre></div>
+<p>Thus, a module starts with a module header followed by a list of <code>imports</code>.
+The name of a module in the header and imports should correspond to the file name, relative to a 'root' directory.</p>
+<p>The rest of a module consists of <code>signature</code>, <code>rules</code>, and <code>strategies</code> sections, in any order and possibly repeated.
+A <a href="../types/">signature</a> section introduces sorts and constructors.
+<a href="../rewrite-rules/">Rule</a> definitions and <a href="../strategies/">strategy</a> definitions introduce named transformations.
+The <code>rules</code> and <code>strategies</code> section headers are indicative only; rule and strategy definitions can actually be mixed.</p>
 <h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
-<p>A module should import all other modules from which it uses definitions.</p>
-<p>Imports are non-transitive</p>
-<p>modules can extend definitions</p>
+<p>A module should import all other modules from which it uses definitions.
+Imports are non-transitive and may be mutually recursive.</p>
+<p>Modules can extend rule and strategy definitions from other modules.
+This allows the modular extension of a language.</p>
 <h2 id="libraries">Libraries<a class="headerlink" href="#libraries" title="Permanent link">&para;</a></h2>
-<p>pre-compiled libraries</p>
-<p>external definitions</p>
+<p>A Stratego library is a closed collection of modules.
+A library can be pre-compiled since client programs may not extend its definitions.
+A library should provide external definitions to publicize the signatures of constructors and transformations it defines.</p>
+<h2 id="source-inclusion">Source Inclusion<a class="headerlink" href="#source-inclusion" title="Permanent link">&para;</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+</div>
 <h2 id="concrete-syntax">Concrete Syntax<a class="headerlink" href="#concrete-syntax" title="Permanent link">&para;</a></h2>
-<p>To use <a href="concrete-syntax/">concrete syntax</a> define a <code>.meta</code> file to accompany the module.</p>
+<p>When using <a href="concrete-syntax/">concrete syntax</a> in a module, a <code>.meta</code> file accompanying the module indicates the parse table to use.</p>
                 
               
               

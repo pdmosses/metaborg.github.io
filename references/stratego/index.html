@@ -1026,6 +1026,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#placeholder-convention" class="md-nav__link">
+    Placeholder Convention
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#source" class="md-nav__link">
     Source
   </a>
@@ -1131,6 +1138,18 @@
     <li class="md-nav__item">
       <a href="concrete-syntax/" class="md-nav__link">
         Concrete Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="overlays/" class="md-nav__link">
+        Overlays
       </a>
     </li>
   
@@ -1501,6 +1520,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#placeholder-convention" class="md-nav__link">
+    Placeholder Convention
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#source" class="md-nav__link">
     Source
   </a>
@@ -1535,6 +1561,15 @@ Rules may explicitly invoke rules.
 Alternatively, rules may be invoked by <a href="strategies/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategy-combinators/">strategy combinators</a>.
 Context-sensitive transformations can be expressed using <a href="dynamic-rules/">dynamic rewrite rules</a>.</p>
 <p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="types/">typed</a>.</p>
+<h2 id="placeholder-convention">Placeholder Convention<a class="headerlink" href="#placeholder-convention" title="Permanent link">&para;</a></h2>
+<p>In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
+For example, a rewrite rule has the form</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+</code></pre></div>
+<p>in which the <code>$Label</code> is the name of the rule, the first <code>$Term</code> the left-hand side, and the second the right-hand side of the rule.
+This convention should give an indication of the formal structure of a construct, without going down to the precise details of the syntax definition.
+As a side effect, the schema also shows the preferred indentation of language constructs where that is applicable.</p>
 <h2 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
 <p>The sources of the Stratego implementation can be found at</p>
 <ul>
