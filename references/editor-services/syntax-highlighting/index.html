@@ -56,7 +56,6 @@
 
 
 
-<!-- TODO: Set this image to a representative screenshot of the homepage. -->
 
 
 <!-- Open graph meta tags -->
@@ -64,7 +63,7 @@
 <meta property="og:title" content="Spoofax - Syntax Highlighting" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/syntax-highlighting/" />
-<meta property="og:image" content="https://repository-images.githubusercontent.com/50726688/27cc9680-b8db-11eb-8937-546bbfacc378" />
+<meta property="og:image" content="../../../assets/screenshot.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
 <meta property="og:image:height" content="568" />
@@ -586,18 +585,6 @@
     <li class="md-nav__item">
       <a href="../../config/" class="md-nav__link">
         Language Configuration
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/parser/" class="md-nav__link">
-        Parser
       </a>
     </li>
   
@@ -1240,8 +1227,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../builders/" class="md-nav__link">
+        Builders
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../code-completion/" class="md-nav__link">
         Code completion
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-extensions/" class="md-nav__link">
+        Language File Extensions
       </a>
     </li>
   
@@ -1288,6 +1299,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../parsing/" class="md-nav__link">
+        Parsing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference-resolution/" class="md-nav__link">
         Reference Resolution
       </a>
@@ -1321,9 +1344,94 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Syntax Highlighting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Syntax Highlighting
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#style-definitions" class="md-nav__link">
+    Style Definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#styles" class="md-nav__link">
+    Styles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#style-rules" class="md-nav__link">
+    Style Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matchers" class="md-nav__link">
+    Matchers
+  </a>
+  
+    <nav class="md-nav" aria-label="Matchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#match-by-sort-and-constructor" class="md-nav__link">
+    Match by Sort and Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-constructor" class="md-nav__link">
+    Match by Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-sort" class="md-nav__link">
+    Match by Sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-type" class="md-nav__link">
+    Match by Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1453,6 +1561,76 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#style-definitions" class="md-nav__link">
+    Style Definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#styles" class="md-nav__link">
+    Styles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#style-rules" class="md-nav__link">
+    Style Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matchers" class="md-nav__link">
+    Matchers
+  </a>
+  
+    <nav class="md-nav" aria-label="Matchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#match-by-sort-and-constructor" class="md-nav__link">
+    Match by Sort and Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-constructor" class="md-nav__link">
+    Match by Constructor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-sort" class="md-nav__link">
+    Match by Sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-by-type" class="md-nav__link">
+    Match by Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1469,20 +1647,133 @@
                 
                 
                 <h1 id="syntax-highlighting">Syntax Highlighting<a class="headerlink" href="#syntax-highlighting" title="Permanent link">&para;</a></h1>
-<p>ESV:</p>
+<p>Token-based syntax highlighting is configured in a <code>colorer</code> section of an <a href="../esv/">ESV file</a>. Such a section can contain style definitions and styling rules.</p>
+<h2 id="style-definitions">Style Definitions<a class="headerlink" href="#style-definitions" title="Permanent link">&para;</a></h2>
+<p><em>Style definitions</em> bind an identifier to a style for later reuse, using the syntax:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$ID<span class="w"> </span>=<span class="w"> </span>$Style<span class="w"></span>
+</code></pre></div>
+<h2 id="styles">Styles<a class="headerlink" href="#styles" title="Permanent link">&para;</a></h2>
+<p>A <em>style</em> specifies a combination of a foreground color, optional background color, and optional font style. Colors are specified as Red-Green-Blue values ranging from 0 (none) to 255 (full). The possible font attributes are:</p>
+<table>
+<thead>
+<tr>
+<th>Font attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td>Normal font.</td>
+</tr>
+<tr>
+<td><code>bold</code></td>
+<td>Bold font.</td>
+</tr>
+<tr>
+<td><code>italic</code></td>
+<td>Italic font.</td>
+</tr>
+<tr>
+<td><code>bold italic</code></td>
+<td>Bond and italic font.</td>
+</tr>
+<tr>
+<td><code>italic bold</code></td>
+<td>Same as <code>bold italic</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the following style definitions bind the <code>red</code>, <code>green</code>, and <code>blue</code> colors:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>red<span class="w">   </span>=<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>0<span class="w"></span>
+<span class="w">  </span>green<span class="w"> </span>=<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>0<span class="w"></span>
+<span class="w">  </span>blue<span class="w">  </span>=<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>255<span class="w"></span>
+</code></pre></div>
+<p>An optional background color can be set by adding another RGB value:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>redWithGreenBackground<span class="w"> </span>=<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>0<span class="w"></span>
+</code></pre></div>
+<p>The font attributes can be used to make the font bold or italic:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>redWithBold<span class="w">   </span>=<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>bold<span class="w"></span>
+<span class="w">  </span>redWithItalic<span class="w"> </span>=<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>italic<span class="w"></span>
+<span class="w">  </span>redWithGreenBackgroundWithBoldItalic<span class="w"> </span>=<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>0<span class="w"> </span>bold<span class="w"> </span>italic<span class="w"></span>
+</code></pre></div>
+<h2 id="style-rules">Style Rules<a class="headerlink" href="#style-rules" title="Permanent link">&para;</a></h2>
+<p><em>Style rules</em> assign a style to matched tokens with syntax:</p>
+<div class="highlight"><pre><span></span><code>$Matcher<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Style<span class="w"></span>
+</code></pre></div>
+<p>Or assigns a previously defined style definition:</p>
+<div class="highlight"><pre><span></span><code>$Matcher<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Ref<span class="w"></span>
+</code></pre></div>
+<p>The left hand side of style rules matches a token, whereas the right hand side assigns a style by referring to a previously defined style definition, or by directly assigning a style. For example, the following matches a token type and references a style definition:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>operator<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
+</code></pre></div>
+<p>whereas the following matches a token with a sort and constructor, and directly assigns a style:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>ClassBodyDec<span class=" -Punctuation">.</span>MethodDec<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>0<span class="w"></span>
+</code></pre></div>
+<h2 id="matchers">Matchers<a class="headerlink" href="#matchers" title="Permanent link">&para;</a></h2>
+<p>There are several ways in which the matcher on the left-hand side of a style rule can be specified: by type, by sort, by constructor, or by sort and constructor.</p>
+<h3 id="match-by-sort-and-constructor">Match by Sort and Constructor<a class="headerlink" href="#match-by-sort-and-constructor" title="Permanent link">&para;</a></h3>
+<p>The combination of a token sort and constructor can be matched by specifying the <code>$Sort.$Constructor</code>. For example:</p>
+<div class="highlight"><pre><span></span><code>colorer
+
+  ClassBodyDec.MethodDec : yellow
+  ClassBodyDec.FieldDec  : red
+</code></pre></div>
+<h3 id="match-by-constructor">Match by Constructor<a class="headerlink" href="#match-by-constructor" title="Permanent link">&para;</a></h3>
+<p>It is also possible to match constructors, regardless of their token sorts, using <code>_</code> in place of the sort name. For example:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>_<span class=" -Punctuation">.</span>Str<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>_<span class=" -Punctuation">.</span>StrCong<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>_<span class=" -Punctuation">.</span>QStr<span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>_<span class=" -Punctuation">.</span>QDollar<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>_<span class=" -Punctuation">.</span>QBr<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>gray<span class="w"></span>
+</code></pre></div>
+<h3 id="match-by-sort">Match by Sort<a class="headerlink" href="#match-by-sort" title="Permanent link">&para;</a></h3>
+<p>Additionally, it is possible to match any constructor for a specific sort. For this, just specify the name of the sort, <code>$Sort</code>. For example:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>ID<span class="w">       </span><span class=" -Punctuation">:</span><span class="w"> </span>darkblue<span class="w"></span>
+<span class="w">  </span>TYPEID<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>JQTYPEID<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>PQTYPEID<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>blue<span class="w"></span>
+<span class="w">  </span>FUNCID<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>0<span class="w"></span>
+<span class="w">  </span>JFUNCID<span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>0<span class="w"></span>
+<span class="w">  </span>STRING<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>177<span class="w"> </span>47<span class="w"> </span>2<span class="w"></span>
+</code></pre></div>
+<h3 id="match-by-type">Match by Type<a class="headerlink" href="#match-by-type" title="Permanent link">&para;</a></h3>
+<p>Finally, the following built-in token types can be matched on:</p>
 <ul>
-<li>Syntax Highlighting<ul>
-<li>Style Definitions &amp; Colors &amp; Attributes</li>
-<li>Style Rules<ul>
-<li>Matching on token types</li>
-<li>Matching on sorts</li>
-<li>Matching on tokens</li>
-<li>Matching on constructors</li>
+<li><code>identifier</code> — matches identifiers, found by lexical non-terminals without numbers;</li>
+<li><code>keyword</code> — matches keywords, found by terminals in the syntax definition;</li>
+<li><code>layout</code> — matches layout, such as whitespace and comments, found by layout definition;</li>
+<li><code>number</code> — matches numbers, found by lexical non-terminals with numbers;</li>
+<li><code>operator</code> — matches operations, found by terminals that contain just symbols (no characters);</li>
+<li><code>string</code> — matches strings, found by lexical non-terminals that include quotation marks;</li>
+<li><code>unknown</code> — matches tokens which the parser was unable to infer a type for.</li>
+<li><code>var</code></li>
+<li><code>error</code></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>For example, the following code defines a simple highlighting with token types:</p>
+<div class="highlight"><pre><span></span><code>colorer<span class="w"></span>
+
+<span class="w">  </span>keyword<span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>153<span class="w"></span>
+<span class="w">  </span>identifier<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
+<span class="w">  </span>string<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>177<span class="w"> </span>47<span class="w"> </span>2<span class="w"></span>
+<span class="w">  </span>number<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>17<span class="w"> </span>131<span class="w"> </span>22<span class="w"></span>
+<span class="w">  </span>operator<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
+<span class="w">  </span>layout<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>63<span class="w"> </span>127<span class="w"> </span>95<span class="w"> </span>italic<span class="w"></span>
+</code></pre></div>
                 
               
               

@@ -40,10 +40,6 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/config/parser/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/config/analyzer/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
@@ -200,7 +196,15 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/builders/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/code-completion/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/file-extensions/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -213,6 +217,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/outline/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/parsing/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>

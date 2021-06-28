@@ -56,7 +56,6 @@
 
 
 
-<!-- TODO: Set this image to a representative screenshot of the homepage. -->
 
 
 <!-- Open graph meta tags -->
@@ -64,7 +63,7 @@
 <meta property="og:title" content="Spoofax - ESV" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/esv/" />
-<meta property="og:image" content="https://repository-images.githubusercontent.com/50726688/27cc9680-b8db-11eb-8937-546bbfacc378" />
+<meta property="og:image" content="../../../assets/screenshot.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
 <meta property="og:image:height" content="568" />
@@ -586,18 +585,6 @@
     <li class="md-nav__item">
       <a href="../../config/" class="md-nav__link">
         Language Configuration
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/parser/" class="md-nav__link">
-        Parser
       </a>
     </li>
   
@@ -1237,10 +1224,79 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ESV
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         ESV
       </a>
       
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-definition" class="md-nav__link">
+    Module Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-sections" class="md-nav__link">
+    Configuration Sections
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../builders/" class="md-nav__link">
+        Builders
+      </a>
     </li>
   
 
@@ -1252,6 +1308,18 @@
     <li class="md-nav__item">
       <a href="../code-completion/" class="md-nav__link">
         Code completion
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-extensions/" class="md-nav__link">
+        Language File Extensions
       </a>
     </li>
   
@@ -1288,6 +1356,18 @@
     <li class="md-nav__item">
       <a href="../outline/" class="md-nav__link">
         Outline
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parsing/" class="md-nav__link">
+        Parsing
       </a>
     </li>
   
@@ -1453,6 +1533,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-definition" class="md-nav__link">
+    Module Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-sections" class="md-nav__link">
+    Configuration Sections
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1469,15 +1591,72 @@
                 
                 
                 <h1 id="esv">ESV<a class="headerlink" href="#esv" title="Permanent link">&para;</a></h1>
+<p>The <em>Editor Service (ESV)</em> language is a declarative meta-language for configuring the editor services of a language. For example, the following ESV code fragment configures the syntax highlighting for a language, based on the types of tokens:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>color<span class="w"></span>
+
+colorer<span class="w"></span>
+
+<span class="w">  </span>keyword<span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>153<span class="w"></span>
+<span class="w">  </span>identifier<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
+<span class="w">  </span>string<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>177<span class="w"> </span>47<span class="w"> </span>2<span class="w"></span>
+<span class="w">  </span>number<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>17<span class="w"> </span>131<span class="w"> </span>22<span class="w"></span>
+<span class="w">  </span>operator<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
+<span class="w">  </span>layout<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>63<span class="w"> </span>127<span class="w"> </span>95<span class="w"> </span>italic<span class="w"></span>
+</code></pre></div>
+<h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
+<p>ESV files end with the <code>.esv</code> extension, and are by convention placed in the <code>editor/</code> folder of a language project. Each ESV file defines a module for the file, followed by import statements and then the main configuration sections. Each section consists of a number of keys and values.</p>
+<div class="admonition note">
+<p class="admonition-title">Main File</p>
+<p>By convention, the main ESV file of a language project must live at <code>editor/Main.esv</code> (default) or <code>editor/main.esv</code>. Other ESV files can be (transitively) imported from the main ESV file.</p>
+</div>
+<h3 id="module-definition">Module Definition<a class="headerlink" href="#module-definition" title="Permanent link">&para;</a></h3>
+<p>An ESV file starts with a <em>module definition</em> at the top of the file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$ModuleName<span class="w"></span>
+</code></pre></div>
+<p>The module name is the filename of the ESV file without the exttension, and relative to the <code>editor/</code> directory. For example, the module <code>editor/mylang/Syntax.esv</code> would have the following module name:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>mylang/Syntax<span class="w"></span>
+</code></pre></div>
+<div class="admonition note">
+<p>Module names can only contains the alphanumeric characters  and dash, underscore, and period, and use the forward slash (<code>/</code>) as the path separator.</p>
+<p>Module names cannot be in parent directories, so <code>../Syntax</code> is not allowed.</p>
+</div>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<p>The <em>imports</em> section is an optional section immediately following the module definition. When specified it is given as:</p>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
+<span class="w">    </span>$Imports<span class="w"></span>
+</code></pre></div>
+<p>For example, to import <code>editor/Syntax.esv</code> and <code>editor/Analysis.esv</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
+<span class="w">    </span>Syntax<span class="w"></span>
+<span class="w">    </span>Analysis<span class="w"></span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Imports are transitive.</p>
+</div>
+<div class="admonition note">
+<p>At most one imports section is permitted. When specified, the <code>imports</code> section cannot be empty.</p>
+</div>
+<h3 id="configuration-sections">Configuration Sections<a class="headerlink" href="#configuration-sections" title="Permanent link">&para;</a></h3>
+<p>The main body of an ESV file consists of any number of configuration sections. An example of a configuration section is:</p>
+<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<span class="w">  </span><span class="k">line comment</span><span class=" -Punctuation">:</span><span class="w">  </span><span class="s">&quot;//&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="k">block comment</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class="s">&quot;*/&quot;</span><span class="w"></span>
+</code></pre></div>
+<p>The configuration sections are hard-coded in the ESV language, but mostly use a consistent syntax for the keys and values.</p>
+<p>The following configuration sections are currently defined:</p>
+<!-- Keep this list sorted: -->
 <ul>
-<li>General<ul>
-<li>Structure</li>
-<li>Imports</li>
-<li>Configuration Sections</li>
-<li>Keys and Values</li>
-<li>Splitting files</li>
-</ul>
-</li>
+<li><code>analysis</code></li>
+<li><a href="../builders/"><code>builders</code></a> (<span class="twemoji warning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346 7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg></span> deprecated)</li>
+<li><code>colorer</code></li>
+<li><code>completions</code></li>
+<li><code>folding</code></li>
+<li><code>language</code> (<a href="../file-extensions/">Extensions</a>, <a href="../parsing/">Parsing</a>)</li>
+<li><a href="../menus/"><code>menus</code></a></li>
+<li><code>outliner</code></li>
+<li><code>refactorings</code></li>
+<li><code>references</code></li>
+<li><code>views</code></li>
 </ul>
                 
               
@@ -1516,13 +1695,13 @@
         </a>
       
       
-        <a href="../code-completion/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../builders/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Code completion
+              Builders
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -56,7 +56,6 @@
 
 
 
-<!-- TODO: Set this image to a representative screenshot of the homepage. -->
 
 
 <!-- Open graph meta tags -->
@@ -64,7 +63,7 @@
 <meta property="og:title" content="Spoofax - Files" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/config/file-operations/" />
-<meta property="og:image" content="https://repository-images.githubusercontent.com/50726688/27cc9680-b8db-11eb-8937-546bbfacc378" />
+<meta property="og:image" content="../../../assets/screenshot.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
 <meta property="og:image:height" content="568" />
@@ -598,18 +597,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../parser/" class="md-nav__link">
-        Parser
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../analyzer/" class="md-nav__link">
         Analyzer
       </a>
@@ -643,9 +630,39 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Files
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#language-file-extensions" class="md-nav__link">
+    Language File Extensions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1250,8 +1267,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../editor-services/builders/" class="md-nav__link">
+        Builders
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../editor-services/code-completion/" class="md-nav__link">
         Code completion
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/file-extensions/" class="md-nav__link">
+        Language File Extensions
       </a>
     </li>
   
@@ -1288,6 +1329,18 @@
     <li class="md-nav__item">
       <a href="../../editor-services/outline/" class="md-nav__link">
         Outline
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/parsing/" class="md-nav__link">
+        Parsing
       </a>
     </li>
   
@@ -1453,6 +1506,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#language-file-extensions" class="md-nav__link">
+    Language File Extensions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1469,7 +1537,18 @@
                 
                 
                 <h1 id="files">Files<a class="headerlink" href="#files" title="Permanent link">&para;</a></h1>
-<p>ESV:</p>
+<h2 id="language-file-extensions">Language File Extensions<a class="headerlink" href="#language-file-extensions" title="Permanent link">&para;</a></h2>
+<p>The language file extensions are configured in the <code>language</code> section <code>extensions</code> key of an <a href="esv.mb">ESV file</a>. They are specified without a leading dot:</p>
+<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">extensions</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>ent<span class="w"></span>
+</code></pre></div>
+<p>Multiple extensions can be set with a comma-separated list:</p>
+<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">extensions</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>ent<span class=" -Punctuation">,</span><span class="w"> </span>entity<span class=" -Punctuation">,</span><span class="w"> </span>entities<span class="w"></span>
+</code></pre></div>
+<p>This will assign <code>foo.ent</code>, <code>foo.entity</code>, and <code>foo.entities</code> to the language.</p>
 <ul>
 <li>Language<ul>
 <li>File Extensions</li>

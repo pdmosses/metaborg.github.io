@@ -57,3 +57,9 @@
     word-wrap: break-word;
     white-space: normal;
 }
+.warning {
+    color: #ff9100;
+}
+.stop {
+    color: #ff1744;
+}
