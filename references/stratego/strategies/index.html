@@ -1289,13 +1289,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-definitions" class="md-nav__link">
-    Local Definitions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#extending-definitions" class="md-nav__link">
     Extending Definitions
   </a>
@@ -1303,15 +1296,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#calling-primitives" class="md-nav__link">
-    Calling Primitives
+  <a href="#external-definitions" class="md-nav__link">
+    External Definitions
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#external-definitions" class="md-nav__link">
-    External Definitions
+  <a href="#local-definitions" class="md-nav__link">
+    Local Definitions
   </a>
   
 </li>
@@ -1838,13 +1831,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-definitions" class="md-nav__link">
-    Local Definitions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#extending-definitions" class="md-nav__link">
     Extending Definitions
   </a>
@@ -1852,15 +1838,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#calling-primitives" class="md-nav__link">
-    Calling Primitives
+  <a href="#external-definitions" class="md-nav__link">
+    External Definitions
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#external-definitions" class="md-nav__link">
-    External Definitions
+  <a href="#local-definitions" class="md-nav__link">
+    Local Definitions
   </a>
   
 </li>
@@ -1883,12 +1869,47 @@
                 
                 
                 <h1 id="strategy-definitions">Strategy Definitions<a class="headerlink" href="#strategy-definitions" title="Permanent link">&para;</a></h1>
+<p>Strategy definitions give a name to a strategy expression.</p>
 <h2 id="simple-definitions">Simple Definitions<a class="headerlink" href="#simple-definitions" title="Permanent link">&para;</a></h2>
+<p>A simple strategy definition gaves a name to a <a href="../strategy-combinators/">strategy expression</a>.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>For example, the following definition defines <code>desugar</code> as an application of the <code>innermost</code> strategy to the rewrite rule(s) <code>desugar-exp</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Module</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Module</span><span class="w"></span>
+<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">desugar-exp</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
 <h2 id="parameterized-definitions">Parameterized Definitions<a class="headerlink" href="#parameterized-definitions" title="Permanent link">&para;</a></h2>
-<h2 id="local-definitions">Local Definitions<a class="headerlink" href="#local-definitions" title="Permanent link">&para;</a></h2>
+<p>Just like <a href="../rewrite-rules/">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>When a strategy has no term arguments, the bar can be left out:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>Simple strategy definitions are the special case in which a strategy does not have strategy and term arguments.</p>
+<p>For example, the following definition defines <code>topdown(s)</code> in terms of sequential composition and generic traversal:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">TP</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">TP</span><span class="w"></span>
+<span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="k">all</span><span class=" -Punctuation">(</span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
 <h2 id="extending-definitions">Extending Definitions<a class="headerlink" href="#extending-definitions" title="Permanent link">&para;</a></h2>
-<h2 id="calling-primitives">Calling Primitives<a class="headerlink" href="#calling-primitives" title="Permanent link">&para;</a></h2>
+<p>Just like rewrite rules, strategy definitions can have multiple definitions.
+In case a strategy expression fails to apply, the next definition is applied.
+When definitions are in the same module, definitions are applied in the textual order they are defined in.
+When definitions are defined in separate modules, the order is undefined.</p>
 <h2 id="external-definitions">External Definitions<a class="headerlink" href="#external-definitions" title="Permanent link">&para;</a></h2>
+<p>external definitions</p>
+<p>libraries</p>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>finish this section on external definitions</p>
+</div>
+<h2 id="local-definitions">Local Definitions<a class="headerlink" href="#local-definitions" title="Permanent link">&para;</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>finish this section on local definitions </p>
+</div>
                 
               
               
