@@ -27,6 +27,15 @@ More considerable contributions can be made by cloning this repository locally, 
     When you add a new page, don't forget to add it to the `nav` element in the `mkdocs.yml` file, or it will not show up.
     The first page mentioned in `nav` under a section should be some `index.md` (without a title), and will be used as the index page (home page) for that section.
 
+!!! warning "Use Relative Links"
+    Use relative links when linking to other Markdown pages. For example, to link to `tutorials` from the `background/index.md` page, write the relative link including the Markdown file, for example:
+
+    ```markdown
+    [Tutorials](../tutorials/index.md)
+    ```
+
+    Absolute links are not supported, and while they may work locally, they break in production.
+    
 
 ## Technical Details
 The structure of the documentation repository is as follows (hover over any of the files to see its description):
