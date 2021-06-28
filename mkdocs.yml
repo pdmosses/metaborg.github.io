@@ -66,6 +66,7 @@ nav:
       - references/stratego/strategy-combinators.md
       - references/stratego/dynamic-rules.md
       - references/stratego/concrete-syntax.md
+      - references/stratego/overlays.md
     - Testing:
       - references/testing/index.md
     - Editor Services:
