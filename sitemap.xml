@@ -36,11 +36,51 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/modules/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/types/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rewrite-rules/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/dynamic-rules/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/concrete-syntax/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/background/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/background/bibliography/stratego/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
