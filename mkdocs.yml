@@ -26,7 +26,7 @@ nav:
     - Configuation:
       - references/config/index.md
     - Syntax:
-      - references/syntax/sdf3.md
+      - references/syntax/index.md
       - references/syntax/structure.md
       - references/syntax/concepts.md
       - references/syntax/constructs.md
