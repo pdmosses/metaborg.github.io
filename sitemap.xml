@@ -36,30 +36,6 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/introduction/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/structure/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/Stratego_API/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/testing/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/glossary/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/references/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/config/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
@@ -116,6 +92,66 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/modules/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/signatures/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/terms/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/constraints/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/rules/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/types/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/tests/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/stratego-api/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/introduction/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/structure/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/Stratego_API/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/testing/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/glossary/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/references/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
@@ -152,39 +188,7 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/modules/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/signatures/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/terms/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/constraints/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/rules/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/types/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/tests/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/stratego-api/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/testing/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
