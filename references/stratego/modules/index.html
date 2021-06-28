@@ -928,9 +928,74 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Modules
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-extension" class="md-nav__link">
+    File Extension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-names" class="md-nav__link">
+    Module Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    Module Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concrete-syntax" class="md-nav__link">
+    Concrete Syntax
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1414,6 +1479,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-extension" class="md-nav__link">
+    File Extension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-names" class="md-nav__link">
+    Module Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    Module Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concrete-syntax" class="md-nav__link">
+    Concrete Syntax
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1430,6 +1545,55 @@
                 
                 
                 <h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h1>
+<p>A Stratego program is organised as a collection of modules.</p>
+<h2 id="file-extension">File Extension<a class="headerlink" href="#file-extension" title="Permanent link">&para;</a></h2>
+<p>A Stratego is a file with the extension <code>.str2</code> for Stratego 2.</p>
+<p>Modules for the Stratego 1 version of the language have extension <code>.str</code>.</p>
+<h2 id="module-names">Module Names<a class="headerlink" href="#module-names" title="Permanent link">&para;</a></h2>
+<p>Module names can be hierarchical</p>
+<p>For example, consider the following directory structure</p>
+<div class="highlight"><pre><span></span><code>- trans
+  - compilation
+    - optimization.str2
+    - translation.str2
+  - desugaring
+    - desugar.str2
+</code></pre></div>
+<p>If <code>trans</code> is declared as a root, then the module names are</p>
+<div class="highlight"><pre><span></span><code>- trans
+  - compilation
+    - compilation/optimization
+    - compilation/translation
+  - desugaring
+    - desugaring/desugar
+</code></pre></div>
+<div class="admonition check">
+<p class="admonition-title">Check</p>
+<p>terminology</p>
+</div>
+<h2 id="module-structure">Module Structure<a class="headerlink" href="#module-structure" title="Permanent link">&para;</a></h2>
+<p>A Stratego module has the following structure, where a single occurrence of a construct can actually be multiplied:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">FileName</span><span class="w"></span>
+
+<span class="k">imports</span><span class="w"> </span>$<span class="nv">FileName</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span>$<span class="nv">RuleDef</span><span class="w"></span>
+
+<span class="k">strategies</span><span class="w"></span>
+
+<span class="w">  </span>$<span class="nv">StrategyDef</span><span class="w"></span>
+</code></pre></div>
+<h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
+<p>A module should import all other modules from which it uses definitions.</p>
+<p>Imports are non-transitive</p>
+<p>modules can extend definitions</p>
+<h2 id="libraries">Libraries<a class="headerlink" href="#libraries" title="Permanent link">&para;</a></h2>
+<p>pre-compiled libraries </p>
+<p>external definitions</p>
+<h2 id="concrete-syntax">Concrete Syntax<a class="headerlink" href="#concrete-syntax" title="Permanent link">&para;</a></h2>
+<p>To use <a href="concrete-syntax/">concrete syntax</a> define a <code>.meta</code> file to accompany the module.</p>
                 
               
               
