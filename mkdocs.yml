@@ -25,10 +25,6 @@ nav:
     - references/index.md
     - Configuation:
       - references/config/index.md
-      - references/config/parser.md
-      - references/config/analyzer.md
-      - references/config/transformations.md
-      - references/config/file-operations.md
     - Syntax:
       - references/syntax/index.md
       - references/syntax/structure.md
@@ -72,12 +68,17 @@ nav:
     - Editor Services:
       - references/editor-services/index.md
       - references/editor-services/esv.md
+      - references/editor-services/analysis.md
       - references/editor-services/code-completion.md
+      - references/editor-services/file-extensions.md
       - references/editor-services/hover.md
       - references/editor-services/menus.md
+      - references/editor-services/on-save.md
       - references/editor-services/outline.md
+      - references/editor-services/parsing.md
       - references/editor-services/reference-resolution.md
       - references/editor-services/renaming.md
+      - references/editor-services/stratego.md
       - references/editor-services/syntax-highlighting.md
   - Background:
     - background/index.md
