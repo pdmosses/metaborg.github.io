@@ -1629,7 +1629,7 @@
 <h3 id="parse-table">Parse Table<a class="headerlink" href="#parse-table" title="Permanent link">&para;</a></h3>
 <p>The parse table of your language is set with the <code>table</code> key. By default, the parse table of an SDF specification is always produced at <code>target/metaborg/sdf.tbl</code>. It is only necessary to change this configuration when a custom parse table is used.</p>
 <h3 id="start-symbols">Start Symbols<a class="headerlink" href="#start-symbols" title="Permanent link">&para;</a></h3>
-<p>The <code>start symbols</code> option determine which start symbols to use when an editor is opened. This must be a subset of the start symbols defined in the SDF3 specification of your language.</p>
+<p>The <code>start symbols</code> key determine which start symbols to use when an editor is opened. This must be a subset of the start symbols defined in the SDF3 specification of your language.</p>
 <p>Multiple start symbols can be set with a comma-separated list:</p>
 <div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
 
@@ -1648,7 +1648,7 @@
 <span class="w">  </span><span class="k">line comment</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;//&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="k">block comment</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class=" -Punctuation">*</span><span class="w"> </span><span class="s">&quot;*/&quot;</span><span class="w"></span>
 </code></pre></div>
-<p>The <code>line comment</code> key determines how single-line comments are created. It is used by editors to toggle the comment for a single line. For example, in Eclipse, pressing ++ctrl+/++ (++cmd+/++ on macOS), respectively comments or uncomments the line. The <code>block comment</code> key determines how multi-line comments are created. It is used when a whole block needs to be commented or uncommented. A block comment is described by the two strings denoting the start and end symbols of the block comment respectively.</p>
+<p>The <code>line comment</code> key determines how single-line comments are created. It is used by editors to toggle the comment for a single line. For example, in Eclipse, pressing <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-slash">/</kbd></span> (<span class="keys"><kbd class="key-command">Cmd</kbd><span>+</span><kbd class="key-slash">/</kbd></span> on macOS), respectively comments or uncomments the line. The <code>block comment</code> key determines how multi-line comments are created. It is used when a whole block needs to be commented or uncommented. A block comment is described by the two strings denoting the start and end symbols of the block comment respectively.</p>
 <h3 id="fences">Fences<a class="headerlink" href="#fences" title="Permanent link">&para;</a></h3>
 <p>Fences for bracket matching are set as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
