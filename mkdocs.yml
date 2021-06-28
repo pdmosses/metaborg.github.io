@@ -78,6 +78,13 @@ nav:
       - references/editor-services/reference-resolution.md
       - references/editor-services/renaming.md
       - references/editor-services/syntax-highlighting.md
+    - Pipelines:
+      - references/pipelines/index.md
+      - references/pipelines/modules.md
+      - references/pipelines/types.md
+      - references/pipelines/generics.md
+      - references/pipelines/functions.md
+      - references/pipelines/expressions.md
   - Background:
     - background/index.md
     - background/documentation.md
