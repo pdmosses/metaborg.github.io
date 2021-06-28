@@ -2,6 +2,7 @@
 
 Rewrite rules are used to define basic transformations in Stratego.
 
+
 ## Simple Rewrite Rules
 
 A _simple_ rewrite rule has the form
@@ -18,7 +19,8 @@ Applying a rule to a term `t` entails [matching](../patterns/) `t` against the l
 For example, the rewrite rule `DeMorgan`
 
 ```stratego
-DeMorgan : Not(And(e1, e2)) -> Or(Not(e1), Not(e2))
+DeMorgan :
+  Not(And(e1, e2)) -> Or(Not(e1), Not(e2))
 ```
 
 transforms a negation of a conjunction to a disjunction of negations.
@@ -27,6 +29,32 @@ Applying this rule to the term `Not(And(Var(p), Var(q)))` results in a substitut
 Note that a rewrite rule defines a _partial computation_.
 Only if the pattern match succeeds is the transformation applied.
 Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with [strategy combinators](../strategy-combinators/).
+
+
+## Rules with the Same Name
+
+Multiple rewrite rules may have the same name.
+When a (simple) rewrite rule fails to apply to a term, the next rule with the same name is tried.
+
+For examples, the following rules define desugaring of different kinds of expressions.
+
+```stratego
+rules desugar-exp :: Exp -> Exp
+
+  desugar-exp :
+    Seq([], e) -> e
+
+  desugar-exp :
+    Let(dec*, [Seq(e*, e)]) -> Let(dec*, [e*, e])
+```
+
+When one rule fails to apply, the next rule is tried.
+When the left-hand sides are non-overlapping, the order of the rules does not matter.
+In case of overlap, the rules are tried in textual order.
+When non-overlapping rules are defined in different modules, the order is undefined.
+
+!!! note
+    We should consider specificity ordering.
 
 ## Conditional Rewrite Rules
 
@@ -43,18 +71,28 @@ $Id :
 where the [strategy expression](../strategy-combinators/) represents a computation that may fail.
 When the condition fails, the expectation is that some other rule will pick up the computation.
 
-For example, the conditional rewrite rule
+For example, the following conditional rewrite rules combine pattern matching with the predicate `is-atom` to select the rule to apply:
 
 ```stratego
-  foo :
-    e -> term
-    where <is(string)> e
+rules
+
+  rco-atom :: Exp -> (List(Dec) * Exp)
+
+  rco-atom :   
+    Let(dec*, [e]) -> (dec*, e)
+    where <is-atom> e  
+
+  rco-atom :   
+    e -> ([], e)
+    where <is-atom> e
+
+  rco-atom :
+    e -> ([VarDec(x, Tid("int"), e)], Var(x))
+    where <not(is-atom)> e
+    where <newname> "tmp" => x
 ```
 
-!!! todo
-    come up with a sensible example
-
-When the condition fails, the application of the rule fails in the sense above.
+When the condition fails, the application of the rule fails (and the next rule is tried if there is one).
 
 
 ## Side Computations with With
@@ -62,8 +100,8 @@ When the condition fails, the application of the rule fails in the sense above.
 Failure is not always expected.
 When a condition is used to express a side computation, the expection may be that it should always succeed.
 However, due to a programming error (e.g. a missed case), the condition may fail in some cases.
-To guard agains such cases the `with` condition expresses that the programmer expects a side computation to always succeed.
-When this fails, the program should fail with an exception (and a stack trace).
+To guard against such programming errors, the `with` condition expresses that the programmer expects a side computation to always succeed.
+When a `with` clause fails, the program should fail with an exception (and a stack trace).
 
 ```stratego
 $Id :
@@ -101,7 +139,7 @@ $Id :
 
 The only rule is that `with` clauses should always succeed.
 
-For example, the following `explicate-exp` rule defines the translation of an operator expression in one language to an operator expression in a different language.
+For example, the following `explicate-exp` rule defines the translation of an operator expression in a source language to an operator expression in a target language.
 
 ```stratego
 explicate-exp :: Exp -> CExp
@@ -113,21 +151,36 @@ explicate-exp :
 ```
 
 The `where` condition tests whether the rule should be applied using the `is-operator` strategy.
-(By using generic term deconstruction to obtain the term constructor.)
+(By using [generic term deconstruction](../strategy-combinators/) to obtain the term constructor.)
 The `with` premises define side computations.
 
 ## Parameterized Rewrite Rules
 
+Rewrite rules can be parameterized with transformation strategies and with terms.
+In general, a parameterized rule has the form:
 
 ```stratego
-$Id($StrategyArg | $TermArg) :
+$Id($StrategyArg, ... | $TermArg, ...) :
   $Term -> $Term
   where $Strategy
+  ...
 ```
 
-term parameters
+The strategy parameters represent computations that can be applied in the body of the rule.
+The term parameters are terms that are evaluated eagerly at the call site.
+The (arity of the) parameters of a rule are part of its identity.
+That is, rules with the same name, but different numbers of parameters are different.
 
-strategy parameters
+For example, the following rules define reversal of a list with an accumulator:
+
+```stratego
+rules
+  reverse           :: List(a) -> List(a)
+  reverse(|List(a)) :: List(a) -> List(a)s  
+  reverse      : xs -> <reverse(|[])> xs
+  reverse(|xs) : [] -> xs
+  reverse(|xs) : [y | ys] -> <reverse-acc(|[y | xs])> ys
+```
 
 When leaving out the term parameters, the bar can be left out as well
 
@@ -144,6 +197,9 @@ map(a -> b) :: List(a) -> List(b)
 map(s) : [] -> []
 map(s) : [hd | tl] -> [<s>hd | <map(s)> tl]
 ```
+
+The simple rewrite rules are above are the special case in which there are no strategy and term parameters.
+In that case, the parentheses can be left out as well.
 
 !!! note
     In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
