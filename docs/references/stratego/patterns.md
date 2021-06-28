@@ -12,6 +12,8 @@ Plus(e, Int("0"))
 
 the identifier `e` is a variable that stands for any term.
 
+## Linear vs Non-Linear
+
 A pattern is _linear_ if each variable occurs at most once, _non-linear_ otherwise.
 The _non-linear_ pattern
 
@@ -21,11 +23,13 @@ Plus(e, e)
 
 stands for a `Plus` term with identical arguments.
 
-A term pattern without variables is _ground_.
+A term pattern without variables (aka [term](../terms/)) is _ground_.
 
 ## Substitution
 
 _Substitution_ is the process of applying a map from variables to terms to a term pattern, replacing occurrence of variables in the domain of the map with the corresponding terms in the codomain of the map.
+
+_Substitution_ is also the name for the mapping of variables to terms.
 
 ## Pattern Matching
 
