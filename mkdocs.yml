@@ -23,13 +23,6 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
-    - Data Flow Analysis:
-      - references/flowspec/introduction.md
-      - references/flowspec/structure.md
-      - references/flowspec/Stratego_API.md
-      - references/flowspec/testing.md
-      - references/flowspec/glossary.md
-      - references/flowspec/references.md
     - Configuation:
       - references/config/index.md
       - references/config/parser.md
@@ -46,16 +39,6 @@ nav:
       - references/syntax/layout-sensitive.md
       - references/syntax/recovery.md
       - references/syntax/configuration.md
-    - Transformation:
-      - references/stratego/index.md
-      - references/stratego/modules.md
-      - references/stratego/terms.md
-      - references/stratego/types.md
-      - references/stratego/rewrite-rules.md
-      - references/stratego/strategies.md
-      - references/stratego/strategy-combinators.md
-      - references/stratego/dynamic-rules.md
-      - references/stratego/concrete-syntax.md
     - Static Semantics:
       - references/statix/index.md
       - references/statix/modules.md
@@ -66,6 +49,25 @@ nav:
       - references/statix/types.md
       - references/statix/tests.md
       - references/statix/stratego-api.md
+    - Data Flow Analysis:
+      - references/flowspec/introduction.md
+      - references/flowspec/structure.md
+      - references/flowspec/Stratego_API.md
+      - references/flowspec/testing.md
+      - references/flowspec/glossary.md
+      - references/flowspec/references.md
+    - Transformation:
+      - references/stratego/index.md
+      - references/stratego/modules.md
+      - references/stratego/terms.md
+      - references/stratego/types.md
+      - references/stratego/rewrite-rules.md
+      - references/stratego/strategies.md
+      - references/stratego/strategy-combinators.md
+      - references/stratego/dynamic-rules.md
+      - references/stratego/concrete-syntax.md
+    - Testing:
+      - references/testing/index.md
     - Editor Services:
       - references/editor-services/index.md
       - references/editor-services/esv.md
@@ -115,7 +117,7 @@ theme:
 
 extra_css:
   - assets/styles.css
-    
+
 markdown_extensions:
   - abbr
   - admonition
@@ -154,4 +156,3 @@ plugins:
   - bibtex:
       bib_dir: "bibliographies"
       cite_style: "pandoc"
-
