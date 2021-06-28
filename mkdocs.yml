@@ -23,9 +23,21 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
+    - Transformation:
+      - references/stratego/index.md
+      - references/stratego/modules.md
+      - references/stratego/terms.md
+      - references/stratego/types.md
+      - references/stratego/rewrite-rules.md
+      - references/stratego/strategies.md
+      - references/stratego/strategy-combinators.md
+      - references/stratego/dynamic-rules.md
+      - references/stratego/concrete-syntax.md
   - Background:
     - background/index.md
     - background/documentation.md
+    - Bibliography:
+      - background/bibliography/stratego.md 
 
 theme:
   name: material
@@ -60,7 +72,7 @@ theme:
 
 extra_css:
   - assets/styles.css
-    
+
 markdown_extensions:
   - abbr
   - admonition
