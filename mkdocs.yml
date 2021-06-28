@@ -23,7 +23,7 @@ nav:
     - howtos/install-from-source.md
   - References:
     - references/index.md
-    - Syntax Definition:
+    - Syntax:
       - references/syntax/sdf3.md
       - references/syntax/structure.md
       - references/syntax/concepts.md
