@@ -1,0 +1,3 @@
+# Language Configuration
+
+`metaborg.yaml`

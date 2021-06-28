@@ -7,10 +7,10 @@ The recommended way to get started with Spoofax is to download an [Eclipse][1] i
 === "Eclipse Bundle"
     Download an Eclipse instance with an embedded Java Runtime Environment (JRE) and the latest Spoofax plugin pre-installed for your platform:
 
-    [:fontawesome-brands-apple:<span class="small-icons">+ :fontawesome-brands-java:</span><br>macOS Intel (64-bit)]({{ releases.stable.eclipse.bundle_jre.macos.intel }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-linux:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Linux x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.linux.x64 }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-microsoft:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Windows x64 (64-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x64 }}){ .md-button .md-button--primary .md-button-download }
-    [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ releases.stable.eclipse.bundle_jre.windows.x86 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-apple:<span class="small-icons">+ :fontawesome-brands-java:</span><br>macOS Intel (64-bit)]({{ release.rel.eclipse.install.jvm.macos_64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-linux:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Linux x64 (64-bit)]({{ release.rel.eclipse.install.jvm.linux_64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-microsoft:<span class="small-icons">+ :fontawesome-brands-java:</span><br>Windows x64 (64-bit)]({{ release.rel.eclipse.install.jvm.windows_64 }}){ .md-button .md-button--primary .md-button-download }
+    [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ release.rel.eclipse.install.jvm.windows_32 }}){ .md-button .md-button--primary .md-button-download }
 
     [Installation instructions](howtos/install-eclipse-bundle.md).
 
@@ -22,7 +22,7 @@ The recommended way to get started with Spoofax is to download an [Eclipse][1] i
     Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer through the update site:
 
     ```{.text .wrap}
-    {{ releases.stable.eclipse.plugin }}
+    {{ release.rel.eclipse.repository }}
     ```
 
     [Installation instructions](howtos/install-eclipse-plugin-manually.md).
