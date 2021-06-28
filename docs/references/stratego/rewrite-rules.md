@@ -36,7 +36,7 @@ Such (pattern match) failure is a first-class citizen in Stratego and its effect
 Multiple rewrite rules may have the same name.
 When a (simple) rewrite rule fails to apply to a term, the next rule with the same name is tried.
 
-For examples, the following rules define desugaring of different kinds of expressions.
+For examples, the following rules define desugarings of expressions.
 
 ```stratego
 rules desugar-exp :: Exp -> Exp
@@ -45,13 +45,22 @@ rules desugar-exp :: Exp -> Exp
     Seq([], e) -> e
 
   desugar-exp :
-    Let(dec*, [Seq(e*, e)]) -> Let(dec*, [e*, e])
+    Seq([e], Unit()) -> e
+
+  desugar-exp :
+    Seq([e1, e2 | e*], e3) -> Seq([e1], Seq([e2 | e*], e3))
+
+  desugar-exp :
+    Seq([Seq(e1*, e1) | e2*], e2) -> Seq([e1*, e1 | e2*], e2)
+
+  desugar-exp :
+    Let(dec*, [e1, e2 | e*]) -> Let(dec*, [Seq([e1, e2 | e*], Unit())])
 ```
 
 When one rule fails to apply, the next rule is tried.
 When the left-hand sides are non-overlapping, the order of the rules does not matter.
 In case of overlap, the rules are tried in textual order.
-When non-overlapping rules are defined in different modules, the order is undefined.
+When overlapping rules are defined in separate modules, the order is undefined.
 
 !!! note
     We should consider specificity ordering.
