@@ -56,6 +56,7 @@ nav:
       - references/flowspec/references.md
     - Transformation:
       - references/stratego/index.md
+      - references/stratego/lexical.md
       - references/stratego/modules.md
       - references/stratego/terms.md
       - references/stratego/types.md
