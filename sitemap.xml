@@ -84,19 +84,11 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/concepts/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/statix/modules/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/signatures/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/terms/</loc>
-     <lastmod>2021-06-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/constraints/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -104,7 +96,23 @@
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/terms/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/references/statix/types/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/basic-constraints/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/scope-graphs/</loc>
+     <lastmod>2021-06-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/queries/</loc>
      <lastmod>2021-06-28</lastmod>
      <changefreq>daily</changefreq>
     </url><url>

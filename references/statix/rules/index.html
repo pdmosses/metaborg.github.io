@@ -810,44 +810,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        Language Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modules/" class="md-nav__link">
         Modules
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../signatures/" class="md-nav__link">
-        Signatures
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../terms/" class="md-nav__link">
-        Terms
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../constraints/" class="md-nav__link">
-        Constraints
       </a>
     </li>
   
@@ -891,8 +867,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rule-declarations" class="md-nav__link">
-    Rule Declarations
+  <a href="#constraint-definitions" class="md-nav__link">
+    Constraint Definitions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-definitions" class="md-nav__link">
+    Rule Definitions
   </a>
   
 </li>
@@ -925,6 +908,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -938,8 +928,56 @@
   
   
     <li class="md-nav__item">
+      <a href="../terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../types/" class="md-nav__link">
         Types
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-constraints/" class="md-nav__link">
+        Basic Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scope-graphs/" class="md-nav__link">
+        Scope Graph Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        Queries
       </a>
     </li>
   
@@ -1691,8 +1729,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rule-declarations" class="md-nav__link">
-    Rule Declarations
+  <a href="#constraint-definitions" class="md-nav__link">
+    Constraint Definitions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-definitions" class="md-nav__link">
+    Rule Definitions
   </a>
   
 </li>
@@ -1725,6 +1770,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1743,11 +1795,114 @@
                 
                 
                 <h1 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h1>
-<h2 id="rule-declarations">Rule Declarations<a class="headerlink" href="#rule-declarations" title="Permanent link">&para;</a></h2>
+<p>User-defined constraints and their rules make up the main part of a Statix specification.</p>
+<h2 id="constraint-definitions">Constraint Definitions.<a class="headerlink" href="#constraint-definitions" title="Permanent link">&para;</a></h2>
+<p>In order to define a custom constraint, its type must be declared first. A
+constraint can be declared in a <code>rules</code> section, or in a <code>constraints</code> subsection
+of a <code>signature</code> section.</p>
+<p>A constraint is declared by specifying its name and argument type. For more
+information on types, please refer to the <a href="../types">Types</a> section. Note that
+the name of the constraint must be unique within a specification.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>*<span class="w"></span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this reference manual, we consistently use the term 'constraint declaration'
+for the introduction of new user-defined constraints. However, in practise,
+these are sometimes also referred to as 'predicate' or just simply 'constraint'.</p>
+</div>
+<p>When a constraint declaration is provided this way, it can be used as a constraint
+by providing concrete arguments, separated by comma's.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>The sorts of the argument terms should be equal to the sorts in the constraint
+declaration.</p>
+<h2 id="rule-definitions">Rule Definitions<a class="headerlink" href="#rule-definitions" title="Permanent link">&para;</a></h2>
+<p>When solving a user-defined constraint, a rule for that constraint is unfolded
+in order to infer a model satisfying the constraint.</p>
+<div class="highlight"><pre><span></span><code>[$<span class="nv">RuleName</span>]$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Pattern</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<p>The part <em>before</em> the turnstile (<code>:-</code>) is often referred to as the <em>head</em> of the
+rule, while the <code>$Constraint</code> after the turnstile is denoted as <em>body</em>. When
+applying a rule, each head pattern (which is just a term) will be matched with
+its corresponding actual argument.</p>
+<p>Statically, the sorts of the terms in <code>$Patterns</code> are type-checked based on the
+constraint declaration. Any variables in patterns are implicitly introduced in
+the scope of the rule. Patterns can be non-linear. That is, a variable may occur
+multiple times in a pattern. Operationally, the subterms at these positions are
+then required to be structurally equal.</p>
+<p>Note that multiple rules for a single constraint can, and often will, be provided.
+For each constraint, the rule that is used for simplification is determined by
+the <em>guard</em> of the rule. This guard is derived from the head pattern: a rule
+can only be applied when the constraint arguments match the patterns.</p>
+<p>During constraint solving, Statix will try at most one rule for each constraint.
+The appropriate rule is selected by applying the following heuristics in order:
+1. Rules with a smaller domain are preferred over rules with a larger domain.
+2. When pairwise comparing rules, the rule for which, in left-to-right order, a
+   more specific pattern is encountered first is preferred over the other.
+For all cases where these heuristics do not decide which rule to use for a
+constraint, compile time "Overlapping patterns" errors will be emitted.</p>
+<p>The <code>$RuleName</code> is just a name that can be used for documentation purposes.
+It cannot be referenced from any position in the specification, and may be
+omitted altogether.</p>
 <h2 id="axiom-rules">Axiom rules<a class="headerlink" href="#axiom-rules" title="Permanent link">&para;</a></h2>
+<p>In some cases, a constraint trivially holds for particular inputs. For such
+constraints, an <em>axiom rule</em> can be specified.</p>
+<div class="highlight"><pre><span></span><code>[$<span class="nv">RuleName</span>]$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Pattern</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>This rule is similar to a regular rule, but lacks a body. When applying such a
+rule, no new constraints are introduced, reflecting the fact that the constraint
+trivially holds for these arguments.</p>
 <h2 id="functional-rules">Functional Rules<a class="headerlink" href="#functional-rules" title="Permanent link">&para;</a></h2>
+<p>Some user-defined constraints can be thought of more naturally as a function:
+a constraint where a particular term is inferred by the constraint, rather than
+validated. Statix allows to write constraints in a functional idiom as follows:</p>
+<p>First, a constraint declaration for such 'functional constraints' must be provided
+as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>*<span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+</code></pre></div>
+<p>In addition to the regular list of input sorts, a 'sort for the output term is
+provided to the constraint declaration.</p>
+<p>Rule definitions for a functional constraint look as follows:</p>
+<div class="highlight"><pre><span></span><code>[$<span class="nv">RuleName</span>]$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Pattern</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"> </span>=<span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<p>Compared to predicative rule definitions as introduced earlier in this section,
+an additional term after an equality-sign is appended to the rule head. This
+term denotes the</p>
+<p>A functional constraint can be used in a <a href="../terms"><em>term</em></a> position, as opposed
+to a <a href="../basic-constraints"><em>constraint</em></a> position for predicative rules.
+Otherwise, their syntax is the same.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>Semantically, the output term of applying the constraint is substituted at the
+position of the application of the functional predicate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When we want to make the distinction between these two forms of constraints
+explicit, we usually refer to either groups with 'predicative constraint
+declarations' and 'predicative constraints', versus 'functional constraint
+declarations' and 'functional constraints', respectively.</p>
+</div>
 <h2 id="mapping-rules">Mapping rules<a class="headerlink" href="#mapping-rules" title="Permanent link">&para;</a></h2>
 <h2 id="injections-of-namespaces-relations-and-constraints">Injections of namespaces, relations and constraints<a class="headerlink" href="#injections-of-namespaces-relations-and-constraints" title="Permanent link">&para;</a></h2>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="k">rules</span><span class="nv">-example</span><span class="w"></span>
+
+<span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="nv">constraints</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lub</span><span class="p">:</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span>*<span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span>*<span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Cons</span><span class="p">(</span><span class="nv">hd</span><span class="p">,</span><span class="w"> </span><span class="nv">tl</span><span class="p">))</span><span class="w"> </span>=<span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">Th</span><span class="w"> </span><span class="nv">Ttl</span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">hd</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">Th</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">tl</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">Ttl</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nv">lub</span><span class="p">(</span><span class="nv">Th</span><span class="p">,</span><span class="w"> </span><span class="nv">Ttl</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Nil</span><span class="p">())</span><span class="w"> </span>=<span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">_</span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
                 
               
               
@@ -1770,7 +1925,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../constraints/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../modules/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1779,19 +1934,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Constraints
+              Modules
             </div>
           </div>
         </a>
       
       
-        <a href="../types/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../terms/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Types
+              Terms
             </div>
           </div>
           <div class="md-footer__button md-icon">
