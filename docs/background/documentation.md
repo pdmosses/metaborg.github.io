@@ -23,19 +23,59 @@ More considerable contributions can be made by cloning this repository locally, 
 [:fontawesome-solid-book-open: Extensions Reference](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/){ .md-button .md-button--secondary }
 
 
-!!! tip "Adding Pages"
-    When you add a new page, don't forget to add it to the `nav` element in the `mkdocs.yml` file, or it will not show up.
-    The first page mentioned in `nav` under a section should be some `index.md` (without a title), and will be used as the index page (home page) for that section.
+### Adding Pages
+The first page mentioned in `nav` under a section should be some `index.md` (without a title), and will be used as the index page (home page) for that section.
 
-!!! warning "Use Relative Links"
-    Use relative links when linking to other Markdown pages. For example, to link to `tutorials` from the `background/index.md` page, write the relative link including the Markdown file, for example:
+!!! note ""
+    When you add a new page, don't forget to add it to the `nav` element in the `mkdocs.yml` file, or it will not show up.
+
+
+
+### Links
+Links to other Markdown pages should be written as _relative_ links. For example, to link to `tutorials` from the `background/index.md` page, write the relative link including the Markdown file:
 
     ```markdown
     [Tutorials](../tutorials/index.md)
     ```
 
+!!! warning "Absolute Links are Not Supported"
     Absolute links are not supported, and while they may work locally, they break in production.
-    
+
+
+### Citations
+To cite a paper or work, first ensure the citation is in a bibliography (`.bib`) file in the `/bibliographies/` directory. For example, in the `bibliographies/tudelft.bib` file, we find:
+
+```bib
+@inproceedings{KatsV10a,
+  title = {The {Spoofax} language workbench},
+  author = {Lennart C. L. Kats and Eelco Visser},
+  year = {2010},
+  doi = {10.1145/1869542.1869592},
+  url = {http://doi.acm.org/10.1145/1869542.1869592},
+  pages = {237-238},
+  booktitle = {Companion to the 25th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications, SPLASH/OOPSLA 2010, October 17-21, 2010, Reno/Tahoe, Nevada, USA},
+}
+```
+
+Then reference the work like this:
+
+```markdown
+The Spoofax language workbench[@KatsV10a] is a vital to declarative language development.
+```
+
+Finally, add a place for the bibliography footnotes to be added (usually at the end of the file) by adding the following line to the file:
+
+```
+\bibliography
+```
+
+It will be rendered as:
+
+> The Spoofax language workbench[@KatsV10a] is a vital to declarative language development.
+
+!!! tip ""
+    If the citation appears rendered as `Spoofax language workbench[^1]`, then you might have forgotten to add a place for the bibliography.
+
 
 ## Technical Details
 The structure of the documentation repository is as follows (hover over any of the files to see its description):
@@ -71,3 +111,5 @@ The structure of the documentation repository is as follows (hover over any of t
  ┣ <span title="MkDocs configuration">📜 mkdocs.yml</span>
  ┗ <span title="Readme">📜 README.md</span>
 </pre>
+
+\bibliography
