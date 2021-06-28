@@ -703,6 +703,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#typing-rewrite-rules" class="md-nav__link">
+    Typing Rewrite Rules
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -924,6 +931,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#typing-rewrite-rules" class="md-nav__link">
+    Typing Rewrite Rules
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -942,23 +956,50 @@
                 
                 
                 <h1 id="rewrite-rules">Rewrite Rules<a class="headerlink" href="#rewrite-rules" title="Permanent link">&para;</a></h1>
+<p>Rewrite rules are used to define basic transformations in Stratego.</p>
 <h2 id="simple-rewrite-rules">Simple Rewrite Rules<a class="headerlink" href="#simple-rewrite-rules" title="Permanent link">&para;</a></h2>
+<p>A simple rewrite rule has the form</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 </code></pre></div>
+<p>It consists of a label that identifies the rule, a left-hand side term, and a right-hand side term.</p>
+<p>When a rule is invoked through its label, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.</p>
+<p>A rewrite rule is invoked by applying its label as </p>
 <h2 id="conditional-rewrite-rules">Conditional Rewrite Rules<a class="headerlink" href="#conditional-rewrite-rules" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
 <h2 id="with-vs-where">With vs Where<a class="headerlink" href="#with-vs-where" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+</code></pre></div>
 <p>use a where clause when the condition is to determine whether to apply the rule</p>
 <p>use a with clause to perform a side computation; has to succeed; will try an exception when it fails</p>
 <h2 id="combining-with-and-where">Combining With and Where<a class="headerlink" href="#combining-with-and-where" title="Permanent link">&para;</a></h2>
 <p>multiple with/where clauses</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+</code></pre></div>
 <h2 id="parameterized-rewrite-rules">Parameterized Rewrite Rules<a class="headerlink" href="#parameterized-rewrite-rules" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
+</code></pre></div>
 <p>term parameters</p>
 <p>strategy parameters</p>
+<h2 id="typing-rewrite-rules">Typing Rewrite Rules<a class="headerlink" href="#typing-rewrite-rules" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>  $Label($StrategyTypes | $TermTypes) :: $Type -&gt; $Type
+</code></pre></div>
                 
               
               
