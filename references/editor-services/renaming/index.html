@@ -20,7 +20,7 @@
     
     
       
-        <title>Renaming - Spoofax</title>
+        <title>Rename Refactoring - Spoofax</title>
       
     
     
@@ -60,7 +60,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Renaming" />
+<meta property="og:title" content="Spoofax - Rename Refactoring" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/editor-services/renaming/" />
 <meta property="og:image" content="../../../assets/screenshot.png" />
@@ -91,6 +91,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#rename-refactoring" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -116,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Renaming
+              Rename Refactoring
             
           </span>
         </div>
@@ -504,6 +509,45 @@
       <a href="../../../howtos/install-from-source/" class="md-nav__link">
         Install Spoofax from Source
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      <label class="md-nav__link" for="__nav_3_5">
+        Editor Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Editor Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/editor-services/rename-refactoring/" class="md-nav__link">
+        Add Rename Refactoring to an Existing Project
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1210,18 +1254,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../code-completion/" class="md-nav__link">
-        Code completion
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../file-extensions/" class="md-nav__link">
         Language File Extensions
       </a>
@@ -1312,10 +1344,56 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Rename Refactoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Renaming
+        Rename Refactoring
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#strategy" class="md-nav__link">
+    Strategy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statix" class="md-nav__link">
+    Statix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    See Also
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1457,6 +1535,52 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#strategy" class="md-nav__link">
+    Strategy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statix" class="md-nav__link">
+    Statix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    See Also
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
@@ -1467,9 +1591,33 @@
                   </a>
                 
                 
-                  <h1>Renaming</h1>
-                
-                
+                <h1 id="rename-refactoring">Rename Refactoring<a class="headerlink" href="#rename-refactoring" title="Permanent link">&para;</a></h1>
+<p>Spoofax provides an automated <em>rename refactoring</em> as an editor service for every language developed with it that has the static semantics defined with Statix or NaBL2.</p>
+<h2 id="strategy">Strategy<a class="headerlink" href="#strategy" title="Permanent link">&para;</a></h2>
+<p>Rename refactoring is enabled by default for new Spoofax language projects. This works by registering the <code>rename-action</code> strategy from the <code>statixruntime</code> library as an action in a menu. This strategy takes three parameters: a layout-preserving pretty-printing strategy (<code>construct-textual-change</code> by default), the editor analyze strategy (<code>editor-analyze</code> by default), and a strategy that should succeed when renaming in multi-file mode.</p>
+<p>The default rename refactoring strategy looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">fail</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>To enable multi-file mode, change the last argument to <code>id</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<h2 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h2>
+<p>For the renaming to work correctly in all cases when using Statix, terms that represent a declaration of a program entity, such as a function or a variable, need to set the <code>@decl</code> property on the name of the entity. For example, when declaring a type:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">declareType</span><span class="p">(</span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
+<span class="w">  </span><span class="k">scope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">Type</span><span class="p">{</span><span class="nv">name</span><span class="p">}</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="nv">typeOfDecl</span><span class="w"> </span><span class="nv">T</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span>@<span class="nv">name</span><span class="p">.</span><span class="k">decl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nv">typeOfDecl</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">Type</span><span class="p">{</span><span class="nv">name</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li>How-To: <a href="../../../howtos/editor-services/rename-refactoring/">Add Rename Refactoring to an Existing Project</a></li>
+</ul>
                 
               
               
