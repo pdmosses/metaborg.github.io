@@ -25,7 +25,6 @@ nav:
     - references/index.md
     - Configuation:
       - references/config/index.md
-      - references/config/transformations.md
     - Syntax:
       - references/syntax/index.md
       - references/syntax/structure.md
