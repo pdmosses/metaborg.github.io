@@ -68,6 +68,7 @@ markdown_extensions:
   - codehilite:
       guess_lang: false
   - def_list
+  - footnotes
   - toc:
       permalink: true
   - pymdownx.betterem:
@@ -94,6 +95,9 @@ plugins:
   - git-revision-date:
       enabled_if_env: CI
   - macros
+  - bibtex:
+      bib_dir: "bibliographies"
+      cite_style: "pandoc"
 
 extra:
   os:
