@@ -30,7 +30,7 @@ language
 The parse table of your language is set with the `table` key. By default, the parse table of an SDF specification is always produced at `target/metaborg/sdf.tbl`. It is only necessary to change this configuration when a custom parse table is used.
 
 ### Start Symbols
-The `start symbols` option determine which start symbols to use when an editor is opened. This must be a subset of the start symbols defined in the SDF3 specification of your language.
+The `start symbols` key determine which start symbols to use when an editor is opened. This must be a subset of the start symbols defined in the SDF3 specification of your language.
 
 Multiple start symbols can be set with a comma-separated list:
 
@@ -59,7 +59,7 @@ language
   block comment : "/*" * "*/"
 ```
 
-The `line comment` key determines how single-line comments are created. It is used by editors to toggle the comment for a single line. For example, in Eclipse, pressing ++ctrl+/++ (++cmd+/++ on macOS), respectively comments or uncomments the line. The `block comment` key determines how multi-line comments are created. It is used when a whole block needs to be commented or uncommented. A block comment is described by the two strings denoting the start and end symbols of the block comment respectively.
+The `line comment` key determines how single-line comments are created. It is used by editors to toggle the comment for a single line. For example, in Eclipse, pressing ++ctrl+slash++ (++cmd+slash++ on macOS), respectively comments or uncomments the line. The `block comment` key determines how multi-line comments are created. It is used when a whole block needs to be commented or uncommented. A block comment is described by the two strings denoting the start and end symbols of the block comment respectively.
 
 ### Fences
 Fences for bracket matching are set as follows:

@@ -1,7 +1,7 @@
 # On-Save Handlers
 The _on-save_ handler (also known as the compiler strategy) is used to transform files when they are saved in an editor. In an IDE, when a new project is opened, the compiler strategy is also executed on each file in the project, as well as when files change in the background. In a command-line batch compiler setting, it is used to transform all files.
 
-The compiler strategy is configured in an [ESV file](esv.md) with the `on save` option:
+The compiler strategy is configured in an [ESV file](esv.md) with the `on save` key:
 
 ```esv
 language
