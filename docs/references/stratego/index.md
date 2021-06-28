@@ -15,7 +15,19 @@ Context-sensitive transformations can be expressed using [dynamic rewrite rules]
 
 Starting with Stratego 2, terms and transformation strategies are (gradually) [typed](types/).
 
+## Placeholder Convention
 
+In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
+For example, a rewrite rule has the form
+
+```stratego
+$Label :
+  $Term -> $Term
+```
+
+in which the `$Label` is the name of the rule, the first `$Term` the left-hand side, and the second the right-hand side of the rule.
+This convention should give an indication of the formal structure of a construct, without going down to the precise details of the syntax definition.
+As a side effect, the schema also shows the preferred indentation of language constructs where that is applicable.
 
 ## Source
 
