@@ -1090,6 +1090,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        Patterns
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -1127,6 +1139,13 @@
         <li class="md-nav__item">
   <a href="#simple-rewrite-rules" class="md-nav__link">
     Simple Rewrite Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-rule-application" class="md-nav__link">
+    Simple Rule Application
   </a>
   
 </li>
@@ -1693,6 +1712,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#simple-rule-application" class="md-nav__link">
+    Simple Rule Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conditional-rewrite-rules" class="md-nav__link">
     Conditional Rewrite Rules
   </a>
@@ -1748,12 +1774,14 @@
 <p>Rewrite rules are used to define basic transformations in Stratego.</p>
 <h2 id="simple-rewrite-rules">Simple Rewrite Rules<a class="headerlink" href="#simple-rewrite-rules" title="Permanent link">&para;</a></h2>
 <p>A simple rewrite rule has the form</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class=" -Punctuation">:</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 </code></pre></div>
-<p>It consists of a label that identifies the rule, a left-hand side term, and a right-hand side term.</p>
-<p>When a rule is invoked through its label, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.</p>
-<p>A rewrite rule is invoked by applying its label as </p>
+<p>It consists of a name that identifies the rule, a left-hand side term, and a right-hand side term.</p>
+<p>Applying a rule to a term <code>t</code> entails matching <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
+<h2 id="simple-rule-application">Simple Rule Application<a class="headerlink" href="#simple-rule-application" title="Permanent link">&para;</a></h2>
+<p>When a rule is invoked through its identifier, the current term is match against the left-hand side and replaced with an instantiation of the right-hand side.</p>
+<p>A rewrite rule is invoked by applying its label as</p>
 <h2 id="conditional-rewrite-rules">Conditional Rewrite Rules<a class="headerlink" href="#conditional-rewrite-rules" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
@@ -1811,7 +1839,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../types/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../patterns/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1820,7 +1848,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Types
+              Patterns
             </div>
           </div>
         </a>
