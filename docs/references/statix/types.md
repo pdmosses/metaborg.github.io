@@ -5,5 +5,3 @@
 ## Term Types
 
 ## Constraint Types
-
-## Permission to Extend

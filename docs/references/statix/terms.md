@@ -16,7 +16,7 @@ lowercase id  + wildcards
 
 various concat/tail types
 
-## Functional Constraints
+## Variables
 
 ## Paths
 
