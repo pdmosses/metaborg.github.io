@@ -32,6 +32,10 @@ nav:
       - references/flowspec/references.md
     - Configuation:
       - references/config/index.md
+      - references/config/parser.md
+      - references/config/analyzer.md
+      - references/config/transformations.md
+      - references/config/file-operations.md
     - Syntax:
       - references/syntax/index.md
       - references/syntax/structure.md
@@ -63,7 +67,15 @@ nav:
       - references/statix/tests.md
       - references/statix/stratego-api.md
     - Editor Services:
-      - references/esv/index.md
+      - references/editor-services/index.md
+      - references/editor-services/esv.md
+      - references/editor-services/code-completion.md
+      - references/editor-services/hover.md
+      - references/editor-services/menus.md
+      - references/editor-services/outline.md
+      - references/editor-services/reference-resolution.md
+      - references/editor-services/renaming.md
+      - references/editor-services/syntax-highlighting.md
   - Background:
     - background/index.md
     - background/documentation.md
