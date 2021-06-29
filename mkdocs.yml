@@ -13,12 +13,13 @@ nav:
   - Home:
     - index.md
     - getting-started.md
+    - stable.md
     - nightly.md
   - Tutorials:
     - tutorials/index.md
   - How-Tos:
     - howtos/index.md
-    - Installiation:
+    - Installation:
       - howtos/install-eclipse-bundle.md
       - howtos/install-eclipse-plugin-manually.md
       - howtos/install-from-source.md
@@ -35,12 +36,16 @@ nav:
       - references/config/index.md
     - Syntax:
       - references/syntax/index.md
-      - references/syntax/structure.md
-      - references/syntax/concepts.md
-      - references/syntax/constructs.md
-      - references/syntax/normalization.md
+      - references/syntax/modules.md
+      - references/syntax/symbols.md
+      - references/syntax/productions.md
+      - references/syntax/lexical-syntax.md
+      - references/syntax/context-free-syntax.md
+      - references/syntax/kernel-syntax.md
+      - references/syntax/start-symbols.md
+      - references/syntax/templates.md
       - references/syntax/disambiguation.md
-      - references/syntax/layout-sensitive.md
+      - references/syntax/layout-sensitivity.md
       - references/syntax/recovery.md
       - references/syntax/configuration.md
     - Static Semantics:
