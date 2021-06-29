@@ -1326,6 +1326,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../strategy-combinators-match-build/" class="md-nav__link">
+        Matching and Building Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../strategy-combinators-traversal/" class="md-nav__link">
         Traversal Combinators
       </a>
@@ -1938,6 +1950,165 @@
                 <h1 id="type-unifying-transformations">Type Unifying Transformations<a class="headerlink" href="#type-unifying-transformations" title="Permanent link">&para;</a></h1>
 <p><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>In Chapter 5 we have seen combinators for composing type preserving strategies. That is, structural transformations in which basic transformation rules don’t change the type of a term. Such strategies are typically applied in transformations, which change the structure of a term, but not its type. Examples are simplification and optimization. In this chapter we consider the class of type unifying strategies, in which terms of different types are mapped onto one type. The application area for this type of strategy is analysis of expressions with examples such as free variables collection and call-graph extraction.</p>
+<p>We consider the following example problems:</p>
+<p>term-size: Count the number of nodes in a term
+occurrences: Count number of occurrences of a subterm in a term
+collect-vars: Collect all variables in expression
+free-vars: Collect all free variables in expression
+These problems have in common that they reduce a structure to a single value or to a collection of derived values. The structure of the original term is usually lost.</p>
+<p>We start with examining these problems in the context of lists, and then generalize the solutions we find there to arbitrary terms using generic term deconstruction, which allows concise implementation of generic type unifying strategies, similarly to the generic traversal strategies of Chapter 5.</p>
+<p>10.1. Type Unifying List Transformations
+We start with considering type-unifying operations on lists.</p>
+<p>Sum. Reducing a list to a value can be conveniently expressed by means of a fold, which has as parameters operations for reducing the list constructors. The foldr/2 strategy reduces a list by replacing each Cons by an application of s2, and the empty list by s1.</p>
+<p>foldr(s1, s2) =
+[]; s1 &lt;+  [y|ys] -&gt; <s2>(y, <foldr(s1, s2)> ys) \
+Thus, when applied to a list with three terms the result is</p>
+<p><foldr(s1,s2)> [t1,t2,t3] =&gt; <s2>(t1, <s2>(t2, <s2>(t3, <s1> [])))
+A typical application of foldr/2 is sum, which reduces a list to the sum of its elements. It sums the elements of a list of integers, using 0 for the empty list and add to combine the head of a list and the result of folding the tail.</p>
+<p>sum = foldr(!0, add)
+The effect of sum is illustrated by the following application:</p>
+<p><foldr(!0,add)> [1,2,3] =&gt; <add>(1, <add>(2, <add>(3, &lt;!0&gt; []))) =&gt; 6
+Note the build operator for replacing the empty list with 0; writing foldr(0, add) would be wrong, since 0 by itself is a congruence operator, which basically matches the subject term with the term 0 (rather than replacing it).</p>
+<p>Size. The foldr/2 strategy does not touch the elements of a list. The foldr/3 strategy is a combination of fold and map that extends foldr/2 with a parameter that is applied to the elements of the list.</p>
+<p>foldr(s1, s2, f) =
+  []; s1 &lt;+  [y|ys] -&gt; <s2>(<f>y, <foldr(s1,s2,f)>ys) \
+Thus, when applying it to a list with three elements, we get:</p>
+<p><foldr(s1,s2)> [t1,t2,t3] =&gt; <s2>(<f>t1, <s2>(<f>t2, <s2>(<f>t3, <s1> [])))
+Now we can solve our first example problem term-size. The size of a list is its length, which corresponds to the sum of the list with the elements replaced by 1.</p>
+<p>length = foldr(!0, add, !1)
+Number of occurrences. The number of occurrences in a list of terms that satisfy some predicate, entails only counting those elements in the list for which the predicate succeeds. (Where a predicate is implemented with a strategy that succeeds only for the elements in the domain of the predicate.) This follows the same pattern as counting the length of a list, but now only counting the elements for which s succeeds.</p>
+<p>list-occurrences(s) = foldr(!0, add, s &lt; !1 + !0)
+Using list-occurrences and a match strategy we can count the number of variables in a list:</p>
+<p>list-occurrences(?Var(_))
+Collect. The next problem is to collect all terms for which a strategy succeeds. We have already seen how to do this for lists. The filter strategy reduces a list to the elements for which its argument strategy succeeds.</p>
+<p>filter(s) = [] &lt;+ [s | filter(s)] &lt;+ ?[ |<filter(s)>]
+Collecting the variables in a list is a matter of filtering with the ?Var(_) match.</p>
+<p>filter(?Var(_))
+The final problem, collecting the free variables in a term, does not really have a counter part in lists, but we can mimick this if we consider having two lists; where the second list is the one with the bound variables that should be excluded.</p>
+<p>(filter(?Var(_)),id); diff
+This collects the variables in the first list and subtracts the variables in the second list.</p>
+<p>10.2. Extending Fold to Expressions
+We have seen how to do typical analysis transformations on lists. How can we generalize this to arbitrary terms? The general idea of a folding operator is that it replaces the constructors of a data-type by applying a function to combine the reduced arguments of constructor applications. For example, the following definition is a sketch for a fold over abstract syntax trees:</p>
+<p>fold-exp(binop, assign, if, ...) = rec f(
+  fold-binop(f, binop)
+  &lt;+ fold-assign(f, assign)
+  &lt;+ fold-if(f, if)
+  &lt;+ ... )</p>
+<p>fold-binop(f, s)  : BinOp(op, e1, e2) -&gt; <s>(op, <f>e1, <f>e2)
+fold-assign(f, s) : Assign(e1, e2)    -&gt; <s>(<f>e1, <f>e2)
+fold-if(f, s)     : If(e1, e2, e3)    -&gt; <s>(<f>e1, <f>e2, <f>e3)
+For each constructor of the data-type the fold has an argument strategy and a rule that matches applications of the constructor, which it replaces with an application of the strategy to the tuple of subterms reduced by a recursive invocation of the fold.</p>
+<p>Instantiation of this strategy requires a rule for each constructor of the data-type. For instance, the following instantiation defines term-size using fold-exp by providing rules that sum up the sizes of the subterms and add one (inc) to account for the node itself.</p>
+<p>term-size  = fold-exp(BinOpSize, AssignSize, IfSize, ...)</p>
+<p>BinOpSize  : (Plus(), e1, e2) -&gt; <add; inc>(e1, e2)
+AssignSize : (e1, e2)         -&gt; <add; inc>(e1, e2)
+IfSize     : (e1, e2, e3)     -&gt; <add; inc>(e1, <add>(e2, e3))
+This looks suspiciously like the traversal rules in Chapter 5. Defining folds in this manner has several limitations. In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor. Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.</p>
+<p>One solution would be to use the generic traversal strategy bottomup to deal with fold:</p>
+<p>fold-exp(s) = bottomup(s)</p>
+<p>term-size   = fold-exp(BinOpSize &lt;+ AssignSize &lt;+ IfSize &lt;+ ...)</p>
+<p>BinOpSize   : BinOp(Plus(), e1, e2) -&gt; <add>(1, <add>(e1, e2))
+AssignSize  : Assign(e1, e2)        -&gt; <add>(e1, e2)
+IfSize      : If(e1, e2, e3)        -&gt; <add>(e1, <add>(e2, e3))
+Although the recursive application to subterms is now defined generically , one still has to specify rules for the default behavior.</p>
+<p>10.3. Generic Term Deconstruction
+Instead of having folding rules that are specific to a data type, such as</p>
+<p>BinOpSize  : BinOp(op, e1, e2) -&gt; <add>(1, <add>(e1, e2))
+AssignSize : Assign(e1, e2)    -&gt; <add>(1, <add>(e1, e2))
+we would like to have a generic definition of the form</p>
+<p>CSize : c(e1, e2, ...) -&gt; <add>(e1, <add>(e2, ...))
+This requires generic decomposition of a constructor application into its constructor and the list with children. This can be done using the # operator. The match strategy ?p1#(p2) decomposes a constructor application into its constructor name and the list of direct subterms. Matching such a pattern against a term of the form C(t1,...,tn) results in a match of "C" against p1 and a match of [t1,...,tn] against p2.</p>
+<p>Plus(Int("1"), Var("2"))
+stratego&gt; ?c#(xs)
+stratego&gt; :binding c
+variable c bound to "Plus"
+stratego&gt; :binding xs
+variable xs bound to [Int("1"), Var("2")]
+Crush. Using generic term deconstruction we can now generalize the type unifying operations on lists to arbitrary terms. In analogy with the generic traversal operators we need a generic one-level reduction operator. The crush/3 strategy reduces a constructor application by folding the list of its subterms using foldr/3.</p>
+<p>crush(nul, sum, s) : c#(xs) -&gt; <foldr(nul, sum, s)> xs
+Thus, crush performs a fold-map over the direct subterms of a term. The following application illustrates what</p>
+<p><crush(s1, s2, f)> C(t1, t2) =&gt; <s2>(<f>t1, <s2>(<f>t2, <s1>[]))
+The following Shell session instantiates this application in two ways:</p>
+<p>stratego&gt; import libstrategolib
+stratego&gt; !Plus(Int("1"), Var("2"))
+Plus(Int("1"),Var("2"))</p>
+<p>stratego&gt; crush(id, id, id)
+(Int("1"),(Var("2"),[]))</p>
+<p>stratego&gt; !Plus(Int("1"), Var("2"))
+Plus(Int("1"),Var("2"))</p>
+<p>stratego&gt; crush(!Tail(<id>), !Sum(<Fst>,<Snd>), !Arg(<id>))
+Sum(Arg(Int("1")),Sum(Arg(Var("2")),Tail([])))
+The crush strategy is the tool we need to implement solutions for the example problems above.</p>
+<p>Size. Counting the number of direct subterms of a term is similar to counting the number of elements of a list. The definition of node-size is the same as the definition of length, except that it uses crush instead of foldr:</p>
+<p>node-size = crush(!0, add, !1)
+Counting the number of subterms (nodes) in a term is a similar problem. But, instead of counting each direct subterm as 1, we need to count its subterms.</p>
+<p>term-size = crush(!1, add, term-size)
+The term-size strategy achieves this simply with a recursive call to itself.</p>
+<p>stratego&gt; <node-size> Plus(Int("1"), Var("2"))
+2
+stratego&gt; <term-size> Plus(Int("1"), Var("2"))
+5
+Occurrences. Counting the number of occurrences of a certain term in another term, or more generally, counting the number of subterms that satisfy some predicate is similar to counting the term size. However, only those terms satisfying the predicate should be counted. The solution is again similar to the solution for lists, but now using crush.</p>
+<p>om-occurrences(s) = s &lt; !1 + crush(!0, add, om-occurrences(s))
+The om-occurrences strategy counts the outermost subterms satisfying s. That is, the strategy stops counting as soon as it finds a subterm for which s succeeds.</p>
+<p>The following strategy counts all occurrences:</p>
+<p>occurrences(s) = <add>(&lt;s &lt; !1 + !0&gt;, <crush(!0, add, occurrences(s))>)
+It counts the current term if it satisfies s and adds that to the occurrences in the subterms.</p>
+<p>stratego&gt; <om-occurrences(?Int(_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
+2
+stratego&gt; <om-occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
+1
+stratego&gt; <occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
+2
+Collect. Collecting the subterms that satisfy a predicate is similar to counting, but now a list of subterms is produced. The collect(s) strategy collects all outermost occurrences satisfying s.</p>
+<p>collect(s) = ![<s>] &lt;+ crush(![], union, collect(s))
+When encountering a subterm for which s succeeds, a singleton list is produced. For other terms, the matching subterms are collected for each direct subterm, and the resulting lists are combined with union to remove duplicates.</p>
+<p>A typical application of collect is the collection of all variables in an expression, which can be defined as follows:</p>
+<p>get-vars = collect(?Var(<em>))
+Applying get-vars to an expression AST produces the list of all subterms matching Var(</em>).</p>
+<p>The collect-all(s) strategy collects all occurrences satisfying s.</p>
+<p>collect-all(s) =
+![<s> | <crush(![], union, collect(s))>] &lt;+ crush(![], union, collect(s))
+If s succeeds for the subject term combines the subject term with the collected terms from the subterms.</p>
+<p>Free Variables. Collecting the variables in an expression is easy, as we saw above. However, when dealing with languages with variable bindings, a common operation is to extract only the free variables in an expression or block of statements. That is, the occurrences of variables that are not bound by a variable declaration. For example, in the expression</p>
+<p>x + let var y := x + 1 in f(y, a + x + b) end
+the free variables are {x, a, b}, but not y, since it is bound by the declaration in the let. Similarly, in the function definition</p>
+<p>function f(x : int) = let var y := h(x) in x + g(z) * y end
+the only free variable is z since x and y are declared.</p>
+<p>Here is a free variable extraction strategy for Tiger expressions. It follows a similar pattern of mixing generic and data-type specific operations as we saw in Chapter 5. The crush alternative takes care of the non-special constructors, while ExpVars and FreeVars deal with the special cases, i.e. variables and variable binding constructs:</p>
+<p>free-vars =
+  ExpVars
+  &lt;+ FreeVars(free-vars)
+  &lt;+ crush(![], union, free-vars)</p>
+<p>ExpVars :
+  Var(x) -&gt; [x]</p>
+<p>FreeVars(fv) :
+  Let([VarDec(x, t, e1)], e2) -&gt; <union>(<fv> e1, <diff>(<fv> e2, [x]))</p>
+<p>FreeVars(fv) :
+  Let([FunctionDec(fdecs)], e2) -&gt; <diff>(<union>(<fv> fdecs, <fv>e2), fs)
+  where <map(?FunDec(\<id>,_,_,_))> fdecs =&gt; fs</p>
+<p>FreeVars(fv) :
+  FunDec(f, xs, t, e) -&gt; <diff>(<fv>e, xs)
+  where <map(Fst)> xs =&gt; xs
+The FreeVars rules for binding constructs use their fv parameter to recursively get the free variables from subterms, and they subtract the bound variables from any free variables found using diff.</p>
+<p>We can even capture the pattern exhibited here in a generic collection algorithm with support for special cases:</p>
+<p>collect-exc(base, special : (a -&gt; b) * a -&gt; b) =
+  base
+  &lt;+ special(collect-exc(base, special))
+  &lt;+ crush(![], union, collect-exc(base, special))
+The special parameter is a strategy parameterized with a recursive call to the collection strategy. The original definition of free-vars above, can now be replaced with</p>
+<p>free-vars = collect-exc(ExpVars, FreeVars)
+10.4. Generic Term Construction
+It can also be useful to construct terms generically. For example, in parse tree implosion, application nodes should be reduced to constructor applications. Hence build operators can also use the # operator. In a strategy !p1#(p2), the current subject term is replaced by a constructor application, where the constructor name is provided by p1 and the list of subterms by p2. So, if p1 evaluates to "C" and p2 evaluates to [t1,...,tn], the expression !p1#(p2) build the term C(t1,...,tn).</p>
+<p>Imploding Parse Trees. A typical application of generic term construction is the implosion of parse trees to abstract syntax trees performed by implode-asfix. Parse trees produced by sglr have the form:</p>
+<p>appl(prod(sorts, sort, attrs([cons("C")])),[t1,...,tn])
+That is, a node in a parse tree consists of an encoding of the original production from the syntax definition, and a list with subtrees. The production includes a constructor annotation cons("C") with the name of the abstract syntax tree constructor. Such a tree node should be imploded to an abstract syntax tree node of the form C(t1,...,tn). Thus, this requires the construction of a term with constructor C given the string with its name. The following implosion strategy achieves this using generic term construction:</p>
+<p>implode = appl(id, map(implode)); Implode
+Implode : appl(prod(sorts, sort, attrs([cons&copy;])), ts) -&gt; c#(ts)
+The Implode rule rewrites an appl term to a constructor application, by extracting the constructor name from the production and then using generic term construction to apply the constructor.</p>
+<p>Note that this is a gross over simplification of the actual implementation of implode-asfix. See the source code for the full strategy.</p>
+<p>Generic term construction and deconstruction support the definition of generic analysis and generic translation problems. The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
