@@ -11,7 +11,7 @@ constraint can be declared in a `rules` section, or in a `constraints` subsectio
 of a `signature` section.
 
 A constraint is declared by specifying its name and argument type. For more
-information on types, please refer to the [Types](../types) section. Note that
+information on types, please refer to the [Terms](../terms) section. Note that
 the name of the constraint must be unique within a specification.
 
 ```statix
