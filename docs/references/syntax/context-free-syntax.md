@@ -9,7 +9,7 @@ Context-free syntax has the form:
 ```
 context-free syntax
 
-  <Production>*
+  $Production*
 ```
 
 An example production rule:

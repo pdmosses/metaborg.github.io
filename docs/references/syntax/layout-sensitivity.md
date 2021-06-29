@@ -8,16 +8,16 @@ SDF3 supports definition of layout sensitive syntax by means of low-level layout
 
 ## Layout Constraints
 
-While we haven't covered layout _constraints_ in this documentation, the paper [@ErdwegRKO12] describes the concepts.
+While we haven't covered layout _constraints_ in this documentation, the paper of Erdweg et al.[@ErdwegRKO12] describes the concepts.
 
 
 ## Layout Declarations
 
-In the paper [@ErdwegRKO12], the authors describe layout constraints in terms of restrictions involving the position of the subtree involved in the constraint (``0``, ``1``, ...), token selectors (``first``, ``left``, ``last`` and ``right``), and position selectors as lines and columns (``line`` and ``col``).
+In the paper of Erdweg et al.[@ErdwegRKO12], the authors describe layout constraints in terms of restrictions involving the position of the subtree involved in the constraint (``0``, ``1``, ...), token selectors (``first``, ``left``, ``last`` and ``right``), and position selectors as lines and columns (``line`` and ``col``).
 
 This mechanism allows writing layout constraints to express alignment, offside and indentation rules, but writing such constraints is
 rather cumbersome and error prone.
-Alternatively, one may write layout constraints using **layout declarations**, which are more declarative specifications and abstract over lines, columns and token selectors as the original layout constraints from [@ErdwegRKO12].
+Alternatively, one may write layout constraints using layout _declarations_, which are more declarative specifications and abstract over lines, columns and token selectors as the original layout constraints from the Erdweg et al. paper[@ErdwegRKO12].
 
 
 ### Tree selectors
@@ -39,6 +39,7 @@ context-free syntax
 In the layout constraint for the production above, ``else`` refers to the tree for the labeled non-terminal ``else:Stmts``, ``"if"`` refers to the tree
 corresponding to the ``"if"`` literal and the number 3 correspond to the tree at *position 3* in the parse tree (starting at 0, ignoring trees for ``LAYOUT?``).
 
+
 ### `align`
 
 The layout constraint ``layout(align x y1, ..., yn)`` specifies that the trees indicated by the tree selectors ``yi`` should be aligned with the tree indicated by the tree selector ``x``, i.e., all these trees should start in the same column.
@@ -59,6 +60,7 @@ if x < 0 then
 ·else
 ···y = 1
 ```
+
 
 ### `align-list`
 
@@ -93,11 +95,12 @@ if x < 0 then
     ··z = 2
 ```
 
+
 ### `offside`
 
 The offside rule is very common in layout-sensitive languages.
 It states that all lines after the first one should be further to the right compared to the first line.
-For a description of how the offside rule can be modelled with layout constraints, refer to :cite:`s-ErdwegRKO12`.
+For a description of how the offside rule can be modelled with layout constraints, refer to Erdweg et al.[@ErdwegRKO12].
 An example of a declarative specification of the offside rule can be seen in the production below:
 
 ```
@@ -149,7 +152,8 @@ Thus, the following program is invalid according to this layout constraint, beca
     x = 2
 ```
 
-In general, an **offside** constraint involving more than a single tree is combined with **indent** constraint to enforce that the column of the first and all subsequent lines should be indented.
+In general, an `offside` constraint involving more than a single tree is combined with `indent` constraint to enforce that the column of the first and all subsequent lines should be indented.
+
 
 ### `indent`
 
@@ -205,4 +209,6 @@ if x < 0 then
 ```
 
 Finally, all these layout declarations can be ignored by the parser and used only when generating the pretty-printer.
-To do that, prefix the constraint with **pp-** writing, for example, **pp-offside** or **pp-align**.
+To do that, prefix the constraint with `pp-` writing, for example, `pp-offside` or `pp-align`.
+
+\bibliography
