@@ -192,51 +192,51 @@
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/terms/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/types/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/types/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/patterns/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/patterns/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rewrite-rules/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rules/rewrite-rules/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rules/dynamic-rules/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rules/concrete-syntax/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators-match-build/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rules/overlays/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators-traversal/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/strategies/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators-type-unifying/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/sequential/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/dynamic-rules/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/term/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/concrete-syntax/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/traversal/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/overlays/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/type-unifying/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
