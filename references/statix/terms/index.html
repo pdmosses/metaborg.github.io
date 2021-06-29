@@ -994,18 +994,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="../rules/" class="md-nav__link">
-        Rules
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -1062,6 +1050,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wildcards" class="md-nav__link">
+    Wildcards
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composite-terms" class="md-nav__link">
     Composite terms
   </a>
@@ -1083,20 +1078,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    Variables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#name-ascription" class="md-nav__link">
     Name Ascription
   </a>
@@ -1111,6 +1092,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arithmetic-operations" class="md-nav__link">
+    Arithmetic operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ast-identifier" class="md-nav__link">
+    AST Identifier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#new" class="md-nav__link">
     New
   </a>
@@ -1118,8 +1113,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arithmetic-operations" class="md-nav__link">
-    Arithmetic Operations
+  <a href="#paths" class="md-nav__link">
+    Paths
   </a>
   
 </li>
@@ -1132,15 +1127,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#namespace-query" class="md-nav__link">
-    Namespace Query
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assertion-match" class="md-nav__link">
-    Assertion Match
+  <a href="#declaration-match" class="md-nav__link">
+    Declaration Match
   </a>
   
 </li>
@@ -1158,8 +1146,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../types/" class="md-nav__link">
-        Types
+      <a href="../basic-constraints/" class="md-nav__link">
+        Basic Constraints
       </a>
     </li>
   
@@ -1170,8 +1158,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../basic-constraints/" class="md-nav__link">
-        Basic Constraints
+      <a href="../rules/" class="md-nav__link">
+        Rules
       </a>
     </li>
   
@@ -2043,6 +2031,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wildcards" class="md-nav__link">
+    Wildcards
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composite-terms" class="md-nav__link">
     Composite terms
   </a>
@@ -2064,20 +2059,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    Variables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#name-ascription" class="md-nav__link">
     Name Ascription
   </a>
@@ -2092,6 +2073,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arithmetic-operations" class="md-nav__link">
+    Arithmetic operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ast-identifier" class="md-nav__link">
+    AST Identifier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#new" class="md-nav__link">
     New
   </a>
@@ -2099,8 +2094,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arithmetic-operations" class="md-nav__link">
-    Arithmetic Operations
+  <a href="#paths" class="md-nav__link">
+    Paths
   </a>
   
 </li>
@@ -2113,15 +2108,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#namespace-query" class="md-nav__link">
-    Namespace Query
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assertion-match" class="md-nav__link">
-    Assertion Match
+  <a href="#declaration-match" class="md-nav__link">
+    Declaration Match
   </a>
   
 </li>
@@ -2144,23 +2132,185 @@
                 
                 
                 <h1 id="terms">Terms<a class="headerlink" href="#terms" title="Permanent link">&para;</a></h1>
+<p>In Statix, data is represented using terms. This data can be a program, a typing
+annotation, or anything else that the specification defines. Terms are built from
+atoms and composites, such as constructors, tuples and lists. Additionally, Statix
+allows to inline several constraint results in terms.</p>
+<p>In this section, we explain the various types of terms that Statix supports, and,
+when appropriate, how their types should be declared. For a more in-depth
+explanation of the Statix Type System, see the section <a href="../types">Types</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Throughout this reference manual, we use the term 'sort' for syntactic
+categories, and 'type' for all other types (such as lists, tuples, scopes, etc.).
+However, in practise, these terms are both used in both meanings.</p>
+</div>
 <h2 id="numerals">Numerals<a class="headerlink" href="#numerals" title="Permanent link">&para;</a></h2>
+<p>Numeric literals are literals of the form <code>[0-9]+</code>. Negative literals are not
+supported directly. All integer literals have the built-in type <code>int</code>.</p>
 <h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
+<p>String literals are arbitrary, single-line sequences of characters enclosed in
+double quotes. String literals may not contain unescaped backslashes, double
+quotes, or tabs. Double quotes and backslashes can be used in a string literal
+by prefixing them with another backslashes (<code>\"</code> and <code>\\</code>, respectively), while
+tabs, newlines and carriage returns can be encoded using respectively <code>\t</code>, <code>\n</code>
+and <code>\r</code>. Otherwise, no escaping is required. String literals have the built-in
+type <code>string</code>.</p>
 <h2 id="identifiers">Identifiers<a class="headerlink" href="#identifiers" title="Permanent link">&para;</a></h2>
-<p>lowercase id  + wildcards</p>
+<p>Variables are identifiers of values of the following form: <code>[a-zA-Z] [a-zA-Z0-9\_]* [\']*</code>.</p>
+<p>With respect to type-checking, variables can be handled in two ways. When a variable
+occurs in the <a href="../rules#rule-definitions">head of a rule</a>, it is implicitly
+brought into scope with the type inferred from the rule type. Otherwise, it is
+required that the variable is introduced earlier, with the correct type.
+Apart from introduction in rule heads, variables can be introduced by
+<a href="../basic-constraints#exists">existential constraints</a>. In that case, the type
+of the variable is derived from its usage.</p>
+<h2 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h2>
+<p>Wildcards are represented as <code>_</code>, and denote variables without identity.
+Every occurrence of a wildcard is interpreted as a new variable. Because
+wildcards cannot reference each other, it is not required that the types of
+multiple wildcard occurrences coincide.</p>
 <h2 id="composite-terms">Composite terms<a class="headerlink" href="#composite-terms" title="Permanent link">&para;</a></h2>
+<p>Composite terms can be build using <em>constructor applications</em>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConsId</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>Here a term with constructor <code>$ConsId</code> and some term arguments is built.</p>
+<p>Composite terms must adhere to a signature. A signature describes which term
+compositions are valid, and must be declared in a <code>signature</code> section:</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">SortID</span>*<span class="w"></span>
+
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>+<span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>$<span class="nv">SortID</span><span class="w"></span>
+<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">SortID</span><span class="w"></span>
+</code></pre></div>
+<p>First, the syntactic categories (which closely correspond to type identifiers in
+other languages) must be declared in a <code>sorts</code> subsection. Then, the constructor
+symbols can be declared in a <code>constructors</code> section. For each constructor, the
+types of the arguments and its sort should be provided. For nullary constructors
+(constructors without arguments), the arrow preceding the sort should be omitted.</p>
+<p>When a composite term is built, it is validated that all arguments match the type
+declaration from the signature. The type of the whole composite term is equal to
+the sort of the constructor.</p>
 <h2 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h2>
+<p>A built-in composite data construction is <em>tuples</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>Tuples have a statically fixed length, but the types of the arguments may differ.
+The type of the tuple expression is just the product of its arguments.</p>
+<p>The arity of a tuple may be anything except one, because unary tuples cause
+syntactic ambiguities with bracketed expressions.</p>
 <h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
-<p>various concat/tail types</p>
-<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
-<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>Another built-in composite data construction is <em>lists</em>:</p>
+<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*]<span class="w"></span>
+</code></pre></div>
+<p>Lists are created by comma-separating terms, enclosing them in square brackets.
+All terms should have the same type. Given that the type of the terms is <code>T</code>, the
+type of the list expression will be <code>list(T)</code>.</p>
+<p>Alternatively, lists can have a variable tail:</p>
+<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="w"> </span>|<span class="w"> </span>$<span class="nv">Term</span>]<span class="w"></span>
+</code></pre></div>
+<p>In this syntax, the tail of the list is another term. This term should have type
+<code>list(T)</code>, where <code>T</code> is again the type of the first terms.</p>
 <h2 id="name-ascription">Name Ascription<a class="headerlink" href="#name-ascription" title="Permanent link">&para;</a></h2>
+<p>It is possible to assign names to terms by prefixing the term with a variable name:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Var</span>@$<span class="nv">Term</span><span class="w"></span>
+</code></pre></div>
+<p>Note that this does <em>not</em> introduce a new variable with name <code>$Var</code> (except in a
+<a href="../rules#rule-definitions">rule head</a>, where all variables are introduced
+implicitly), but rather requires that a variable with corresponding name and type
+is already introduced.</p>
+<details class="tip"><summary>Tip</summary><p>In terms of <a href="../basic-constraints#equality">equality constraints</a>, the ascribe
+is equal to <code>$Var == $Term</code>. It is used to prevent the duplication of <code>$Term</code>.</p>
+</details>
 <h2 id="type-ascription">Type Ascription<a class="headerlink" href="#type-ascription" title="Permanent link">&para;</a></h2>
+<p>Statix allows to add inline type annotations to terms as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+</code></pre></div>
+<p>The type-checker will validate that the term actually has the specified type,
+but the runtime behavior in not influenced by these ascriptions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In general, the Statix type-checker should be able to infer all types.
+However, in case of a type error being reported at an incorrect position,
+these type ascriptions can help tracing the cause of the error.</p>
+</div>
+<h2 id="arithmetic-operations">Arithmetic operations<a class="headerlink" href="#arithmetic-operations" title="Permanent link">&para;</a></h2>
+<p>Arithmetic expressions can be inserted in terms as follows:</p>
+<div class="highlight"><pre><span></span><code>#<span class="p">(</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>Here, the type of the expression is <code>int</code>. For more information on arithmetic
+expressions, see <a href="../basic-constraints#arithmetic-constraints">Arithmetic Constraints</a></p>
+<details class="tip"><summary>Tip</summary><p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, inline
+arithmetic expressions have behavior equal to <code>{v} v #= $ArithExp</code>, where <code>v</code>
+is used at the position of the arithmetic expression. So, for example,
+<code>{T} T == CONS(#(21 * 2))</code> is equal to <code>{T v} v #= 21 * 2, T == CONS(v)</code>.</p>
+</details>
+<h2 id="ast-identifier">AST Identifier<a class="headerlink" href="#ast-identifier" title="Permanent link">&para;</a></h2>
+<p>In Spoofax, all terms in an AST are assigned an unique identifier (the term index)
+before analysis. This term identifier can be isolated as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>Here, the type of <code>$Term</code> can be anything, and the type of the whole term will
+be <code>astId</code>. AST Identifiers are used to assign <a href="../basic-constraints#ast-property">properties</a>.</p>
 <h2 id="new">New<a class="headerlink" href="#new" title="Permanent link">&para;</a></h2>
-<h2 id="arithmetic-operations">Arithmetic Operations<a class="headerlink" href="#arithmetic-operations" title="Permanent link">&para;</a></h2>
+<p>Statix allows inline creation of <a href="../scope-graphs#scopes">scopes</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"></span>
+</code></pre></div>
+<p>Statically, the <code>new</code> term has type <code>scope</code>. At runtime, this creates a fresh
+scope, and inserts that at the position of the <code>new</code> term.</p>
+<details class="tip"><summary>Tip</summary><p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, the inline
+<code>new</code> operator has behavior equal to <code>{s} new s</code>, where <code>s</code> is used at the
+position of the <code>new</code> term. So, for example, <code>{T} T == CLASS(new)</code> is equal
+to <code>{T s} new s, T == CLASS(s)</code>.</p>
+</details>
+<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>Part of a <a href="../queries#result-pattern">query result</a> is the path from the resolved
+datum back to the scope where the query started. In order to represent paths,
+Statix has two built-in constructors:</p>
+<ul>
+<li><code>_PathEmpty</code>: Unary constructor that carries a single scope. This constructor
+  has type <code>scope -&gt; path</code>.</li>
+<li><code>_PathStep</code>: Ternary constructor that represents a traversed edge in a path.
+  This constructor has type <code>path * label * scope -&gt; path</code>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the labels in a <code>_PathStep</code> can be bound to a variable, and hence
+be compared with and included in other terms, no inspection, matching or
+comparison with label definitions is supported.</p>
+</div>
 <h2 id="occurrences">Occurrences<a class="headerlink" href="#occurrences" title="Permanent link">&para;</a></h2>
-<h2 id="namespace-query">Namespace Query<a class="headerlink" href="#namespace-query" title="Permanent link">&para;</a></h2>
-<h2 id="assertion-match">Assertion Match<a class="headerlink" href="#assertion-match" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since Spoofax 2.5.15, namespaces and occurrences are deprecated.</p>
+</div>
+<p>Statix has built-in support for namespaces. A term embedded in a particular
+namespace is called an <code>occurrence</code>. Occurrences can be written as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span>@$<span class="nv">OccurrenceId</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>In this structure template, <code>$SpaceTerms</code> means a list of terms, separated by
+spaces. The occurrence identifier can be any term. In case the term has an AST
+identifier, that value will be used as the identity of the occurrence.</p>
+<p>Alternatively, the occurrence identifier can be left out:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>The default occurrence identifier is <code>-</code>, which means that the occurrence has no
+identifier. The type of an occurrence literal is <code>occurrence</code>. For more information
+about namespaces, see the <a href="../queries">Queries</a> section.</p>
+<h2 id="declaration-match">Declaration Match<a class="headerlink" href="#declaration-match" title="Permanent link">&para;</a></h2>
+<p>Statix allows to query the current scope for declarations of a particular form:</p>
+<div class="highlight"><pre><span></span><code>?$<span class="nv">RelationId</span>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span><span class="w"></span>
+</code></pre></div>
+<p>When using this expression, a <em>functional</em> relation <code>$RelationId</code> must be declared.
+The terms arguments must correspond to the argument of the relation, and the
+type of the term is the output type of the relation.</p>
+<p>For more information on querying the scope graph, see the <a href="../queries">Queries</a> section.</p>
+<details class="tip"><summary>Tip</summary><p>In terms of <a href="../queries">regular queries</a>, the declaration match is equal
+to a query with filter <code>e</code>, expecting a single output. E.g. <code>T == ?var["x"] in s</code>
+is equal to <code>query var filter e and { x' :- x' == "x"} in s |-&gt; [(_, (_, T))]</code>.</p>
+</details>
                 
               
               
@@ -2183,7 +2333,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../rules/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../modules/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2192,19 +2342,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Rules
+              Modules
             </div>
           </div>
         </a>
       
       
-        <a href="../types/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../basic-constraints/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Types
+              Basic Constraints
             </div>
           </div>
           <div class="md-footer__button md-icon">
