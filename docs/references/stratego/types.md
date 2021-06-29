@@ -21,7 +21,7 @@ A sort is determined by an identifier and optionally has arguments.
 For each constructor, a signature declares the number and types of its arguments.
 
 The Stratego1 compiler only checks the arity of constructor applications against the signature.
-The Stratego2 compiler uses signature definitions to type check term patterns in rules.
+The Stratego2 compiler uses signature definitions to type check code if it has been given a type signature.
 
 
 ## Injections
@@ -58,7 +58,7 @@ Note that the first injection allows strings to be used as identifiers (`Id`).
 
 ## The List Type
 
-The `List(Exp)` type used above is built-in and correspons to homogenous lists of terms of the same type (`Exp` in this case).
+The `List(Exp)` type used above is built-in and corresponds to homogenous lists of terms of the same type (`Exp` in this case).
 
 
 ## Polymorphic Types
@@ -70,7 +70,7 @@ For example, the following signature defines the type of priority queues, polymo
 
 ```stratego
 signature
-  sorts PrioQ
+  sorts PrioQ(*)
   constructors
     NilQ  : PrioQ(a)
     ConsQ : a * int * List(a) * PrioQ(a) -> PrioQ(a)
@@ -119,6 +119,11 @@ Furthermore, some patterns in Stratego cannot be typed statically.
 Type _dynamic_, written `?`, represents the unknown type.
 
 
+## Type Casts
+
+Gradual type systems allow a term with the dynamic type to be used in any place where a static type is required. Stratego2 will insert a type cast at such a point to check at run time that the term is type-correct. This way, a Stratego program halts execution in predictable places when a run time type error occurs. There can be no run time type errors in fully statically typed code either, only at the boundary between dynamically and statically typed code. 
+
+
 ## Type Preserving Transformations
 
 A _type preserving_ transformation transforms _any_ type to itself (or fails).
@@ -131,12 +136,16 @@ For example, the topdown traversal is type preserving if its argument strategy i
 topdown(s : TP) :: TP
 ```
 
+The type-checking for a type preserving transformation is very strict. It should be in terms of other type preserving transformations, or match the input term to a specific type and return a term from that specific type. 
+
 
 ## Is Type
 
 Given the definition of a term signature, the `is(S)` strategy checks whether a term is of sort `S` and fails if that is not the case.
 
 For example, the strategy `<is(Exp)>t` checks that term `t` conforms to the signature of sort `Exp`.
+
+The `is(S)` strategy uses the same mechanism as type casts for checking a term type at run time.
 
 
 ## References
