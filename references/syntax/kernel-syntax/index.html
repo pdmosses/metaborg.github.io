@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/normalization/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/kernel-syntax/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Normalization - Spoofax</title>
+        <title>Kernel Syntax - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Normalization" />
+<meta property="og:title" content="Spoofax - Kernel Syntax" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/normalization/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/kernel-syntax/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/e8269200-d82a-11eb-93f9-8ffaee8d31f0" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#normalization" class="md-skip">
+        <a href="#kernel-syntax" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Normalization
+              Kernel Syntax
             
           </span>
         </div>
@@ -789,8 +789,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        Structure
+      <a href="../modules/" class="md-nav__link">
+        Modules
       </a>
     </li>
   
@@ -801,8 +801,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
-        Language Concepts
+      <a href="../symbols/" class="md-nav__link">
+        Symbols
       </a>
     </li>
   
@@ -813,8 +813,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../constructs/" class="md-nav__link">
-        Constructs
+      <a href="../productions/" class="md-nav__link">
+        Productions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lexical-syntax/" class="md-nav__link">
+        Lexical Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context-free-syntax/" class="md-nav__link">
+        Context-Free Syntax
       </a>
     </li>
   
@@ -835,9 +859,33 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Normalization
+        Kernel Syntax
       </a>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        Templates
+      </a>
     </li>
   
 
@@ -859,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../layout-sensitive/" class="md-nav__link">
+      <a href="../layout-sensitivity/" class="md-nav__link">
         Layout Sensitivity
       </a>
     </li>
@@ -1837,12 +1885,47 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/normalization.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/kernel-syntax.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="normalization">Normalization<a class="headerlink" href="#normalization" title="Permanent link">&para;</a></h1>
+                <h1 id="kernel-syntax">Kernel Syntax<a class="headerlink" href="#kernel-syntax" title="Permanent link">&para;</a></h1>
+<p>The rules from context-free and lexical syntax are translated into kernel syntax by the SDF3 normalizer.
+When writing kernel syntax, one has more control over the layout between symbols of a production.</p>
+<p>As part of normalization, among other things, SDF3 renames each symbol in the lexical syntax to include the suffix <code>-LEX</code> and each symbol in the context-free syntax to include the suffix <code>-CF</code>.</p>
+<p>For example, the two productions</p>
+<div class="highlight"><pre><span></span><code>lexical syntax
+
+    BinaryConst = [0-1]+
+
+context-free syntax
+
+  Block.Block = &quot;{&quot; Statement* &quot;}&quot;
+</code></pre></div>
+<p>written in kernel syntax look like</p>
+<div class="highlight"><pre><span></span><code>syntax
+
+    Block-CF.Block  = &quot;{&quot; LAYOUT?-CF Statement*-CF LAYOUT?-CF &quot;}&quot;
+    BinaryConst-LEX = [0-1]+
+</code></pre></div>
+<p>Literals and character classes are lexical by definition, thus they do not need any suffix.
+Note that each symbol in kernel syntax is uniquely identified by its full name including <code>-CF</code> and <code>-LEX</code>.
+That is, two symbols named <code>Block-CF</code> and <code>Block</code> are different, if both occur in kernel syntax.
+However, <code>Block-CF</code> is the same symbol as <code>Block</code> if the latter appears in a context-free syntax section.</p>
+<p>As mentioned before, layout can only occur in between symbols if explicitly specified.</p>
+<p>For example, the production</p>
+<div class="highlight"><pre><span></span><code>syntax
+
+    Block-CF.Block  = &quot;{&quot; Statement*-CF LAYOUT?-CF &quot;}&quot;
+</code></pre></div>
+<p>does not allow layout to occur in between the opening bracket and the list of statements.</p>
+<p>This means that a fragment such as:</p>
+<div class="highlight"><pre><span></span><code>    {
+      x = 1;
+    }
+</code></pre></div>
+<p>would not be recognized as a block.</p>
                 
               
               
@@ -1865,7 +1948,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../constructs/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../context-free-syntax/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1874,19 +1957,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Constructs
+              Context-Free Syntax
             </div>
           </div>
         </a>
       
       
-        <a href="../disambiguation/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../start-symbols/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Disambiguation
+              Start Symbols
             </div>
           </div>
           <div class="md-footer__button md-icon">

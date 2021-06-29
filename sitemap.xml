@@ -68,19 +68,35 @@
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/structure/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/modules/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/concepts/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/symbols/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/constructs/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/productions/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/normalization/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/lexical-syntax/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/context-free-syntax/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/kernel-syntax/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/start-symbols/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/templates/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -88,7 +104,7 @@
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/layout-sensitive/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/layout-sensitivity/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>

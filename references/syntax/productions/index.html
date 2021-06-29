@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/layout-sensitive/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/productions/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Layout Sensitivity - Spoofax</title>
+        <title>Productions - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Layout Sensitivity" />
+<meta property="og:title" content="Spoofax - Productions" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/layout-sensitive/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/productions/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/e8269200-d82a-11eb-93f9-8ffaee8d31f0" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#layout-sensitivity" class="md-skip">
+        <a href="#productions" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Layout Sensitivity
+              Productions
             
           </span>
         </div>
@@ -789,8 +789,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        Structure
+      <a href="../modules/" class="md-nav__link">
+        Modules
       </a>
     </li>
   
@@ -801,8 +801,72 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
-        Language Concepts
+      <a href="../symbols/" class="md-nav__link">
+        Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Productions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Productions
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lexical-syntax/" class="md-nav__link">
+        Lexical Syntax
       </a>
     </li>
   
@@ -813,8 +877,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../constructs/" class="md-nav__link">
-        Constructs
+      <a href="../context-free-syntax/" class="md-nav__link">
+        Context-Free Syntax
       </a>
     </li>
   
@@ -825,8 +889,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../normalization/" class="md-nav__link">
-        Normalization
+      <a href="../kernel-syntax/" class="md-nav__link">
+        Kernel Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        Templates
       </a>
     </li>
   
@@ -847,21 +935,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../layout-sensitivity/" class="md-nav__link">
         Layout Sensitivity
       </a>
-      
     </li>
   
 
@@ -1827,6 +1905,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1837,19 +1930,50 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/layout-sensitive.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/productions.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="layout-sensitivity">Layout Sensitivity<a class="headerlink" href="#layout-sensitivity" title="Permanent link">&para;</a></h1>
+                <h1 id="productions">Productions<a class="headerlink" href="#productions" title="Permanent link">&para;</a></h1>
+<p>The basic building block of syntax sections is the production.
+The left-hand side of a regular production rule can be either just a symbol or a symbol followed by <code>.</code> and a constructor name.
+The right-hand side consists of zero or more symbols.
+Both sides are separated by <code>=</code>:</p>
+<div class="codehilite"><pre><span></span><code>&lt;Symbol&gt;               = &lt;Symbol&gt;*
+&lt;Symbol&gt;.&lt;Constructor&gt; = &lt;Symbol&gt;*
+</code></pre></div>
+
+<p>A production is read as the definition.
+The symbol on the left-hand side is defined by the right-hand side of the production.</p>
+<p>Productions are used to describe lexical as well as context-free syntax.
+Productions may also occur in priority sections, but might also be referred to by its <code>&lt;Symbol&gt;.&lt;Constructor&gt;</code>.
+All productions with the same symbol together define the alternatives for that symbol.</p>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<p>The definition of lexical and context-free productions may be followed by attributes that define additional (syntactic or semantic) properties of that production.
+The attributes are written between curly brackets after the right-hand side of a production.
+If a production has more than one attribute they are separated by commas.
+Attributes have thus the following form:</p>
+<div class="highlight"><pre><span></span><code>    &lt;Sort&gt;               = &lt;Symbol&gt;* { &lt;Attribute1&gt;, &lt;Attribute2&gt;, ...}
+    &lt;Sort&gt;.&lt;Constructor&gt; = &lt;Symbol&gt;* { &lt;Attribute1&gt;, &lt;Attribute2&gt;, ...}
+</code></pre></div>
+<p>The following syntax-related attributes exist:</p>
 <ul>
-<li>layout sensitivity (declarations / constraints)</li>
-<li>tree selectors</li>
-<li>align</li>
-<li>align-list</li>
-<li>offside</li>
-<li>indent</li>
+<li><code>bracket</code> is an important attribute in combination with priorities.
+   For example, the <em>sdf2parenthesize</em> tool uses the <code>bracket</code>
+   attribute to find productions to add to a parse tree before pretty
+   printing (when the tree violates priority constraints). Note that
+   most of these tools demand the production with a <code>bracket</code>
+   attribute to have the shape: <code>X = "(" X ")" {bracket}</code> with any
+   kind of bracket syntax but the <code>X</code> being the same symbol on the
+   left-hand side and the right-hand side. The connection with
+   priorities and associativity is that when a non-terminal is
+   disambiguated using either of them, a production rule with the
+   <code>bracket</code> attribute is probably also needed.</li>
+<li><code>left</code>, <code>right</code>, <code>non-assoc</code>, <code>assoc</code> are disambiguation
+   constructs used to define the associativity of productions. See <a href="disambiguation/">Disambiguation</a>.</li>
+<li><code>prefer</code> and <code>avoid</code> are <strong>deprecated</strong> disambiguation constructs to define preference of one derivation over others. See <a href="disambiguation/">Disambiguation</a>.</li>
+<li><code>reject</code> is a disambiguation construct that implements language difference. It is used for keyword reservation. See <a href="disambiguation/">Disambiguation</a>.</li>
 </ul>
                 
               
@@ -1873,7 +1997,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../disambiguation/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../symbols/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1882,19 +2006,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Disambiguation
+              Symbols
             </div>
           </div>
         </a>
       
       
-        <a href="../recovery/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../lexical-syntax/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Recovery
+              Lexical Syntax
             </div>
           </div>
           <div class="md-footer__button md-icon">

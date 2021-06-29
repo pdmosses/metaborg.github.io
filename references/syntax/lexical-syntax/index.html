@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/constructs/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/lexical-syntax/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Constructs - Spoofax</title>
+        <title>Lexical Syntax - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Constructs" />
+<meta property="og:title" content="Spoofax - Lexical Syntax" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/constructs/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/lexical-syntax/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/e8269200-d82a-11eb-93f9-8ffaee8d31f0" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#constructs" class="md-skip">
+        <a href="#lexical-syntax" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Constructs
+              Lexical Syntax
             
           </span>
         </div>
@@ -789,8 +789,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        Structure
+      <a href="../modules/" class="md-nav__link">
+        Modules
       </a>
     </li>
   
@@ -801,8 +801,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
-        Language Concepts
+      <a href="../symbols/" class="md-nav__link">
+        Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../productions/" class="md-nav__link">
+        Productions
       </a>
     </li>
   
@@ -823,7 +835,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Constructs
+        Lexical Syntax
       </a>
       
     </li>
@@ -835,8 +847,44 @@
   
   
     <li class="md-nav__item">
-      <a href="../normalization/" class="md-nav__link">
-        Normalization
+      <a href="../context-free-syntax/" class="md-nav__link">
+        Context-Free Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kernel-syntax/" class="md-nav__link">
+        Kernel Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        Templates
       </a>
     </li>
   
@@ -859,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../layout-sensitive/" class="md-nav__link">
+      <a href="../layout-sensitivity/" class="md-nav__link">
         Layout Sensitivity
       </a>
     </li>
@@ -1837,54 +1885,27 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/constructs.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/lexical-syntax.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="constructs">Constructs<a class="headerlink" href="#constructs" title="Permanent link">&para;</a></h1>
-<ul>
-<li>module</li>
-<li>import</li>
-<li>
-<p>sections</p>
-</li>
-<li>
-<p>symbols</p>
-</li>
-<li>character class</li>
-<li>literals</li>
-<li>
-<p>sorts</p>
-</li>
-<li>
-<p>optionals</p>
-</li>
-<li>lists</li>
-<li>alternatives (only for lexical syntax)</li>
-<li>
-<p>sequences</p>
-</li>
-<li>
-<p>productions</p>
-</li>
-<li>labels</li>
-<li>
-<p>attributes</p>
-</li>
-<li>
-<p>reject</p>
-</li>
-<li>prefer/avoid (depracated)</li>
-<li>priorities</li>
-<li>associativity</li>
-<li>
-<p>restrictions</p>
-</li>
-<li>
-<p>template options</p>
-</li>
-</ul>
+                <h1 id="lexical-syntax">Lexical Syntax<a class="headerlink" href="#lexical-syntax" title="Permanent link">&para;</a></h1>
+<p>The lexical syntax usually describes the low level structure of programs (often referred to as lexical tokens).
+However, in SDF3, the token concept is not really relevant, since only character classes are terminals.
+The lexical syntax sections in SDF3 are simply a convenient notation for the low level syntax of a language.
+The <code>LAYOUT</code> symbol should also be defined in a lexical syntax section.
+A lexical syntax consists of a list of productions.</p>
+<p>Lexical syntax is described as follows::</p>
+<div class="highlight"><pre><span></span><code>lexical syntax
+
+    &lt;Production&gt;*
+</code></pre></div>
+<p>An example of a production in lexical syntax:</p>
+<div class="highlight"><pre><span></span><code>lexical syntax
+
+    BinaryConst = [0-1]+
+</code></pre></div>
                 
               
               
@@ -1907,7 +1928,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../concepts/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../productions/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1916,19 +1937,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Language Concepts
+              Productions
             </div>
           </div>
         </a>
       
       
-        <a href="../normalization/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../context-free-syntax/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Normalization
+              Context-Free Syntax
             </div>
           </div>
           <div class="md-footer__button md-icon">

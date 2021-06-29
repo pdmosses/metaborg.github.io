@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/concepts/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/syntax/context-free-syntax/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Language Concepts - Spoofax</title>
+        <title>Context-Free Syntax - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Language Concepts" />
+<meta property="og:title" content="Spoofax - Context-Free Syntax" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/concepts/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/syntax/context-free-syntax/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/e8269200-d82a-11eb-93f9-8ffaee8d31f0" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#language-concepts" class="md-skip">
+        <a href="#context-free-syntax" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Language Concepts
+              Context-Free Syntax
             
           </span>
         </div>
@@ -789,8 +789,44 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        Structure
+      <a href="../modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../symbols/" class="md-nav__link">
+        Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../productions/" class="md-nav__link">
+        Productions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lexical-syntax/" class="md-nav__link">
+        Lexical Syntax
       </a>
     </li>
   
@@ -811,7 +847,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Language Concepts
+        Context-Free Syntax
       </a>
       
     </li>
@@ -823,8 +859,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../constructs/" class="md-nav__link">
-        Constructs
+      <a href="../kernel-syntax/" class="md-nav__link">
+        Kernel Syntax
       </a>
     </li>
   
@@ -835,8 +871,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../normalization/" class="md-nav__link">
-        Normalization
+      <a href="../start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        Templates
       </a>
     </li>
   
@@ -859,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../layout-sensitive/" class="md-nav__link">
+      <a href="../layout-sensitivity/" class="md-nav__link">
         Layout Sensitivity
       </a>
     </li>
@@ -1837,23 +1885,32 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/concepts.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/syntax/context-free-syntax.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="language-concepts">Language Concepts<a class="headerlink" href="#language-concepts" title="Permanent link">&para;</a></h1>
-<ul>
-<li>normalization</li>
-<li>symbols (terminals, non-terminals)</li>
-<li>start symbols</li>
-<li>sorts (non-terminals)</li>
-<li>character classes (terminals)</li>
-<li>literals</li>
-<li>quantifiers (optionals, lists)</li>
-<li>templates </li>
-<li>disambiguation</li>
-</ul>
+                <h1 id="context-free-syntax">Context-Free Syntax<a class="headerlink" href="#context-free-syntax" title="Permanent link">&para;</a></h1>
+<p>The context-free syntax describes the more high-level syntactic structure of sentences in a language.
+A context-free syntax contains a list of productions.
+Elements of the right-hand side of a context-free production are pre-processed in a normalization step before parser generation that adds the <code>LAYOUT?</code> symbol between any two symbols.</p>
+<p>Context-free syntax has the form:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+
+  &lt;Production&gt;*
+</code></pre></div>
+<p>An example production rule:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+
+  Block.Block = &quot;{&quot; Statement* &quot;}&quot;
+</code></pre></div>
+<p>SDF3 automatically allows for layout to be present between the symbols of a rule.
+This means that a fragment such as:</p>
+<div class="highlight"><pre><span></span><code>{
+
+}
+</code></pre></div>
+<p>will still be recognized as a block (assuming that the newline and line-feed characters are defined as layout).</p>
                 
               
               
@@ -1876,7 +1933,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../structure/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../lexical-syntax/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1885,19 +1942,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Structure
+              Lexical Syntax
             </div>
           </div>
         </a>
       
       
-        <a href="../constructs/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../kernel-syntax/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Constructs
+              Kernel Syntax
             </div>
           </div>
           <div class="md-footer__button md-icon">
