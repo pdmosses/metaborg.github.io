@@ -200,27 +200,18 @@ the `maps` construct for each argument.
     construct are normalized to regular predicative constraints. This normalization
     can be inspected using the `Spoofax > Syntax > Format normalized AST` menu action.
 
-## Injections of namespaces, relations and constraints
+## Injections of Namespaces and Relations
 
-
-## Example
+For convenience, it is possible to declare namespaces, namespace queries (both
+deprecated) and relations in a `rules` section as well.
 
 ```statix
-module rules-example
-
-signature
-  constraints
-    lub: TYPE * TYPE * TYPE
-
 rules
 
-  typeOfExp: Exp -> TYPE
+  namespace Var: string
+  resolve Var
+    filter P* I*
 
-  typeOfExp(Cons(hd, tl)) = LIST(T) :- {Th Ttl}
-    typeOfExp(hd) == Th,
-    typeOfExp(tl) == LIST(Ttl),
-    lub(Th, Ttl, T).
-
-  typeOfExp(Nil()) = LIST(_).
+  relation var: string -> TYPE
 
 ```
