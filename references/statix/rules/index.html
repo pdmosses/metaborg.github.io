@@ -1004,15 +1004,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#injections-of-namespaces-relations-and-constraints" class="md-nav__link">
-    Injections of namespaces, relations and constraints
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#injections-of-namespaces-and-relations" class="md-nav__link">
+    Injections of Namespaces and Relations
   </a>
   
 </li>
@@ -1929,15 +1922,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#injections-of-namespaces-relations-and-constraints" class="md-nav__link">
-    Injections of namespaces, relations and constraints
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#injections-of-namespaces-and-relations" class="md-nav__link">
+    Injections of Namespaces and Relations
   </a>
   
 </li>
@@ -2028,18 +2014,18 @@ validated. Statix allows to write constraints in a functional idiom as follows:<
 as follows:</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>*<span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
 </code></pre></div>
-<p>In addition to the regular list of input sorts, a 'sort for the output term is
+<p>In addition to the regular list of input sorts, a sort for the output term is
 provided to the constraint declaration.</p>
 <p>Rule definitions for a functional constraint look as follows:</p>
 <div class="highlight"><pre><span></span><code>[$<span class="nv">RuleName</span>]$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Pattern</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"> </span>=<span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 <p>Compared to predicative rule definitions as introduced earlier in this section,
 an additional term after an equality-sign is appended to the rule head. This
-term denotes the</p>
+term denotes the output term (the term inferred by the rule).</p>
 <p>A functional constraint can be used in a <a href="../terms"><em>term</em></a> position, as opposed
 to a <a href="../basic-constraints"><em>constraint</em></a> position for predicative rules.
 Otherwise, their syntax is the same.</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <p>Semantically, the output term of applying the constraint is substituted at the
 position of the application of the functional predicate.</p>
@@ -2050,25 +2036,74 @@ explicit, we usually refer to either groups with 'predicative constraint
 declarations' and 'predicative constraints', versus 'functional constraint
 declarations' and 'functional constraints', respectively.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Every specification with functional predicates is normalized to a form with
+only regular predicates. To show the normal form of a specification in
+Eclipse, use the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
+</div>
 <h2 id="mapping-rules">Mapping rules<a class="headerlink" href="#mapping-rules" title="Permanent link">&para;</a></h2>
-<h2 id="injections-of-namespaces-relations-and-constraints">Injections of namespaces, relations and constraints<a class="headerlink" href="#injections-of-namespaces-relations-and-constraints" title="Permanent link">&para;</a></h2>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="k">rules</span><span class="nv">-example</span><span class="w"></span>
+<p>Another common pattern in Statix is defining a predicate that instantiates a
+predicate for all elements in a list. Statix allows derive such mapping rules
+using the <code>maps</code> keyword as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">MappingConstraintName</span><span class="w"> </span><span class="k">maps</span><span class="w"> </span>$<span class="nv">MappedConstraintName</span><span class="p">({</span>$<span class="nv">Lift</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">})</span><span class="w"></span>
+</code></pre></div>
+<p>A lift specifier (<code>$Lift</code>) can be one of the following:</p>
+<ul>
+<li><code>*</code>: The <em>identity lift</em>. This lift specifier indicates that this argument is
+  passed to the mapped constraint unchanged.</li>
+<li><code>list(*)</code>: The <em>list lift</em>: This lift specifier indicates that the mapped
+  constraint will be instantiated for each element in the list at that argument
+  position. Each constraint defined with <code>maps</code>, must contain at least one list
+  lift. Otherwise, the mapping would be a no-op.</li>
+<li><code>({$Lift ","}+)</code>: The <em>tuple lift</em>: This lift specifier indicates that arguments
+  are extracted from a tuple. For each tuple argument, a corresponding lifting
+  is applied afterwards.</li>
+</ul>
+<p>The type of <code>$MappingConstraintName</code> is inferred by inverse application of the
+lift specifiers to the type of <code>$MappedConstraintName</code>. Therefore, no explicit
+declaration of the type of the mapping constraint is required.</p>
+<p>Similar to predicative constraints, functional mapping constraints can be derived:</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">MappingConstraintName</span><span class="w"> </span><span class="k">maps</span><span class="w"> </span>$<span class="nv">MappedConstraintName</span><span class="p">({</span>$<span class="nv">Lift</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">})</span><span class="w"> </span>=<span class="w"> </span>$<span class="nv">Lift</span><span class="w"></span>
+</code></pre></div>
+<p>In addition to lift specifiers of the input arguments, a lift specifier for the
+inferred term must be provided as well. This lift specifier indicates how the
+inferred terms from the mapped constraints are aggregated and returned by the
+mapping constraint.</p>
+<p><em>Example.</em> A common example where mapping rules are used is when type-checking a
+list of declarations. A specification snippet for that could look as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="nv">constraints</span><span class="w"></span>
-<span class="w">    </span><span class="nv">lub</span><span class="p">:</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span>*<span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span>*<span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+<span class="w">  </span><span class="nv">declOk</span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Decl</span><span class="w"></span>
+<span class="w">  </span><span class="nv">declsOk</span><span class="w"> </span><span class="k">maps</span><span class="w"> </span><span class="nv">declOk</span><span class="p">(</span>*<span class="p">,</span><span class="w"> </span><span class="k">list</span><span class="p">(</span>*<span class="p">))</span><span class="w"></span>
 
-<span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="c c-Singleline">// rules for declOk</span><span class="w"></span>
+</code></pre></div>
+<p>In this snippet, the <code>declsOk</code> constraint instantiates <code>declOk</code> for each
+declaration in a list of declaration. Its inferred type is <code>scope * list(Decl)</code>.</p>
+<p>When mapping functional constraints, a lift specifier for the inferred term
+must be provided as well. This lift specifier indicates how the inferred values
+of the mapped constraint are returned by the mapping constraint.</p>
+<p>When using multiple list lifts in the input, the resulting constraint will zip
+the arguments. This implicitly requires the input lists to be of equal length.
+The creation of a cartesian product can be achieved by repeated application of
+the <code>maps</code> construct for each argument.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Similar to functional constraints, constraints derived using the <code>maps</code>
+construct are normalized to regular predicative constraints. This normalization
+can be inspected using the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
+</div>
+<h2 id="injections-of-namespaces-and-relations">Injections of Namespaces and Relations<a class="headerlink" href="#injections-of-namespaces-and-relations" title="Permanent link">&para;</a></h2>
+<p>For convenience, it is possible to declare namespaces, namespace queries (both
+deprecated) and relations in a <code>rules</code> section as well.</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
 
-<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nv">Var</span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"></span>
+<span class="w">  </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span><span class="w"></span>
+<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"></span>
 
-<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Cons</span><span class="p">(</span><span class="nv">hd</span><span class="p">,</span><span class="w"> </span><span class="nv">tl</span><span class="p">))</span><span class="w"> </span>=<span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">Th</span><span class="w"> </span><span class="nv">Ttl</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">hd</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">Th</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">tl</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">Ttl</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="nv">lub</span><span class="p">(</span><span class="nv">Th</span><span class="p">,</span><span class="w"> </span><span class="nv">Ttl</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">).</span><span class="w"></span>
-
-<span class="w">  </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Nil</span><span class="p">())</span><span class="w"> </span>=<span class="w"> </span><span class="nv">LIST</span><span class="p">(</span><span class="nv">_</span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">relation</span><span class="w"> </span><span class="nv">var</span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
 </code></pre></div>
                 
               
