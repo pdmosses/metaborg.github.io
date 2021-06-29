@@ -99,7 +99,7 @@ as follows:
 $ConstraintName : {$Type "*"}* -> $Type
 ```
 
-In addition to the regular list of input sorts, a 'sort for the output term is
+In addition to the regular list of input sorts, a sort for the output term is
 provided to the constraint declaration.
 
 Rule definitions for a functional constraint look as follows:
@@ -110,14 +110,14 @@ Rule definitions for a functional constraint look as follows:
 
 Compared to predicative rule definitions as introduced earlier in this section,
 an additional term after an equality-sign is appended to the rule head. This
-term denotes the
+term denotes the output term (the term inferred by the rule).
 
 A functional constraint can be used in a [_term_](../terms) position, as opposed
 to a [_constraint_](../basic-constraints) position for predicative rules.
 Otherwise, their syntax is the same.
 
 ```statix
-$ConstraintName({$Term ","}*).
+$ConstraintName({$Term ","}*)
 ```
 
 Semantically, the output term of applying the constraint is substituted at the
