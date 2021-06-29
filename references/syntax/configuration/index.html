@@ -2031,7 +2031,7 @@
                 
                 
                 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
-<p>When using SDF3 inside Spoofax, it is possible to specify different configuration options that.
+<p>When using SDF3 inside Spoofax, several configuration options are relevant.
 They allow using the new parser generator, specifying the shape of completion placeholders, or disable SDF altogether.
 These options should be specified in the <code>metaborg.yaml</code> file.</p>
 <p>For example, to disable SDF for the current project, use:</p>
@@ -2039,8 +2039,7 @@ These options should be specified in the <code>metaborg.yaml</code> file.</p>
   <span class="nt">sdf</span><span class="p">:</span>
     <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
-<p>This configuration should be present when defining language components for a language that has SDF enabled.</p>
-<p>SDF3 allows generating placeholders for code completion. The default "shape" of placeholders is <code>[[Symbol]]</code>.
+<p>SDF3 allows generating placeholders for code completion. The default "shape" of placeholders is <code>$Symbol</code>.
 However, it is possible to tweak this shape using the configuration below (the configuration for suffix is optional):</p>
 <div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
   <span class="nt">sdf</span><span class="p">:</span>
@@ -2048,8 +2047,8 @@ However, it is possible to tweak this shape using the configuration below (the c
       <span class="nt">prefix</span><span class="p">:</span> <span class="s">&quot;$&quot;</span>
       <span class="nt">suffix</span><span class="p">:</span> <span class="s">&quot;$&quot;</span>
 </code></pre></div>
-<p>Currently, the path to the parse table is specified in the :file:<code>Syntax.esv</code> file, commonly as <code>table: target/metaborg/sdf.tbl</code>.
-When the ESV file does not contain this entry, it is also possible to specify the path to the parse table in the :file:<code>metaborg.yaml</code> file.
+<p>Currently, the path to the parse table is specified in the <code>Syntax.esv</code> file, commonly as <code>table: target/metaborg/sdf.tbl</code>.
+When the ESV file does not contain this entry, it is also possible to specify the path to the parse table in the <code>metaborg.yaml</code> file.
 This is useful when testing an external parse table, or using a parse table different from the one being generated in the project.
 In the example below, the table is loaded from the path <code>tables/sdf.tbl</code>.
 The same can be applied to the parse table used for code completion.</p>
@@ -2059,7 +2058,8 @@ The same can be applied to the parse table used for code completion.</p>
     <span class="nt">completion-parse-table</span><span class="p">:</span> <span class="s">&quot;tables/sdf-completions.tbl&quot;</span>
 </code></pre></div>
 <p>In a Spoofax project, it is also possible to use SDF2 instead of SDF3.
-This enables SDF2 tools such as the SDF2 parenthesizer, signature generator, etc. For example:</p>
+This enables SDF2 tools such as the SDF2 parenthesizer, signature generator, etc.
+For example:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
   <span class="nt">sdf</span><span class="p">:</span>
     <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sdf2</span>
@@ -2112,14 +2112,6 @@ one of the following:</p>
 <li><code>parsing</code>: Log all standard parsing events (such as stack and parse forest operations, action execution, etc.) but no variant-specific events (e.g. related to recovery).</li>
 <li><code>recovery</code>: Log the recovery iterations and the recovery productions that are applied.</li>
 </ul>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Whenever changing any of these configurations, clean the project before rebuilding.</p>
-</div>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Write documentation on how to use SDF3 outside of Spoofax</p>
-</div>
                 
               
               

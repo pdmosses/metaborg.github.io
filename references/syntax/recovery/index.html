@@ -1972,8 +1972,26 @@
                 
                 
                 <h1 id="recovery">Recovery<a class="headerlink" href="#recovery" title="Permanent link">&para;</a></h1>
-<p>SDF3 automatically generates permissive grammars for supporting error-recovery parsing.</p>
-<p>Handwritten recovery rules can be added to tweak the permissive grammar.</p>
+<p>SDF3 automatically generates permissive grammars for supporting error-recovery parsing<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+The permissive grammars contain recovery productions that can be used to recover from syntactic errors.
+The recovery productions are either deletions or insertions.
+Deletions can skip over an erroneous part of the input.
+Insertions recover from a missing part of the input, e.g. a missing closing bracket.</p>
+<p>Handwritten recovery rules can be added to tweak the automatically generated permissive grammar by using the <code>recover</code> attribute.
+For example, the following insertion enables recovery for missing <code>if</code> literals:</p>
+<div class="highlight"><pre><span></span><code>lexical syntax
+
+  &quot;if&quot; =  {recover}
+</code></pre></div>
+<p>The empty right-hand side makes sure that, in recovery mode, the <code>if</code> literal can be parsed even when it is not present in the input.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Maartje de Jonge, Lennart C. L. Kats, Eelco Visser, and Emma Söderberg. Natural and flexible error recovery for generated modular language environments. <em>ACM Transactions on Programming Languages and Systems</em>, 34(4):15, 2012. URL: <a href="http://doi.acm.org/10.1145/2400676.2400678">http://doi.acm.org/10.1145/2400676.2400678</a>, <a href="https://doi.org/10.1145/2400676.2400678">doi:10.1145/2400676.2400678</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               

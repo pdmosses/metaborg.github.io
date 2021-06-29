@@ -838,6 +838,40 @@
     Character classes
   </a>
   
+    <nav class="md-nav" aria-label="Character classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escaping" class="md-nav__link">
+    Escaping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unicode" class="md-nav__link">
+    Unicode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-ascii-characters" class="md-nav__link">
+    Special ASCII Characters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    Operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2053,6 +2087,40 @@
     Character classes
   </a>
   
+    <nav class="md-nav" aria-label="Character classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escaping" class="md-nav__link">
+    Escaping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unicode" class="md-nav__link">
+    Unicode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-ascii-characters" class="md-nav__link">
+    Special ASCII Characters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    Operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2138,15 +2206,17 @@ SDF3 also support symbols that capture BNF-like notation such as lists, optional
 Note that these symbols are also non-terminals, and are just shorthands for common structures present in context-free grammars.</p>
 <h2 id="character-classes">Character classes<a class="headerlink" href="#character-classes" title="Permanent link">&para;</a></h2>
 <p>Character classes occur only in lexical syntax and are enclosed by <code>[</code> and <code>]</code>.
-A character class consists of a list of zero or more characters (which stand for themselves) such as <code>[x]</code> to represent the character <code>x</code>,  or character ranges, as an abbreviation for all the characters in the range such as <code>[0-9]</code> representing <code>0</code>, <code>1</code>, ..., <code>9</code>. A valid range consists of <code>[c1-c2]</code>, where the character <code>c2</code> has a higher ASCII code than <code>c1</code>. Note that nested character classes can also be concatenated within the same character class symbol, for example <code>[c1c2-c3c4-c5]</code> includes the characters <code>c1</code> and the ranges <code>c2-c3</code>, <code>c4-c5</code>. In this case, the nested character classes do not need to be ordered, as SDF3 orders them when performing a normalization step.</p>
-<p><strong>Escaped Characters</strong>: SDF3 uses a backslash (<code>\</code>) as a escape for the quoting
-of special characters. One should use <code>\c</code> whenever <code>c</code> is not a digit or a letter
-in a character class.</p>
-<p>Arbitrary Unicode code points can be included in a character class by writing an escaped integer,
-which is particularly useful for representing characters outside the printable ASCII range.
-The integer can be a binary, octal, decimal, or hexadecimal number, for example:
-<code>\0b101010</code>, <code>\052</code>, <code>\42</code>, and <code>\0x2A</code> all represent the code point 42,
-or the <code>'*'</code> character.</p>
+A character class consists of a list of zero or more characters (which stand for themselves) such as <code>[x]</code> to represent the character <code>x</code>,  or character ranges, as an abbreviation for all the characters in the range such as <code>[0-9]</code> representing <code>0</code>, <code>1</code>, ..., <code>9</code>.
+A valid range consists of <code>[c1-c2]</code>, where the character <code>c2</code> has a higher ASCII code than <code>c1</code>.
+Note that nested character classes can also be concatenated within the same character class symbol, for example <code>[c1c2-c3c4-c5]</code> includes the characters <code>c1</code> and the ranges <code>c2-c3</code>, <code>c4-c5</code>. 
+In this case, the nested character classes do not need to be ordered, as SDF3 orders them when performing a normalization step.</p>
+<h3 id="escaping">Escaping<a class="headerlink" href="#escaping" title="Permanent link">&para;</a></h3>
+<p>SDF3 uses a backslash (<code>\</code>) as a escape for the quotingof special characters.
+One should use <code>\c</code> whenever <code>c</code> is not a digit or a letter in a character class.</p>
+<h3 id="unicode">Unicode<a class="headerlink" href="#unicode" title="Permanent link">&para;</a></h3>
+<p>Arbitrary Unicode code points can be included in a character class by writing an escaped integer, which is particularly useful for representing characters outside the printable ASCII range.
+The integer can be a binary, octal, decimal, or hexadecimal number, for example: <code>\0b101010</code>, <code>\052</code>, <code>\42</code>, and <code>\0x2A</code> all represent the code point 42, or the <code>'*'</code> character.</p>
+<h3 id="special-ascii-characters">Special ASCII Characters<a class="headerlink" href="#special-ascii-characters" title="Permanent link">&para;</a></h3>
 <p>Additionally, special ASCII characters are represented by:</p>
 <ul>
 <li><code>\t</code> : horizontal tabulation</li>
@@ -2155,23 +2225,21 @@ or the <code>'*'</code> character.</p>
 <li><code>\f</code> : form feed</li>
 <li><code>\r</code> : carriage return</li>
 </ul>
-<p><strong>Character Class Operators</strong>: SDF3 provides the following operators for character
-classes:</p>
+<h3 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h3>
+<p>SDF3 provides the following operators for character classes:</p>
 <ul>
 <li>(complement) <code>~</code> : Accepts all the characters that are <em>not</em> in the original class.</li>
 <li>(difference) <code>/</code> : Accepts all the characters in the first class unless they are in a second class.</li>
 <li>(union) <code>\/</code> : Accepts all the characters in either character classes.</li>
 <li>(intersection) <code>/\</code> : Accepts all the characters that are accepted by both character classes.</li>
 </ul>
-<p>Note that the first operator is unary and the other ones are left associative binary
-operators. Furthermore, such operators are not applicable to other symbols in general.</p>
+<p>Note that the first operator is unary and the other ones are left associative binary operators.
+Furthermore, such operators are not applicable to other symbols in general.</p>
 <h2 id="literals">Literals<a class="headerlink" href="#literals" title="Permanent link">&para;</a></h2>
-<p>A literal symbol defines a fixed length word. This usually corresponds to a
-terminal symbol in ordinary context-free grammars, for example <code>"true"</code> or
-<code>"+"</code>. Literals must always be quoted and consist of (possibly escaped)
-ASCII characters.</p>
-<p>As literals are also regular non-terminals, SDF3 automatically generates productions
-for them in terms of terminal symbols.</p>
+<p>A literal symbol defines a fixed length word. This usually corresponds to a terminal symbol in ordinary context-free grammars, for example <code>"true"</code> or
+<code>"+"</code>.
+Literals must always be quoted and consist of (possibly escaped) ASCII characters.</p>
+<p>As literals are also regular non-terminals, SDF3 automatically generates productions for them in terms of terminal symbols.</p>
 <div class="highlight"><pre><span></span><code>&quot;definition&quot; = [d][e][f][i][n][i][t][i][o][n]
 </code></pre></div>
 <p>Note that the production above defines a case-sensitive implementation of the defined literal.
@@ -2188,40 +2256,40 @@ Note that unlike SDF2, SDF3 does not support parameterized sorts (yet!).</p>
 <p>For context-free sorts:</p>
 <div class="highlight"><pre><span></span><code>context-free sorts
 
-    &lt;Sort&gt;*
+    $Sort*
 </code></pre></div>
 <p>For lexical sorts:</p>
 <div class="highlight"><pre><span></span><code>lexical sorts
 
-    &lt;Sort&gt;*
+    $Sort*
 </code></pre></div>
 <p>SDF3 also supports kernel sorts:</p>
 <div class="highlight"><pre><span></span><code>sorts
 
-    &lt;Sort&gt;*
+    $Sort*
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Kernel sorts should be suffixed with <code>-CF</code> or <code>-LEX</code>,
-depending on whether they are context-free sorts or lexical sorts.
-When a sort in a <code>sorts</code> block does not have a suffix, it is treated
-as a context-free sort.</p>
+<p>Kernel sorts should be suffixed with <code>-CF</code> or <code>-LEX</code>, depending on whether they are context-free sorts or lexical sorts.
+When a sort in a <code>sorts</code> block does not have a suffix, it is treated as a context-free sort.</p>
 </div>
 <p>Writing a sort in these sections only indicates that a sort has been declared, even if it does not have any explicit production visible.</p>
 <h2 id="optionals">Optionals<a class="headerlink" href="#optionals" title="Permanent link">&para;</a></h2>
 <p>SDF3 provides a shorthand for describing zero or exactly one occurrence of a sort by appending the sort with <code>?</code>.</p>
-<p>For example, the sort <code>Extends?</code> can be parsed as <code>Extends</code> or without consuming any input. Internally, SDF3 generates the following productions after normalizing the grammar::</p>
-<div class="codehilite"><pre><span></span><code> Extends?.None =
- Extends?.Some = Extends
+<p>For example, the sort <code>Extends?</code> can be parsed as <code>Extends</code> or without consuming any input.
+Internally, SDF3 generates the following productions after normalizing the grammar::</p>
+<div class="highlight"><pre><span></span><code>Extends?.None =
+Extends?.Some = Extends
 </code></pre></div>
-
 <p>Note that using <code>?</code> adds the constructors <code>None</code> and <code>Some</code> to the final abstract syntax tree.</p>
 <h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
 <p>Lists symbols as the name says, indicate that a symbol should occur several times.
 In this way, it is also possible to construct flat structures to represent them.
 SDF3 provides support for two types of lists, with and without separators.
-Furthermore, it is also possible to indicate whether a list can be empty (<code>*</code>) or should have at least one element (<code>+</code>). For example, a list <code>Statement*</code> indicates zero or more <code>Statement</code>, whereas a list with separator <code>{ID ","}+</code> indicates one or more <code>ID</code> separated by <code>,</code>. Note that SDF3 only supports literal symbols as separators.</p>
-<p>Again, SDF3 generates the following productions to represent lists, when normalizing the grammar.</p>
+Furthermore, it is also possible to indicate whether a list can be empty (<code>*</code>) or should have at least one element (<code>+</code>).
+For example, a list <code>Statement*</code> indicates zero or more <code>Statement</code>, whereas a list with separator <code>{ID ","}+</code> indicates one or more <code>ID</code> separated by <code>,</code>.
+Note that SDF3 only supports literal symbols as separators.</p>
+<p>Again, SDF3 generates the following productions to represent lists, when normalizing the grammar:</p>
 <div class="highlight"><pre><span></span><code>Statement* =
 Statement* = Statement+
 Statement+ = Statement+ Statement
@@ -2248,14 +2316,16 @@ To express <code>(ID ",") | (ID ";")</code>, we can use a sequence symbol.</p>
 <p>A sequence operator allows grouping of two or more symbols.
 Sequences are useful when combined with other symbols such, lists or optionals, for example <code>("e" [0-9]+)?</code>.
 Like alternative symbols, sequences can only occur in lexical syntax.
-A sequence symbol is normalized as</p>
+A sequence symbol is normalized as:</p>
 <div class="highlight"><pre><span></span><code>(&quot;e&quot; [0-9]+) = &quot;e&quot; [0-9]+
 </code></pre></div>
 <h2 id="labeled-symbols">Labeled symbols<a class="headerlink" href="#labeled-symbols" title="Permanent link">&para;</a></h2>
 <p>SDF3 supports decorating symbols with labels, such as <code>myList:{elem:Stmt ";"}*</code>.
-The labels have no semantics but can be used by other tools that use SDF3 grammars as input.</p>
+The labels can be used for <a href="../layout-sensitivity/">layout constraints/declarations</a> or by other tools that use SDF3 grammars as input.</p>
 <h2 id="layout"><code>LAYOUT</code><a class="headerlink" href="#layout" title="Permanent link">&para;</a></h2>
-<p>The <code>LAYOUT</code> symbol is a reserved sort name. It is used to indicate the whitespace that can appear in between context-free symbols. The user must define the symbol <code>LAYOUT</code> such as:</p>
+<p>The <code>LAYOUT</code> symbol is a reserved sort name.
+It is used to indicate the whitespace that can appear in between context-free symbols.
+The user must define the symbol <code>LAYOUT</code> such as:</p>
 <div class="highlight"><pre><span></span><code>LAYOUT = [\ \t\n]
 </code></pre></div>
 <p>Note that the production above should be defined in the lexical syntax.</p>

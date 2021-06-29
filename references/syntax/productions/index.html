@@ -2021,40 +2021,28 @@
 The left-hand side of a regular production rule can be either just a symbol or a symbol followed by <code>.</code> and a constructor name.
 The right-hand side consists of zero or more symbols.
 Both sides are separated by <code>=</code>:</p>
-<div class="codehilite"><pre><span></span><code>&lt;Symbol&gt;               = &lt;Symbol&gt;*
-&lt;Symbol&gt;.&lt;Constructor&gt; = &lt;Symbol&gt;*
+<div class="highlight"><pre><span></span><code>$Symbol              = $Symbol*
+$Symbol.$Constructor = $Symbol*
 </code></pre></div>
-
 <p>A production is read as the definition.
 The symbol on the left-hand side is defined by the right-hand side of the production.</p>
-<p>Productions are used to describe lexical as well as context-free syntax.
-Productions may also occur in priority sections, but might also be referred to by its <code>&lt;Symbol&gt;.&lt;Constructor&gt;</code>.
+<p>Productions are used to describe <a href="../lexical-syntax/">lexical</a>, <a href="../context-free-syntax/">context-free</a>, and <a href="../kernel-syntax/">kernel</a> syntax.
+Productions may also occur in <a href="../disambiguation/#priorities">priority sections</a>, but might also be referred to by its <code>$Symbol.$Constructor</code>.
 All productions with the same symbol together define the alternatives for that symbol.</p>
 <h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
-<p>The definition of lexical and context-free productions may be followed by attributes that define additional (syntactic or semantic) properties of that production.
+<p>The definition of productions may be followed by attributes that define additional (syntactic or semantic) properties of that production.
 The attributes are written between curly brackets after the right-hand side of a production.
 If a production has more than one attribute they are separated by commas.
 Attributes have thus the following form:</p>
-<div class="highlight"><pre><span></span><code>    &lt;Sort&gt;               = &lt;Symbol&gt;* { &lt;Attribute1&gt;, &lt;Attribute2&gt;, ...}
-    &lt;Sort&gt;.&lt;Constructor&gt; = &lt;Symbol&gt;* { &lt;Attribute1&gt;, &lt;Attribute2&gt;, ...}
+<div class="highlight"><pre><span></span><code>$Sort              = $Symbol* { $Attribute1, $Attribute2, ...}
+$Sort.$Constructor = $Symbol* { $Attribute1, $Attribute2, ...}
 </code></pre></div>
 <p>The following syntax-related attributes exist:</p>
 <ul>
-<li><code>bracket</code> is an important attribute in combination with priorities.
-   For example, the <em>sdf2parenthesize</em> tool uses the <code>bracket</code>
-   attribute to find productions to add to a parse tree before pretty
-   printing (when the tree violates priority constraints). Note that
-   most of these tools demand the production with a <code>bracket</code>
-   attribute to have the shape: <code>X = "(" X ")" {bracket}</code> with any
-   kind of bracket syntax but the <code>X</code> being the same symbol on the
-   left-hand side and the right-hand side. The connection with
-   priorities and associativity is that when a non-terminal is
-   disambiguated using either of them, a production rule with the
-   <code>bracket</code> attribute is probably also needed.</li>
-<li><code>left</code>, <code>right</code>, <code>non-assoc</code>, <code>assoc</code> are disambiguation
-   constructs used to define the associativity of productions. See <a href="disambiguation/">Disambiguation</a>.</li>
-<li><code>prefer</code> and <code>avoid</code> are <strong>deprecated</strong> disambiguation constructs to define preference of one derivation over others. See <a href="disambiguation/">Disambiguation</a>.</li>
-<li><code>reject</code> is a disambiguation construct that implements language difference. It is used for keyword reservation. See <a href="disambiguation/">Disambiguation</a>.</li>
+<li><code>bracket</code> is an important attribute in combination with priorities. The parenthesizer tool uses the <code>bracket</code> attribute to find productions to add to a parse tree before pretty printing (when the tree violates priority constraints). Note that most of these tools demand the production with a <code>bracket</code> attribute to have the shape: <code>X = "(" X ")" {bracket}</code> with any kind of bracket syntax but the <code>X</code> being the same symbol on the left-hand side and the right-hand side. The connection with priorities and associativity is that when a non-terminal is disambiguated using either of them, a production rule with the <code>bracket</code> attribute is probably also needed.</li>
+<li><code>reject</code> is a disambiguation construct that implements language difference. It is used for keyword reservation. See <a href="../disambiguation/#rejections">Disambiguation#Rejections</a>.</li>
+<li><code>left</code>, <code>right</code>, <code>non-assoc</code>, <code>assoc</code> are disambiguation constructs used to define the associativity of productions. See <a href="../disambiguation/#associativity">Disambiguation#Associativity</a>.</li>
+<li><code>prefer</code> and <code>avoid</code> are <strong>deprecated</strong> disambiguation constructs to define preference of one derivation over others. See <a href="../disambiguation/#preference">Disambiguation#Preferences</a>.</li>
 </ul>
                 
               

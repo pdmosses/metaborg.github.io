@@ -941,6 +941,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reject" class="md-nav__link">
+    reject
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2062,6 +2069,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reject" class="md-nav__link">
+    reject
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2097,10 +2111,10 @@ When generating such artifacts, a general production simply introduces a whitesp
 code snippets.</p>
 <p>However, when using template productions such as</p>
 <div class="highlight"><pre><span></span><code>Statement.If = &lt;
-    if (&lt;Exp&gt;)
-    &lt;Exp&gt;
-    else
-    &lt;Exp&gt;&gt;
+  if ($Exp)
+    $Exp
+  else
+    $Exp
 </code></pre></div>
 <p>We would get the following program:</p>
 <p><img align="center" alt="Pretty printing with templates" src="../images/pp-template.png" /></p>
@@ -2108,76 +2122,67 @@ code snippets.</p>
 <p>That is, in template productions, the surrounding layout is used to nicely pretty print programs and its code completion suggestions.</p>
 <h2 id="template-productions">Template Productions<a class="headerlink" href="#template-productions" title="Permanent link">&para;</a></h2>
 <p>Template productions are an alternative way of defining productions.
-Similarly, they consist of a left-hand side and a right-hand side
-separated by <code>=</code>. The left-hand side is the same as for productive
-rules. The right-hand side is a template delimited by <code>&lt;</code> and <code>&gt;</code>.
+Similarly, they consist of a left-hand side and a right-hand side separated by <code>=</code>.
+The left-hand side is the same as for productive rules.
+The right-hand side is a template delimited by <code>&lt;</code> and <code>&gt;</code>.
 The template can contain zero or more symbols:</p>
-<div class="highlight"><pre><span></span><code>&lt;Sort&gt;               = &lt; &lt;Symbol&gt;* &gt;
-&lt;Sort&gt;.&lt;Constructor&gt; = &lt; &lt;Symbol&gt;* &gt;
+<div class="highlight"><pre><span></span><code>$Sort              = &lt; $Symbol* &gt;
+$Sort.$Constructor = &lt; $Symbol* &gt;
 </code></pre></div>
 <p>Alternatively, square brackets can be used to delimit a template:</p>
-<div class="highlight"><pre><span></span><code>&lt;Sort&gt;               = [ &lt;Symbol&gt;* ]
-&lt;Sort&gt;.&lt;Constructor&gt; = [ &lt;Symbol&gt;* ]
+<div class="highlight"><pre><span></span><code>$Sort              = [ $Symbol* ]
+$Sort.$Constructor = [ $Symbol* ]
 </code></pre></div>
 <p>The symbols in a template can either be placeholders or literal strings.
 It is worth noting that:</p>
 <ul>
-<li>placeholders need to be enclosed within the same delimiters (either
-   <code>&lt;...&gt;</code> or <code>[...]</code>) as the template;</li>
+<li>placeholders need to be enclosed within the same delimiters (either <code>&lt;...&gt;</code> or <code>[...]</code>) as the template;</li>
 <li>literal strings need not not be enclosed within quotation marks;</li>
 <li>literal strings are tokenized on space characters (whitespace, tab);</li>
-<li>additionally, literal strings are tokenized on boundaries between
-   characters from the set given by the tokenize option, see the
-   tokenize template option;</li>
-<li>placeholders translate literally. If a separator containing any
-   layout characters is given, the placeholder maps to a list with
-   separator that strips the layout.</li>
+<li>additionally, literal strings are tokenized on boundaries between characters from the set given by the tokenize option, see the <a href="#tokenize"><code>tokenize</code> template option</a>;</li>
+<li>placeholders translate literally. If a separator containing any layout characters is given, the placeholder maps to a list with separator that strips the layout.</li>
 </ul>
 <p>An example of a template rule:</p>
-<div class="highlight"><pre><span></span><code>Exp.Addition = &lt; &lt;Exp&gt; + &lt;Exp&gt; &gt;
+<div class="highlight"><pre><span></span><code>Exp.Addition = &lt; $Exp + $Exp &gt;
 </code></pre></div>
-<p>Here, the <code>+</code> symbol is a literal string and <code>&lt;Exp&gt;</code> is a
-placeholder for sort <code>Exp</code>.</p>
+<p>Here, the <code>+</code> symbol is a literal string and <code>$Exp</code> is a placeholder for sort <code>Exp</code>.</p>
 <p>Placeholders are of the form:</p>
 <ul>
-<li><code>&lt;Sort?&gt;</code>: optional placeholder</li>
-<li><code>&lt;Sort*&gt;</code>: repetition (0...n)</li>
-<li><code>&lt;Sort+&gt;</code>: repetition (1...n)</li>
-<li><code>&lt;{Sort ","}*&gt;</code>: repetition with separator</li>
+<li><code>$Sort?</code>: optional placeholder</li>
+<li><code>$Sort*</code>: repetition (0...n)</li>
+<li><code>$Sort+</code>: repetition (1...n)</li>
+<li><code>&lt;{$Sort ","}*&gt;</code>: repetition with separator</li>
 </ul>
 <h2 id="case-insensitive-literals">Case-insensitive Literals<a class="headerlink" href="#case-insensitive-literals" title="Permanent link">&para;</a></h2>
-<p>As we showed before, SDF3 allows defining case-insensitive literals as
-single-quoted strings in regular productions. For example:</p>
+<p>As we showed before, SDF3 allows defining case-insensitive literals as single-quoted strings in regular productions.
+For example:</p>
 <div class="highlight"><pre><span></span><code>Exp.If = &#39;if&#39; &quot;(&quot; Exp &quot;)&quot; Exp &#39;else&#39; Exp
 </code></pre></div>
-<p>accepts case-insensitive keywords for <code>if</code> and <code>else</code> such as
-<code>if</code>, <code>IF</code>, <code>If</code>, <code>else</code>, <code>ELSE</code> or <code>ELsE</code>. However, to
-generate case-insensitive literals from template productions, it is
-necessary to add annotate these productions as case-insensitive. For
-example, a template production:</p>
+<p>accepts case-insensitive keywords for <code>if</code> and <code>else</code> such as <code>if</code>, <code>IF</code>, <code>If</code>, <code>else</code>, <code>ELSE</code> or <code>ELsE</code>.
+However, to generate case-insensitive literals from template productions, it is necessary to add annotate these productions as case-insensitive.
+For example, a template production:</p>
 <div class="highlight"><pre><span></span><code>Exp.If = &lt;
-    if(&lt;Exp&gt;)
-        &lt;Exp&gt;
-    else
-        &lt;Exp&gt;
+  if($Exp)
+    $Exp
+  else
+    $Exp
 &gt; {case-insensitive}
 </code></pre></div>
 <p>accepts the same input as the regular production mentioned before.</p>
-<p>Moreover, lexical symbols can also be annotated as case-insensitive to parse as
-such. The constructed abstract syntax tree contains lower-case symbols, but the
-original term is preserved via origin-tracking. For example:</p>
+<p>Moreover, lexical symbols can also be annotated as case-insensitive to parse as such.
+The constructed abstract syntax tree contains lower-case symbols, but the original term is preserved via origin-tracking.
+For example:</p>
 <div class="highlight"><pre><span></span><code>    ID = [a-zA-z][a-zA-Z0-9]* {case-insensitive}
 </code></pre></div>
-<p>can parse <code>foo</code>, <code>Foo</code>, <code>FOo</code>, <code>fOo</code>, <code>foO</code>, <code>fOO</code> or
-<code>FOO</code>. Whichever option generates a node <code>"foo"</code> in the abstract
-syntax tree. By consulting the origin information on this node, it is
-possible to know which term was used as input to the parser.</p>
+<p>can parse <code>foo</code>, <code>Foo</code>, <code>FOo</code>, <code>fOo</code>, <code>foO</code>, <code>fOO</code> or <code>FOO</code>.
+Whichever option generates a node <code>"foo"</code> in the abstract syntax tree.
+By consulting the origin information on this node, it is possible to know which term was used as input to the parser.</p>
 <h2 id="template-options">Template options<a class="headerlink" href="#template-options" title="Permanent link">&para;</a></h2>
 <p>Template options are options that are applied to the current file.
 A template options section is structured as follows:</p>
 <div class="highlight"><pre><span></span><code>template options
 
-    &lt;TemplateOption*&gt;
+    $TemplateOption*
 </code></pre></div>
 <p>Multiple template option sections are not supported.
 If multiple template option sections are specified, the last one is used.</p>
@@ -2186,7 +2191,7 @@ If multiple template option sections are specified, the last one is used.</p>
 <p>Convenient way for setting up lexical follow restrictions for keywords.
 See the section on follow restrictions for more information.
 The structure of the keyword option is as follows:</p>
-<div class="highlight"><pre><span></span><code>keyword -/- &lt;Pattern&gt;
+<div class="highlight"><pre><span></span><code>keyword -/- $Pattern
 </code></pre></div>
 <p>This will add a follow restriction on the pattern for each keyword in the language.
 Keywords are automatically detected, any terminal that ends with an alphanumeric character is considered a keyword.</p>
@@ -2195,7 +2200,7 @@ If multiple keyword options are specified, the last one is used.</p>
 <p>Note that this only sets up follow restrictions, rejection of keywords as identifiers still needs to be written manually.</p>
 <h3 id="tokenize"><code>tokenize</code><a class="headerlink" href="#tokenize" title="Permanent link">&para;</a></h3>
 <p>Specifies which characters may have layout around them. The structure of a tokenize option is as follows:</p>
-<div class="highlight"><pre><span></span><code>    tokenize : &quot;&lt;Character*&gt;&quot;
+<div class="highlight"><pre><span></span><code>    tokenize : &quot;$Character*&quot;
 </code></pre></div>
 <p>Consider the following grammar specification:</p>
 <div class="highlight"><pre><span></span><code>template options
@@ -2208,11 +2213,12 @@ context-free syntax
 </code></pre></div>
 <p>Because layout is allowed around the <code>(</code> and <code>)</code> characters, there may be layout between <code>()</code> and <code>;</code> in the template rule.
 If no tokenize option is specified, it defaults to the default value of <code>()</code>.</p>
-<p>Multiple tokenize options are not supported. If multiple tokenize
-options are specified, the last one is used.</p>
-<p><strong>reject</strong>
-Convenient way for setting up reject rules for keywords. See the section
-on rejections_ for more information. The structure of the reject option
+<p>Multiple tokenize options are not supported.
+If multiple tokenize options are specified, the last one is used.</p>
+<h3 id="reject"><code>reject</code><a class="headerlink" href="#reject" title="Permanent link">&para;</a></h3>
+<p>Convenient way for setting up reject rules for keywords.
+See the section on <a href="../disambiguation/#rejections">rejections</a> for more information.
+The structure of the reject option
 is as follows:</p>
 <div class="highlight"><pre><span></span><code>Symbol = keyword {attrs}
 </code></pre></div>

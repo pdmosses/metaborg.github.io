@@ -2119,12 +2119,12 @@
 <p>If you want to use layout constraints or layout declarations, you should specify the <code>jsglr-version: layout-sensitive</code> parameter for SDF3, see <a href="../configuration/">configuration</a>.</p>
 </div>
 <h2 id="layout-constraints">Layout Constraints<a class="headerlink" href="#layout-constraints" title="Permanent link">&para;</a></h2>
-<p>While we haven't covered layout <em>constraints</em> in this documentation, the paper [^1] describes the concepts.</p>
+<p>While we haven't covered layout <em>constraints</em> in this documentation, the paper of Erdweg et al.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> describes the concepts.</p>
 <h2 id="layout-declarations">Layout Declarations<a class="headerlink" href="#layout-declarations" title="Permanent link">&para;</a></h2>
-<p>In the paper [^1], the authors describe layout constraints in terms of restrictions involving the position of the subtree involved in the constraint (<code>0</code>, <code>1</code>, ...), token selectors (<code>first</code>, <code>left</code>, <code>last</code> and <code>right</code>), and position selectors as lines and columns (<code>line</code> and <code>col</code>).</p>
+<p>In the paper of Erdweg et al.<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, the authors describe layout constraints in terms of restrictions involving the position of the subtree involved in the constraint (<code>0</code>, <code>1</code>, ...), token selectors (<code>first</code>, <code>left</code>, <code>last</code> and <code>right</code>), and position selectors as lines and columns (<code>line</code> and <code>col</code>).</p>
 <p>This mechanism allows writing layout constraints to express alignment, offside and indentation rules, but writing such constraints is
 rather cumbersome and error prone.
-Alternatively, one may write layout constraints using <strong>layout declarations</strong>, which are more declarative specifications and abstract over lines, columns and token selectors as the original layout constraints from [^1].</p>
+Alternatively, one may write layout constraints using layout <em>declarations</em>, which are more declarative specifications and abstract over lines, columns and token selectors as the original layout constraints from the Erdweg et al. paper<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
 <h3 id="tree-selectors">Tree selectors<a class="headerlink" href="#tree-selectors" title="Permanent link">&para;</a></h3>
 <p>To specify which trees should be subject to a layout constraint, one may use: tree positions, SDF3 labeled non-terminals, or unique literals that occurs
 in the production.
@@ -2179,7 +2179,7 @@ Therefore, the following program is correct according to this constraint:</p>
 <h3 id="offside"><code>offside</code><a class="headerlink" href="#offside" title="Permanent link">&para;</a></h3>
 <p>The offside rule is very common in layout-sensitive languages.
 It states that all lines after the first one should be further to the right compared to the first line.
-For a description of how the offside rule can be modelled with layout constraints, refer to :cite:<code>s-ErdwegRKO12</code>.
+For a description of how the offside rule can be modelled with layout constraints, refer to Erdweg et al.<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
 An example of a declarative specification of the offside rule can be seen in the production below:</p>
 <div class="highlight"><pre><span></span><code>context-free syntax
 
@@ -2213,7 +2213,7 @@ Thus, the following program is invalid according to this layout constraint, beca
     <span class="err">··</span><span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="n">then</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
 </code></pre></div>
-<p>In general, an <strong>offside</strong> constraint involving more than a single tree is combined with <strong>indent</strong> constraint to enforce that the column of the first and all subsequent lines should be indented.</p>
+<p>In general, an <code>offside</code> constraint involving more than a single tree is combined with <code>indent</code> constraint to enforce that the column of the first and all subsequent lines should be indented.</p>
 <h3 id="indent"><code>indent</code><a class="headerlink" href="#indent" title="Permanent link">&para;</a></h3>
 <p>An indent constraint indicates that the column of the first line of a certain tree should be further to the right with respect to another tree.
 For example, consider the following production:</p>
@@ -2252,7 +2252,15 @@ The following program is correct according to these two constraints, since the s
 <span class="err">·</span><span class="n">y</span> <span class="o">=</span> <span class="mi">3</span>
 </code></pre></div>
 <p>Finally, all these layout declarations can be ignored by the parser and used only when generating the pretty-printer.
-To do that, prefix the constraint with <strong>pp-</strong> writing, for example, <strong>pp-offside</strong> or <strong>pp-align</strong>.</p>
+To do that, prefix the constraint with <code>pp-</code> writing, for example, <code>pp-offside</code> or <code>pp-align</code>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Sebastian Erdweg, Tillmann Rendel, Christian Kästner, and Klaus Ostermann. Layout-sensitive generalized parsing. In Krzysztof Czarnecki and Görel Hedin, editors, <em>Software Language Engineering, 5<sup>th</sup> International Conference, SLE 2012, Dresden, Germany, September 26-28, 2012, Revised Selected Papers</em>, volume 7745 of Lecture Notes in Computer Science, 244&ndash;263. Springer, 2012. URL: <a href="http://dx.doi.org/10.1007/978-3-642-36089-3_14">http://dx.doi.org/10.1007/978-3-642-36089-3_14</a>, <a href="https://doi.org/10.1007/978-3-642-36089-3_14">doi:10.1007/978-3-642-36089-3_14</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               

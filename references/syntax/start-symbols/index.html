@@ -1980,17 +1980,17 @@ Any symbol and also lists, optionals, etc., can serve as a start-symbol.
 A definition of lexical start symbols looks like:</p>
 <div class="highlight"><pre><span></span><code>lexical start-symbols
 
-    &lt;Symbol&gt;*
+    $Symbol*
 </code></pre></div>
 <p>While context-free start symbols are defined as:</p>
 <div class="highlight"><pre><span></span><code>context-free start-symbols
 
-    &lt;Symbol&gt;*
+    $Symbol*
 </code></pre></div>
 <p>SDF3 also supports kernel start-symbols:</p>
 <div class="highlight"><pre><span></span><code>start-symbols
 
-    &lt;Symbol&gt;*
+    $Symbol*
 </code></pre></div>
 <p>In contrast to lexical and kernel start-symbols, context-free start symbols can be surrounded by optional layout.
 A lexical start-symbol should have been defined by a production in the lexical syntax; a context-free symbol should have been defined in the context-free syntax.

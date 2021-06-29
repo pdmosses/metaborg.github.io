@@ -2034,26 +2034,26 @@
 <p>An SDF3 specification consists of a number of module declarations. Each module defines sections and may import other modules.</p>
 <h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
 <p>Modules may import other modules for reuse or separation of concerns. A module may extend the definition of a non-terminal in another module. A module may compose the definition of a language by importing the parts of the language. The structure of a module is as follows:</p>
-<div class="highlight"><pre><span></span><code>module &lt;ModuleName&gt;
+<div class="highlight"><pre><span></span><code>module $ModuleName
 
-&lt;ImportSection&gt;*
+$ImportSection*
 
-&lt;Section&gt;*
+$Section*
 </code></pre></div>
 <p>The <code>module</code> keyword is followed by the module name, then a series of imports can be made, followed by sections that contain the actual definition of the syntax. An import section is structured as follows:</p>
-<div class="highlight"><pre><span></span><code>imports &lt;ModuleName&gt;*
+<div class="highlight"><pre><span></span><code>imports $ModuleName*
 </code></pre></div>
 <p>Note that SDF3 does not support parameterized modules.</p>
 <h2 id="sections">Sections<a class="headerlink" href="#sections" title="Permanent link">&para;</a></h2>
-<p>A SDF3 module may constitute of zero or more sections. All sections contribute to the final grammar that defines a language:</p>
+<p>An SDF3 module may constitute of zero or more sections. All sections contribute to the final grammar that defines a language:</p>
 <ul>
-<li><code>sorts</code>, <code>lexical sorts</code>, <code>context-free sorts</code> (see <a href="sorts/">Sorts</a>)</li>
-<li><code>lexical syntax</code> (see <a href="lexical-syntax/">Lexical Syntax</a>)</li>
-<li><code>context-free syntax</code> (see <a href="context-free-syntax/">Context-Free Syntax</a>)</li>
-<li><code>syntax</code> (see <a href="kernel-syntax/">Kernel Syntax</a>)</li>
-<li><code>lexical start-symbols</code>, <code>context-free start-symbols</code>, <code>start-symbols</code> (see <a href="start-symbols/">Start Symbols</a>)</li>
-<li><code>context-free priorities</code>, <code>priorities</code> (see <a href="disambiguation/">Disambiguation</a>)</li>
-<li><code>template options</code> (see <a href="templates/">Templates</a>)</li>
+<li><code>sorts</code>, <code>lexical sorts</code>, <code>context-free sorts</code> (see <a href="../symbols/#sorts">Symbols#Sorts</a>)</li>
+<li><code>lexical syntax</code> (see <a href="../lexical-syntax/">Lexical Syntax</a>)</li>
+<li><code>context-free syntax</code> (see <a href="../context-free-syntax/">Context-Free Syntax</a>)</li>
+<li><code>syntax</code> (see <a href="../kernel-syntax/">Kernel Syntax</a>)</li>
+<li><code>lexical start-symbols</code>, <code>context-free start-symbols</code>, <code>start-symbols</code> (see <a href="../start-symbols/">Start Symbols</a>)</li>
+<li><code>context-free priorities</code>, <code>priorities</code> (see <a href="../disambiguation/">Disambiguation</a>)</li>
+<li><code>template options</code> (see <a href="../templates/">Templates</a>)</li>
 </ul>
                 
               
