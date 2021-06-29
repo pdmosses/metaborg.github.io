@@ -1,11 +1,11 @@
 ---
 template: index.html
-title: Spoofax Language Designer's Workbench
+title: Spoofax
 hide:
   - navigation
   - toc
 hero:
-  title: Spoofax Language Designer's Workbench
+  title: "Spoofax: The Language Designer's Workbench"
   subtitle: An open-source language designer's workbench with everything you need for designing your next textual (domain-specific) programming language.
   install_button: Getting Started
   source_button: Source Code
@@ -22,7 +22,8 @@ features:
     description: Write an interpreter or compiler using term transformations in Stratego.
 ---
 
-# Spoofax Language Workbench
+# The Spoofax Language Workbench
+
 Spoofax is a platform for developing textual (domain-specific) programming languages.
 The platform provides the following ingredients:
 
