@@ -1,0 +1,2463 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spoofax language workbench">
+      
+      
+      
+        <meta name="author" content="Spoofax Team">
+      
+      
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/">
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Strategies - Spoofax</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=:300,400,400i,700%7CJetBrains+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"";--md-code-font-family:"JetBrains Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../assets/styles.css">
+    
+    
+      
+    
+    
+
+<!-- Determine title -->
+
+<!-- prettier-ignore -->
+
+
+
+
+
+
+<!-- Open graph meta tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Spoofax - Strategies" />
+<meta property="og:description" content="Spoofax language workbench" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1080" />
+<meta property="og:image:height" content="568" />
+
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="spoofax" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#strategies" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Spoofax" class="md-header__button md-logo" aria-label="Spoofax" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spoofax
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Strategies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="spoofax" data-md-color-primary="" data-md-color-accent="" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/metaborg/spoofax/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spoofax
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../howtos/" class="md-tabs__link">
+        How-Tos
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        References
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../background/" class="md-tabs__link">
+        Background
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Spoofax" class="md-nav__button md-logo" aria-label="Spoofax" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Spoofax
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/metaborg/spoofax/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spoofax
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Spoofax: The Language Designer's Workbench
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stable/" class="md-nav__link">
+        Stable Releases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nightly/" class="md-nav__link">
+        Nightly Releases
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        How-Tos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="How-Tos" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How-Tos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/" class="md-nav__link">
+        How-To's
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Installation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/install-eclipse-bundle/" class="md-nav__link">
+        Install the Eclipse with Spoofax Plugin Bundle
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/install-eclipse-plugin-manually/" class="md-nav__link">
+        Install the Spoofax Eclipse Plugin Manually
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/install-from-source/" class="md-nav__link">
+        Install Spoofax from Source
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/run-stratego-programs/" class="md-nav__link">
+        How to Run Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/exchange-terms/" class="md-nav__link">
+        How to Exchange Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/inspect-terms/" class="md-nav__link">
+        How To Inspect Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/debug-stratego/" class="md-nav__link">
+        How to Debug Stratego Programs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Editor Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Editor Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/editor-services/rename-refactoring/" class="md-nav__link">
+        Add Rename Refactoring to an Existing Project
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        References
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="References" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          References
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Configuration" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        Language Configuration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      <label class="md-nav__link" for="__nav_4_3">
+        Syntax
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Syntax" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Syntax
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/" class="md-nav__link">
+        SDF3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/symbols/" class="md-nav__link">
+        Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/productions/" class="md-nav__link">
+        Productions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/lexical-syntax/" class="md-nav__link">
+        Lexical Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/context-free-syntax/" class="md-nav__link">
+        Context-Free Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/kernel-syntax/" class="md-nav__link">
+        Kernel Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/templates/" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/disambiguation/" class="md-nav__link">
+        Disambiguation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/layout-sensitivity/" class="md-nav__link">
+        Layout Sensitivity
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/recovery/" class="md-nav__link">
+        Recovery
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      <label class="md-nav__link" for="__nav_4_4">
+        Static Semantics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Static Semantics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Static Semantics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/" class="md-nav__link">
+        Statix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/concepts/" class="md-nav__link">
+        Language Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/basic-constraints/" class="md-nav__link">
+        Basic Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/rules/" class="md-nav__link">
+        Rules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/scope-graphs/" class="md-nav__link">
+        Scope Graph Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/queries/" class="md-nav__link">
+        Queries
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/tests/" class="md-nav__link">
+        Tests
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/stratego-api/" class="md-nav__link">
+        Stratego API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      <label class="md-nav__link" for="__nav_4_5">
+        Data Flow Analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data Flow Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Data Flow Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/structure/" class="md-nav__link">
+        Structure
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/Stratego_API/" class="md-nav__link">
+        Stratego API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" checked>
+      
+      <label class="md-nav__link" for="__nav_4_6">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Stratego
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lexical/" class="md-nav__link">
+        Lexical
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6_4" type="checkbox" id="__nav_4_6_4" >
+      
+      <label class="md-nav__link" for="__nav_4_6_4">
+        Terms
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Terms" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Terms
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terms/terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terms/types/" class="md-nav__link">
+        Types
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terms/patterns/" class="md-nav__link">
+        Patterns
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6_5" type="checkbox" id="__nav_4_6_5" >
+      
+      <label class="md-nav__link" for="__nav_4_6_5">
+        Rules
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Rules" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          Rules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/rewrite-rules/" class="md-nav__link">
+        Rewrite Rules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/dynamic-rules/" class="md-nav__link">
+        Dynamic Rules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/concrete-syntax/" class="md-nav__link">
+        Concrete Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/overlays/" class="md-nav__link">
+        Overlays
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6_6" type="checkbox" id="__nav_4_6_6" checked>
+      
+      <label class="md-nav__link" for="__nav_4_6_6">
+        Strategies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Strategies" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          Strategies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Strategies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Strategies
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-term-rewriting" class="md-nav__link">
+    Limitations of Term Rewriting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmable-rewriting-strategies" class="md-nav__link">
+    Programmable Rewriting Strategies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idioms-of-strategic-rewriting" class="md-nav__link">
+    Idioms of Strategic Rewriting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cascading-transformations" class="md-nav__link">
+    Cascading Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-pass-traversals" class="md-nav__link">
+    One-pass Traversals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staged-transformations" class="md-nav__link">
+    Staged Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-transformations" class="md-nav__link">
+    Local Transformations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strategy-definitions/" class="md-nav__link">
+        Strategy Definitions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sequential/" class="md-nav__link">
+        Sequential Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="term/" class="md-nav__link">
+        Term Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="traversal/" class="md-nav__link">
+        Traversal Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="type-unifying/" class="md-nav__link">
+        Type Unifying Combinators
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      <label class="md-nav__link" for="__nav_4_7">
+        Testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Testing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing/" class="md-nav__link">
+        SPT: Spoofax Testing Language
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      <label class="md-nav__link" for="__nav_4_8">
+        Editor Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Editor Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/" class="md-nav__link">
+        Editor Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/esv/" class="md-nav__link">
+        ESV
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/analysis/" class="md-nav__link">
+        Analysis
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/file-extensions/" class="md-nav__link">
+        Language File Extensions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/hover/" class="md-nav__link">
+        Hover Tooltips
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/menus/" class="md-nav__link">
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/on-save/" class="md-nav__link">
+        On-Save Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/outline/" class="md-nav__link">
+        Outline View
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/parsing/" class="md-nav__link">
+        Parsing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/reference-resolution/" class="md-nav__link">
+        Reference Resolution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/renaming/" class="md-nav__link">
+        Rename Refactoring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/stratego/" class="md-nav__link">
+        Stratego
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/syntax-highlighting/" class="md-nav__link">
+        Syntax Highlighting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      <label class="md-nav__link" for="__nav_4_9">
+        Pipelines
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pipelines" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/" class="md-nav__link">
+        Pipelines for Interactive Environments
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/modules/" class="md-nav__link">
+        Module system
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/types/" class="md-nav__link">
+        Types
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/generics/" class="md-nav__link">
+        Generics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/expressions/" class="md-nav__link">
+        Expressions
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Background
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Background" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Background
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/" class="md-nav__link">
+        Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      <label class="md-nav__link" for="__nav_5_3">
+        Static Semantics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Static Semantics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Static Semantics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/statix/" class="md-nav__link">
+        Statix Background
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      <label class="md-nav__link" for="__nav_5_4">
+        Transformations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformations" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Transformations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/term-rewriting/" class="md-nav__link">
+        Term Rewriting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/limitations-of-rewriting/" class="md-nav__link">
+        Limitations of Rewriting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      <label class="md-nav__link" for="__nav_5_5">
+        Bibliography
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Bibliography" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Bibliography
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/bibliography/stratego/" class="md-nav__link">
+        A Stratego Bibliography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-term-rewriting" class="md-nav__link">
+    Limitations of Term Rewriting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmable-rewriting-strategies" class="md-nav__link">
+    Programmable Rewriting Strategies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idioms-of-strategic-rewriting" class="md-nav__link">
+    Idioms of Strategic Rewriting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cascading-transformations" class="md-nav__link">
+    Cascading Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-pass-traversals" class="md-nav__link">
+    One-pass Traversals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staged-transformations" class="md-nav__link">
+    Staged Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-transformations" class="md-nav__link">
+    Local Transformations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/references/stratego/strategies/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="strategies">Strategies<a class="headerlink" href="#strategies" title="Permanent link">&para;</a></h1>
+<h2 id="limitations-of-term-rewriting">Limitations of Term Rewriting<a class="headerlink" href="#limitations-of-term-rewriting" title="Permanent link">&para;</a></h2>
+<p>Term rewriting involves exhaustively applying rules to subterms until no more rules apply.
+This requires a strategy for selecting the order in which subterms are rewritten.
+The innermost strategy applies rules automatically throughout a term from inner to outer terms, starting with the leaves.
+The nice thing about term rewriting is that there is no need to define traversals over the syntax tree; the rules express basic transformation steps and the strategy takes care of applying it everywhere.
+However, the complete normalization approach of rewriting turns out not to be adequate for program transformation, because rewrite systems for programming languages will often be non-terminating and/or non-confluent.
+In general, it is not desirable to apply all rules at the same time or to apply all rules under all circumstances.</p>
+<p>The usual solution is to encode the strategy in the rewrite rules.
+But this intertwines the strategy with the rules, and makes the latter unreusable.</p>
+<h2 id="programmable-rewriting-strategies">Programmable Rewriting Strategies<a class="headerlink" href="#programmable-rewriting-strategies" title="Permanent link">&para;</a></h2>
+<p>In general, there are two problems with the functional approach to encoding the control over the application of rewrite rules, when comparing it to the original term rewriting approach: traversal overhead and loss of separation of rules and strategies.</p>
+<p>In the first place, the functional encoding incurs a large overhead due to the explicit specification of traversal.
+In pure term rewriting, the strategy takes care of traversing the term in search of subterms to rewrite.
+In the functional approach traversal is spelled out in the definition of the function, requiring the specification of many additional rules.
+A traversal rule needs to be defined for each constructor in the signature and for each transformation.
+The overhead for transformation systems for real languages can be inferred from the number of constructors for some typical languages:</p>
+<div class="highlight"><pre><span></span><code>language : constructors
+Tiger    : 65
+C        : 140
+Java     : 140
+COBOL    : 300 - 1200
+</code></pre></div>
+<p>In the second place, rewrite rules and the strategy that defines their application are completely intertwined.
+Another advantage of pure term rewriting is the separation of the specification of the rules and the strategy that controls their application.
+Intertwining these specifications makes it more difficult to understand the specification, since rules cannot be distinguished from the transformation they are part of.
+Furthermore, intertwining makes it impossible to reuse the rules in a different transformation.</p>
+<p>Stratego introduced the paradigm of programmable rewriting strategies with generic traversals, a unifying solution in which application of rules can be carefully controlled, while incurring minimal traversal overhead and preserving separation of rules and strategies.</p>
+<p>The following are the design criteria for strategies in Stratego:</p>
+<ul>
+<li>Separation of rules and strategy: Basic transformation rules can be defined separately from the strategy that applies them, such that they can be understood independently.</li>
+<li>Rule selection: A transformation can select the necessary set of rules from a collection (library) of rules.</li>
+<li>Control: A transformation can exercise complete control over the application of rules. This control may be fine-grained or course-grained depending on the application.</li>
+<li>No traversal overhead: Transformations can be defined without overhead for the definition of traversals.</li>
+<li>Reuse of rules: Rules can be reused in different transformations.
+Reuse of traversal schemas: Traversal schemas can be defined generically and reused in different transformations.</li>
+</ul>
+<h2 id="idioms-of-strategic-rewriting">Idioms of Strategic Rewriting<a class="headerlink" href="#idioms-of-strategic-rewriting" title="Permanent link">&para;</a></h2>
+<p>We will examine the language constructs that Stratego provides for programming with strategies, starting with the low-level actions of building and matching terms.
+To get a feeling for the purpose of these constructs, we first look at a couple of typical idioms of strategic rewriting.</p>
+<h2 id="cascading-transformations">Cascading Transformations<a class="headerlink" href="#cascading-transformations" title="Permanent link">&para;</a></h2>
+<p>The basic idiom of program transformation achieved with term rewriting is that of cascading transformations.
+Instead of applying a single complex transformation algorithm to a program, a number of small, independent transformations are applied in combination throughout a program or program unit to achieve the desired effect.
+Although each individual transformation step achieves little, the cumulative effect can be significant, since each transformation feeds on the results of the ones that came before it.</p>
+<p>One common cascading of transformations is accomplished by exhaustively applying rewrite rules to a subject term.
+In Stratego the definition of a cascading normalization strategy with respect to rules <code>R1</code>, … , <code>Rn</code> can be formalized using the innermost strategy that we saw before:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">simplify</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">R1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Rn</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The argument strategy of innermost is a selection of rules.
+By giving different names to rules, we can control the selection used in each transformation.
+There can be multiple applications of innermost to different sets of rules, such that different transformations can co-exist in the same module without interference.
+Thus, it is now possible to develop a large library of transformation rules that can be called upon when necessary, without having to compose a rewrite system by cutting and pasting.
+For example, the following module defines the normalization of proposition formulae to both disjunctive and to conjunctive normal form:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-laws</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">libstrategolib</span><span class="w"> </span><span class="nv">prop</span><span class="w"></span>
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DN</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DMA</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DMO</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DAOR</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">z</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DOAR</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="k">strategies</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOR</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAR</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">main-dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">io-wrap</span><span class=" -Punctuation">(</span><span class="nv">dnf</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">main-cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">io-wrap</span><span class=" -Punctuation">(</span><span class="nv">cnf</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The rules are named, and for each strategy different selections from the rule set are made.</p>
+<!-- The module even defines two main strategies, which allows us to use one module for deriving multiple programs. Using the --main option of strc we declare which strategy to invoke as main strategy in a particular program. Using the -o option we can give a different name to each derived program.
+
+$ strc -i prop-laws.str -la stratego-lib --main main-dnf -o prop-dnf4 -->
+
+<h2 id="one-pass-traversals">One-pass Traversals<a class="headerlink" href="#one-pass-traversals" title="Permanent link">&para;</a></h2>
+<p>Cascading transformations can be defined with other strategies as well, and these strategies need not be exhaustive, but can be simpler one-pass traversals.
+For example, constant folding of Boolean expressions only requires a simple one-pass bottom-up traversal.
+This can be achieved using the bottomup strategy according the following scheme:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">simplify</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">R1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Rn</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The bottomup strategy applies its argument strategy to each subterm in a bottom-to-top traversal.
+The repeat strategy applies its argument strategy repeatedly to a term.</p>
+<p>Module <code>prop-eval2</code> defines the evaluation rules for Boolean expressions and a strategy for applying them using this approach:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-eval2</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">libstrategolib</span><span class="w"> </span><span class="nv">prop</span><span class="w"></span>
+<span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">True</span><span class=" -Punctuation">())</span><span class="w">      </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w">     </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">True</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">())</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">False</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">True</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">())</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">False</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">True</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">())</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">False</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">False</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">True</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Eval</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">True</span><span class=" -Punctuation">())</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"></span>
+<span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">main</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">io-wrap</span><span class=" -Punctuation">(</span><span class="nv">eval</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">eval</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">Eval</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The strategy eval applies these rules in a bottom-up traversal over a term, using the <code>bottomup(s)</code> strategy.
+At each sub-term, the rules are applied repeatedly until no more rule applies using the <code>repeat(s)</code> strategy.
+This is sufficient for the <code>Eval</code> rules, since the rules never construct a term with subterms that can be rewritten.</p>
+<p>Another typical example of the use of one-pass traversals is desugaring, that is rewriting language constructs to more basic language constructs.
+Simple desugarings can usually be expressed using a single top-to-bottom traversal according to the scheme</p>
+<div class="highlight"><pre><span></span><code><span class="nv">simplify</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">R1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Rn</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>topdown</code> strategy applies its argument strategy to a term and then traverses the resulting term.
+The try strategy tries to apply its argument strategy once to a term.</p>
+<p>Module <code>prop-desugar</code> defines a number of desugaring rules for Boolean expressions, defining propositional operators in terms of others.
+For example, rule <code>DefN</code> defines <code>Not</code> in terms of <code>Impl</code>, and rule <code>DefI</code> defines <code>Impl</code> in terms of <code>Or</code> and <code>Not</code>.
+So not all rules should be applied in the same transformation or non-termination would result.</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-desugar</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">prop</span><span class="w"> </span><span class="nv">libstrategolib</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">DefN</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w">     </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefI</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefE</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefO1</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefO2</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefA1</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">DefA2</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w">  </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">)))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">IDefI</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">IDefE</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="k">strategies</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">impl-nf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">DefN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefA2</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefO1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">main-desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">io-wrap</span><span class=" -Punctuation">(</span><span class="nv">desugar</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">main-inf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">io-wrap</span><span class=" -Punctuation">(</span><span class="nv">impl-nf</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The strategies <code>desugar</code> and <code>impl-nf</code> define two different desugaring transformation based on these rules.
+The desugar strategy gets rid of the implication and equivalence operators, while the <code>impl-nf</code> strategy reduces an expression to implicative normal-form, a format in which only implication (<code>Impl</code>) and <code>False()</code> are used.</p>
+<p>A final example of a one-pass traversal is the <code>downup</code> strategy, which applies its argument transformation during a traversal on the way down, and again on the way up:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">simplify</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">downup</span><span class=" -Punctuation">(</span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">R1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Rn</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>An application of this strategy is a more efficient implementation of constant folding for Boolean expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">eval</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">downup</span><span class=" -Punctuation">(</span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">Eval</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>This strategy reduces terms such as</p>
+<div class="highlight"><pre><span></span><code><span class="nv">And</span><span class=" -Punctuation">(</span>...<span class="w"> </span><span class="nv">big</span><span class="w"> </span><span class="nv">expression</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">False</span><span class=" -Punctuation">())</span><span class="w"></span>
+</code></pre></div>
+<p>in one step (to <code>False()</code> in this case), while the bottomup strategy defined above would first evaluate the big expression.</p>
+<h2 id="staged-transformations">Staged Transformations<a class="headerlink" href="#staged-transformations" title="Permanent link">&para;</a></h2>
+<p>Cascading transformations apply a number of rules one after another to an entire tree.
+But in some cases this is not appropriate.
+For instance, two transformations may be inverses of one another, so that repeatedly applying one and then the other would lead to non-termination.
+To remedy this difficulty, Stratego supports the idiom of staged transformation.</p>
+<p>In staged computation, transformations are not applied to a subject term all at once, but rather in stages.
+In each stage, only rules from some particular subset of the entire set of available rules are applied.
+In the TAMPR program transformation system this idiom is called sequence of normal forms, since a program tree is transformed in a sequence of steps, each of which performs a normalization with respect to a specified set of rules.
+In Stratego this idiom can be expressed directly according to the following scheme:</p>
+<div class="highlight"><pre><span></span><code><span class="k">strategies</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">simplify</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">      </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">A1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Ak</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">B1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Bl</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">;</span><span class="w"> </span>...<span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">C1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Cm</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<h2 id="local-transformations">Local Transformations<a class="headerlink" href="#local-transformations" title="Permanent link">&para;</a></h2>
+<p>In conventional program optimization, transformations are applied throughout a program.
+In optimizing imperative programs, for example, complex transformations are applied to entire programs.
+In GHC-style compilation-by-transformation, small transformation steps are applied throughout programs.
+Another style of transformation is a mixture of these ideas. Instead of applying a complex transformation algorithm to a program we use staged, cascading transformations to accumulate small transformation steps for large effect.
+However, instead of applying transformations throughout the subject program, we often wish to apply them locally, i.e., only to selected parts of the subject program.
+This allows us to use transformations rules that would not be beneficial if applied everywhere.</p>
+<p>One example of a strategy which achieves such a transformation is</p>
+<div class="highlight"><pre><span></span><code><span class="k">strategies</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">transformation</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">    </span><span class="nv">alltd</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">trigger-transformation</span><span class="w"></span>
+<span class="w">      </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">A1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">An</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The strategy <code>alltd(s)</code> descends into a term until a subterm is encountered for which the transformation s succeeds.
+In this case the strategy trigger-transformation recognizes a program fragment that should be transformed.
+Thus, cascading transformations are applied locally to terms for which the transformation is triggered.
+Of course more sophisticated strategies can be used for finding application locations, as well as for applying the rules locally.
+Nevertheless, the key observation underlying this idiom remains: Because the transformations to be applied are local, special knowledge about the subject program at the point of application can be used.
+This allows the application of rules that would not be otherwise applicable.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../rules/overlays/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overlays
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="strategy-definitions/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Strategy Definitions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2010-2021 Spoofax Team
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

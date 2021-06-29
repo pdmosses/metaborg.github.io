@@ -1403,7 +1403,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
+        Strategies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../strategy-definitions/" class="md-nav__link">
         Strategy Definitions
       </a>
     </li>
@@ -1963,11 +1975,62 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
       
       <label class="md-nav__link" for="__nav_5_4">
+        Transformations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformations" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Transformations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../background/stratego/term-rewriting/" class="md-nav__link">
+        Term Rewriting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../background/stratego/limitations-of-rewriting/" class="md-nav__link">
+        Limitations of Rewriting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      <label class="md-nav__link" for="__nav_5_5">
         Bibliography
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Bibliography" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_4">
+        <label class="md-nav__title" for="__nav_5_5">
           <span class="md-nav__icon md-icon"></span>
           Bibliography
         </label>
@@ -2075,10 +2138,16 @@
                 
                 
                 <h1 id="traversal-combinators">Traversal Combinators<a class="headerlink" href="#traversal-combinators" title="Permanent link">&para;</a></h1>
-<p><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>In Chapter 5 we saw a number of idioms of strategic rewriting, which all involved tree traversal.</p>
+<p>In the previous chapters we saw how strategies can be used to control transformations and how rules can be broken down into the primitive actions match, build and scope.
+The missing ingredient are combinators for defining traversals.</p>
+<p>There are many ways to traverse a tree. For example, a bottom-up traversal, visits the subterms of a node before it visits the node itself, while a top-down traversal visits nodes before it visits children. One-pass traversals traverse the tree one time, while fixed-point traversals, such as innermost, repeatedly traverse a term until a normal form is reached.</p>
+<p>It is not desirable to provide built-in implementations for all traversals needed in transformations, since such a collection would necessarily be incomplete. Rather we would like to define traversals in terms of the primitive ingredients of traversal. For example, a top-down, one-pass traversal strategy will first visit a node, and then descend to the children of a node in order to recursively traverse all subterms. Similarly, the bottom-up, fixed-point traversal strategy innermost, will first descend to the children of a node in order to recursively traverse all subterms, then visit the node itself, and possibly recursively reapply the strategy.</p>
+<p>Traversal in Stratego is based on the observation that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term. By separating this one-step descent operator from recursion, and making it a first-class operation, many different traversals can be defined.</p>
+<p>In this chapter we explore the ways in which Stratego supports the definition of traversal strategies. We start with explicitly programmed traversals using recursive traversal rules. Next, congruences operators provide a more concise notation for such data-type specific traversal rules. Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type. Given these basic mechanisms, we conclude with an an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.</p>
 <h2 id="congruence-operators">Congruence Operators<a class="headerlink" href="#congruence-operators" title="Permanent link">&para;</a></h2>
-<p>The definition of the traversal rules above frequently occurs in the definition of transformation strategies. Congruence operators provide a convenient abbreviation of precisely this operation. A congruence operator applies a strategy to each direct subterm of a specific constructor. For each n-ary constructor c declared in a signature, there is a corresponding congruence operator c(s1 , ..., sn), which applies to terms of the form c(t1 , ..., tn) by applying the argument strategies to the corresponding argument terms. A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
+<p>The definition of the traversal rules above frequently occurs in the definition of transformation strategies. Congruence operators provide a convenient abbreviation of precisely this operation.
+A congruence operator applies a strategy to each direct subterm of a specific constructor. For each n-ary constructor c declared in a signature, there is a corresponding congruence operator c(s1 , ..., sn), which applies to terms of the form c(t1 , ..., tn) by applying the argument strategies to the corresponding argument terms. A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
 <p>Example. For example, consider the following signature of expressions:</p>
 <p>module expressions
 signature
@@ -2223,17 +2292,6 @@ somebu(s) = some(somebu(s)) &lt;+ s
 A fixed-point traversal with some:</p>
 <p>reduce-par(s) = repeat(rec x(some(x) + s))</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Eelco Visser, Zine-El-Abidine Benaissa, and Andrew P. Tolmach. Building program optimizers with rewriting strategies. In Matthias Felleisen, Paul Hudak, and Christian Queinnec, editors, <em>Proceedings of the third ACM SIGPLAN international conference on Functional programming</em>, 13&ndash;26. Baltimore, Maryland, United States, 1998. ACM. URL: <a href="http://doi.acm.org/10.1145/289423.289425">http://doi.acm.org/10.1145/289423.289425</a>, <a href="https://doi.org/10.1145/289423.289425">doi:10.1145/289423.289425</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Eelco Visser and Zine-El-Abidine Benaissa. A core language for rewriting. <em>Electronic Notes in Theoretical Computer Science</em>, 15:422&ndash;441, 1998. URL: <a href="http://dx.doi.org/10.1016/S1571-0661(05)80027-1">http://dx.doi.org/10.1016/S1571-0661(05)80027-1</a>, <a href="https://doi.org/10.1016/S1571-0661(05)80027-1">doi:10.1016/S1571-0661(05)80027-1</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
                 
               
               

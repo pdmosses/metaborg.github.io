@@ -220,7 +220,11 @@
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/strategies/</loc>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/strategy-definitions/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -329,6 +333,14 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://www.spoofax.dev/spoofax-docs/background/statix/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/term-rewriting/</loc>
+     <lastmod>2021-06-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/limitations-of-rewriting/</loc>
      <lastmod>2021-06-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
