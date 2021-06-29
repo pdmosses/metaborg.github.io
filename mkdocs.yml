@@ -31,7 +31,7 @@ nav:
       - howtos/editor-services/rename-refactoring.md
   - References:
     - references/index.md
-    - Configuation:
+    - Configuration:
       - references/config/index.md
     - Syntax:
       - references/syntax/index.md
@@ -103,6 +103,8 @@ nav:
   - Background:
     - background/index.md
     - background/documentation.md
+    - Static Semantics:
+      - background/statix/index.md
     - Bibliography:
       - background/bibliography/stratego.md
 
