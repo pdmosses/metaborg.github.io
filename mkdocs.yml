@@ -80,7 +80,8 @@ nav:
         - references/stratego/rules/concrete-syntax.md
         - references/stratego/rules/overlays.md
       - Strategies:
-        - references/stratego/strategies/strategies.md
+        - references/stratego/strategies/index.md
+        - references/stratego/strategies/strategy-definitions.md
         - references/stratego/strategies/sequential.md
         - references/stratego/strategies/term.md
         - references/stratego/strategies/traversal.md
@@ -113,6 +114,9 @@ nav:
     - background/documentation.md
     - Static Semantics:
       - background/statix/index.md
+    - Transformations:
+      - background/stratego/term-rewriting.md
+      - background/stratego/limitations-of-rewriting.md
     - Bibliography:
       - background/bibliography/stratego.md
 
