@@ -1140,6 +1140,26 @@
     Introduction
   </a>
   
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-flow-graphs" class="md-nav__link">
+    Control Flow Graphs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-analysis-over-control-flow-graphs" class="md-nav__link">
+    Data Flow Analysis over Control Flow Graphs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1910,6 +1930,26 @@
     Introduction
   </a>
   
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-flow-graphs" class="md-nav__link">
+    Control Flow Graphs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-analysis-over-control-flow-graphs" class="md-nav__link">
+    Data Flow Analysis over Control Flow Graphs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1932,6 +1972,13 @@
                   <h1>Introduction</h1>
                 
                 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Programs that are syntactically well-formed are not necessarily valid programs. Programming languages typically impose additional context-sensitive requirements on programs that cannot be captured in a syntax definition. Languages use data and control flow to check certain extra properties that fall outside of names and type systems. The FlowSpec ‘Flow Analysis Specification Language’ supports the specification of rules to define the static control flow of a language, and data flow analysis over that control flow. FlowSpec supports flow-sensitive intra-procedural data flow analysis.</p>
+<h3 id="control-flow-graphs">Control Flow Graphs<a class="headerlink" href="#control-flow-graphs" title="Permanent link">&para;</a></h3>
+<p>Control-flow represents the execution order of a program. Depending on the input given to the program, or other things the program may observe of its execution environment (e.g. network communication, or a source of noise used to generate pseudo-random numbers), a program may execute a different trace of instructions. Since in general programs may not terminate at all, and humans are not very adapt at reasoning about possible infinities, we use a finite representation of possibly infinite program traces using control-flow graphs.</p>
+<p>Control-flow graphs are similarly finite as program text and are usually very similar, giving rise to a visual representation of the program. Loops in the program are represented as cycles in the control-flow graph, conditional code is represented by a split in control-flow which is merged again automatically after the conditional code.</p>
+<h3 id="data-flow-analysis-over-control-flow-graphs">Data Flow Analysis over Control Flow Graphs<a class="headerlink" href="#data-flow-analysis-over-control-flow-graphs" title="Permanent link">&para;</a></h3>
+<p>Data-flow analysis propagates information either forward or backward along the control-flow graph. This can be information that approximates the data that is handled by the program, or the way in which the program interacts with memory, or something else altogether.</p>
+<p>Examples of data-flow analysis include constant analysis which checks when variables that are used in the program are guaranteed to have the same value regardless of the execution circumstances of the program, or live variables analysis which identifies if values in variables are actually observable by the program.</p>
                 
               
               
