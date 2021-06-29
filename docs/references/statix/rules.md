@@ -129,9 +129,76 @@ position of the application of the functional predicate.
     declarations' and 'predicative constraints', versus 'functional constraint
     declarations' and 'functional constraints', respectively.
 
+!!! info
+    Every specification with functional predicates is normalized to a form with
+    only regular predicates. To show the normal form of a specification in
+    Eclipse, use the `Spoofax > Syntax > Format normalized AST` menu action.
 
 ## Mapping rules
 
+Another common pattern in Statix is defining a predicate that instantiates a
+predicate for all elements in a list. Statix allows derive such mapping rules
+using the `maps` keyword as follows:
+
+```statix
+$MappingConstraintName maps $MappedConstraintName({$Lift ","})
+```
+
+A lift specifier (`$Lift`) can be one of the following:
+
+- `*`: The *identity lift*. This lift specifier indicates that this argument is
+  passed to the mapped constraint unchanged.
+- `list(*)`: The *list lift*: This lift specifier indicates that the mapped
+  constraint will be instantiated for each element in the list at that argument
+  position. Each constraint defined with `maps`, must contain at least one list
+  lift. Otherwise, the mapping would be a no-op.
+- `({$Lift ","}+)`: The *tuple lift*: This lift specifier indicates that arguments
+  are extracted from a tuple. For each tuple argument, a corresponding lifting
+  is applied afterwards.
+
+The type of `$MappingConstraintName` is inferred by inverse application of the
+lift specifiers to the type of `$MappedConstraintName`. Therefore, no explicit
+declaration of the type of the mapping constraint is required.
+
+Similar to predicative constraints, functional mapping constraints can be derived:
+
+```statix
+$MappingConstraintName maps $MappedConstraintName({$Lift ","}) = $Lift
+```
+
+In addition to lift specifiers of the input arguments, a lift specifier for the
+inferred term must be provided as well. This lift specifier indicates how the
+inferred terms from the mapped constraints are aggregated and returned by the
+mapping constraint.
+
+_Example._ A common example where mapping rules are used is when type-checking a
+list of declarations. A specification snippet for that could look as follows:
+
+```statix
+rules
+
+  declOk: scope * Decl
+  declsOk maps declOk(*, list(*))
+
+  // rules for declOk
+```
+
+In this snippet, the `declsOk` constraint instantiates `declOk` for each
+declaration in a list of declaration. Its inferred type is `scope * list(Decl)`.
+
+When mapping functional constraints, a lift specifier for the inferred term
+must be provided as well. This lift specifier indicates how the inferred values
+of the mapped constraint are returned by the mapping constraint.
+
+When using multiple list lifts in the input, the resulting constraint will zip
+the arguments. This implicitly requires the input lists to be of equal length.
+The creation of a cartesian product can be achieved by repeated application of
+the `maps` construct for each argument.
+
+!!! info
+    Similar to functional constraints, constraints derived using the `maps`
+    construct are normalized to regular predicative constraints. This normalization
+    can be inspected using the `Spoofax > Syntax > Format normalized AST` menu action.
 
 ## Injections of namespaces, relations and constraints
 
