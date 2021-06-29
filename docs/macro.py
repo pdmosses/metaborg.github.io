@@ -3,6 +3,8 @@ from typing import Optional
 windows_icon = ":fontawesome-brands-windows:"
 macos_icon = ":fontawesome-brands-apple:"
 linux_icon = ":fontawesome-brands-linux:"
+warning_icon = ":fontawesome-solid-exclamation-triangle:"
+stop_icon = ":fontawesome-solid-times-circle:"
 
 def artifacts_download_link(repo: str, artifact: str, classifier: str, packaging: str, version="LATEST", group="org.metaborg"):
     return f"https://artifacts.metaborg.org/service/local/artifact/maven/redirect?r={repo}&g={group}&a={artifact}&c={classifier}&p={packaging}&v={version}"
@@ -20,7 +22,7 @@ def download_markdown_link(icon: str, name: str, link: str):
     return f"{icon} [{name}]({link})"
 
 
-def fill_env_with_release(env, env_version: str, version: str, download_version: str, date: Optional[str]):
+def fill_dict_with_release(dict, env_version: str, version: str, download_version: str, date: Optional[str]):
     repo = "snapshots" if "SNAPSHOT" in version else "releases"
 
     if "SNAPSHOT" in version:
@@ -44,7 +46,7 @@ def fill_env_with_release(env, env_version: str, version: str, download_version:
         windows_32 = eclipse_lwb_artifacts_download(repo, "windows-x86", "zip", download_version)
         repository = f"https://artifacts.metaborg.org/content/unzip/releases-unzipped/org/metaborg/org.metaborg.spoofax.eclipse.updatesite/{version}/org.metaborg.spoofax.eclipse.updatesite-{version}-assembly.zip-unzip/"
 
-    env.variables.release[env_version] = {
+    dict.release[env_version] = {
         "date": date,
         "version": version,
         "eclipse": {
@@ -82,16 +84,25 @@ release_versions = {
 }
 development_version = "2.6.0-SNAPSHOT"
 
+def on_pre_page_macros(env):
+    define_macros(env.conf['extra'])
 
 def define_env(env):
-    env.variables.os = {
+    define_macros(env.variables)
+
+def define_macros(dict):
+    dict['warning'] = f"{warning_icon}{{.warning}}"
+    dict['stop'] = f"{stop_icon}{{.stop}}"
+
+    dict.os = {
         "windows": f"{windows_icon} Windows",
         "linux": f"{linux_icon} Linux",
         "macos": f"{macos_icon} macOS",
     }
-    env.variables.release = {}
+
+    dict.release = {}
     for version, date in release_versions.items():
-        fill_env_with_release(env, version, version, version, date)
+        fill_dict_with_release(dict, version, version, version, date)
     latest_rel_version, latest_rel_date = next(iter(release_versions.items()))
-    fill_env_with_release(env, "rel", latest_rel_version, latest_rel_version, latest_rel_date)
-    fill_env_with_release(env, "dev", development_version, "LATEST", None)
+    fill_dict_with_release(dict, "rel", latest_rel_version, latest_rel_version, latest_rel_date)
+    fill_dict_with_release(dict, "dev", development_version, "LATEST", None)

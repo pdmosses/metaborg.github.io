@@ -10,12 +10,12 @@
       linear-gradient(
         180deg,
         var(--md-primary-fg-color),
-        var(--md-accent-fg-color) 99%,
+        #00ffa6 99%,
         var(--md-default-bg-color) 0
       );
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: contain;
+    background-size: 100%;
   }
 
   /* Dark theme */
@@ -24,12 +24,12 @@
       linear-gradient(
         180deg,
         var(--md-primary-fg-color),
-        var(--md-accent-fg-color) 99%,
+        #FF4E49 99%,
         var(--md-default-bg-color) 0
       );
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 99.9%;
+    background-size: 100%;
   }
 
   .md-header {
@@ -130,9 +130,12 @@
           class="md-button"
           >{{ page.meta.hero.source_button }}
         </a>
-        <p><a href="{{ base_url }}/nightly/" style="color:white;"><span class="twemoji">
+        <p><a href="{{ base_url }}/stable/" class="white-link"><span class="twemoji">
+          {% include ".icons/fontawesome/solid/dice-d6.svg" %}
+        </span> Stable {{ config.extra.release.rel.version }} ({{ config.extra.release.rel.date }})</a><br />
+        <a href="{{ base_url }}/nightly/" class="white-link"><span class="twemoji">
           {% include ".icons/fontawesome/solid/cloud-moon.svg" %}
-        </span> Nightly</a></p>
+        </span> Nightly {{ config.extra.release.dev.version }}</a></p>
       </div>
     </div>
   </div>

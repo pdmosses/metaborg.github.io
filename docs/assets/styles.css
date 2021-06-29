@@ -57,3 +57,19 @@
     word-wrap: break-word;
     white-space: normal;
 }
+.warning {
+    color: #ff9100;
+}
+.stop {
+    color: #ff1744;
+}
+.md-typeset a.white-link {
+    color: white;
+}
+.md-typeset a.white-link:hover{
+    color: var(--md-accent-fg-color);
+    transition: transform .4s cubic-bezier(.1,.7,.1,1),opacity .25s;
+}
+.no-ligatures code {
+    font-variant-ligatures: none;
+}
