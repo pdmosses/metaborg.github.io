@@ -1295,6 +1295,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#type-casts" class="md-nav__link">
+    Type Casts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#type-preserving-transformations" class="md-nav__link">
     Type Preserving Transformations
   </a>
@@ -1978,6 +1985,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#type-casts" class="md-nav__link">
+    Type Casts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#type-preserving-transformations" class="md-nav__link">
     Type Preserving Transformations
   </a>
@@ -2029,7 +2043,7 @@ Further, starting with Stratego 2, the types of terms and term transformations <
 <p>A sort is determined by an identifier and optionally has arguments.</p>
 <p>For each constructor, a signature declares the number and types of its arguments.</p>
 <p>The Stratego1 compiler only checks the arity of constructor applications against the signature.
-The Stratego2 compiler uses signature definitions to type check term patterns in rules.</p>
+The Stratego2 compiler uses signature definitions to type check code if it has been given a type signature.</p>
 <h2 id="injections">Injections<a class="headerlink" href="#injections" title="Permanent link">&para;</a></h2>
 <p>An injection is a constructor without name and with a single domain argument.</p>
 <div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
@@ -2051,13 +2065,13 @@ The Stratego2 compiler uses signature definitions to type check term patterns in
 </code></pre></div>
 <p>Note that the first injection allows strings to be used as identifiers (<code>Id</code>).</p>
 <h2 id="the-list-type">The List Type<a class="headerlink" href="#the-list-type" title="Permanent link">&para;</a></h2>
-<p>The <code>List(Exp)</code> type used above is built-in and correspons to homogenous lists of terms of the same type (<code>Exp</code> in this case).</p>
+<p>The <code>List(Exp)</code> type used above is built-in and corresponds to homogenous lists of terms of the same type (<code>Exp</code> in this case).</p>
 <h2 id="polymorphic-types">Polymorphic Types<a class="headerlink" href="#polymorphic-types" title="Permanent link">&para;</a></h2>
 <p>Stratego2 also supports user-defined polymorphic types.
 That is, sorts can have parameters.</p>
 <p>For example, the following signature defines the type of priority queues, polymorphic in the carrier type, in which the priority is determined by the length of the list.</p>
 <div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">PrioQ</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span>*<span class=" -Punctuation">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">constructors</span><span class="w"></span>
 <span class="w">    </span><span class="nv">NilQ</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 <span class="w">    </span><span class="nv">ConsQ</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span>*<span class="w"> </span><span class="nv">int</span><span class="w"> </span>*<span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span>*<span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">PrioQ</span><span class=" -Punctuation">(</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
@@ -2086,15 +2100,19 @@ Furthermore, an automatically generated pretty-printer maps terms conforming to 
 <p>Stratego2 is a gradually typed language in order to facilitate the migration from (mostly) untyped Stratego1 code to typed Stratego2 code.
 Furthermore, some patterns in Stratego cannot be typed statically.</p>
 <p>Type <em>dynamic</em>, written <code>?</code>, represents the unknown type.</p>
+<h2 id="type-casts">Type Casts<a class="headerlink" href="#type-casts" title="Permanent link">&para;</a></h2>
+<p>Gradual type systems allow a term with the dynamic type to be used in any place where a static type is required. Stratego2 will insert a type cast at such a point to check at run time that the term is type-correct. This way, a Stratego program halts execution in predictable places when a run time type error occurs. There can be no run time type errors in fully statically typed code either, only at the boundary between dynamically and statically typed code. </p>
 <h2 id="type-preserving-transformations">Type Preserving Transformations<a class="headerlink" href="#type-preserving-transformations" title="Permanent link">&para;</a></h2>
 <p>A <em>type preserving</em> transformation transforms <em>any</em> type to itself (or fails).</p>
 <p>In signatures, a type preserving transformation is indicated with <code>TP</code>.</p>
 <p>For example, the topdown traversal is type preserving if its argument strategy is. Thus, its signature is defined as</p>
 <div class="highlight"><pre><span></span><code><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">TP</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">TP</span><span class="w"></span>
 </code></pre></div>
+<p>The type-checking for a type preserving transformation is very strict. It should be in terms of other type preserving transformations, or match the input term to a specific type and return a term from that specific type. </p>
 <h2 id="is-type">Is Type<a class="headerlink" href="#is-type" title="Permanent link">&para;</a></h2>
 <p>Given the definition of a term signature, the <code>is(S)</code> strategy checks whether a term is of sort <code>S</code> and fails if that is not the case.</p>
 <p>For example, the strategy <code>&lt;is(Exp)&gt;t</code> checks that term <code>t</code> conforms to the signature of sort <code>Exp</code>.</p>
+<p>The <code>is(S)</code> strategy uses the same mechanism as type casts for checking a term type at run time.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
