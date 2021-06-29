@@ -152,7 +152,7 @@ but the runtime behavior in not influenced by these ascriptions.
 
 Arithmetic expressions can be inserted in terms as follows:
 
-```statix
+``` {.statix .no-ligatures}
 #( $ArithExp )
 ```
 
