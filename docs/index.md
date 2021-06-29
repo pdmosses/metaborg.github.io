@@ -3,12 +3,13 @@ template: index.html
 title: Spoofax Language Designer's Workbench
 hide:
   - navigation
+  - toc
 hero:
   title: Spoofax Language Designer's Workbench
   subtitle: An open-source language designer's workbench with everything you need for designing your next textual (domain-specific) programming language.
   install_button: Getting Started
   source_button: Source Code
-  nightly_link: Nightly
+  nightly_link: Nightly A{{ config.extra.release.dev.version }}B
 features:
   - title: Syntax
     image: /assets/syntax.png
@@ -34,3 +35,7 @@ The platform provides the following ingredients:
 With Spoofax you can focus on the essence of language definition and ignore irrelevant implementation details.
 
 [Get started](getting-started.md) by downloading and installing Spoofax or build it [from source](https://github.com/metaborg/spoofax-releng).
+
+A{{ release.dev.version }}B
+
+{{ macros_info() }}
