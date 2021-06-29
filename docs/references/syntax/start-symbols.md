@@ -10,7 +10,7 @@ A definition of lexical start symbols looks like:
 ```
 lexical start-symbols
 
-    <Symbol>*
+    $Symbol*
 ```
 
 While context-free start symbols are defined as:
@@ -18,7 +18,7 @@ While context-free start symbols are defined as:
 ```
 context-free start-symbols
 
-    <Symbol>*
+    $Symbol*
 ```
 
 SDF3 also supports kernel start-symbols:
@@ -26,7 +26,7 @@ SDF3 also supports kernel start-symbols:
 ```
 start-symbols
 
-    <Symbol>*
+    $Symbol*
 ```
 
 In contrast to lexical and kernel start-symbols, context-free start symbols can be surrounded by optional layout.

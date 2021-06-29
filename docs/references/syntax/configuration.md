@@ -1,6 +1,6 @@
 # Configuration
 
-When using SDF3 inside Spoofax, it is possible to specify different configuration options that.
+When using SDF3 inside Spoofax, several configuration options are relevant.
 They allow using the new parser generator, specifying the shape of completion placeholders, or disable SDF altogether.
 These options should be specified in the `metaborg.yaml` file.
 
@@ -12,9 +12,7 @@ language:
     enabled: false
 ```
 
-This configuration should be present when defining language components for a language that has SDF enabled.
-
-SDF3 allows generating placeholders for code completion. The default "shape" of placeholders is ``[[Symbol]]``.
+SDF3 allows generating placeholders for code completion. The default "shape" of placeholders is ``$Symbol``.
 However, it is possible to tweak this shape using the configuration below (the configuration for suffix is optional):
 
 ```yaml
@@ -25,10 +23,10 @@ language:
       suffix: "$"
 ```
 
-Currently, the path to the parse table is specified in the :file:`Syntax.esv` file, commonly as ``table: target/metaborg/sdf.tbl``.
-When the ESV file does not contain this entry, it is also possible to specify the path to the parse table in the :file:`metaborg.yaml` file.
+Currently, the path to the parse table is specified in the `Syntax.esv` file, commonly as `table: target/metaborg/sdf.tbl`.
+When the ESV file does not contain this entry, it is also possible to specify the path to the parse table in the `metaborg.yaml` file.
 This is useful when testing an external parse table, or using a parse table different from the one being generated in the project.
-In the example below, the table is loaded from the path ``tables/sdf.tbl``.
+In the example below, the table is loaded from the path `tables/sdf.tbl`.
 The same can be applied to the parse table used for code completion.
 
 ```yaml
@@ -39,7 +37,8 @@ language:
 ```
 
 In a Spoofax project, it is also possible to use SDF2 instead of SDF3.
-This enables SDF2 tools such as the SDF2 parenthesizer, signature generator, etc. For example:
+This enables SDF2 tools such as the SDF2 parenthesizer, signature generator, etc.
+For example:
 
 ```yaml
 language:
@@ -114,9 +113,3 @@ Since logging all parsing events is quite verbose, several other scopes are avai
  - ``minimal``: Only log the start and end of a parse, including a measurement of total parse time (including imploding and tokenization).
  - ``parsing``: Log all standard parsing events (such as stack and parse forest operations, action execution, etc.) but no variant-specific events (e.g. related to recovery).
  - ``recovery``: Log the recovery iterations and the recovery productions that are applied.
-
-!!! todo
-    Whenever changing any of these configurations, clean the project before rebuilding.
-
-!!! todo
-    Write documentation on how to use SDF3 outside of Spoofax

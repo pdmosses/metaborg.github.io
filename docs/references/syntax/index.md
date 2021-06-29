@@ -17,6 +17,9 @@ SDF3 provides additional constructs for the definition of [layout-sensitivite](l
 
 Permissive grammars are automatically generated for [error-recovery](recovery/) parsing. Handwritten recovery rules can be added to tweak recovery behavior.
 
+Several aspects related to syntax definition and parsing can be [configured](configuration/) in the `metaborg.yaml.` file.
+
+
 ## Source
 
 The sources of the SDF3 implementation can be found at
