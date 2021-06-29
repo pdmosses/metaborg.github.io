@@ -70,18 +70,21 @@ nav:
       - references/stratego/index.md
       - references/stratego/lexical.md
       - references/stratego/modules.md
-      - references/stratego/terms.md
-      - references/stratego/types.md
-      - references/stratego/patterns.md
-      - references/stratego/rewrite-rules.md
-      - references/stratego/strategies.md
-      - references/stratego/strategy-combinators.md
-      - references/stratego/strategy-combinators-match-build.md
-      - references/stratego/strategy-combinators-traversal.md
-      - references/stratego/strategy-combinators-type-unifying.md
-      - references/stratego/dynamic-rules.md
-      - references/stratego/concrete-syntax.md
-      - references/stratego/overlays.md
+      - Terms:
+        - references/stratego/terms/terms.md
+        - references/stratego/terms/types.md
+        - references/stratego/terms/patterns.md
+      - Rules:
+        - references/stratego/rules/rewrite-rules.md
+        - references/stratego/rules/dynamic-rules.md
+        - references/stratego/rules/concrete-syntax.md
+        - references/stratego/rules/overlays.md
+      - Strategies:
+        - references/stratego/strategies/strategies.md
+        - references/stratego/strategies/sequential.md
+        - references/stratego/strategies/term.md
+        - references/stratego/strategies/traversal.md
+        - references/stratego/strategies/type-unifying.md
     - Testing:
       - references/testing/index.md
     - Editor Services:

@@ -1,4 +1,4 @@
-# Matching and Building Terms  
+# Term Combinators
 
 In previous chapters we have presented rewrite rules as basic transformation steps. However, rules are not really atomic transformation actions. To see this, consider what happens when the rewrite rule
 
