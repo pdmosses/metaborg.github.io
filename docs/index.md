@@ -1,6 +1,6 @@
 ---
 template: index.html
-title: Spoofax
+title: "Spoofax: The Language Designer's Workbench"
 hide:
   - navigation
   - toc

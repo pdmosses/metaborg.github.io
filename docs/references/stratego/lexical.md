@@ -1,4 +1,4 @@
-# Lexical Conventions
+# Lexical
 
 ## Module Names
 

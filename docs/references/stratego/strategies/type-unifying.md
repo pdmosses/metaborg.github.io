@@ -1,4 +1,4 @@
-# Type Unifying Transformations
+# Type Unifying Combinators
 
 [@VisserBT98]
 
