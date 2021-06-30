@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stratego-api" class="md-skip">
+        <a href="#setup" class="md-skip">
           Skip to content
         </a>
       
@@ -1160,30 +1160,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stratego-api" class="md-nav__link">
-    Stratego API
-  </a>
-  
-    <nav class="md-nav" aria-label="Stratego API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#setup" class="md-nav__link">
     Setup
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-analysis" class="md-nav__link">
+    Running the analysis
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the analysis">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
-    Execution
+  <a href="#integrated-into-nabl2-analysis" class="md-nav__link">
+    Integrated into NaBL2 analysis
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#querying" class="md-nav__link">
-    Querying
+  <a href="#running-the-analysis-manually" class="md-nav__link">
+    Running the analysis manually
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-analysis" class="md-nav__link">
+    Querying analysis
+  </a>
+  
+    <nav class="md-nav" aria-label="Querying analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-flow-graph" class="md-nav__link">
+    Control-flow graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-properties" class="md-nav__link">
+    Data flow properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flowspec-data-helpers" class="md-nav__link">
+    FlowSpec data helpers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hover-text" class="md-nav__link">
+    Hover text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-information" class="md-nav__link">
+    Profiling information
   </a>
   
 </li>
@@ -1197,6 +1245,18 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
     </li>
   
 
@@ -2089,30 +2149,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stratego-api" class="md-nav__link">
-    Stratego API
-  </a>
-  
-    <nav class="md-nav" aria-label="Stratego API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#setup" class="md-nav__link">
     Setup
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-analysis" class="md-nav__link">
+    Running the analysis
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the analysis">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#execution" class="md-nav__link">
-    Execution
+  <a href="#integrated-into-nabl2-analysis" class="md-nav__link">
+    Integrated into NaBL2 analysis
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#querying" class="md-nav__link">
-    Querying
+  <a href="#running-the-analysis-manually" class="md-nav__link">
+    Running the analysis manually
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-analysis" class="md-nav__link">
+    Querying analysis
+  </a>
+  
+    <nav class="md-nav" aria-label="Querying analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-flow-graph" class="md-nav__link">
+    Control-flow graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-properties" class="md-nav__link">
+    Data flow properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flowspec-data-helpers" class="md-nav__link">
+    FlowSpec data helpers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hover-text" class="md-nav__link">
+    Hover text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-information" class="md-nav__link">
+    Profiling information
   </a>
   
 </li>
@@ -2141,11 +2249,316 @@
                 
                   <h1>Stratego API</h1>
                 
-                <h2 id="stratego-api">Stratego API<a class="headerlink" href="#stratego-api" title="Permanent link">&para;</a></h2>
-<p>Strategies for interfacing with FlowSpec from Stratego. Execution, configuration, extracting results.</p>
-<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
-<h3 id="querying">Querying<a class="headerlink" href="#querying" title="Permanent link">&para;</a></h3>
+                <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>Using the Stratego API requires a dependency on the FlowSpec Stratego code (source dependency), and an import of <code>flowspec/api</code>.</p>
+<p><em>Example.</em> A Stratego module importing the FlowSpec API.</p>
+<div class="highlight"><pre><span></span><code>module example
+
+imports
+
+  flowspec/api
+</code></pre></div>
+<h2 id="running-the-analysis">Running the analysis<a class="headerlink" href="#running-the-analysis" title="Permanent link">&para;</a></h2>
+<p>There are strategies to integrate FlowSpec analysis in the NaBL2 analysis, and strategies for doing both NaBL2 analysis and FlowSpec analysis on an AST.</p>
+<h3 id="integrated-into-nabl2-analysis">Integrated into NaBL2 analysis<a class="headerlink" href="#integrated-into-nabl2-analysis" title="Permanent link">&para;</a></h3>
+<p>These can be used in the final phase of the NaBL2 analysis process using the <a href="http://www.metaborg.org/en/latest/source/langdev/meta/lang/nabl2/stratego-api.html#nabl2-custom-analysis">Stratego hooks</a>.</p>
+<div class="highlight"><pre><span></span><code>/**
+ * Analyze the given AST with FlowSpec.
+ * The FlowSpec analysis is added to given NaBL2 analysis result and returned.
+ *
+ * @param analysis:Analysis
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; Analysis
+ */
+flowspec-analyze(|analysis)
+
+/**
+ * Analyze the given AST with FlowSpec, but only the given FlowSpec properties.
+ * The FlowSpec analysis is added to given NaBL2 analysis result and returned.
+ *
+ * @param analysis:Analysis
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; Analysis
+ */
+flowspec-analyze(|analysis, propnames)
+</code></pre></div>
+<p>The analysis results are also usable at that point for generating editor messages. Integration with NaBL2 is done by giving the FlowSpec analysis result as the “custom final analysis result”:</p>
+<div class="highlight"><pre><span></span><code>nabl2-custom-analysis-unit-hook:
+    (resource, ast, custom-initial-result) -&gt; (resource, ast)
+
+nabl2-custom-analysis-final-hook(|a):
+    (resource, custom-initial-result, custom-unit-results) -&gt; (errors, warnings, notes, custom-final-result)
+  with asts     := &lt;map(\(ast-resource, ast) -&gt; &lt;nabl2--index-ast(|ast-resource)&gt; ast\)&gt; custom-unit-results ; // workaround for https://yellowgrass.org/issue/NaBL2/54
+       custom-final-result := &lt;flowspec-analyze(|a)&gt; asts ;
+       errors   := ... ;
+       warnings := ... ;
+       notes    := ...
+</code></pre></div>
+<p>This propagates the AST of each unit from the unit phase, and analyzes all of them together in the final phase. The <code>custom-final-result</code> is returned so that NaBL2 preserves it for later usage. FlowSpec provides convenience functions that request the custom final result again later:</p>
+<h3 id="running-the-analysis-manually">Running the analysis manually<a class="headerlink" href="#running-the-analysis-manually" title="Permanent link">&para;</a></h3>
+<p>Sometimes you need data-flow analysis between transformations which change the program. That means you need to run the analysis just before a transformation to have analysis results corresponding to the current program.</p>
+<p>The following strategies execute the analysis and help with consuming the resulting tuple.</p>
+<div class="highlight"><pre><span></span><code>/**
+ * Analyze the given AST with NaBL2 and FlowSpec
+ *
+ * @param resource:String
+ * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
+ */
+flowspec-analyze-ast(|resource)
+
+/**
+ * Analyze the given AST with NaBL2 and FlowSpec.
+ * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
+ *
+ * @param pre:Term -&gt; Term
+ * @param post:Term -&gt; Term
+ * @param resource:String
+ * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
+ */
+flowspec-analyze-ast(pre,post|resource)
+
+/**
+ * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
+ *
+ * @param resource:String
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
+ */
+flowspec-analyze-ast(|resource, propname)
+
+/**
+ * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
+ * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
+ *
+ * @param pre:Term -&gt; Term
+ * @param post:Term -&gt; Term
+ * @param resource:String
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
+ */
+flowspec-analyze-ast(pre,post|resource, propnames)
+
+/**
+ * Take the analyze-ast 5-tuple output and return the result of applying the given strategy to the AST.
+ * Note that the strategy takes the analysis object as a term argument.
+ *
+ * @param s(|Analysis): Term -&gt; Term
+ * @type ast: (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage)) -&gt; Term
+ */
+flowspec-then(s)
+
+/**
+ * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
+ * Then return the result of applying the given strategy to the AST.
+ * Note that the strategy takes the analysis object as a term argument.
+ *
+ * @param s(|Analysis): Term -&gt; Term
+ * @param resource:String
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; Term
+ */
+flowspec-analyze-ast-then(s|resource, propnames)
+
+/**
+ * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
+ * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
+ * Then return the result of applying the given strategy to the AST.
+ * Note that the strategy takes the analysis object as a term argument.
+ *
+ * @param pre:Term -&gt; Term
+ * @param post:Term -&gt; Term
+ * @param s(|Analysis): Term -&gt; Term
+ * @param resource:String
+ * @param propnames:String or List(String)
+ * @type ast:Term -&gt; Term
+ */
+flowspec-analyze-ast-then(pre, post, s|resource, propnames)
+</code></pre></div>
+<h2 id="querying-analysis">Querying analysis<a class="headerlink" href="#querying-analysis" title="Permanent link">&para;</a></h2>
+<p>The NaBL2 API defines several <a href="http://www.metaborg.org/en/latest/source/langdev/meta/lang/nabl2/stratego-api.html#nabl2-get-analysis-result">strategies to get an analysis term by resource name or from an AST node</a>. This analysis term can then be passed to the querying strategies that give access to the data flow properties, if you hooked FlowSpec into the NaBL2 analysis process.</p>
+<p>The other way to get the analysis term is to execute the analysis with the flowspec-analyze-ast* variants.</p>
+<h3 id="control-flow-graph">Control-flow graph<a class="headerlink" href="#control-flow-graph" title="Permanent link">&para;</a></h3>
+<p>There are a number of strategies to get the control-flow graph nodes associated with an AST fragment, as well as control-flow graph navigation strategies and AST search strategies to get back to the AST from a control-flow graph node. Note that querying the control-flow graph is cheap but finding the way back from the control-flow graph to the AST is more expensive.</p>
+<div class="highlight"><pre><span></span><code>/**
+ * Get the control flow graph node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-node(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-start-node(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-end-node(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-entry-node(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-exit-node(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-prev-nodes(|a)
+
+/**
+ * Get the control flow graph start node associated with the given term.
+ *
+ * @param a : Analysis
+ * @type term:Term -&gt; CFGNode
+ */
+flowspec-get-cfg-next-nodes(|a)
+
+/**
+ * Find AST node corresponding to the CFGNode back again
+ *
+ * @param ast : Term
+ * @type node:CFGNode -&gt; Term
+ */
+flowspec-cfg-node-ast(|ast)
+
+/**
+ * Find AST node corresponding to the CFGNode back again
+ *
+ * @param ast : Term
+ * @type pos:Position -&gt; Term
+ */
+flowspec-pos-ast(|ast)
+
+/**
+ * Find parent of AST node corresponding to the CFGNode back again by matching the parent with
+ *  the parent argument and giving back the child that is likely to be a match to the CFG node.
+ *
+ * @param parent : Term -&gt; Term
+ * @param ast : Term
+ * @type node:CFGNode -&gt; Term
+ */
+flowspec-cfg-node-ast(parent|ast)
+
+/**
+ * Find parent of AST node corresponding to the CFGNode back again by matching the parent with
+ *  the parent argument and giving back the child that is likely to be a match to the CFG node.
+ *
+ * @param parent : Term -&gt; Term
+ * @param ast : Term
+ * @type pos:Position -&gt; Term
+ */
+flowspec-pos-ast(parent|ast)
+
+/**
+ * Get the position of an AST node.
+ *
+ * @type Term -&gt; Position
+ */
+flowspec-get-position
+</code></pre></div>
+<h3 id="data-flow-properties">Data flow properties<a class="headerlink" href="#data-flow-properties" title="Permanent link">&para;</a></h3>
+<p>FlowSpec properties can be read in two versions, pre and post. These indicate whether the effect of the cfg node has been applied yet. Whether or not it is applied depends on the direction of the analysis. pre for a forward analysis is without the effect of the node, but pre for a backward analysis includes the effect of the node.</p>
+<p>Note that each strategy can simply take the term that’s associated with the control-flow graph node. But the control-flow graph node itself is also an accepted input.</p>
+<div class="highlight"><pre><span></span><code>/**
+ * Get the property of the control flow graph node associated with
+ * the given term. The value returned is the value of the property
+ * _before_ the effect of the control flow graph node.
+ *
+ * @param a : Analysis
+ * @param prop : String
+ * @type term:Term -&gt; Term
+ */
+flowspec-get-property-pre(|a, propname)
+
+/**
+ * Get the property of the control flow graph node associated with
+ * the given term. The value returned is the value of the property
+ * _after_ the effect of the control flow graph node.
+ *
+ * @param a : Analysis
+ * @param prop : String
+ * @type term:Term -&gt; Term
+ */
+flowspec-get-property-post(|a, propname)
+
+/**
+ * Get the property of the control flow graph node associated with
+ * the given term. The value returned is the value of the property
+ * _after_ the effect of the control flow graph node. If no node
+ * is found the exit control flow graph node of the AST node is
+ * queried for its post-effect property value.
+ *
+ * @param a : Analysis
+ * @param prop : String
+ * @type term:Term -&gt; Term
+ */
+flowspec-get-property-post-or-exit-post(|analysis-result, analysis-name)
+</code></pre></div>
+<h3 id="flowspec-data-helpers">FlowSpec data helpers<a class="headerlink" href="#flowspec-data-helpers" title="Permanent link">&para;</a></h3>
+<p>FlowSpec sets and maps are passed back to Stratego as lists wrapped in Set and Map constructors. As a convenience, the most common operations are lifted and added to the flowspec API:
+<div class="highlight"><pre><span></span><code>/**
+ * Check if a FlowSpec Set contains an element. Succeeds if the given strategy succeeds for at
+ * least one element.
+ *
+ * @param s: Term -?&gt;
+ * @type FlowSpecSet -?&gt; FlowSpecSet
+ */
+flowspec-set-contains(s)
+
+/**
+ * Look up elements in a FlowSpec Set of pairs. Returns the right elements of all pairs where
+ * the given strategy succeeds on the left element.
+ *
+ * @param s: Term -?&gt;
+ * @type FlowSpecSet -?&gt; List(Term)
+ */
+flowspec-set-lookup(s)
+
+/**
+ * Look up a key in a FlowSpec Map. Returns the element if the given key exists in the map.
+ *
+ * @param k: Term
+ * @type FlowSpecMap -?&gt; Term
+ */
+flowspec-map-lookup(|k)
+</code></pre></div></p>
+<h3 id="hover-text">Hover text<a class="headerlink" href="#hover-text" title="Permanent link">&para;</a></h3>
+<p>For a hover implementation that displays name, type and FlowSpec properties use:</p>
+<div class="highlight"><pre><span></span><code>/**
+ * Provides a strategy for a hover message with as much information as possible about name, type
+ * (from NaBl2) and FlowSpec properties.
+ */
+flowspec-editor-hover(language-pp)
+</code></pre></div>
+<h3 id="profiling-information">Profiling information<a class="headerlink" href="#profiling-information" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>/**
+ * If flowspec-debug-profile is extended to succeed, some timing information will be printed in
+ * stderr when using flowspec-analyze*.
+ */
+flowspec-debug-profile
+</code></pre></div>
                 
               
               
@@ -2183,13 +2596,13 @@
         </a>
       
       
-        <a href="../testing/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../configuration/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Testing
+              Configuration
             </div>
           </div>
           <div class="md-footer__button md-icon">
