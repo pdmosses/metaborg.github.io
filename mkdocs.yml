@@ -63,6 +63,7 @@ nav:
       - references/flowspec/introduction.md
       - references/flowspec/structure.md
       - references/flowspec/Stratego_API.md
+      - references/flowspec/configuration.md
       - references/flowspec/testing.md
       - references/flowspec/glossary.md
       - references/flowspec/references.md
