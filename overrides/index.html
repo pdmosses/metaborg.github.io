@@ -131,12 +131,12 @@
           class="md-button"
           >{{ page.meta.hero.source_button }}
         </a>
-        <p><a href="{{ base_url }}/stable/" class="white-link"><span class="twemoji">
+        <p><a href="{{ base_url }}/release/stable/" class="white-link"><span class="twemoji">
           {% include ".icons/fontawesome/solid/dice-d6.svg" %}
         </span> Stable {{ config.extra.release.rel.version }} ({{ config.extra.release.rel.date }})</a><br />
-        <a href="{{ base_url }}/nightly/" class="white-link"><span class="twemoji">
+        <a href="{{ base_url }}/release/develop/" class="white-link"><span class="twemoji">
           {% include ".icons/fontawesome/solid/cloud-moon.svg" %}
-        </span> Nightly {{ config.extra.release.dev.version }}</a></p>
+        </span> Development {{ config.extra.release.dev.version }}</a></p>
       </div>
     </div>
   </div>

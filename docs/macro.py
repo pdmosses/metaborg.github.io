@@ -144,7 +144,8 @@ def fill_vars_with_release(vars, env_version: str, version: str, download_versio
 
 
 release_versions = {
-    '2.5.16': '04-06-2021'
+    '2.5.16': '04-06-2021',
+    '2.5.15': '11-05-2021',
 }
 development_version = '2.6.0-SNAPSHOT'
 
