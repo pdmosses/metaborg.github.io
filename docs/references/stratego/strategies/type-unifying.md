@@ -150,7 +150,7 @@ AssignSize : (e1, e2)         -> <add; inc>(e1, e2)
 IfSize     : (e1, e2, e3)     -> <add; inc>(e1, <add>(e2, e3))
 ```
 
-This looks suspiciously like the [traversal with rules](/background/stratego/traversal-with-rules/) pattern.
+This looks suspiciously like the [traversal with rules](../../../background/stratego/traversal-with-rules.md) pattern.
 Defining folds in this manner has several limitations.
 In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor.
 Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.
@@ -418,6 +418,6 @@ See the source code for the full strategy.
 Generic term construction and deconstruction support the definition of generic analysis and generic translation problems.
 The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.
 
-## References
+<!-- ## References
 
-\bibliography
+\bibliography -->

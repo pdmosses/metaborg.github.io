@@ -4,7 +4,7 @@ Rather than defining rewrite rules and high-level strategies as primitives of th
 Thus, Stratego consists of a core language[@VisserB98] and a 'sugar' language defined by reduction to the core language.
 
 !!! warning
-    While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs where possible.
+    While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs such as [rewrite rules](../rules/rewrite-rules.md) where possible.
 
 ## Identity and Failure
 
@@ -364,20 +364,36 @@ If both strategies fail, then the choice fails as well.
 Operationally the choice operator first tries one strategy, and, if that fails, tries the other.
 The order in which this is done is undefined, i.e., arbitrarily chosen by the compiler.
 
-The `+` combinator is used to model modular composition of rewrite rules and strategies with the same name.
-Multiple definitions with the same name, are merged into a single definition with that name, where the bodies are composed with `+`.
+The `+` combinator is used to model modular composition of rewrite rules and strategies with the same name, but in different modules.
+Multiple definitions with the same name in different modules, are merged into a single definition with that name, where the bodies are composed with `+`.
 The following transformation illustrates this:
 
 ```stratego
-  f = s1  
+module A
+  f = s1
+module B   
   f = s2  
+module main
+  imports A B
 =>
-  f = s1 + s2
+  f = s2 + s1
 ```
 
 This transformation is somewhat simplified; the complete transformation needs to take care of local variables and parameters.
 
 While the `+` combinator is used internally by the compiler for this purpose, programmers are advised not to use this combinator, but rather use the left choice combinator `<+` to avoid surprises.
+
+In the past, the `+` combinator was also used to compose definitions with the same name _within_ a module.
+This has been replaced by interpreting such compositions with the textual order of the definitions.
+The following transformation illustrates this:
+
+```stratego
+module A
+  f = s1
+  f = s2
+=>
+f = s1 <+ s2
+```
 
 
 ## Recursion
@@ -466,7 +482,7 @@ S(S(S(Z))) -->
 ## A Library of Iteration Strategies.
 
 Using sequential composition, choice, and recursion a large variety of iteration strategies can be defined.
-The following definitions are part of the Stratego Library (in module strategy/iteration).
+The following definitions are part of the Stratego Library (in module [strategy/iteration](http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/)).
 
 ```stratego
 repeat(s) =

@@ -374,7 +374,11 @@ because after all, there is no chance that Stratego will be unable to add two in
 
 ## Assignment
 
-Furthermore, in setting auxiliary variables often the full power of Stratego strategies is not used, but rather new terms are simply built as needed. Stratego provides an `:=` operator for this purpose; the above rule can be written probably more clearly as
+The assignment combinator `:=` is a variation of apply-and-match with terms on both sides of the assignment.
+The strategy `p1 := p2` builds `p2` and matches the result against `p1`, i.e. it is syntactic sugar for `!p2; ?p1`.
+The strategy is often combine with strategy application into `p1 := <s>p2`, which is equivalent to `<s>p2 => p1`, but more familiar to an audience with an imperative mindset.
+
+For example, consider the following rewrite rule
 
 ```stratego
 EvalPlus :
@@ -382,12 +386,7 @@ EvalPlus :
   with k := <addS>(i,j)
 ```
 
-Technically, `p1 := p2` (which can be used anywhere a strategy is called for, although it is primarily useful in `with` and `where` clauses) is just syntactic sugar for `!p2; ?p1`.
-In other words, it builds the value `p2`, and then matches it with `p1`.
-In the typical case that `p1` is just a variable, this ends up assigning the result of building the expression `p2` to that variable.
-
-To sum up, we have actually already seen an example of both `with` and `:=` in the “glue” strategy used to run a Stratego transformation via Editor Services:
-
+<!-- To sum up, we have actually already seen an example of both `with` and `:=` in the “glue” strategy used to run a Stratego transformation via Editor Services:
 
 ```stratego
 do-eval:
@@ -398,7 +397,7 @@ do-eval:
 
 To make the operation of this rule clearer, the two components of the outcome are separated into auxiliary computations in the `with` clause, and these two auxiliaries are implemented as assignments with the `:=` operator.
 Moreover, if either the eval strategy fails or if Stratego is unable to compute the proper output filename, there is no point in continuing.
-So Stratego will simply terminate immediately and report the error.
+So Stratego will simply terminate immediately and report the error. -->
 
 
 <!-- ## Wrap and Project

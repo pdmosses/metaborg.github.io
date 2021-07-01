@@ -8,7 +8,7 @@ Rather than provide built-in implementations for all traversals needed in transf
 For example, a top-down, one-pass traversal strategy will first visit a node, and then descend to the children of a node in order to recursively traverse all subterms.
 Similarly, the bottom-up, fixed-point traversal strategy innermost, will first descend to the children of a node in order to recursively traverse all subterms, then visit the node itself, and possibly recursively reapply the strategy.
 
-Traversal in Stratego is based on the observation that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term.
+Traversal in Stratego is based on the observation[@LuttikV97] that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term.
 By separating this one-step descent operator from recursion, and making it a first-class operation, many different traversals can be defined.
 
 Here we explore the ways in which Stratego supports the definition of traversal strategies.
@@ -19,7 +19,7 @@ Given these basic mechanisms, we conclude with an exploration of idioms for trav
 
 ## Congruence Operators
 
-Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](/background/stratego/traversal-with-rules.md).
+Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](../../../background/stratego/traversal-with-rules.md).
 A congruence operator applies a strategy to each direct subterm of a specific constructor.
 For each n-ary constructor `c` declared in a signature, there is a corresponding congruence operator `c(s1 , ..., sn)`, which applies to terms of the form `c(t1 , ..., tn)` by applying the argument strategies to the corresponding argument terms.
 A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.
@@ -62,8 +62,7 @@ command failed
 
 ## Defining Traversals with Congruences
 
-Now we return to our dnf/cnf example, to see how congruence operators can help in their implementation.
-Since congruence operators basically define a one-step traversal for a specific constructor, they capture the traversal rules defined above.
+Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of [traversal rules](../../../background/stratego/traversal-with-rules.md).
 That is, a traversal rule such as
 
 ```stratego
@@ -84,7 +83,7 @@ strategies
   cnf = propbu(try(DN <+ (DefI <+ DefE <+ DMA <+ DMO <+ DOAL <+ DOAR); cnf))
 ```
 
-Observe how the five traversal rules have been reduced to five congruences which fit on a single line.
+<!-- Observe how the five traversal rules have been reduced to five congruences which fit on a single line. -->
 
 
 ## Traversing Tuples and Lists
@@ -189,7 +188,7 @@ That is, it is not possible to do something special for a particular subterm (th
 
 ## Defining Traversals with All
 
-The `all(s)` operator is really the ultimate replacement for the [traversal with rules](/background/stratego/traversal-with-rules.md) idiom.
+The `all(s)` operator is really the ultimate replacement for the [traversal with rules](../../../background/stratego/traversal-with-rules.md) idiom.
 Instead of specifying a rule or congruence for each constructor, the single application of the `all` operator takes care of traversing all constructors.
 Thus, we can replace the `propbu` strategy by a completely generic definition of bottom-up traversal.
 Consider again the last definition of `propbu`:
