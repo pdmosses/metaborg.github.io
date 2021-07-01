@@ -1,17 +1,20 @@
 # Traversal Combinators
 
-In Chapter 5 we saw a number of idioms of strategic rewriting, which all involved tree traversal.
+There are many ways to traverse a tree.
+For example, a bottom-up traversal, visits the subterms of a node before it visits the node itself, while a top-down traversal visits nodes before it visits children.
+One-pass traversals traverse the tree one time, while fixed-point traversals, such as innermost, repeatedly traverse a term until a normal form is reached.
 
-In the previous chapters we saw how strategies can be used to control transformations and how rules can be broken down into the primitive actions match, build and scope.
-The missing ingredient are combinators for defining traversals.
+Rather than provide built-in implementations for all traversals needed in transformations, Stratego defines traversals in terms of the primitive ingredients of traversal.
+For example, a top-down, one-pass traversal strategy will first visit a node, and then descend to the children of a node in order to recursively traverse all subterms.
+Similarly, the bottom-up, fixed-point traversal strategy innermost, will first descend to the children of a node in order to recursively traverse all subterms, then visit the node itself, and possibly recursively reapply the strategy.
 
-There are many ways to traverse a tree. For example, a bottom-up traversal, visits the subterms of a node before it visits the node itself, while a top-down traversal visits nodes before it visits children. One-pass traversals traverse the tree one time, while fixed-point traversals, such as innermost, repeatedly traverse a term until a normal form is reached.
+Traversal in Stratego is based on the observation that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term.
+By separating this one-step descent operator from recursion, and making it a first-class operation, many different traversals can be defined.
 
-It is not desirable to provide built-in implementations for all traversals needed in transformations, since such a collection would necessarily be incomplete. Rather we would like to define traversals in terms of the primitive ingredients of traversal. For example, a top-down, one-pass traversal strategy will first visit a node, and then descend to the children of a node in order to recursively traverse all subterms. Similarly, the bottom-up, fixed-point traversal strategy innermost, will first descend to the children of a node in order to recursively traverse all subterms, then visit the node itself, and possibly recursively reapply the strategy.
-
-Traversal in Stratego is based on the observation that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term. By separating this one-step descent operator from recursion, and making it a first-class operation, many different traversals can be defined.
-
-In this chapter we explore the ways in which Stratego supports the definition of traversal strategies. We start with explicitly programmed traversals using recursive traversal rules. Next, congruences operators provide a more concise notation for such data-type specific traversal rules. Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type. Given these basic mechanisms, we conclude with an an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.
+Here we explore the ways in which Stratego supports the definition of traversal strategies.
+We start with explicitly programmed traversals using recursive traversal rules. Next, congruences operators provide a more concise notation for such data-type specific traversal rules.
+Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type.
+Given these basic mechanisms, we conclude with an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.
 
 
 ## Congruence Operators
