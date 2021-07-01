@@ -89,11 +89,6 @@ def fill_vars_with_release(vars, env_version: str, version: str, download_versio
                                                 version=download_version)
         strategoxt_jar = artifacts_download(repo, 'strategoxt-jar', version=download_version)
 
-    # Make version usable as a key: replace '.' with '_', and prepend with 'v' if it starts with a digit.
-    env_version = env_version.replace('.', '_')
-    if env_version[:1].isdigit():
-        env_version = f"v{env_version}"
-
     vars.release[env_version] = dict(
         date=date,
         version=version,

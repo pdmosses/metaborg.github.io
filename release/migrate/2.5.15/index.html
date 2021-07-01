@@ -2324,13 +2324,12 @@
                 <h1 id="spoofax-2515-migration-guide">Spoofax 2.5.15 Migration Guide<a class="headerlink" href="#spoofax-2515-migration-guide" title="Permanent link">&para;</a></h1>
 <h2 id="statix-injection-explication">Statix Injection Explication<a class="headerlink" href="#statix-injection-explication" title="Permanent link">&para;</a></h2>
 <p>There was an issue with Statix injection explication where the origin of the top-level term was lost and this caused SPT tests of Stratego strategies on analyzed ASTs to fail. Fix this by wrapping the bodies of the <code>pre-analyze</code> and <code>post-analyze</code> strategies in <code>analyze.str</code> with <code>origin-track-forced</code>, like this:</p>
-<div class="codehilite"><pre><span></span><code>imports libspoofax/term/origin
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">libspoofax</span>/<span class="nv">term</span>/<span class="nv">origin</span><span class="w"></span>
 
-rules
-    pre-analyze  = origin-track-forced(explicate-injections-MyLang-Start)
-    post-analyze = origin-track-forced(implicate-injections-MyLang-Start)
+<span class="k">rules</span><span class="w"></span>
+<span class="w">    </span><span class="nv">pre-analyze</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">explicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">post-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">implicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
-
 <p>This is already fixed in new projects.</p>
                 
               
