@@ -119,6 +119,7 @@ nav:
     - Transformations:
       - background/stratego/term-rewriting.md
       - background/stratego/limitations-of-rewriting.md
+      - background/stratego/traversal-with-rules.md
       - background/stratego/strategic-rewriting.md
     - background/documentation.md
 
