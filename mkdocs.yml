@@ -124,6 +124,8 @@ nav:
     - background/documentation.md
   - Support:
     - support/index.md
+  - Releases:
+    - release/2.5.16.md
 
 theme:
   name: material
