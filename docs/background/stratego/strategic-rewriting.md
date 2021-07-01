@@ -37,7 +37,7 @@ Another advantage of pure term rewriting is the separation of the specification 
 Intertwining these specifications makes it more difficult to understand the specification, since rules cannot be distinguished from the transformation they are part of.
 Furthermore, intertwining makes it impossible to reuse the rules in a different transformation.
 
-Stratego introduced the paradigm of programmable rewriting strategies with generic traversals, a unifying solution in which application of rules can be carefully controlled, while incurring minimal traversal overhead and preserving separation of rules and strategies.
+Stratego introduces the paradigm of programmable rewriting strategies with generic traversals, a unifying solution in which application of rules can be carefully controlled, while incurring minimal traversal overhead and preserving separation of rules and strategies[@VisserBT98].
 
 The following are the design criteria for strategies in Stratego:
 
@@ -270,3 +270,7 @@ Thus, cascading transformations are applied locally to terms for which the trans
 Of course more sophisticated strategies can be used for finding application locations, as well as for applying the rules locally.
 Nevertheless, the key observation underlying this idiom remains: Because the transformations to be applied are local, special knowledge about the subject program at the point of application can be used.
 This allows the application of rules that would not be otherwise applicable.
+
+## References
+
+\bibliography

@@ -133,23 +133,23 @@ In order to compute the disjunctive normal form of a term, we have to apply the 
 ```
 
 
-## Intermezzo: DNF in Spoofax/Eclipse
+## Intermezzo: DNF in Spoofax/Eclipse (move to tutorial?)
 
 If you’re going to try to run this example in Spoofax/Eclipse, a few words of caution.
 First, it’s easiest to just accumulate all of the different test modules as imports in your main language `“.str”` file.
 But if you do that, all of the rules will be in the same namespace.
 So you’re going to want to use different identifiers (say `E3` and `D3`) in place of `E` and `D` in your prop-dnf3.str file.
-Also, the concrete syntax has no way to represent the “extra” function symbol Dnf that is used here, so you’ll want to use alternate triggering strategies like
+Also, the concrete syntax has no way to represent the “extra” function symbol `Dnf` that is used here, so you’ll want to use alternate triggering strategies like
 
 ```stratego
 make-nf = innermost(E3 <+ D3)
 dnf3 : x -> <make-nf> Dnf(x)
 ```
 
-that wrap the input in Dnf( ... ) themselves.
+that wrap the input in `Dnf( ... )` themselves.
 
-For conjunctive normal form we can create a similar definition, which can now co-exist with the definition of DNF.
-Indeed, we could then simultaneously rewrite one subterm to DNF and the other to CNF.
+For conjunctive normal form we can create a similar definition, which can now co-exist with the definition of `DNF`.
+Indeed, we could then simultaneously rewrite one subterm to `DNF` and the other to `CNF`.
 
 ```stratego
 E : DC(x) -> (Dnf(x), Cnf(x))
@@ -164,5 +164,3 @@ For each new transformation a new traversal function and new transformation func
 Many additional rules had to be added to traverse the term to find the places to apply the rules.
 In the modular solution we had 5 basic rules and 2 additional rules for DNF and 2 rules for CNF, 9 in total.
 In the functionalized version we needed 13 rules for each transformation, that is 26 rules in total.
-
-In the example repository, you can find both the dnf and cnf strategies in `trans/prop-dnf3.str` and `trans/prop-cnf3.str`.
