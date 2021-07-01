@@ -115,6 +115,7 @@ nav:
     - Static Semantics:
       - background/statix/index.md
     - Transformations:
+      - background/stratego/index.md
       - background/stratego/term-rewriting.md
       - background/stratego/limitations-of-rewriting.md
       - background/stratego/traversal-with-rules.md
