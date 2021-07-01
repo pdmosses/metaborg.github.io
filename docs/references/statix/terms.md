@@ -9,15 +9,17 @@ In this section, we explain the various types of terms that Statix supports, and
 when appropriate, how their types should be declared. For a more in-depth
 explanation of the Statix Type System, see the section [Types](../types).
 
-!!! note
+!!! note "Terminology: Sort vs. Type"
     Throughout this reference manual, we use the term 'sort' for syntactic
     categories, and 'type' for all other types (such as lists, tuples, scopes, etc.).
     However, in practise, these terms are both used in both meanings.
+
 
 ## Numerals
 
 Numeric literals are literals of the form `[0-9]+`. Negative literals are not
 supported directly. All integer literals have the built-in type `int`.
+
 
 ## Strings
 
@@ -28,6 +30,7 @@ by prefixing them with another backslashes (`\"` and `\\`, respectively), while
 tabs, newlines and carriage returns can be encoded using respectively `\t`, `\n`
 and `\r`. Otherwise, no escaping is required. String literals have the built-in
 type `string`.
+
 
 ## Identifiers
 
@@ -41,12 +44,14 @@ Apart from introduction in rule heads, variables can be introduced by
 [existential constraints](../basic-constraints#exists). In that case, the type
 of the variable is derived from its usage.
 
+
 ## Wildcards
 
 Wildcards are represented as `_`, and denote variables without identity.
 Every occurrence of a wildcard is interpreted as a new variable. Because
 wildcards cannot reference each other, it is not required that the types of
 multiple wildcard occurrences coincide.
+
 
 ## Composite terms
 
@@ -80,6 +85,7 @@ When a composite term is built, it is validated that all arguments match the typ
 declaration from the signature. The type of the whole composite term is equal to
 the sort of the constructor.
 
+
 ## Tuples
 
 A built-in composite data construction is _tuples_:
@@ -93,6 +99,7 @@ The type of the tuple expression is just the product of its arguments.
 
 The arity of a tuple may be anything except one, because unary tuples cause
 syntactic ambiguities with bracketed expressions.
+
 
 ## Lists
 
@@ -115,6 +122,7 @@ Alternatively, lists can have a variable tail:
 In this syntax, the tail of the list is another term. This term should have type
 `list(T)`, where `T` is again the type of the first terms.
 
+
 ## Name Ascription
 
 It is possible to assign names to terms by prefixing the term with a variable name:
@@ -128,9 +136,10 @@ Note that this does _not_ introduce a new variable with name `$Var` (except in a
 implicitly), but rather requires that a variable with corresponding name and type
 is already introduced.
 
-??? tip
+??? tip "Ascribe and Equality"
     In terms of [equality constraints](../basic-constraints#equality), the ascribe
     is equal to `$Var == $Term`. It is used to prevent the duplication of `$Term`.
+
 
 ## Type Ascription
 
@@ -143,10 +152,11 @@ $Term : $Type
 The type-checker will validate that the term actually has the specified type,
 but the runtime behavior in not influenced by these ascriptions.
 
-!!! tip
+!!! tip "Complete Inference"
     In general, the Statix type-checker should be able to infer all types.
     However, in case of a type error being reported at an incorrect position,
     these type ascriptions can help tracing the cause of the error.
+
 
 ## Arithmetic operations
 
@@ -159,11 +169,12 @@ Arithmetic expressions can be inserted in terms as follows:
 Here, the type of the expression is `int`. For more information on arithmetic
 expressions, see [Arithmetic Constraints](../basic-constraints#arithmetic-constraints)
 
-??? tip
+??? tip "Normalization"
     In terms of [existential constraints](../basic-constraints#exists), inline
     arithmetic expressions have behavior equal to `{v} v #= $ArithExp`, where `v`
     is used at the position of the arithmetic expression. So, for example,
     `{T} T == CONS(#(21 * 2))` is equal to `{T v} v #= 21 * 2, T == CONS(v)`.
+
 
 ## AST Identifier
 
@@ -177,6 +188,7 @@ astId($Term)
 Here, the type of `$Term` can be anything, and the type of the whole term will
 be `astId`. AST Identifiers are used to assign [properties](../basic-constraints#ast-property).
 
+
 ## New
 
 Statix allows inline creation of [scopes](../scope-graphs#scopes):
@@ -188,11 +200,12 @@ new
 Statically, the `new` term has type `scope`. At runtime, this creates a fresh
 scope, and inserts that at the position of the `new` term.
 
-??? tip
+??? tip "Normalization"
     In terms of [existential constraints](../basic-constraints#exists), the inline
     `new` operator has behavior equal to `{s} new s`, where `s` is used at the
     position of the `new` term. So, for example, `{T} T == CLASS(new)` is equal
     to `{T s} new s, T == CLASS(s)`.
+
 
 ## Paths
 
@@ -205,10 +218,11 @@ Statix has two built-in constructors:
 - `_PathStep`: Ternary constructor that represents a traversed edge in a path.
   This constructor has type `path * label * scope -> path`.
 
-!!! note
+!!! note "Label Constraints"
     Although the labels in a `_PathStep` can be bound to a variable, and hence
     be compared with and included in other terms, no inspection, matching or
     comparison with label definitions is supported.
+
 
 ## Occurrences
 
@@ -237,6 +251,7 @@ The default occurrence identifier is `-`, which means that the occurrence has no
 identifier. The type of an occurrence literal is `occurrence`. For more information
 about namespaces, see the [Queries](../queries) section.
 
+
 ## Declaration Match
 
 Statix allows to query the current scope for declarations of a particular form:
@@ -251,7 +266,7 @@ type of the term is the output type of the relation.
 
 For more information on querying the scope graph, see the [Queries](../queries) section.
 
-??? tip
+??? tip "Declaration Match as Query"
     In terms of [regular queries](../queries), the declaration match is equal
     to a query with filter `e`, expecting a single output. E.g. `T == ?var["x"] in s`
     is equal to `query var filter e and { x' :- x' == "x"} in s |-> [(_, (_, T))]`.
