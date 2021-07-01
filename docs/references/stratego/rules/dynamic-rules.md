@@ -128,26 +128,65 @@ is added to the collection of rules.
 ## Dynamic Rule Scope
 
 It is possible to limit the _scope_ in which dynamic rule definitions are available.
-The construct `{| $Id ... : $Strategy |}` limits the availability of a dynamic rule defined within the brackets to that scope.
+The _dynamic rule scope_ `{| $Id ... : $Strategy |}` limits the availability of dynamic rules named `$Id ..` defined within the brackets to that scope.
 After exiting the scope, the state of the dynamic rule definitions before the scope is restored.
 
-```stratego
-  inline-functions :
-    Let(dec1*, e1) -> Let(dec2*, e2)
-    with {| InlineCall
-          : <map()> dec1* => dec2*
-          |}
-    
+For example, the following strategy defines inlining rules that are only available during the visit of the body of the `Let`:
 
+```stratego
+  inline :
+    Let(dec1*, e1) -> Let(dec2*, e2)
+    with <inline> dec1* => dec2*
+    with {| InlineCall
+          : <map(try(DefineInlineCall))> dec2*
+          ; <inline> e1 => e2
+          |}
 ```
+
+Application of this strategy to the program term
+
+```stratego
+Let([FunDef("inc", [..], ..)
+    , FunDef("twice", [..], ..)]
+  , Add(
+      Let([FunDef("twice", [..], [..])]
+        , Call("twice", [..])) // inline second def of twice
+      , Call("twice", [..]) // inline first def of twice
+    )
+)
+```
+
+will result in locally overriding the first dynamic rule for `"twice"`, but undoing that override at the end of the dynamic rule scope, such that it is available again at the second call to `"twice"`.
+
+While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the [Statix](../../statix/index.md) meta-language and perform a uniquify transformation to guarantee unique names. 
 
 
 ## Multiple Right-Hand Sides
 
+In order to collect multiple ways to rewrite a term use `rules( $Id :+ $Rule)`.
 
-## Dependent Dynamic Rules
+For example, the following is a small API for for emitting nodes in a control-flow graph consisting of blocks.  
 
-Dependent dynamic rules[@OlmosV05].
+```stratego
+add-cfg-node  :: CBlock -> CBlock
+all-cfg-nodes :: List(CBlock) -> List(CBlock)
+
+add-cfg-node =
+  ?block
+  ; rules( CFGNode :+ _ -> block )
+
+all-cfg-nodes =
+  <bagof-CFGNode <+ ![]>()
+```
+
+The `bagof-$Id` strategy is generated automatically and produces all right-hand sides corresponding to a left-hand side.
+
+## Other Dynamic Rule Extensions
+
+The papers by Olmos and Visser[@OlmosV05] and Bravenboer et. al[@BravenboerDOV06] describe more advanced features of dynamic rules, primarily inspired by data-flow transformations.
+For defining data-flow analyses, Spoofax now provides the [FlowSpec](../../flowspec/introduction.md) meta-language.
+
+
 
 ## References
 
