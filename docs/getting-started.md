@@ -16,7 +16,7 @@ The recommended way to get started with Spoofax is to download an [Eclipse][1] i
 
     [Download Eclipse with Spoofax without an embedded JRE](howtos/install-eclipse-bundle.md).
 
-    [Nightly releases](nightly.md).
+    [Development releases](release/develop.md).
 
 === "Eclipse Plugin"
     Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer through the update site:
