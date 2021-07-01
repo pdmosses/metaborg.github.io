@@ -122,6 +122,8 @@ nav:
       - background/stratego/traversal-with-rules.md
       - background/stratego/strategic-rewriting.md
     - background/documentation.md
+  - Support:
+    - support/index.md
 
 theme:
   name: material
