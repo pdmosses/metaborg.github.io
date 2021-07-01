@@ -2079,6 +2079,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../background/stratego/" class="md-nav__link">
+        Stratego Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../background/stratego/term-rewriting/" class="md-nav__link">
         Term Rewriting
       </a>
@@ -2470,14 +2482,14 @@ One-pass traversals traverse the tree one time, while fixed-point traversals, su
 <p>Rather than provide built-in implementations for all traversals needed in transformations, Stratego defines traversals in terms of the primitive ingredients of traversal.
 For example, a top-down, one-pass traversal strategy will first visit a node, and then descend to the children of a node in order to recursively traverse all subterms.
 Similarly, the bottom-up, fixed-point traversal strategy innermost, will first descend to the children of a node in order to recursively traverse all subterms, then visit the node itself, and possibly recursively reapply the strategy.</p>
-<p>Traversal in Stratego is based on the observation that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term.
+<p>Traversal in Stratego is based on the observation<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> that a full term traversal is a recursive closure of a one-step descent, that is, an operation that applies a strategy to one or more direct subterms of the subject term.
 By separating this one-step descent operator from recursion, and making it a first-class operation, many different traversals can be defined.</p>
 <p>Here we explore the ways in which Stratego supports the definition of traversal strategies.
 We start with explicitly programmed traversals using recursive traversal rules. Next, congruences operators provide a more concise notation for such data-type specific traversal rules.
 Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type.
 Given these basic mechanisms, we conclude with an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.</p>
 <h2 id="congruence-operators">Congruence Operators<a class="headerlink" href="#congruence-operators" title="Permanent link">&para;</a></h2>
-<p>Congruence operators provide a convenient abbreviation of <a href="/background/stratego/traversal-with-rules.md">traversal with rewrite rules</a>.
+<p>Congruence operators provide a convenient abbreviation of <a href="../../../../background/stratego/traversal-with-rules/">traversal with rewrite rules</a>.
 A congruence operator applies a strategy to each direct subterm of a specific constructor.
 For each n-ary constructor <code>c</code> declared in a signature, there is a corresponding congruence operator <code>c(s1 , ..., sn)</code>, which applies to terms of the form <code>c(t1 , ..., tn)</code> by applying the argument strategies to the corresponding argument terms.
 A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
@@ -2510,8 +2522,7 @@ Forgetting this import would lead to a complaint about an undeclared operator:
 -->
 
 <h2 id="defining-traversals-with-congruences">Defining Traversals with Congruences<a class="headerlink" href="#defining-traversals-with-congruences" title="Permanent link">&para;</a></h2>
-<p>Now we return to our dnf/cnf example, to see how congruence operators can help in their implementation.
-Since congruence operators basically define a one-step traversal for a specific constructor, they capture the traversal rules defined above.
+<p>Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of <a href="../../../../background/stratego/traversal-with-rules/">traversal rules</a>.
 That is, a traversal rule such as</p>
 <div class="highlight"><pre><span></span><code><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
@@ -2526,7 +2537,8 @@ Applying this to the <code>prop-dnf</code> program we can replace the traversal 
 <span class="w">  </span><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">dnf</span><span class=" -Punctuation">))</span><span class="w"></span>
 <span class="w">  </span><span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">cnf</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
-<p>Observe how the five traversal rules have been reduced to five congruences which fit on a single line.</p>
+<!-- Observe how the five traversal rules have been reduced to five congruences which fit on a single line. -->
+
 <h2 id="traversing-tuples-and-lists">Traversing Tuples and Lists<a class="headerlink" href="#traversing-tuples-and-lists" title="Permanent link">&para;</a></h2>
 <p>Congruences can also be applied to tuples, <code>(s1,s2,...,sn)</code>, and lists, <code>[s1,s2,...,sn]</code>.
 A special list congruence is <code>[]</code> which ‘visits’ the empty list.
@@ -2592,7 +2604,7 @@ That is, it is not possible to do something special for a particular subterm (th
 <span class="w">  </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;b&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <h2 id="defining-traversals-with-all">Defining Traversals with All<a class="headerlink" href="#defining-traversals-with-all" title="Permanent link">&para;</a></h2>
-<p>The <code>all(s)</code> operator is really the ultimate replacement for the <a href="/background/stratego/traversal-with-rules.md">traversal with rules</a> idiom.
+<p>The <code>all(s)</code> operator is really the ultimate replacement for the <a href="../../../../background/stratego/traversal-with-rules/">traversal with rules</a> idiom.
 Instead of specifying a rule or congruence for each constructor, the single application of the <code>all</code> operator takes care of traversing all constructors.
 Thus, we can replace the <code>propbu</code> strategy by a completely generic definition of bottom-up traversal.
 Consider again the last definition of <code>propbu</code>:</p>
@@ -2678,6 +2690,14 @@ If that fails, its direct subterms are searched one by one (from left to right),
 <div class="highlight"><pre><span></span><code><span class="nv">reduce-par</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="k">rec</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">(</span><span class="k">some</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Bas Luttik and Eelco Visser. Specification of rewriting strategies. In M. P. A. Sellink, editor, <em>2<sup>nd</sup> International Workshop on the Theory and Practice of Algebraic Specifications <span class="arithmatex">\(ASF\+SDF 1997\)</span></em>, Electronic Workshops in Computing. Berlin, November 1997. Springer-Verlag.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               

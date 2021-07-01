@@ -2007,6 +2007,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../stratego/" class="md-nav__link">
+        Stratego Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../stratego/term-rewriting/" class="md-nav__link">
         Term Rewriting
       </a>
@@ -2322,13 +2334,18 @@
                 
                 
                 <h1 id="a-stratego-bibliography">A Stratego Bibliography<a class="headerlink" href="#a-stratego-bibliography" title="Permanent link">&para;</a></h1>
-<p>The original publication on Stratego appeared in ICFP'98<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> and introduced named rewrite rules and a language of strategy combinators. The paper also introduced contextual terms. These where eventually replaced by <em>dynamic rewrite rules</em><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
-<p>operational semantics<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<p>core language <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
-<p>System descriptions Stratego 0.5 <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>,
-Stratego/XT 0.16 [@Bravenboer],
-Stratego/XT 0.17 [@Bravenboer]</p>
-<p>gradual typing <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></p>
+<p>The original publication on Stratego appeared in ICFP'98<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> and introduced named rewrite rules and a language of strategy combinators with an operational semantics.
+An important aspect of the design of Stratego is the separation of the language in a core language<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> of strategy combinators and a high-level 'sugar' language of rewrite rules that can be desugared to the core language.
+This is still the way that the Stratego compiler is organized.</p>
+<p>The original also introduced contextual terms.
+These where eventually replaced by <a href="/reference/stratego/rules/dynamic-rules.md">dynamic rewrite rules</a><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
+The paper about dynamic rules<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> also provides a comprehensive overview of Stratego and its operational semantics.</p>
+<p>Stratego and its ecosystem are described in a number of system description papers, including
+Stratego 0.5<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>,
+Stratego/XT 0.16<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>,
+Stratego/XT 0.17<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup></p>
+<p>Recently, a gradual type system was designed for Stratego<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>.
+This design and its incremental compiler<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup> are the basis for the Stratego2 version of the language.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
@@ -2337,16 +2354,25 @@ Stratego/XT 0.17 [@Bravenboer]</p>
 <p>Eelco Visser, Zine-El-Abidine Benaissa, and Andrew P. Tolmach. Building program optimizers with rewriting strategies. In Matthias Felleisen, Paul Hudak, and Christian Queinnec, editors, <em>Proceedings of the third ACM SIGPLAN international conference on Functional programming</em>, 13&ndash;26. Baltimore, Maryland, United States, 1998. ACM. URL: <a href="http://doi.acm.org/10.1145/289423.289425">http://doi.acm.org/10.1145/289423.289425</a>, <a href="https://doi.org/10.1145/289423.289425">doi:10.1145/289423.289425</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Martin Bravenboer, Arthur van Dam, Karina Olmos, and Eelco Visser. Program transformation with scoped dynamic rewrite rules. <em>Fundamenta Informaticae</em>, 69<span class="arithmatex">\(1\-2\)</span>:123&ndash;178, 2006. URL: <a href="https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06">https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Eelco Visser and Zine-El-Abidine Benaissa. A core language for rewriting. <em>Electronic Notes in Theoretical Computer Science</em>, 15:422&ndash;441, 1998. URL: <a href="http://dx.doi.org/10.1016/S1571-0661(05)80027-1">http://dx.doi.org/10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>, <a href="https://doi.org/10.1016/S1571-0661(05)80027-1">doi:10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Eelco Visser and Zine-El-Abidine Benaissa. A core language for rewriting. <em>Electronic Notes in Theoretical Computer Science</em>, 15:422&ndash;441, 1998. URL: <a href="http://dx.doi.org/10.1016/S1571-0661(05)80027-1">http://dx.doi.org/10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>, <a href="https://doi.org/10.1016/S1571-0661(05)80027-1">doi:10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Martin Bravenboer, Arthur van Dam, Karina Olmos, and Eelco Visser. Program transformation with scoped dynamic rewrite rules. <em>Fundamenta Informaticae</em>, 69<span class="arithmatex">\(1\-2\)</span>:123&ndash;178, 2006. URL: <a href="https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06">https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
 <p>Eelco Visser. Stratego: a language for program transformation based on rewriting strategies. In Aart Middeldorp, editor, <em>Rewriting Techniques and Applications, 12<sup>th</sup> International Conference, RTA 2001, Utrecht, The Netherlands, May 22-24, 2001, Proceedings</em>, volume 2051 of Lecture Notes in Computer Science, 357&ndash;362. Springer, 2001. URL: <a href="https://doi.org/10.1007/3-540-45127-7_27">https://doi.org/10.1007/3-540-45127-7_27</a>, <a href="https://doi.org/10.1007/3-540-45127-7_27">doi:10.1007/3-540-45127-7_27</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Jeff Smits and Eelco Visser. Gradually typing strategies. In Ralf Lämmel, Laurence Tratt, and Juan de Lara, editors, <em>Proceedings of the 13<sup>th</sup> ACM SIGPLAN International Conference on Software Language Engineering, SLE 2020, Virtual Event, USA, November 16-17, 2020</em>, 1&ndash;15. ACM, 2020. URL: <a href="https://doi.org/10.1145/3426425.3426928">https://doi.org/10.1145/3426425.3426928</a>, <a href="https://doi.org/10.1145/3426425.3426928">doi:10.1145/3426425.3426928</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Martin Bravenboer, Karl Trygve Kalleberg, Rob Vermaas, and Eelco Visser. Stratego/XT 0.16: components for transformation systems. In John Hatcliff and Frank Tip, editors, <em>Proceedings of the 2006 ACM SIGPLAN Workshop on Partial Evaluation and Semantics-based Program Manipulation, 2006, Charleston, South Carolina, USA, January 9-10, 2006</em>, 95&ndash;99. ACM, 2006. URL: <a href="http://doi.acm.org/10.1145/1111542.1111558">http://doi.acm.org/10.1145/1111542.1111558</a>, <a href="https://doi.org/10.1145/1111542.1111558">doi:10.1145/1111542.1111558</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Martin Bravenboer, Karl Trygve Kalleberg, Rob Vermaas, and Eelco Visser. Stratego/XT 0.17. A language and toolset for program transformation. <em>Science of Computer Programming</em>, 72<span class="arithmatex">\(1\-2\)</span>:52&ndash;70, 2008. URL: <a href="http://dx.doi.org/10.1016/j.scico.2007.11.003">http://dx.doi.org/10.1016/j.scico.2007.11.003</a>, <a href="https://doi.org/10.1016/j.scico.2007.11.003">doi:10.1016/j.scico.2007.11.003</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Jeff Smits and Eelco Visser. Gradually typing strategies. In Ralf Lämmel, Laurence Tratt, and Juan de Lara, editors, <em>Proceedings of the 13<sup>th</sup> ACM SIGPLAN International Conference on Software Language Engineering, SLE 2020, Virtual Event, USA, November 16-17, 2020</em>, 1&ndash;15. ACM, 2020. URL: <a href="https://doi.org/10.1145/3426425.3426928">https://doi.org/10.1145/3426425.3426928</a>, <a href="https://doi.org/10.1145/3426425.3426928">doi:10.1145/3426425.3426928</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Jeff Smits, Gabriël Konat, and Eelco Visser. Constructing hybrid incremental compilers for cross-module extensibility with an internal build system. <em>Programming Journal</em>, 4<span class="arithmatex">\(3\)</span>:16, 2020. URL: <a href="https://doi.org/10.22152/programming-journal.org/2020/4/16">https://doi.org/10.22152/programming-journal.org/2020/4/16</a>, <a href="https://doi.org/10.22152/programming-journal.org/2020/4/16">doi:10.22152/programming-journal.org/2020/4/16</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

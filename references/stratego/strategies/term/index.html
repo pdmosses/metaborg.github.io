@@ -2107,6 +2107,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../background/stratego/" class="md-nav__link">
+        Stratego Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../background/stratego/term-rewriting/" class="md-nav__link">
         Term Rewriting
       </a>
@@ -2755,23 +2767,26 @@ In other words,</p>
 </code></pre></div>
 <p>because after all, there is no chance that Stratego will be unable to add two integers, and so if the contents of the <code>with</code> clause fails it means something has gone wrong – perhaps an <code>Int</code> term somehow ended up with a parameter that does not actually represent an integer – and Stratego should quit now.</p>
 <h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
-<p>Furthermore, in setting auxiliary variables often the full power of Stratego strategies is not used, but rather new terms are simply built as needed. Stratego provides an <code>:=</code> operator for this purpose; the above rule can be written probably more clearly as</p>
+<p>The assignment combinator <code>:=</code> is a variation of apply-and-match with terms on both sides of the assignment.
+The strategy <code>p1 := p2</code> builds <code>p2</code> and matches the result against <code>p1</code>, i.e. it is syntactic sugar for <code>!p2; ?p1</code>.
+The strategy is often combine with strategy application into <code>p1 := &lt;s&gt;p2</code>, which is equivalent to <code>&lt;s&gt;p2 =&gt; p1</code>, but more familiar to an audience with an imperative mindset.</p>
+<p>For example, consider the following rewrite rule</p>
 <div class="highlight"><pre><span></span><code><span class="nv">EvalPlus</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="nv">i</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="nv">j</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="nv">k</span><span class=" -Punctuation">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">k</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">addS</span><span class=" -Punctuation">&gt;(</span><span class="nv">i</span><span class=" -Punctuation">,</span><span class="nv">j</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
-<p>Technically, <code>p1 := p2</code> (which can be used anywhere a strategy is called for, although it is primarily useful in <code>with</code> and <code>where</code> clauses) is just syntactic sugar for <code>!p2; ?p1</code>.
-In other words, it builds the value <code>p2</code>, and then matches it with <code>p1</code>.
-In the typical case that <code>p1</code> is just a variable, this ends up assigning the result of building the expression <code>p2</code> to that variable.</p>
-<p>To sum up, we have actually already seen an example of both <code>with</code> and <code>:=</code> in the “glue” strategy used to run a Stratego transformation via Editor Services:</p>
+<!-- To sum up, we have actually already seen an example of both `with` and `:=` in the “glue” strategy used to run a Stratego transformation via Editor Services:
+
 <div class="highlight"><pre><span></span><code><span class="nv">do-eval</span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span><span class=" -Punctuation">(</span><span class="nv">selected</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">filename</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">result</span><span class=" -Punctuation">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">guarantee-extension</span><span class=" -Punctuation">(|</span><span class="s">&quot;eval.aterm&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">path</span><span class="w"></span>
 <span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">result</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">eval</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">selected</span><span class="w"></span>
 </code></pre></div>
-<p>To make the operation of this rule clearer, the two components of the outcome are separated into auxiliary computations in the <code>with</code> clause, and these two auxiliaries are implemented as assignments with the <code>:=</code> operator.
+
+To make the operation of this rule clearer, the two components of the outcome are separated into auxiliary computations in the `with` clause, and these two auxiliaries are implemented as assignments with the `:=` operator.
 Moreover, if either the eval strategy fails or if Stratego is unable to compute the proper output filename, there is no point in continuing.
-So Stratego will simply terminate immediately and report the error.</p>
+So Stratego will simply terminate immediately and report the error. -->
+
 <!-- ## Wrap and Project
 
 Term wrapping and projection are concise idioms for constructing terms that wrap the current term and for extracting subterms from the current term. -->

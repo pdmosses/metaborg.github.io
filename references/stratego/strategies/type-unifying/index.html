@@ -1619,13 +1619,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2125,6 +2118,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../background/stratego/" class="md-nav__link">
+        Stratego Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../background/stratego/term-rewriting/" class="md-nav__link">
         Term Rewriting
       </a>
@@ -2531,13 +2536,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2646,7 +2644,7 @@ For instance, the following instantiation defines <code>term-size</code> using <
 <span class="nv">AssignSize</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w">         </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">inc</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
 <span class="nv">IfSize</span><span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">)</span><span class="w">     </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">inc</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
-<p>This looks suspiciously like the <a href="/background/stratego/traversal-with-rules/">traversal with rules</a> pattern.
+<p>This looks suspiciously like the <a href="../../../../background/stratego/traversal-with-rules/">traversal with rules</a> pattern.
 Defining folds in this manner has several limitations.
 In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor.
 Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.</p>
@@ -2817,7 +2815,9 @@ The following implosion strategy achieves this using generic term construction:<
 See the source code for the full strategy.</p>
 <p>Generic term construction and deconstruction support the definition of generic analysis and generic translation problems.
 The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<!-- ## References
+
+ -->
                 
               
               

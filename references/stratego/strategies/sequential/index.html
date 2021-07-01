@@ -2093,6 +2093,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../background/stratego/" class="md-nav__link">
+        Stratego Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../background/stratego/term-rewriting/" class="md-nav__link">
         Term Rewriting
       </a>
@@ -2496,7 +2508,7 @@
 Thus, Stratego consists of a core language<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and a 'sugar' language defined by reduction to the core language.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs where possible.</p>
+<p>While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs such as <a href="../../rules/rewrite-rules/">rewrite rules</a> where possible.</p>
 </div>
 <h2 id="identity-and-failure">Identity and Failure<a class="headerlink" href="#identity-and-failure" title="Permanent link">&para;</a></h2>
 <p>The most basic operations in Stratego are <code>id</code> and <code>fail</code>.
@@ -2733,16 +2745,29 @@ In those cases non-deterministic choice can be used.</p>
 If both strategies fail, then the choice fails as well.
 Operationally the choice operator first tries one strategy, and, if that fails, tries the other.
 The order in which this is done is undefined, i.e., arbitrarily chosen by the compiler.</p>
-<p>The <code>+</code> combinator is used to model modular composition of rewrite rules and strategies with the same name.
-Multiple definitions with the same name, are merged into a single definition with that name, where the bodies are composed with <code>+</code>.
+<p>The <code>+</code> combinator is used to model modular composition of rewrite rules and strategies with the same name, but in different modules.
+Multiple definitions with the same name in different modules, are merged into a single definition with that name, where the bodies are composed with <code>+</code>.
 The following transformation illustrates this:</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s1</span><span class="w">  </span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">A</span><span class="w"></span>
+<span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s1</span><span class="w"></span>
+<span class="k">module</span><span class="w"> </span><span class="nv">B</span><span class="w">   </span>
 <span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s2</span><span class="w">  </span>
+<span class="k">module</span><span class="w"> </span><span class="nv">main</span><span class="w"></span>
+<span class="w">  </span><span class="k">imports</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">B</span><span class="w"></span>
 <span class=" -Punctuation">=&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s2</span><span class="w"></span>
+<span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s1</span><span class="w"></span>
 </code></pre></div>
 <p>This transformation is somewhat simplified; the complete transformation needs to take care of local variables and parameters.</p>
 <p>While the <code>+</code> combinator is used internally by the compiler for this purpose, programmers are advised not to use this combinator, but rather use the left choice combinator <code>&lt;+</code> to avoid surprises.</p>
+<p>In the past, the <code>+</code> combinator was also used to compose definitions with the same name <em>within</em> a module.
+This has been replaced by interpreting such compositions with the textual order of the definitions.
+The following transformation illustrates this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">A</span><span class="w"></span>
+<span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s1</span><span class="w"></span>
+<span class="w">  </span><span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s2</span><span class="w"></span>
+<span class=" -Punctuation">=&gt;</span><span class="w"></span>
+<span class="nv">f</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">s2</span><span class="w"></span>
+</code></pre></div>
 <h2 id="recursion">Recursion<a class="headerlink" href="#recursion" title="Permanent link">&para;</a></h2>
 <p>Repeated application of a strategy can be achieved with recursion.
 There are two styles for doing this; with a recursive definition or using the fixpoint operator <code>rec</code>.
@@ -2810,7 +2835,7 @@ S(S(S(Z))) -->
 
 <h2 id="a-library-of-iteration-strategies">A Library of Iteration Strategies.<a class="headerlink" href="#a-library-of-iteration-strategies" title="Permanent link">&para;</a></h2>
 <p>Using sequential composition, choice, and recursion a large variety of iteration strategies can be defined.
-The following definitions are part of the Stratego Library (in module strategy/iteration).</p>
+The following definitions are part of the Stratego Library (in module <a href="http://releases.strategoxt.org/docs/api/libstratego-lib/stable/docs/">strategy/iteration</a>).</p>
 <div class="highlight"><pre><span></span><code><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
 <span class="w">  </span><span class="k">rec</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"></span>
 
