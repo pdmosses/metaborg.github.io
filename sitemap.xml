@@ -359,5 +359,9 @@
      <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/</loc>
      <lastmod>2021-07-01</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://www.spoofax.dev/spoofax-docs/support/</loc>
+     <lastmod>2021-07-01</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
