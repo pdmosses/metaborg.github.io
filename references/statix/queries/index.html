@@ -1085,6 +1085,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#query-targets" class="md-nav__link">
+    Query Targets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#filters" class="md-nav__link">
     Filters
   </a>
@@ -1100,7 +1107,14 @@
       
         <li class="md-nav__item">
   <a href="#result-pattern" class="md-nav__link">
-    Result pattern
+    Result Pattern
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-sugar" class="md-nav__link">
+    Query Sugar
   </a>
   
 </li>
@@ -2312,6 +2326,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#query-targets" class="md-nav__link">
+    Query Targets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#filters" class="md-nav__link">
     Filters
   </a>
@@ -2327,7 +2348,14 @@
       
         <li class="md-nav__item">
   <a href="#result-pattern" class="md-nav__link">
-    Result pattern
+    Result Pattern
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-sugar" class="md-nav__link">
+    Query Sugar
   </a>
   
 </li>
@@ -2350,9 +2378,230 @@
                 
                 
                 <h1 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h1>
+<p>Scope Graphs, as introduced in the <a href="../scope-graphs">previous section</a> can be
+queried. Scope graph queries always start in a particular scope, and traverse
+the scope graph in order to find declarations under a particular relation. The
+syntax for queries is as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span>$<span class="nv">QueryTarget</span><span class="w"></span>
+<span class="w">   </span><span class="k">filter</span><span class="w"> </span>$<span class="nv">LabelRE</span><span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataWF</span><span class="w"></span>
+<span class="w">      </span><span class="k">min</span><span class="w"> </span>$<span class="nv">LabelOrder</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataLeq</span><span class="w"></span>
+<span class="w">       </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>$<span class="nv">Result</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>$Scope</code> parameter is a term with type <code>scope</code>. In this scope, the query starts.
+All other query arguments are explained in the following subsections.</p>
+<h2 id="query-targets">Query Targets<a class="headerlink" href="#query-targets" title="Permanent link">&para;</a></h2>
+<p>The query target is the 'thing' that is looked for in the query. This can be one of:</p>
+<ul>
+<li><code>$Relation</code>: A <em>relation identifier</em>. In this case, the query will return data
+  that is declared under that relation.</li>
+<li><code>()</code>: the <em>end of path</em> query target. In this case, the query will return all
+  paths that match the appropriate filters.</li>
+</ul>
+<details class="hint"><summary><code>()</code> as relation</summary><p>The <code>()</code> query target can be thought of as a regular relation if one assumes
+<code>#1 |-()-&gt; #1</code> to exist for every scope <code>#1</code> in the scope graph.</p>
+</details>
 <h2 id="filters">Filters<a class="headerlink" href="#filters" title="Permanent link">&para;</a></h2>
+<p>Query results can be filtered using two different filters. First, a regular
+expression on labels (<code>$LabelRE</code>) defines a filter on the paths that the query
+resolution algorithm will explore. This regular expression can be build from
+the following components:</p>
+<ul>
+<li><code>$Label</code>: Matches paths that travers a single edge with the label <code>$Label</code>.
+  Requires the label to be declared in a <code>signature</code> section, as explained in
+  the section on <a href="../scope-graphs#edges">edges</a>.</li>
+<li><code>e</code>: <em>epsilon</em>. Matches the empty path. Queries using this filter will only return
+  declarations in the scope where the query started.</li>
+<li><code>0</code>: <em>empty set</em>. Matches no path.</li>
+<li><code>$LabelRE $LabelRE</code>: <em>concatenation</em>. Matches paths that can be split in two
+  segments <code>p1</code> and <code>p2</code>, such that <code>p1</code> matches the first regular expression,
+  and <code>p2</code> matches the second.</li>
+<li><code>$LabelRE | $LabelRE</code>: <em>disjunction</em>. Matches paths that match either the first
+  or the second regular expression.</li>
+<li><code>$LabelRE &amp; $LabelRE</code>: <em>conjunction</em>. Matches paths that match both the first
+  and the second regular expression.</li>
+<li><code>~$LabelRE</code>: <em>negation</em>. Matches all paths that do <em>not</em> match the inner
+  regular expression.</li>
+<li><code>$LabelRE*</code>: <em>closure</em>. Matches paths that can be split into zero or more
+  segments that each match the inner regular expression.</li>
+<li><code>$LabelRE+</code>: <em>one or more</em>. Matches paths that can be split into one or more
+  segments that each match the inner regular expression. Equivalent to
+  <code>$LabelRE $LabelRE*</code></li>
+<li><code>$LabelRE?</code>: <em>zero or one</em>. Matches paths that are matched by the inner regular
+  expression, or empty paths. Equivalent to <code>$LabelRE | e</code>.</li>
+</ul>
+<p>Additionally, regular expression can be grouped by brackets.</p>
+<p>Second, <em>data well-formedness</em> filters (<code>$DataWF</code>) can be applied. These filters
+restrict which datums are included in the query result. They are expressed as
+anonymous lambda rules:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>This rule is instantiated for every <a href="../scope-graphs#declarations">declaration</a>
+that is reachable according to the path well-formedness expression. When the
+instantiated body constraint holds, the declaration is included in the query
+answer.</p>
+<details class="info"><summary>Lambda Instantiation</summary><p>Lambda constraint instantiation is similar to rule instantiation. For more
+information on rule instantiation, see the section about
+<a href="../rules#rule-definitions">rule definitions</a>.</p>
+</details>
+<details class="info"><summary>Entailment semantics</summary><p>Data well-formedness conditions are treated as entailment/implied conditions.
+Hence, they are not allowed to extend or refine the outer context. For more
+information on this evaluation mode, see the documentation of the
+<a href="../basic-constraints#try"><code>try</code> construct</a>.</p>
+</details>
+<p>The type of the predicate that is expected depends on the kind of relation that
+is used. For predicative relations, all arguments in the relation are provided
+to the data well-formedness constraint. However, for functional relations, the
+'output value' (i.e. the value that the relation maps to) is <em>not</em> provided to
+the filter.</p>
+<p>When multiple arguments are provided to a data-wellformedness predicate
+(when there are multiple 'input' arguments to the queried relation), these
+arguments must be wrapped in a tuple.</p>
+<p>When the end-of-path query target <code>()</code> is used, the data-wellformedness constraint
+expects a single scope as argument.</p>
+<details class="example"><summary>Example of filters</summary><p>A simple query for variables illustrates both filters. Suppose the relation
+<code>var</code> is in scope with type <code>string -&gt; TYPE</code>. Then a rule (with
+<a href="../terms#type-ascription">type ascriptions</a>) that looks up a
+variable definition can be defined as follows.
+<div class="highlight"><pre><span></span><code><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">R</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span><span class="w"></span>
+<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>?<span class="w"></span>
+<span class="w">       </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">R</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+In this example, the path well-formedness expression <code>P* I?</code> indicates that
+any number of <code>P</code> edges may be traversed, and then, optionally, a single <code>I</code>
+edge. This resolution policy excludes e.g. transitive imports, and the
+traversal of <code>P</code> edges in an imported module.</p>
+<p>The anonymous data well-formedness condition states that a declaration
+with name <code>name'</code> may only be included in the query result if <code>name'</code> is
+equal to <code>name</code> from the enclosing scope. Suppose that <code>resolveVar</code> is
+instantiated for <code>name |-&gt; "x"</code>, and declarations with name <code>"x"</code> and <code>"y"</code>
+are in scope. Now the anonymous inner rule is instantiated for both <code>"x"</code>
+and <code>"y"</code>. For <code>"x"</code>, the constraint <code>"x" == "x"</code> is generated, which can be
+solved successfully. For <code>"y"</code> however, the constraint <code>"y" == "x"</code> is
+generated, which cannot be solved successfully. Hence, only the declaration
+for <code>"x"</code> is included in the eventual query answer.</p>
+</details>
+<p>There are two shorthands for common data well-formedness predicates:</p>
+<ul>
+<li><code>true</code>, which is equivalent to <code>{ _ :- true }</code>. This shorthand
+  will thus include all encountered declaration in the query result.</li>
+<li><code>false</code>, which is equivalent to <code>{ _ :- false }</code>. This shorthand
+  will include no declarations in the query answer.</li>
+</ul>
+<!---
+This pattern does not yet work correctly
+- `{ $Pattern }`, is equivalent to `{ $Pattern :- true }` and hence will include
+  all declarations that match `$Pattern`.
+-->
+<p>Syntactically, the query filter can be omitted entirely, or the data well-formedness
+predicate can be omitted, even if a path filter is provided. By default, the
+path filter is <code>~0</code>, meaning that every path is considered valid, and the data
+well-formedness predicate is <code>true</code>, meaning that every datum will be returned
+in the query answer.</p>
 <h2 id="shadowing">Shadowing<a class="headerlink" href="#shadowing" title="Permanent link">&para;</a></h2>
-<h2 id="result-pattern">Result pattern<a class="headerlink" href="#result-pattern" title="Permanent link">&para;</a></h2>
+<p>For many languages, name resolution involves dealing with shadowing correctly.
+In Statix queries, it is possible to encode shadowing policies using label orders
+and data comparison predicates. A declaration shadows another declaration iff
+its path is 'smaller than' the other path by a prefix order defined over a label
+comparison relation, and when the declaration data is smaller than or equal to
+the data of the other declaration according to a data comparison predicate.</p>
+<p>Label orders (<code>$LabelOrder</code>) are expressed as less-than relations on labels.</p>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span>&lt;<span class="w"> </span>$<span class="nv">Label</span><span class="w"></span>
+</code></pre></div>
+<p>Here, a label is either a <a href="../scope-graphs#edges">declared label symbol</a>, or <code>$</code>,
+which denotes the 'end-of-path' label. This label can be used to express orders
+on path length. For example, <code>$ &lt; P</code> expresses that paths with fewer <code>P</code> labels
+are preferred over paths with more <code>P</code> labels.</p>
+<div class="admonition warning">
+<p class="admonition-title">Strict Partial Order</p>
+<p>Label orders must be <em>strict partial orders</em>. That is, they are implicitly
+transitive, but may not be reflexive or symmetric. Label order specifications
+that are not strict partial orders will be rejected at specification loading
+time.</p>
+</div>
+<details class="warning"><summary>Prefix order</summary><p>Note that the label order is a <em>prefix order</em>, not a <em>lexicographical
+full-path order</em>. That is, paths that diverged by traversing different edges
+with the same label are not ordered by this relation.</p>
+</details>
+<p>In addition to a label ordering relation, a data comparison predicate (<code>$DataLeq</code>)
+can be provided. This predicate can be written as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>This constraint indicates that the left argument is smaller than the right
+argument, given that the constraint can be satisfied.</p>
+<p>The types of each patterns is similar to the type of the data-wellformedness
+predicate. When the queried relation is predicative (i.e. has no 'output'),
+the pattern is a tuple containing arguments of the declaration that is compared.
+If the queried relation is functional, a tuple with only the 'input' arguments
+must be provided. When there is only one declaration argument, the tuple may be
+omitted.</p>
+<p>There are several shorthands available for the data comparison constraint:</p>
+<ul>
+<li><code>true</code> is equivalent to <code>{ _, _ :- true }</code>, and hence ensures that declarations
+  are shadowed based on the label order only.</li>
+<li><code>false</code> is equivalent to <code>{ _, _ :- false }</code>, and hence ensures that no
+  shadowing is applied, even when paths can be ordered using the label order.</li>
+<li><code>$ConstraintName</code> is equivalent to <code>{ d1, d2 :- $ConstraintName(d1, d2) }</code>,
+  which means that <code>d1</code> shadows <code>d2</code> when <code>$ConstraintName(d1, d2)</code> can be
+  satisfied.</li>
+<li><code>{ $Pattern, $Pattern }</code> is equivalent to <code>{ $Pattern, $Pattern :- true }</code>,
+  which means that the first argument shadows the second if they match the
+  patterns.</li>
+</ul>
+<details class="tip"><summary>Non-linear Patterns</summary><p>The data comparison shorthand is mostly used with non-linear patterns. For
+example, to encode that declarations with equal names shadow each other,
+the data comparison shorthand <code>{ x, x }</code> can be used. When using this pattern
+however, please ensure that variable names are fresh, because the behavior
+of shadowing names is planned to change in the future.</p>
+</details>
+<details class="warning"><summary>Partial Order</summary><p>Data comparison functions orders must be <em>(non-strict) partial orders</em>. That
+is, they are implicitly transitive and reflexive, but may not be symmetric.
+However, this is not validated for tractability reasons. Therefore, for any
+predicate that is not a partial order (other than <code>true</code>), shadowing
+behavior is undefined.</p>
+</details>
+<p>Syntactically, the shadowing parameters can be omitted altogether, or the data
+comparison predicate can be omitted, even when an label order is specified. The
+default value of the label order is an empty relation, while the default value
+of the data comparison predicate is <code>true</code>. On the one hand, this ensures that
+no shadowing is applied when no shadowing parameters are provided. On the other
+hand, when a label order, but no data comparison predicate is provided, all
+declarations shadow each other based on a path comparison only.</p>
+<p>Operationally, the label order and the data comparison constraints are applied
+<em>conjunctively</em>. For any declaration <code>d</code> and <code>d'</code>, if the path to <code>d</code> is smaller
+than the path to <code>d'</code> according to the label order, <em>and</em> the application of the
+data comparison constraint to <code>d, d'</code> can be satisfied, <code>d'</code> will be excluded
+from the query answer.</p>
+<h2 id="result-pattern">Result Pattern<a class="headerlink" href="#result-pattern" title="Permanent link">&para;</a></h2>
+<p>When the query resolution is completed, the query result will be unified with
+the <code>$Result</code> term. This term is a list that contains path-datum entries.
+Therefore, the type of this term is <code>list((path * R))</code>, where <code>R</code> is a tuple
+type with the argument types of the relation that is queried. In case the
+relation is functional, the 'output' type is <em>included</em> in the result. When the
+relation is unary, the tuple is omitted. When the <a href="#query-target">query target</a>
+is <code>()</code>, <code>R</code> is the <code>scope</code> type.</p>
+<p>For the syntactic structure of the paths, please refer to the section on
+<a href="../terms#paths">path terms</a>. Semantically, for any query answer pair <code>(p, d)</code>,
+the path <code>p</code> represents the path followed from the scope in which the query
+started to the scope in which the declaration of <code>d</code> was found.</p>
+<details class="info"><summary>Top-level Destination scope</summary><p>Since path terms are <em>left-recursive</em>, have the source scope at the left
+side, and the destination scope (i.e. the scope in which the paired
+datum was declared) on the right, it turns out that the target scope is in
+the third argument of the <em>top-level</em> constructor. This is convenient, since
+it allows to access the target scope without destructuring the whole path.
+(Direct access to the source scope is not really important, since it is
+already available as an argument to the query constraint). On the other
+side, it is sometimes perceived as not completely intuitive to have the
+target scope in the top level constructor.</p>
+</details>
+<p>When multiple results are returned by the query, Statix has no guarantees on the
+order of their appearence in the list.</p>
+<h2 id="query-sugar">Query Sugar<a class="headerlink" href="#query-sugar" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since Spoofax 2.5.15, the query sugar constructs are deprecated.</p>
+</div>
                 
               
               
