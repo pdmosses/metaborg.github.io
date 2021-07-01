@@ -120,7 +120,12 @@ nav:
       - background/stratego/limitations-of-rewriting.md
       - background/stratego/traversal-with-rules.md
       - background/stratego/strategic-rewriting.md
-    - background/documentation.md
+    - Documentation:
+      - background/documentation/index.md
+      - Adding Pages: background/documentation/pages.md
+      - Links: background/documentation/links.md
+      - Citations: background/documentation/citations.md
+      - Structure: background/documentation/structure.md
   - Support:
     - support/index.md
     - support/contributions.md
