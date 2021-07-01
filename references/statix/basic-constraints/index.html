@@ -2244,25 +2244,201 @@
                 
                 
                 <h1 id="basic-constraints">Basic Constraints<a class="headerlink" href="#basic-constraints" title="Permanent link">&para;</a></h1>
+<p>As mentioned in the <a href="../language-concepts">Language Concepts</a> section, the core
+idea of Statix is to see a type-checking problem as a constraint solving problem.
+Therefore, it is crucial to be able to express constraints in a specification.</p>
+<p>In this section, we discuss all constraints that are note related to scope graphs.
+These constraints are explained in-depth in the sections on <a href="../scope-graphs">Scope Graph
+Construction</a> and <a href="../queries">Queries</a>.</p>
 <h2 id="true">True<a class="headerlink" href="#true" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">true</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>true</code> constraint is the constraint that is trivially satisfied.</p>
 <h2 id="false">False<a class="headerlink" href="#false" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">false</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+</code></pre></div>
+<p>The <code>false</code> constraint is the constraint that will always fail. Just as all other
+constraints that can fail, it is possible to add a <a href="#messages">message</a>.</p>
 <h2 id="conjunction">Conjunction<a class="headerlink" href="#conjunction" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Constraint</span><span class="p">,</span><span class="w"></span>
+$<span class="nv">Constraint</span><span class="w"></span>
+</code></pre></div>
+<p>A conjunction of constraints is satisfied when both conjuncts are satisfied.
+Note that the solving order of the conjuncts is undefined.</p>
 <h2 id="equality">Equality<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+</code></pre></div>
+<p>Asserts that two terms are equal. When necessary, this constraint infers values
+for free variables in the terms. Statically, both terms should have the same type.</p>
 <h2 id="disequality">Disequality<a class="headerlink" href="#disequality" title="Permanent link">&para;</a></h2>
-<ul>
-<li>briefly describe disequality with free variables</li>
-</ul>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+</code></pre></div>
+<p>Asserts that two terms are not equal. Statically, both terms should have the same type.</p>
+<p>Statix treats free variables as different from each other, and as different from
+concrete terms. Therefore, when any of both terms is not ground (i.e. contains
+free variables), the constraint will <em>not</em> fail.</p>
 <h2 id="exists">Exists<a class="headerlink" href="#exists" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Var</span>*<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">Constraint</span><span class="w"></span>
+</code></pre></div>
+<p>An exists constraint introduces new existentially quantified variables in the
+scope of its subconstraint. The names of the variables in an exists constraint
+should be unique (i.e. <code>{x x} true</code> is not allowed), but are allowed to shadow
+outer variables.</p>
 <h2 id="try">Try<a class="headerlink" href="#try" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+</code></pre></div>
+<p>The <code>try</code> constraint validates whether the outer context implies that the inner
+constraint holds. That is: any model for the outer context (all other constraints
+than <code>$Constraint</code>) is also a (not necessarily minimal) model for <code>$Constraint</code>.</p>
+<p>In order to implement these semantics, the <code>$Constraint</code> is handled differently
+than regular constraints in two ways.</p>
+<ol>
+<li>The <code>$Constraint</code> is <em>not</em> allowed to refine the outer context. Therefore,
+   equality constraints will not infer values for variable that were introduced
+   outside the <code>try</code>. Likewise, scopes can not be instantiated, nor edges/declarations
+   added to scopes from outside the <code>try</code>. This behavior also implies that values
+   constructed within a <code>try</code> construct will never escape the <code>try</code> context.</li>
+<li>Disequalities in <code>$Constraint</code> that involve free variables cause the <code>try</code>
+   to fail, because appearently the disequality does not for all models of the
+   outer context.</li>
+</ol>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Explain the design choices for <code>try</code> in a background section.</p>
+</div>
 <h2 id="ast-identifiers">AST Identifiers<a class="headerlink" href="#ast-identifiers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Term</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>astId</code> constraint asserts that its second argument is the term index of the
+first argument. The type of the first argument may be anything, but the type of
+the second argument is <code>astId</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Often, using an <a href="../terms#ast-identifier"><code>astId</code> <em>term</em></a> will read more natural.</p>
+</div>
 <h2 id="ast-property">AST Property<a class="headerlink" href="#ast-property" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>@$<span class="nv">Term</span><span class="p">.</span>$<span class="nv">Prop</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+</code></pre></div>
+<p>Statix allows to set properties on AST nodes. These properties can be used to
+communicate typing results to the outside world, for example to be used in
+a transformation. For more information on reading these properties, please refer
+to the <a href="../stratego-api">Stratego API documentation</a>.</p>
+<p>The first term is the term (usually an AST node) on which the property is set.</p>
+<p>Next <code>$Prop</code> specifies which property is set. This property can be any string
+of the form <code>[a-zA-Z] [a-zA-Z0-9\_]*</code>. It is not required to declare properties.</p>
+<p>There are two special properties: <code>ref</code> and <code>type</code>. <code>ref</code> properties are set on
+(syntactic) variable references, and point to the term they are referencing. The
+Spoofax reference resolution service uses these properties to offer reference
+resolution in the editor. The <code>type</code> property contains the type of a term. This
+type is shown when hovering over a term in an editor.</p>
+<p>The <code>$Op</code> specifies the operator with which a property is set. There are two
+possible operators:</p>
+<ul>
+<li><code>:=</code>: The assignment operator. This operator requires a property to have only
+  a single unique value (although, since Spoofax 2.5.17, that value may be set
+  multiple times).</li>
+<li><code>+=</code>: The bag insertion operator. Properties using this operator can be set
+  multiple times, and will be aggregated in the eventual property value.</li>
+</ul>
+<p>Note that using both operators for a single property on a particular node will
+result in a failed constraint. However, it is allowed to use different operators
+for a property, as long as the terms on which these operators are used are different.</p>
+<p>Finally, the last <code>$Term</code> denotes the value of the property.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Failing property constraints are ignored (i.e. no error for them is reported).</p>
+</div>
 <h2 id="arithmetic-constraints">Arithmetic Constraints<a class="headerlink" href="#arithmetic-constraints" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+</code></pre></div>
+<p>Statix supports several arithmetic constraints. These constraints consist of a
+term, an operator and an arithmetic expression. The <code>$Term</code> should have type <code>int</code>,
+while the <code>$ArithExp</code> is syntactically guaranteed to have type <code>int</code>, given that
+all variable references have type <code>int</code>.</p>
+<p>At the <code>$Op</code> position, several comparison operators can be used:</p>
+<ul>
+<li><code>#=</code> asserts that both terms are equal</li>
+<li><code>#\\=</code> asserts that both terms are not equal</li>
+<li><code class="no-ligatures">#&gt;=</code> asserts that the left term is equal or bigger that the left term</li>
+<li><code>#=&lt;</code> asserts that the left term is equal or smaller that the left term</li>
+<li><code>#&gt;</code> asserts that the left term is strictly bigger that the left term</li>
+<li><code>#&lt;</code> asserts that the left term is strictly smaller that the left term</li>
+</ul>
+<p>Arithmetic expressions can be integer literals, variables and bracketed arithmetic
+expressions. Variables in an arithmetic expression must have type <code>int</code>.
+Additionally, the following arithmetic operations can be used:</p>
+<ul>
+<li><code>$ArithExp + $ArithExp</code>: computes integer addition</li>
+<li><code>$ArithExp - $ArithExp</code>: computes integer subtraction</li>
+<li><code>$ArithExp * $ArithExp</code>: computes integer multiplication</li>
+<li><code>min($ArithExp, $ArithExp)</code>: computes the minimum of both arguments</li>
+<li><code>max($ArithExp, $ArithExp)</code>: computes the maximum of both arguments</li>
+<li><code>$ArithExp div $ArithExp</code>: computes the integer divisor (i.e. rounded down
+  regular division).</li>
+<li><code>$ArithExp mod $ArithExp</code>: computes the modulus of its arguments.</li>
+</ul>
+<p>Unlike other constraints, arithmetic constraint do no inference of values in
+the <code>$ArithExp</code>. Hence, having any free variables in this expression will cause
+the constraint to fail.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Statix has a special syntactic category for arithmetic expressions. Therefore,
-arithmetic expressions cannot be used at regular term positions.</p>
+<p>As discussed, Statix has a special syntactic category for arithmetic expressions.
+Therefore, arithmetic expressions cannot be used at regular term positions.
+Instead, arithmetic expressions can be embedded in terms using the
+<a href="../terms#arithmetic-operations">Arithmetic Expressions</a> term syntax.</p>
 </div>
+<details class="note"><summary>Note</summary><p>Arithmetic Expressions are implemented using standard Java integers, and hence
+have the same size limitations.</p>
+</details>
 <h2 id="messages">Messages<a class="headerlink" href="#messages" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>|<span class="w"> </span>$<span class="nv">Severity</span><span class="w"> </span>$<span class="nv">MessageBody</span><span class="w"> </span>$<span class="nv">Position</span>?<span class="w"></span>
+</code></pre></div>
+<p>Constraints that might possibly fail can be provided with a customized message.
+Such message carry three parameters.</p>
+<p>First, the <code>$Severity</code> indicates the severity of a message. It may be either
+<code>error</code>, <code>warning</code> or <code>note</code>. Note however that warnings and notes can only be
+issued for failing <a href="#try"><code>try</code></a> constraints.</p>
+<p>Second, the error message string is provided. This message string may be a regular
+<a href="../terms#strings">string literal</a> or a template literal. Template literals
+look as follows:</p>
+<div class="highlight"><pre><span></span><code>$[$<span class="nv">ContentPart</span>*]<span class="w"></span>
+</code></pre></div>
+<p>Content parts are either message string literals or interpolated terms. The
+escaping rules for string literals in templates are slightly different than for
+regular string literals. Message string literals can contain any character,
+where square brackets and backslashes must be escaped with a backslash. Just as
+regular string literals, tabs, newlines and carriage returns can be encoded with
+<code>\t</code>, <code>\n</code> and <code>\r</code>, respectively.</p>
+<p><a href="../terms">Terms</a> can be inserted in a message template by surrounding them with
+(unescaped) square brackets: <code>[$Term]</code>. The term may have any type, but must be
+well-formed according to the regular typing rules for terms.</p>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>Using functional predicates inside message templates will cause an exception
+when loading the specification.</p>
+</div>
+<p>Thirdly, a position can be assigned to the message:</p>
+<div class="highlight"><pre><span></span><code>@<span class="w"> </span>$<span class="nv">Var</span><span class="w"></span>
+</code></pre></div>
+<p>Here, the <code>$Var</code> is assumed to be an AST node. When the constraint on which this
+message is placed fails, the message will be shown inline at the AST node pointed
+to by this variable.</p>
+<p>When no message position is provided, or the assigned position is invalid, Statix
+will scan the the arguments to user-defined constraints on the call trace that
+led to the failed constraint from left to right for an AST argument, and put the
+message on the first valid node found. When no AST node could be found (for
+example when the project constraint fails), the error is positioned at the
+project resource.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Messages on projects are often overlooked by users. Hence it is recommended
+that project constraints are designed in a way they can never fail.</p>
+</div>
+<p>When message is provided for a failed constraint, Statix will scan the call
+trace for constraints that have a message provided, and use the message it
+encounters. If no message is found, a rendering of the failed constraint is used
+as a message.</p>
                 
               
               
