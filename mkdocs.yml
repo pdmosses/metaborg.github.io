@@ -122,6 +122,7 @@ nav:
     - background/documentation.md
   - Support:
     - support/index.md
+    - support/contributions.md
   - Releases:
     - release/stable.md
     - release/develop.md

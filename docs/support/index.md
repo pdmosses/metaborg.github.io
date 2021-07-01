@@ -3,12 +3,14 @@ Spoofax is an open source project. We welcome contributions from the community.
 
 Spoofax is developed by the [TU Delft Programming Languages group][1]. We do our best to make Spoofax usable by everyone and to help you when you encounter issues. However, our resources are limited, so please be patient.
 
+
 #### :fontawesome-solid-question-circle:&nbsp; I have a question
 The search functionality of this documentation should bring you right to a relevant [How-to](../howtos/index.md) or [Reference](../references/index.md) page.
 
 If this doesn't answer your question, please join us in the [SLDE/#spoofax-users](https://slde.slack.com/archives/C7254SF60) Slack channel and ask your question there. To get access, drop [us](https://eelcovisser.org/) a line.
 
 Please do *not* make an issue with your question on the Github repository.
+
 
 #### :fontawesome-solid-bug:&nbsp; I found a bug
 Search the [Issues](https://github.com/metaborg/spoofax/issues) to ensure the bug has not been reported before.
