@@ -1564,6 +1564,67 @@
     Generic Term Deconstruction
   </a>
   
+    <nav class="md-nav" aria-label="Generic Term Deconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crush" class="md-nav__link">
+    Crush
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size_1" class="md-nav__link">
+    Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#occurrences" class="md-nav__link">
+    Occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collect_1" class="md-nav__link">
+    Collect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-variables" class="md-nav__link">
+    Free Variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-construction" class="md-nav__link">
+    Generic Term Construction
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic Term Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imploding-parse-trees" class="md-nav__link">
+    Imploding Parse Trees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2259,6 +2320,67 @@
     Generic Term Deconstruction
   </a>
   
+    <nav class="md-nav" aria-label="Generic Term Deconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crush" class="md-nav__link">
+    Crush
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size_1" class="md-nav__link">
+    Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#occurrences" class="md-nav__link">
+    Occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collect_1" class="md-nav__link">
+    Collect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-variables" class="md-nav__link">
+    Free Variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-construction" class="md-nav__link">
+    Generic Term Construction
+  </a>
+  
+    <nav class="md-nav" aria-label="Generic Term Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imploding-parse-trees" class="md-nav__link">
+    Imploding Parse Trees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2286,10 +2408,6 @@
                 
                 
                 <h1 id="type-unifying-traversal">Type Unifying Traversal<a class="headerlink" href="#type-unifying-traversal" title="Permanent link">&para;</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>should this be background material or a how-to?</p>
-</div>
 <p>In this section we consider the class of type unifying strategies, in which terms of different types are mapped onto one type.
 The application area for this type of strategy is analysis of expressions with examples such as free variables collection and call-graph extraction.</p>
 <p>We consider the following example problems:</p>
@@ -2409,100 +2527,148 @@ Matching such a pattern against a term of the form <code>C(t1,...,tn)</code> res
 <div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="o">?</span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">xs</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
 <span class="w">  </span><span class="c c-Singleline">// variable c bound to &quot;Plus&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="c c-Singleline">// variable xs bound to [Int(&quot;1&quot;), Var(&quot;2&quot;)]</span><span class="w"></span>
-```<span class="nv">stratego</span><span class="w"></span>
-
-###<span class="w"> </span><span class="nv">Crush</span><span class="w"></span>
-
-<span class="nv">Using</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">term</span><span class="w"> </span><span class="nv">deconstruction</span><span class="w"> </span><span class="nv">we</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">generalize</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="nv">unifying</span><span class="w"> </span><span class="nv">operations</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">lists</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">arbitrary</span><span class="w"> </span><span class="nv">terms</span>.<span class="w"></span>
-<span class="nv">In</span><span class="w"> </span><span class="nv">analogy</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">traversal</span><span class="w"> </span><span class="nv">operators</span><span class="w"> </span><span class="nv">we</span><span class="w"> </span><span class="nv">need</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="k">one</span><span class="nv">-level</span><span class="w"> </span><span class="nv">reduction</span><span class="w"> </span><span class="nv">operator</span>.<span class="w"></span>
-<span class="nv">The</span><span class="w"> </span>`<span class="nv">crush</span>/<span class="m">3</span>`<span class="w"> </span><span class="nv">strategy</span><span class="w"> </span><span class="nv">reduces</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">constructor</span><span class="w"> </span><span class="nv">application</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">folding</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">list</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">its</span><span class="w"> </span><span class="nv">subterms</span><span class="w"> </span><span class="nv">using</span><span class="w"> </span>`<span class="nv">foldr</span>/<span class="m">3</span>`.<span class="w"></span>
-
-```<span class="nv">stratego</span><span class="w"></span>
-<span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
+</code></pre></div>
+<h3 id="crush">Crush<a class="headerlink" href="#crush" title="Permanent link">&para;</a></h3>
+<p>Using generic term deconstruction we can generalize the type unifying operations on lists to arbitrary terms.
+In analogy with the generic traversal operators we need a generic one-level reduction operator.
+The <code>crush/3</code> strategy reduces a constructor application by folding the list of its subterms using <code>foldr/3</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
 </code></pre></div>
 <p>Thus, <code>crush</code> performs a fold-map over the direct subterms of a term as illustrated by the following application:</p>
 <div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">C</span><span class=" -Punctuation">(</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s1</span><span class=" -Punctuation">&gt;[]))</span><span class="w"></span>
 </code></pre></div>
 <p>The following application instantiates this application in two ways:</p>
-<p>stratego&gt; import libstrategolib
-stratego&gt; !Plus(Int("1"), Var("2"))
-Plus(Int("1"),Var("2"))</p>
-<p>stratego&gt; crush(id, id, id)
-(Int("1"),(Var("2"),[]))</p>
-<p>stratego&gt; !Plus(Int("1"), Var("2"))
-Plus(Int("1"),Var("2"))</p>
-<p>stratego&gt; crush(!Tail(<id>), !Sum(<Fst>,<Snd>), !Arg(<id>))
-Sum(Arg(Int("1")),Sum(Arg(Var("2")),Tail([])))
-The crush strategy is the tool we need to implement solutions for the example problems above.</p>
-<p>Size. Counting the number of direct subterms of a term is similar to counting the number of elements of a list. The definition of node-size is the same as the definition of length, except that it uses crush instead of foldr:</p>
-<p>node-size = crush(!0, add, !1)
-Counting the number of subterms (nodes) in a term is a similar problem. But, instead of counting each direct subterm as 1, we need to count its subterms.</p>
-<p>term-size = crush(!1, add, term-size)
-The term-size strategy achieves this simply with a recursive call to itself.</p>
-<p>stratego&gt; <node-size> Plus(Int("1"), Var("2"))
-2
-stratego&gt; <term-size> Plus(Int("1"), Var("2"))
-5</p>
-<p>Occurrences. Counting the number of occurrences of a certain term in another term, or more generally, counting the number of subterms that satisfy some predicate is similar to counting the term size. However, only those terms satisfying the predicate should be counted. The solution is again similar to the solution for lists, but now using crush.</p>
-<p>om-occurrences(s) = s &lt; !1 + crush(!0, add, om-occurrences(s))
-The om-occurrences strategy counts the outermost subterms satisfying s. That is, the strategy stops counting as soon as it finds a subterm for which s succeeds.</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">),[]))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Tail</span><span class=" -Punctuation">(&lt;</span><span class="nv">id</span><span class=" -Punctuation">&gt;),</span><span class="w"> </span><span class="o">!</span><span class="nv">Sum</span><span class=" -Punctuation">(&lt;</span><span class="nv">Fst</span><span class=" -Punctuation">&gt;,&lt;</span><span class="nv">Snd</span><span class=" -Punctuation">&gt;),</span><span class="w"> </span><span class="o">!</span><span class="nv">Arg</span><span class=" -Punctuation">(&lt;</span><span class="nv">id</span><span class=" -Punctuation">&gt;))&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">   </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Sum</span><span class=" -Punctuation">(</span><span class="nv">Arg</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)),</span><span class="w"> </span><span class="nv">Sum</span><span class=" -Punctuation">(</span><span class="nv">Arg</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)),</span><span class="w"> </span><span class="nv">Tail</span><span class=" -Punctuation">([])))</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>crush</code> strategy is the tool we need to implement solutions for the example problems above.</p>
+<h3 id="size_1">Size<a class="headerlink" href="#size_1" title="Permanent link">&para;</a></h3>
+<p>Counting the number of direct subterms of a term is similar to counting the number of elements of a list.
+The definition of <code>node-size</code> is the same as the definition of <code>length</code>, except that it uses <code>crush</code> instead of <code>foldr</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">node-size</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="o">!</span><span class="m">1</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Counting the number of subterms (nodes) in a term is a similar problem.
+But, instead of counting each direct subterm as <code>1</code>, we need to count its subterms.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">term-size</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">term-size</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>term-size</code> strategy achieves this simply with a recursive call to itself.</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">node-size</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">term-size</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">5</span><span class="w"></span>
+</code></pre></div>
+<h3 id="occurrences">Occurrences<a class="headerlink" href="#occurrences" title="Permanent link">&para;</a></h3>
+<p>Counting the number of occurrences of a certain term in another term, or more generally, counting the number of subterms that satisfy some predicate is similar to counting the term size.
+However, only those terms satisfying the predicate should be counted. The solution is again similar to the solution for lists, but now using crush.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">om-occurrences</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="w"> </span><span class="o">!</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">om-occurrences</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>om-occurrences</code> strategy counts the outermost subterms satisfying <code>s</code>.
+That is, the strategy stops counting as soon as it finds a subterm for which <code>s</code> succeeds.</p>
 <p>The following strategy counts all occurrences:</p>
-<p>occurrences(s) = <add>(&lt;s &lt; !1 + !0&gt;, <crush(!0, add, occurrences(s))>)
-It counts the current term if it satisfies s and adds that to the occurrences in the subterms.</p>
-<p>stratego&gt; <om-occurrences(?Int(_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
-2
-stratego&gt; <om-occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
-1
-stratego&gt; <occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
-2</p>
-<p>Collect. Collecting the subterms that satisfy a predicate is similar to counting, but now a list of subterms is produced. The collect(s) strategy collects all outermost occurrences satisfying s.</p>
-<p>collect(s) = ![<s>] &lt;+ crush(![], union, collect(s))
-When encountering a subterm for which s succeeds, a singleton list is produced. For other terms, the matching subterms are collected for each direct subterm, and the resulting lists are combined with union to remove duplicates.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">occurrences</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="w"> </span><span class="o">!</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">&gt;,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">occurrences</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))&gt;)</span><span class="w"></span>
+</code></pre></div>
+<p>It counts the current term if it satisfies <code>s</code> and adds that to the occurrences in the subterms.</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">om-occurrences</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;34&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">om-occurrences</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="nv">_</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;34&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">1</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">occurrences</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="nv">_</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;34&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+</code></pre></div>
+<h3 id="collect_1">Collect<a class="headerlink" href="#collect_1" title="Permanent link">&para;</a></h3>
+<p>Collecting the subterms that satisfy a predicate is similar to counting, but now a list of subterms is produced.
+The <code>collect(s)</code> strategy collects all outermost occurrences satisfying <code>s</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">collect</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="o">!</span><span class=" -Punctuation">[&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class=" -Punctuation">[],</span><span class="w"> </span><span class="nv">union</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">collect</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>When encountering a subterm for which <code>s</code> succeeds, a singleton list is produced.
+For other terms, the matching subterms are collected for each direct subterm, and the resulting lists are combined with union to remove duplicates.</p>
 <p>A typical application of collect is the collection of all variables in an expression, which can be defined as follows:</p>
-<p>get-vars = collect(?Var(_))</p>
-<p>Applying get-vars to an expression AST produces the list of all subterms matching Var(_).</p>
-<p>The collect-all(s) strategy collects all occurrences satisfying s.</p>
-<p>collect-all(s) =
-![<s> | <crush(![], union, collect(s))>] &lt;+ crush(![], union, collect(s))
-If s succeeds for the subject term combines the subject term with the collected terms from the subterms.</p>
-<p>Free Variables. Collecting the variables in an expression is easy, as we saw above. However, when dealing with languages with variable bindings, a common operation is to extract only the free variables in an expression or block of statements. That is, the occurrences of variables that are not bound by a variable declaration. For example, in the expression</p>
-<p>x + let var y := x + 1 in f(y, a + x + b) end
-the free variables are {x, a, b}, but not y, since it is bound by the declaration in the let. Similarly, in the function definition</p>
-<p>function f(x : int) = let var y := h(x) in x + g(z) * y end
-the only free variable is z since x and y are declared.</p>
-<p>Here is a free variable extraction strategy for Tiger expressions. It follows a similar pattern of mixing generic and data-type specific operations as we saw in Chapter 5. The crush alternative takes care of the non-special constructors, while ExpVars and FreeVars deal with the special cases, i.e. variables and variable binding constructs:</p>
-<p>free-vars =
-  ExpVars
-  &lt;+ FreeVars(free-vars)
-  &lt;+ crush(![], union, free-vars)</p>
-<p>ExpVars :
-  Var(x) -&gt; [x]</p>
-<p>FreeVars(fv) :
-  Let([VarDec(x, t, e1)], e2) -&gt; <union>(<fv> e1, <diff>(<fv> e2, [x]))</p>
-<p>FreeVars(fv) :
-  Let([FunctionDec(fdecs)], e2) -&gt; <diff>(<union>(<fv> fdecs, <fv>e2), fs)
-  where <map(?FunDec(\<id>,_,_,_))> fdecs =&gt; fs</p>
-<p>FreeVars(fv) :
-  FunDec(f, xs, t, e) -&gt; <diff>(<fv>e, xs)
-  where <map(Fst)> xs =&gt; xs
-The FreeVars rules for binding constructs use their fv parameter to recursively get the free variables from subterms, and they subtract the bound variables from any free variables found using diff.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">get-vars</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">collect</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>Applying <code>get-vars</code> to an expression AST produces the list of all subterms matching <code>Var(_)</code>.</p>
+<p>The <code>collect-all(s)</code> strategy collects all occurrences satisfying s.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="o">!</span><span class=" -Punctuation">[&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class=" -Punctuation">[],</span><span class="w"> </span><span class="nv">union</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">collect</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))&gt;]</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class=" -Punctuation">[],</span><span class="w"> </span><span class="nv">union</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">collect</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>If <code>s</code> succeeds for the subject term combines the subject term with the collected terms from the subterms.</p>
+<h3 id="free-variables">Free Variables<a class="headerlink" href="#free-variables" title="Permanent link">&para;</a></h3>
+<p>Collecting the variables in an expression is easy, as we saw above.
+However, when dealing with languages with variable bindings, a common operation is to extract only the free variables in an expression or block of statements.
+That is, the occurrences of variables that are not bound by a variable declaration.
+For example, in the expression</p>
+<div class="highlight"><pre><span></span><code><span class="nv">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">let</span><span class="w"> </span><span class="nv">var</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="k">end</span><span class="w"></span>
+</code></pre></div>
+<p>the free variables are <code>{x, a, b}</code>, but not <code>y</code>, since it is bound by the declaration in the let.
+Similarly, in the function definition</p>
+<div class="highlight"><pre><span></span><code><span class="nv">function</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">int</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">let</span><span class="w"> </span><span class="nv">var</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class="nv">h</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">g</span><span class=" -Punctuation">(</span><span class="nv">z</span><span class=" -Punctuation">)</span><span class="w"> </span>*<span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="k">end</span><span class="w"></span>
+</code></pre></div>
+<p>the only free variable is <code>z</code> since <code>x</code> and <code>y</code> are declared.</p>
+<p>Here is a free variable extraction strategy for Tiger expressions.</p>
+<!-- It follows a similar pattern of mixing generic and data-type specific operations as we saw in Chapter 5.  -->
+<p>The <code>crush</code> alternative takes care of the non-special constructors, while <code>ExpVars</code> and <code>FreeVars</code> deal with the special cases, i.e. variables and variable binding constructs:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">free-vars</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ExpVars</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">FreeVars</span><span class=" -Punctuation">(</span><span class="nv">free-vars</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class=" -Punctuation">[],</span><span class="w"> </span><span class="nv">union</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">free-vars</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">ExpVars</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">x</span><span class=" -Punctuation">]</span><span class="w"></span>
+
+<span class="nv">FreeVars</span><span class=" -Punctuation">(</span><span class="nv">fv</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Let</span><span class=" -Punctuation">([</span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">)],</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">union</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">fv</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">diff</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">fv</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">x</span><span class=" -Punctuation">]))</span><span class="w"></span>
+
+<span class="nv">FreeVars</span><span class=" -Punctuation">(</span><span class="nv">fv</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Let</span><span class=" -Punctuation">([</span><span class="nv">FunctionDec</span><span class=" -Punctuation">(</span><span class="nv">fdecs</span><span class=" -Punctuation">)],</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">diff</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">union</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">fv</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">fdecs</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">fv</span><span class=" -Punctuation">&gt;</span><span class="nv">e2</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">fs</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">FunDec</span><span class=" -Punctuation">(&lt;</span><span class="nv">id</span><span class=" -Punctuation">&gt;,</span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="nv">_</span><span class=" -Punctuation">))&gt;</span><span class="w"> </span><span class="nv">fdecs</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">fs</span><span class="w"></span>
+
+<span class="nv">FreeVars</span><span class=" -Punctuation">(</span><span class="nv">fv</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">FunDec</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">xs</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">diff</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">fv</span><span class=" -Punctuation">&gt;</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">Fst</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>FreeVars</code> rules for binding constructs use their <code>fv</code> parameter to recursively get the free variables from subterms, and they subtract the bound variables from any free variables found using diff.</p>
 <p>We can even capture the pattern exhibited here in a generic collection algorithm with support for special cases:</p>
-<p>collect-exc(base, special : (a -&gt; b) * a -&gt; b) =
-  base
-  &lt;+ special(collect-exc(base, special))
-  &lt;+ crush(![], union, collect-exc(base, special))
-The special parameter is a strategy parameterized with a recursive call to the collection strategy. The original definition of free-vars above, can now be replaced with</p>
-<p>free-vars = collect-exc(ExpVars, FreeVars)
-10.4. Generic Term Construction
-It can also be useful to construct terms generically. For example, in parse tree implosion, application nodes should be reduced to constructor applications. Hence build operators can also use the # operator. In a strategy !p1#(p2), the current subject term is replaced by a constructor application, where the constructor name is provided by p1 and the list of subterms by p2. So, if p1 evaluates to "C" and p2 evaluates to [t1,...,tn], the expression !p1#(p2) build the term C(t1,...,tn).</p>
-<p>Imploding Parse Trees. A typical application of generic term construction is the implosion of parse trees to abstract syntax trees performed by implode-asfix. Parse trees produced by sglr have the form:</p>
-<p>appl(prod(sorts, sort, attrs([cons("C")])),[t1,...,tn])
-That is, a node in a parse tree consists of an encoding of the original production from the syntax definition, and a list with subtrees. The production includes a constructor annotation cons("C") with the name of the abstract syntax tree constructor. Such a tree node should be imploded to an abstract syntax tree node of the form C(t1,...,tn). Thus, this requires the construction of a term with constructor C given the string with its name. The following implosion strategy achieves this using generic term construction:</p>
-<p>implode = appl(id, map(implode)); Implode
-Implode : appl(prod(sorts, sort, attrs([cons&copy;])), ts) -&gt; c#(ts)
-The Implode rule rewrites an appl term to a constructor application, by extracting the constructor name from the production and then using generic term construction to apply the constructor.</p>
-<p>Note that this is a gross over simplification of the actual implementation of implode-asfix. See the source code for the full strategy.</p>
-<p>Generic term construction and deconstruction support the definition of generic analysis and generic translation problems. The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">collect-exc</span><span class=" -Punctuation">(</span><span class="nv">base</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">special</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">b</span><span class=" -Punctuation">)</span><span class="w"> </span>*<span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">b</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="nv">base</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">special</span><span class=" -Punctuation">(</span><span class="nv">collect-exc</span><span class=" -Punctuation">(</span><span class="nv">base</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">special</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="o">!</span><span class=" -Punctuation">[],</span><span class="w"> </span><span class="nv">union</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">collect-exc</span><span class=" -Punctuation">(</span><span class="nv">base</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">special</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The special parameter is a strategy parameterized with a recursive call to the collection strategy.
+The original definition of <code>free-vars</code> above, can now be replaced with</p>
+<div class="highlight"><pre><span></span><code><span class="nv">free-vars</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">collect-exc</span><span class=" -Punctuation">(</span><span class="nv">ExpVars</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">FreeVars</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<h2 id="generic-term-construction">Generic Term Construction<a class="headerlink" href="#generic-term-construction" title="Permanent link">&para;</a></h2>
+<p>It can also be useful to construct terms generically.
+For example, in parse tree implosion, application nodes should be reduced to constructor applications.
+Hence build operators can also use the # operator.
+In a strategy <code>!p1#(p2)</code>, the current subject term is replaced by a constructor application, where the constructor name is provided by <code>p1</code> and the list of subterms by <code>p2</code>.
+So, if <code>p1</code> evaluates to <code>"C"</code> and <code>p2</code> evaluates to <code>[t1,...,tn]</code>, the expression <code>!p1#(p2)</code> build the term <code>C(t1,...,tn)</code>.</p>
+<h3 id="imploding-parse-trees">Imploding Parse Trees<a class="headerlink" href="#imploding-parse-trees" title="Permanent link">&para;</a></h3>
+<p>A typical application of generic term construction is the implosion of parse trees to abstract syntax trees performed by <code>implode-asfix</code>.
+Parse trees produced by sglr have the form:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">appl</span><span class=" -Punctuation">(</span><span class="nv">prod</span><span class=" -Punctuation">(</span><span class="k">sorts</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sort</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">attrs</span><span class=" -Punctuation">([</span><span class="nv">cons</span><span class=" -Punctuation">(</span><span class="s">&quot;C&quot;</span><span class=" -Punctuation">)])),[</span><span class="nv">t1</span><span class=" -Punctuation">,</span>...<span class=" -Punctuation">,</span><span class="nv">tn</span><span class=" -Punctuation">])</span><span class="w"></span>
+</code></pre></div>
+<p>That is, a node in a parse tree consists of an encoding of the original production from the syntax definition, and a list with subtrees.
+The production includes a constructor annotation <code>cons("C")</code> with the name of the abstract syntax tree constructor.
+Such a tree node should be imploded to an abstract syntax tree node of the form <code>C(t1,...,tn)</code>.
+Thus, this requires the construction of a term with constructor <code>C</code> given the string with its name.
+The following implosion strategy achieves this using generic term construction:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">implode</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="nv">appl</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">implode</span><span class=" -Punctuation">));</span><span class="w"> </span><span class="nv">Implode</span><span class="w"></span>
+
+<span class="nv">Implode</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">appl</span><span class=" -Punctuation">(</span><span class="nv">prod</span><span class=" -Punctuation">(</span><span class="k">sorts</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sort</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">attrs</span><span class=" -Punctuation">([</span><span class="nv">cons</span><span class=" -Punctuation">(</span><span class="nv">c</span><span class=" -Punctuation">)])),</span><span class="w"> </span><span class="nv">ts</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">ts</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>Implode</code> rule rewrites an <code>appl</code> term to a constructor application, by extracting the constructor name from the production and then using generic term construction to apply the constructor.</p>
+<p>Note that this is a gross over simplification of the actual implementation of <code>implode-asfix</code>.
+See the source code for the full strategy.</p>
+<p>Generic term construction and deconstruction support the definition of generic analysis and generic translation problems.
+The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
                 
               
