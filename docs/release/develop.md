@@ -1,5 +1,5 @@
 # Development Releases
-Use the nightly (development) releases of Spoofax only if you want to be on the cutting-edge of Spoofax development.
+Use the development releases of Spoofax only if you want to be on the cutting-edge of Spoofax development.
 
 Choose the _Eclipse Bundle_ installation (recommended), the _Eclipse Plugin_ installation, or the _From Source_ installation:
 
