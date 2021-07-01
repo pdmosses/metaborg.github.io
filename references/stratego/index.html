@@ -1525,7 +1525,7 @@
   
     <li class="md-nav__item">
       <a href="strategies/type-unifying/" class="md-nav__link">
-        Type Unifying Combinators
+        Type Unifying Traversal
       </a>
     </li>
   
@@ -2190,14 +2190,14 @@
                 <h1 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h1>
 <p>The Stratego language caters for the definition of program transformations.</p>
 <p>Transformations operate on the abstract syntax trees of programs.
-Abstract syntax trees are represented by means of first-order <a href="terms/">terms</a>.
-By using the <a href="concrete-syntax/">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
+Abstract syntax trees are represented by means of first-order <a href="terms/terms/">terms</a>.
+By using the <a href="rules/concrete-syntax/">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
 <p>A program is structured as a collection of <a href="modules/">modules</a>, which may import each other.</p>
-<p>Transformations are defined by means of named <a href="rewrite-rules/">rewrite rules</a>.
+<p>Transformations are defined by means of named <a href="rules/rewrite-rules/">rewrite rules</a>.
 Rules may explicitly invoke rules.
-Alternatively, rules may be invoked by <a href="strategies/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategy-combinators/">strategy combinators</a>.
-Context-sensitive transformations can be expressed using <a href="dynamic-rules/">dynamic rewrite rules</a>.</p>
-<p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="types/">typed</a>.</p>
+Alternatively, rules may be invoked by <a href="strategies/strategy-definitions/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategies/sequential/">strategy combinators</a>.
+Context-sensitive transformations can be expressed using <a href="rules/dynamic-rules/">dynamic rewrite rules</a>.</p>
+<p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="terms/types/">typed</a>.</p>
 <h2 id="placeholder-convention">Placeholder Convention<a class="headerlink" href="#placeholder-convention" title="Permanent link">&para;</a></h2>
 <p>In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
 For example, a rewrite rule has the form</p>

@@ -20,7 +20,7 @@
     
     
       
-        <title>Type Unifying Combinators - Spoofax</title>
+        <title>Type Unifying Traversal - Spoofax</title>
       
     
     
@@ -60,7 +60,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Type Unifying Combinators" />
+<meta property="og:title" content="Spoofax - Type Unifying Traversal" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/references/stratego/strategies/type-unifying/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#type-unifying-combinators" class="md-skip">
+        <a href="#type-unifying-traversal" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Type Unifying Combinators
+              Type Unifying Traversal
             
           </span>
         </div>
@@ -1489,12 +1489,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Type Unifying Combinators
+          Type Unifying Traversal
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Type Unifying Combinators
+        Type Unifying Traversal
       </a>
       
         
@@ -1510,6 +1510,61 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#type-unifying-list-transformations" class="md-nav__link">
+    Type Unifying List Transformations
+  </a>
+  
+    <nav class="md-nav" aria-label="Type Unifying List Transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sum" class="md-nav__link">
+    Sum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size" class="md-nav__link">
+    Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-occurrences" class="md-nav__link">
+    Number of occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collect" class="md-nav__link">
+    Collect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-fold-to-expressions" class="md-nav__link">
+    Extending Fold to Expressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-deconstruction" class="md-nav__link">
+    Generic Term Deconstruction
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
@@ -2152,6 +2207,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#type-unifying-list-transformations" class="md-nav__link">
+    Type Unifying List Transformations
+  </a>
+  
+    <nav class="md-nav" aria-label="Type Unifying List Transformations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sum" class="md-nav__link">
+    Sum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size" class="md-nav__link">
+    Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-occurrences" class="md-nav__link">
+    Number of occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collect" class="md-nav__link">
+    Collect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-fold-to-expressions" class="md-nav__link">
+    Extending Fold to Expressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-deconstruction" class="md-nav__link">
+    Generic Term Deconstruction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -2175,89 +2285,145 @@
                   </a>
                 
                 
-                <h1 id="type-unifying-combinators">Type Unifying Combinators<a class="headerlink" href="#type-unifying-combinators" title="Permanent link">&para;</a></h1>
-<p><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<p><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<p>In Chapter 5 we have seen combinators for composing type preserving strategies. That is, structural transformations in which basic transformation rules don’t change the type of a term. Such strategies are typically applied in transformations, which change the structure of a term, but not its type. Examples are simplification and optimization. In this chapter we consider the class of type unifying strategies, in which terms of different types are mapped onto one type. The application area for this type of strategy is analysis of expressions with examples such as free variables collection and call-graph extraction.</p>
+                <h1 id="type-unifying-traversal">Type Unifying Traversal<a class="headerlink" href="#type-unifying-traversal" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>should this be background material or a how-to?</p>
+</div>
+<p>In this section we consider the class of type unifying strategies, in which terms of different types are mapped onto one type.
+The application area for this type of strategy is analysis of expressions with examples such as free variables collection and call-graph extraction.</p>
 <p>We consider the following example problems:</p>
-<p>term-size: Count the number of nodes in a term
-occurrences: Count number of occurrences of a subterm in a term
-collect-vars: Collect all variables in expression
-free-vars: Collect all free variables in expression
-These problems have in common that they reduce a structure to a single value or to a collection of derived values. The structure of the original term is usually lost.</p>
-<p>We start with examining these problems in the context of lists, and then generalize the solutions we find there to arbitrary terms using generic term deconstruction, which allows concise implementation of generic type unifying strategies, similarly to the generic traversal strategies of Chapter 5.</p>
-<p>10.1. Type Unifying List Transformations
-We start with considering type-unifying operations on lists.</p>
-<p>Sum. Reducing a list to a value can be conveniently expressed by means of a fold, which has as parameters operations for reducing the list constructors. The foldr/2 strategy reduces a list by replacing each Cons by an application of s2, and the empty list by s1.</p>
-<p>foldr(s1, s2) =
-[]; s1 &lt;+  [y|ys] -&gt; <s2>(y, <foldr(s1, s2)> ys) \
-Thus, when applied to a list with three terms the result is</p>
-<p><foldr(s1,s2)> [t1,t2,t3] =&gt; <s2>(t1, <s2>(t2, <s2>(t3, <s1> [])))
-A typical application of foldr/2 is sum, which reduces a list to the sum of its elements. It sums the elements of a list of integers, using 0 for the empty list and add to combine the head of a list and the result of folding the tail.</p>
-<p>sum = foldr(!0, add)
-The effect of sum is illustrated by the following application:</p>
-<p><foldr(!0,add)> [1,2,3] =&gt; <add>(1, <add>(2, <add>(3, &lt;!0&gt; []))) =&gt; 6
-Note the build operator for replacing the empty list with 0; writing foldr(0, add) would be wrong, since 0 by itself is a congruence operator, which basically matches the subject term with the term 0 (rather than replacing it).</p>
-<p>Size. The foldr/2 strategy does not touch the elements of a list. The foldr/3 strategy is a combination of fold and map that extends foldr/2 with a parameter that is applied to the elements of the list.</p>
-<p>foldr(s1, s2, f) =
-  []; s1 &lt;+  [y|ys] -&gt; <s2>(<f>y, <foldr(s1,s2,f)>ys) \
-Thus, when applying it to a list with three elements, we get:</p>
-<p><foldr(s1,s2)> [t1,t2,t3] =&gt; <s2>(<f>t1, <s2>(<f>t2, <s2>(<f>t3, <s1> [])))
-Now we can solve our first example problem term-size. The size of a list is its length, which corresponds to the sum of the list with the elements replaced by 1.</p>
-<p>length = foldr(!0, add, !1)
-Number of occurrences. The number of occurrences in a list of terms that satisfy some predicate, entails only counting those elements in the list for which the predicate succeeds. (Where a predicate is implemented with a strategy that succeeds only for the elements in the domain of the predicate.) This follows the same pattern as counting the length of a list, but now only counting the elements for which s succeeds.</p>
-<p>list-occurrences(s) = foldr(!0, add, s &lt; !1 + !0)
-Using list-occurrences and a match strategy we can count the number of variables in a list:</p>
-<p>list-occurrences(?Var(_))
-Collect. The next problem is to collect all terms for which a strategy succeeds. We have already seen how to do this for lists. The filter strategy reduces a list to the elements for which its argument strategy succeeds.</p>
-<p>filter(s) = [] &lt;+ [s | filter(s)] &lt;+ ?[ |<filter(s)>]
-Collecting the variables in a list is a matter of filtering with the ?Var(_) match.</p>
-<p>filter(?Var(_))
-The final problem, collecting the free variables in a term, does not really have a counter part in lists, but we can mimick this if we consider having two lists; where the second list is the one with the bound variables that should be excluded.</p>
-<p>(filter(?Var(_)),id); diff
-This collects the variables in the first list and subtracts the variables in the second list.</p>
-<p>10.2. Extending Fold to Expressions
-We have seen how to do typical analysis transformations on lists. How can we generalize this to arbitrary terms? The general idea of a folding operator is that it replaces the constructors of a data-type by applying a function to combine the reduced arguments of constructor applications. For example, the following definition is a sketch for a fold over abstract syntax trees:</p>
-<p>fold-exp(binop, assign, if, ...) = rec f(
-  fold-binop(f, binop)
-  &lt;+ fold-assign(f, assign)
-  &lt;+ fold-if(f, if)
-  &lt;+ ... )</p>
-<p>fold-binop(f, s)  : BinOp(op, e1, e2) -&gt; <s>(op, <f>e1, <f>e2)
-fold-assign(f, s) : Assign(e1, e2)    -&gt; <s>(<f>e1, <f>e2)
-fold-if(f, s)     : If(e1, e2, e3)    -&gt; <s>(<f>e1, <f>e2, <f>e3)
-For each constructor of the data-type the fold has an argument strategy and a rule that matches applications of the constructor, which it replaces with an application of the strategy to the tuple of subterms reduced by a recursive invocation of the fold.</p>
-<p>Instantiation of this strategy requires a rule for each constructor of the data-type. For instance, the following instantiation defines term-size using fold-exp by providing rules that sum up the sizes of the subterms and add one (inc) to account for the node itself.</p>
-<p>term-size  = fold-exp(BinOpSize, AssignSize, IfSize, ...)</p>
-<p>BinOpSize  : (Plus(), e1, e2) -&gt; <add; inc>(e1, e2)
-AssignSize : (e1, e2)         -&gt; <add; inc>(e1, e2)
-IfSize     : (e1, e2, e3)     -&gt; <add; inc>(e1, <add>(e2, e3))
-This looks suspiciously like the traversal rules in Chapter 5. Defining folds in this manner has several limitations. In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor. Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.</p>
+<ul>
+<li><code>term-size</code>: Count the number of nodes in a term</li>
+<li><code>occurrences</code>: Count number of occurrences of a subterm in a term</li>
+<li><code>collect-vars</code>: Collect all variables in expression</li>
+<li><code>free-vars</code>: Collect all free variables in expression</li>
+</ul>
+<p>These problems have in common that they reduce a structure to a single value or to a collection of derived values.
+The structure of the original term is usually lost.</p>
+<p>We start with examining these problems in the context of lists, and then generalize the solutions we find there to arbitrary terms using <em>generic term deconstruction</em>, which allows concise implementation of generic type unifying strategies.</p>
+<h2 id="type-unifying-list-transformations">Type Unifying List Transformations<a class="headerlink" href="#type-unifying-list-transformations" title="Permanent link">&para;</a></h2>
+<p>We start with considering type-unifying operations on lists.</p>
+<h3 id="sum">Sum<a class="headerlink" href="#sum" title="Permanent link">&para;</a></h3>
+<p>Reducing a list to a value can be conveniently expressed by means of a <code>fold</code>, which has as parameters operations for reducing the list constructors. The <code>foldr/2</code> strategy reduces a list by replacing each <code>Cons</code> by an application of <code>s2</code>, and the empty list by <code>s1</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class=" -Punctuation">[];</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>\<span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">y</span><span class=" -Punctuation">|</span><span class="nv">ys</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ys</span><span class=" -Punctuation">)</span><span class="w"> </span>\<span class="w"></span>
+</code></pre></div>
+<p>Thus, when applied to a list with three terms the result is</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="nv">s2</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="nv">t3</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(</span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(</span><span class="nv">t3</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s1</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[])))</span><span class="w"></span>
+</code></pre></div>
+<p>A typical application of <code>foldr/2</code> is <code>sum</code>, which reduces a list to the sum of its elements. It sums the elements of a list of integers, using 0 for the empty list and add to combine the head of a list and the result of folding the tail.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">sum</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The effect of <code>sum</code> is illustrated by the following application:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="nv">add</span><span class=" -Punctuation">)&gt;</span><span class="w"></span>
+<span class="w">   </span><span class=" -Punctuation">[</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">3</span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">   </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">3</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[])))</span><span class="w"></span>
+<span class="w">   </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="m">6</span><span class="w"></span>
+</code></pre></div>
+<p>Note the build operator for replacing the empty list with <code>0</code>; writing <code>foldr(0, add)</code> would be wrong, since <code>0</code> by itself is a congruence operator, which basically matches the subject term with the term <code>0</code> (rather than replacing it).</p>
+<h3 id="size">Size<a class="headerlink" href="#size" title="Permanent link">&para;</a></h3>
+<p>The <code>foldr/2</code> strategy does not touch the elements of a list.
+The <code>foldr/3</code> strategy is a combination of fold and map that extends <code>foldr/2</code> with a parameter that is applied to the elements of the list.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">[];</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>\<span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">y</span><span class=" -Punctuation">|</span><span class="nv">ys</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">y</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="nv">s2</span><span class=" -Punctuation">,</span><span class="nv">f</span><span class=" -Punctuation">)&gt;</span><span class="nv">ys</span><span class=" -Punctuation">)</span><span class="w"> </span>\<span class="w"></span>
+</code></pre></div>
+<p>Thus, when applying it to a list with three elements, we get:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">)&gt;</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">[</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t3</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t3</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s1</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[])))</span><span class="w"></span>
+</code></pre></div>
+<p>Now we can solve our first example problem <code>term-size</code>.
+The size of a list is its length, which corresponds to the sum of the list with the elements replaced by <code>1</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">length</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="o">!</span><span class="m">1</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<h3 id="number-of-occurrences">Number of occurrences<a class="headerlink" href="#number-of-occurrences" title="Permanent link">&para;</a></h3>
+<p>The number of occurrences in a list of terms that satisfy some predicate, entails only counting those elements in the list for which the predicate succeeds. (Where a predicate is implemented with a strategy that succeeds only for the elements in the domain of the predicate.) This follows the same pattern as counting the length of a list, but now only counting the elements for which s succeeds.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">list-occurrences</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">add</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="w"> </span><span class="o">!</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">!</span><span class="m">0</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Using <code>list-occurrences</code> and a match strategy we can count the number of variables in a list:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">list-occurrences</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<h3 id="collect">Collect<a class="headerlink" href="#collect" title="Permanent link">&para;</a></h3>
+<p>The next problem is to collect all terms for which a strategy succeeds.
+We have already seen how to do this for lists.
+The <code>filter</code> strategy reduces a list to the elements for which its argument strategy succeeds.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="o">?</span><span class=" -Punctuation">[</span><span class="w"> </span><span class=" -Punctuation">|&lt;</span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)&gt;]</span><span class="w"></span>
+</code></pre></div>
+<p>Collecting the variables in a list is a matter of filtering with the <code>?Var(_)</code> match.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The final problem, collecting the free variables in a term, does not really have a counter part in lists, but we can mimick this if we consider having two lists; where the second list is the one with the bound variables that should be excluded.</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">(</span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">)),</span><span class="nv">id</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">diff</span><span class="w"></span>
+</code></pre></div>
+<p>This collects the variables in the first list and subtracts the variables in the second list.</p>
+<h2 id="extending-fold-to-expressions">Extending Fold to Expressions<a class="headerlink" href="#extending-fold-to-expressions" title="Permanent link">&para;</a></h2>
+<p>We have seen how to do typical analysis transformations on lists.
+How can we generalize this to arbitrary terms?
+The general idea of a folding operator is that it replaces the constructors of a data-type by applying a function to combine the reduced arguments of constructor applications.
+For example, the following definition is a sketch for a fold over abstract syntax trees:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">fold-exp</span><span class=" -Punctuation">(</span><span class="nv">binop</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">assign</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="k">if</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">rec</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">  </span><span class="nv">fold-binop</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">binop</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">fold-assign</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">assign</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">fold-if</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="k">if</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">fold-binop</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">BinOp</span><span class=" -Punctuation">(</span><span class="nv">op</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;(</span><span class="nv">op</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">fold-assign</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Assign</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">fold-if</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">If</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">)</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">e3</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>For each constructor of the data-type the fold has an argument strategy and a rule that matches applications of the constructor, which it replaces with an application of the strategy to the tuple of subterms reduced by a recursive invocation of the fold.</p>
+<p>Instantiation of this strategy requires a rule for each constructor of the data-type.
+For instance, the following instantiation defines <code>term-size</code> using <code>fold-exp</code> by providing rules that sum up the sizes of the subterms and add one (<code>inc</code>) to account for the node itself.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">term-size</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">fold-exp</span><span class=" -Punctuation">(</span><span class="nv">BinOpSize</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">AssignSize</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">IfSize</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">BinOpSize</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">Plus</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">inc</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">AssignSize</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w">         </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">inc</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">IfSize</span><span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">)</span><span class="w">     </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">inc</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>This looks suspiciously like the <a href="/background/stratego/traversal-with-rules/">traversal with rules</a> pattern.
+Defining folds in this manner has several limitations.
+In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor.
+Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.</p>
 <p>One solution would be to use the generic traversal strategy bottomup to deal with fold:</p>
-<p>fold-exp(s) = bottomup(s)</p>
-<p>term-size   = fold-exp(BinOpSize &lt;+ AssignSize &lt;+ IfSize &lt;+ ...)</p>
-<p>BinOpSize   : BinOp(Plus(), e1, e2) -&gt; <add>(1, <add>(e1, e2))
-AssignSize  : Assign(e1, e2)        -&gt; <add>(e1, e2)
-IfSize      : If(e1, e2, e3)        -&gt; <add>(e1, <add>(e2, e3))
-Although the recursive application to subterms is now defined generically , one still has to specify rules for the default behavior.</p>
-<p>10.3. Generic Term Deconstruction
-Instead of having folding rules that are specific to a data type, such as</p>
-<p>BinOpSize  : BinOp(op, e1, e2) -&gt; <add>(1, <add>(e1, e2))
-AssignSize : Assign(e1, e2)    -&gt; <add>(1, <add>(e1, e2))
-we would like to have a generic definition of the form</p>
-<p>CSize : c(e1, e2, ...) -&gt; <add>(e1, <add>(e2, ...))
-This requires generic decomposition of a constructor application into its constructor and the list with children. This can be done using the # operator. The match strategy ?p1#(p2) decomposes a constructor application into its constructor name and the list of direct subterms. Matching such a pattern against a term of the form C(t1,...,tn) results in a match of "C" against p1 and a match of [t1,...,tn] against p2.</p>
-<p>Plus(Int("1"), Var("2"))
-stratego&gt; ?c#(xs)
-stratego&gt; :binding c
-variable c bound to "Plus"
-stratego&gt; :binding xs
-variable xs bound to [Int("1"), Var("2")]
-Crush. Using generic term deconstruction we can now generalize the type unifying operations on lists to arbitrary terms. In analogy with the generic traversal operators we need a generic one-level reduction operator. The crush/3 strategy reduces a constructor application by folding the list of its subterms using foldr/3.</p>
-<p>crush(nul, sum, s) : c#(xs) -&gt; <foldr(nul, sum, s)> xs
-Thus, crush performs a fold-map over the direct subterms of a term. The following application illustrates what</p>
-<p><crush(s1, s2, f)> C(t1, t2) =&gt; <s2>(<f>t1, <s2>(<f>t2, <s1>[]))
-The following Shell session instantiates this application in two ways:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">fold-exp</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">term-size</span><span class="w">   </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">fold-exp</span><span class=" -Punctuation">(</span><span class="nv">BinOpSize</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">AssignSize</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">IfSize</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">BinOpSize</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">BinOp</span><span class=" -Punctuation">(</span><span class="nv">Plus</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">AssignSize</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Assign</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w">        </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">IfSize</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">If</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">)</span><span class="w">        </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e3</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>Although the recursive application to subterms is now defined generically, one still has to specify rules for the default behavior.</p>
+<h2 id="generic-term-deconstruction">Generic Term Deconstruction<a class="headerlink" href="#generic-term-deconstruction" title="Permanent link">&para;</a></h2>
+<p>Instead of having folding rules that are specific to a data type, such as</p>
+<div class="highlight"><pre><span></span><code><span class="nv">BinOpSize</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">BinOp</span><span class=" -Punctuation">(</span><span class="nv">op</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">AssignSize</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Assign</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w">    </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>we would like to have a generic definition of the form</p>
+<div class="highlight"><pre><span></span><code><span class="nv">CSize</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">c</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">add</span><span class=" -Punctuation">&gt;(</span><span class="nv">e2</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>This requires generic decomposition of a constructor application into its constructor and the list with children.
+This can be done using the <code>#</code> operator.
+The match strategy <code>?p1#(p2)</code> decomposes a constructor application into its constructor name and the list of direct subterms.
+Matching such a pattern against a term of the form <code>C(t1,...,tn)</code> results in a match of <code>"C"</code> against <code>p1</code> and a match of <code>[t1,...,tn]</code> against <code>p2</code>.</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="o">?</span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">xs</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="c c-Singleline">// variable c bound to &quot;Plus&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="c c-Singleline">// variable xs bound to [Int(&quot;1&quot;), Var(&quot;2&quot;)]</span><span class="w"></span>
+```<span class="nv">stratego</span><span class="w"></span>
+
+###<span class="w"> </span><span class="nv">Crush</span><span class="w"></span>
+
+<span class="nv">Using</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">term</span><span class="w"> </span><span class="nv">deconstruction</span><span class="w"> </span><span class="nv">we</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">generalize</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="nv">unifying</span><span class="w"> </span><span class="nv">operations</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">lists</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">arbitrary</span><span class="w"> </span><span class="nv">terms</span>.<span class="w"></span>
+<span class="nv">In</span><span class="w"> </span><span class="nv">analogy</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">traversal</span><span class="w"> </span><span class="nv">operators</span><span class="w"> </span><span class="nv">we</span><span class="w"> </span><span class="nv">need</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="k">one</span><span class="nv">-level</span><span class="w"> </span><span class="nv">reduction</span><span class="w"> </span><span class="nv">operator</span>.<span class="w"></span>
+<span class="nv">The</span><span class="w"> </span>`<span class="nv">crush</span>/<span class="m">3</span>`<span class="w"> </span><span class="nv">strategy</span><span class="w"> </span><span class="nv">reduces</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">constructor</span><span class="w"> </span><span class="nv">application</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">folding</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">list</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">its</span><span class="w"> </span><span class="nv">subterms</span><span class="w"> </span><span class="nv">using</span><span class="w"> </span>`<span class="nv">foldr</span>/<span class="m">3</span>`.<span class="w"></span>
+
+```<span class="nv">stratego</span><span class="w"></span>
+<span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">c</span>#<span class=" -Punctuation">(</span><span class="nv">xs</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">foldr</span><span class=" -Punctuation">(</span><span class="nv">nul</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">sum</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">xs</span><span class="w"></span>
+</code></pre></div>
+<p>Thus, <code>crush</code> performs a fold-map over the direct subterms of a term as illustrated by the following application:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">crush</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">f</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">C</span><span class=" -Punctuation">(</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">t2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s2</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">f</span><span class=" -Punctuation">&gt;</span><span class="nv">t2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s1</span><span class=" -Punctuation">&gt;[]))</span><span class="w"></span>
+</code></pre></div>
+<p>The following application instantiates this application in two ways:</p>
 <p>stratego&gt; import libstrategolib
 stratego&gt; !Plus(Int("1"), Var("2"))
 Plus(Int("1"),Var("2"))</p>
@@ -2276,8 +2442,8 @@ The term-size strategy achieves this simply with a recursive call to itself.</p>
 <p>stratego&gt; <node-size> Plus(Int("1"), Var("2"))
 2
 stratego&gt; <term-size> Plus(Int("1"), Var("2"))
-5
-Occurrences. Counting the number of occurrences of a certain term in another term, or more generally, counting the number of subterms that satisfy some predicate is similar to counting the term size. However, only those terms satisfying the predicate should be counted. The solution is again similar to the solution for lists, but now using crush.</p>
+5</p>
+<p>Occurrences. Counting the number of occurrences of a certain term in another term, or more generally, counting the number of subterms that satisfy some predicate is similar to counting the term size. However, only those terms satisfying the predicate should be counted. The solution is again similar to the solution for lists, but now using crush.</p>
 <p>om-occurrences(s) = s &lt; !1 + crush(!0, add, om-occurrences(s))
 The om-occurrences strategy counts the outermost subterms satisfying s. That is, the strategy stops counting as soon as it finds a subterm for which s succeeds.</p>
 <p>The following strategy counts all occurrences:</p>
@@ -2288,13 +2454,13 @@ It counts the current term if it satisfies s and adds that to the occurrences in
 stratego&gt; <om-occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
 1
 stratego&gt; <occurrences(?Plus(_,_))> Plus(Int("1"), Plus(Int("34"), Var("2")))
-2
-Collect. Collecting the subterms that satisfy a predicate is similar to counting, but now a list of subterms is produced. The collect(s) strategy collects all outermost occurrences satisfying s.</p>
+2</p>
+<p>Collect. Collecting the subterms that satisfy a predicate is similar to counting, but now a list of subterms is produced. The collect(s) strategy collects all outermost occurrences satisfying s.</p>
 <p>collect(s) = ![<s>] &lt;+ crush(![], union, collect(s))
 When encountering a subterm for which s succeeds, a singleton list is produced. For other terms, the matching subterms are collected for each direct subterm, and the resulting lists are combined with union to remove duplicates.</p>
 <p>A typical application of collect is the collection of all variables in an expression, which can be defined as follows:</p>
-<p>get-vars = collect(?Var(<em>))
-Applying get-vars to an expression AST produces the list of all subterms matching Var(</em>).</p>
+<p>get-vars = collect(?Var(_))</p>
+<p>Applying get-vars to an expression AST produces the list of all subterms matching Var(_).</p>
 <p>The collect-all(s) strategy collects all occurrences satisfying s.</p>
 <p>collect-all(s) =
 ![<s> | <crush(![], union, collect(s))>] &lt;+ crush(![], union, collect(s))
@@ -2338,17 +2504,6 @@ The Implode rule rewrites an appl term to a constructor application, by extracti
 <p>Note that this is a gross over simplification of the actual implementation of implode-asfix. See the source code for the full strategy.</p>
 <p>Generic term construction and deconstruction support the definition of generic analysis and generic translation problems. The generic solutions for the example problems term size, number of occurrences, and subterm collection demonstrate the general approach to solving these types of problems.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Eelco Visser, Zine-El-Abidine Benaissa, and Andrew P. Tolmach. Building program optimizers with rewriting strategies. In Matthias Felleisen, Paul Hudak, and Christian Queinnec, editors, <em>Proceedings of the third ACM SIGPLAN international conference on Functional programming</em>, 13&ndash;26. Baltimore, Maryland, United States, 1998. ACM. URL: <a href="http://doi.acm.org/10.1145/289423.289425">http://doi.acm.org/10.1145/289423.289425</a>, <a href="https://doi.org/10.1145/289423.289425">doi:10.1145/289423.289425</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Eelco Visser and Zine-El-Abidine Benaissa. A core language for rewriting. <em>Electronic Notes in Theoretical Computer Science</em>, 15:422&ndash;441, 1998. URL: <a href="http://dx.doi.org/10.1016/S1571-0661(05)80027-1">http://dx.doi.org/10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>, <a href="https://doi.org/10.1016/S1571-0661(05)80027-1">doi:10.1016/S1571-0661<span class="arithmatex">\(05\)</span>80027-1</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
                 
               
               
