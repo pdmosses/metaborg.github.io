@@ -27,7 +27,7 @@ When a constraint declaration is provided this way, it can be used as a constrai
 by providing concrete arguments, separated by comma's.
 
 ```statix
-$ConstraintName({$Term ","}*)
+$ConstraintName({$Term ","}*) $Message?
 ```
 
 The sorts of the argument terms should be equal to the sorts in the constraint
