@@ -1491,6 +1491,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#defining-traversals-with-congruences" class="md-nav__link">
+    Defining Traversals with Congruences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traversing-tuples-and-lists" class="md-nav__link">
+    Traversing Tuples and Lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format-checking" class="md-nav__link">
+    Format Checking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-traversal" class="md-nav__link">
+    Generic Traversal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visiting-all-subterms" class="md-nav__link">
     Visiting All Subterms
   </a>
@@ -1498,8 +1526,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#defining-traversals-with-all" class="md-nav__link">
+    Defining Traversals with All
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visiting-one-subterm" class="md-nav__link">
     Visiting One Subterm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-traversals-with-one" class="md-nav__link">
+    Defining Traversals with One
   </a>
   
 </li>
@@ -2129,6 +2171,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#defining-traversals-with-congruences" class="md-nav__link">
+    Defining Traversals with Congruences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traversing-tuples-and-lists" class="md-nav__link">
+    Traversing Tuples and Lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format-checking" class="md-nav__link">
+    Format Checking
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-traversal" class="md-nav__link">
+    Generic Traversal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visiting-all-subterms" class="md-nav__link">
     Visiting All Subterms
   </a>
@@ -2136,8 +2206,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#defining-traversals-with-all" class="md-nav__link">
+    Defining Traversals with All
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visiting-one-subterm" class="md-nav__link">
     Visiting One Subterm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-traversals-with-one" class="md-nav__link">
+    Defining Traversals with One
   </a>
   
 </li>
@@ -2187,151 +2271,206 @@ We start with explicitly programmed traversals using recursive traversal rules. 
 Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type.
 Given these basic mechanisms, we conclude with an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.</p>
 <h2 id="congruence-operators">Congruence Operators<a class="headerlink" href="#congruence-operators" title="Permanent link">&para;</a></h2>
-<p>The definition of the traversal rules above frequently occurs in the definition of transformation strategies. Congruence operators provide a convenient abbreviation of precisely this operation.
-A congruence operator applies a strategy to each direct subterm of a specific constructor. For each n-ary constructor c declared in a signature, there is a corresponding congruence operator c(s1 , ..., sn), which applies to terms of the form c(t1 , ..., tn) by applying the argument strategies to the corresponding argument terms. A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
-<p>Example. For example, consider the following signature of expressions:</p>
-<p>module expressions
-signature
-  sorts Exp
-  constructors
-    Int   : String -&gt; Exp
-    Var   : String -&gt; Exp
-    Plus  : Exp * Exp -&gt; Exp
-    Times : Exp * Exp -&gt; Exp
-The following Stratego Shell session applies the congruence operators Plus and Times to a term:</p>
-<p>stratego&gt; import expressions
-stratego&gt; !Plus(Int("14"),Int("3"))
-Plus(Int("14"),Int("3"))
-stratego&gt; Plus(!Var("a"), id)
-Plus(Var("a"),Int("3"))
-stratego&gt; Times(id, !Int("42"))
-command failed
-The first application shows how a congruence transforms a specific subterm, that is the strategy applied can be different for each subterm. The second application shows that a congruence only succeeds for terms constructed with the same constructor.</p>
-<p>The import at the start of the session is necessary to declare the constructors used; the definitions of congruences are derived from constructor declarations. Forgetting this import would lead to a complaint about an undeclared operator:</p>
-<p>stratego&gt; !Plus(Int("14"),Int("3"))
-Plus(Int("14"),Int("3"))
-stratego&gt; Plus(!Var("a"), id)
-operator Plus/(2,0) not defined
-command failed
-Defining Traversals with Congruences. Now we return to our dnf/cnf example, to see how congruence operators can help in their implementation. Since congruence operators basically define a one-step traversal for a specific constructor, they capture the traversal rules defined above. That is, a traversal rule such as</p>
-<p>proptr(s) : And(x, y) -&gt; And(<s>x, <s>y)
-can be written by the congruence And(s,s). Applying this to the prop-dnf program we can replace the traversal rules by congruences as follows:</p>
-<p>module prop-dnf10
-imports libstrategolib prop-rules
-strategies
-  main = io-wrap(dnf)
-strategies
-  proptr(s) = Not(s) &lt;+ And(s, s) &lt;+ Or(s, s) &lt;+ Impl(s, s) &lt;+ Eq(s, s)
-  propbu(s) = try(proptr(propbu(s))); s
-strategies
-  dnf = propbu(try(DN &lt;+ (DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DAOL &lt;+ DAOR); dnf))
-  cnf = propbu(try(DN &lt;+ (DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DOAL &lt;+ DOAR); cnf))
-Observe how the five traversal rules have been reduced to five congruences which fit on a single line.</p>
-<p>Traversing Tuples and Lists. Congruences can also be applied to tuples, (s1,s2,...,sn), and lists, [s1,s2,...,sn]. A special list congruence is [] which ‘visits’ the empty list. As an example, consider again the definition of map(s) using recursive traversal rules:</p>
-<p>map(s) : [] -&gt; []
-map(s) : [x | xs] -&gt; [<s> x | <map(s)> xs]
-Using list congruences we can define this strategy as:</p>
-<p>map(s) = [] &lt;+ [s | map(s)]
-The [] congruence matches an empty list. The [s | map(s)] congruence matches a non-empty list, and applies s to the head of the list and map(s) to the tail. Thus, map(s) applies s to each element of a list:</p>
-<p>stratego&gt; import libstratego-lib
-stratego&gt; ![1,2,3]
-[1,2,3]
-stratego&gt; map(inc)
-[2,3,4]
-Note that map(s) only succeeds if s succeeds for each element of the list. The fetch and filter strategies are variations on map that use the failure of s to list elements.</p>
-<p>fetch(s) = [s | id] &lt;+ [id | fetch(s)]
-The fetch strategy traverses a list until it finds a element for which s succeeds and then stops. That element is the only one that is transformed.</p>
-<p>filter(s) = [] + ([s | filter(s)] &lt;+ ?[ |<id>]; filter(s))
-The filter strategy applies s to each element of a list, but only keeps the elements for which it succeeds.</p>
-<p>stratego&gt; import libstratego-lib
-stratego&gt; even = where(<eq>(<mod>(<id>,2),0))
-stratego&gt; ![1,2,3,4,5,6,7,8]
-[1,2,3,4,5,6,7,8]
-stratego&gt; filter(even)
-[2,4,6,8]
-Format Checking. Another application of congruences is in the definition of format checkers. A format checker describes a subset of a term language using a recursive pattern. This can be used to verify input or output of a transformation, and for documentation purposes. Format checkers defined with congruences can check subsets of signatures or regular tree grammars. For example, the subset of terms of a signature in a some normal form.</p>
-<p>As an example, consider checking the output of the dnf and cnf transformations.</p>
-<p>conj(s) = And(conj(s), conj(s)) &lt;+ s
-disj(s) = Or (disj(s), disj(s)) &lt;+ s</p>
-<p>// Conjunctive normal form
-conj-nf = conj(disj(Not(Atom(id)) &lt;+ Atom(id)))</p>
-<p>// Disjunctive normal form
-disj-nf = disj(conj(Not(Atom(id)) &lt;+ Atom(id)))
-The strategies conj(s) and disj(s) check that the subject term is a conjunct or a disjunct, respectively, with terms satisfying s at the leaves. The strategies conj-nf and disj-nf check that the subject term is in conjunctive or disjunctive normal form, respectively.</p>
-<p>Using congruence operators we constructed a generic, i.e. transformation independent, bottom-up traversal for proposition terms. The same can be done for other data types. However, since the sets of constructors of abstract syntax trees of typical programming languages can be quite large, this may still amount to quite a bit of work that is not reusable across data types; even though a strategy such as bottom-up traversal, is basically data-type independent. Thus, Stratego provides generic traversal by means of several generic one-step descent operators. The operator all, applies a strategy to all direct subterms. The operator one, applies a strategy to one direct subterm, and the operator some, applies a strategy to as many direct subterms as possible, and at least one.</p>
+<p>Congruence operators provide a convenient abbreviation of <a href="/background/stratego/traversal-with-rules/">traversal with rewrite rules</a>.
+A congruence operator applies a strategy to each direct subterm of a specific constructor.
+For each n-ary constructor <code>c</code> declared in a signature, there is a corresponding congruence operator <code>c(s1 , ..., sn)</code>, which applies to terms of the form <code>c(t1 , ..., tn)</code> by applying the argument strategies to the corresponding argument terms.
+A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
+<p>For example, consider the following signature of expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">expressions</span><span class="w"></span>
+<span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Int</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">String</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Var</span><span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">String</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Plus</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Times</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+</code></pre></div>
+<p>The following applications apply the congruence operators <code>Plus</code> and <code>Times</code> to a term:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;14&quot;</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="o">!</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;42&quot;</span><span class=" -Punctuation">))&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="c c-Singleline">// fails</span><span class="w"></span>
+</code></pre></div>
+<p>The first application shows how a congruence transforms a specific subterm, that is the strategy applied can be different for each subterm.
+The second application shows that a congruence only succeeds for terms constructed with the same constructor.</p>
+<!-- The import at the start of the session is necessary to declare the constructors used; the definitions of congruences are derived from constructor declarations.
+Forgetting this import would lead to a complaint about an undeclared operator:
+
+<div class="highlight"><pre><span></span><code><span class="nv">stratego</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;14&quot;</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;14&quot;</span><span class=" -Punctuation">),</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">stratego</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">operator</span><span class="w"> </span><span class="nv">Plus</span>/<span class=" -Punctuation">(</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">0</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nv">defined</span><span class="w"></span>
+<span class="nv">command</span><span class="w"> </span><span class="nv">failed</span><span class="w"></span>
+</code></pre></div>
+-->
+
+<h2 id="defining-traversals-with-congruences">Defining Traversals with Congruences<a class="headerlink" href="#defining-traversals-with-congruences" title="Permanent link">&para;</a></h2>
+<p>Now we return to our dnf/cnf example, to see how congruence operators can help in their implementation.
+Since congruence operators basically define a one-step traversal for a specific constructor, they capture the traversal rules defined above.
+That is, a traversal rule such as</p>
+<div class="highlight"><pre><span></span><code><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>can be written by the congruence <code>And(s,s)</code>.
+Applying this to the <code>prop-dnf</code> program we can replace the traversal rules by congruences as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-dnf10</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">prop-rules</span><span class="w"></span>
+<span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)));</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">dnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">cnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>Observe how the five traversal rules have been reduced to five congruences which fit on a single line.</p>
+<h2 id="traversing-tuples-and-lists">Traversing Tuples and Lists<a class="headerlink" href="#traversing-tuples-and-lists" title="Permanent link">&para;</a></h2>
+<p>Congruences can also be applied to tuples, <code>(s1,s2,...,sn)</code>, and lists, <code>[s1,s2,...,sn]</code>.
+A special list congruence is <code>[]</code> which ‘visits’ the empty list.
+As an example, consider again the definition of <code>map(s)</code> using recursive traversal rules:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"></span>
+<span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">x</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">xs</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">[&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">xs</span><span class=" -Punctuation">]</span><span class="w"></span>
+</code></pre></div>
+<p>Using list congruences we can define this strategy as:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)]</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>[]</code> congruence matches an empty list.
+The <code>[s | map(s)]</code> congruence matches a non-empty list, and applies <code>s</code> to the head of the list and <code>map(s)</code> to the tail.
+Thus, <code>map(s)</code> applies <code>s</code> to each element of a list:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">inc</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">3</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">3</span><span class=" -Punctuation">,</span><span class="m">4</span><span class=" -Punctuation">]</span><span class="w"></span>
+</code></pre></div>
+<p>Note that <code>map(s)</code> only succeeds if <code>s</code> succeeds for each element of the list.
+The <code>fetch</code> and <code>filter</code> strategies are variations on map that use the failure of <code>s</code> to list elements.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">fetch</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">id</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">fetch</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)]</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>fetch</code> strategy traverses a list until it finds a element for which <code>s</code> succeeds and then stops.
+That element is the only one that is transformed.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)]</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="o">?</span><span class=" -Punctuation">[</span><span class="w"> </span><span class=" -Punctuation">|&lt;</span><span class="nv">id</span><span class=" -Punctuation">&gt;];</span><span class="w"> </span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>filter</code> strategy applies <code>s</code> to each element of a list, but only keeps the elements for which it succeeds.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">even</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">where</span><span class=" -Punctuation">(&lt;</span><span class="nv">eq</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">mod</span><span class=" -Punctuation">&gt;(&lt;</span><span class="nv">id</span><span class=" -Punctuation">&gt;,</span><span class="m">2</span><span class=" -Punctuation">),</span><span class="m">0</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">filter</span><span class=" -Punctuation">(</span><span class="nv">even</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="m">1</span><span class=" -Punctuation">,</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">3</span><span class=" -Punctuation">,</span><span class="m">4</span><span class=" -Punctuation">,</span><span class="m">5</span><span class=" -Punctuation">,</span><span class="m">6</span><span class=" -Punctuation">,</span><span class="m">7</span><span class=" -Punctuation">,</span><span class="m">8</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="m">2</span><span class=" -Punctuation">,</span><span class="m">4</span><span class=" -Punctuation">,</span><span class="m">6</span><span class=" -Punctuation">,</span><span class="m">8</span><span class=" -Punctuation">]</span><span class="w"></span>
+</code></pre></div>
+<h2 id="format-checking">Format Checking<a class="headerlink" href="#format-checking" title="Permanent link">&para;</a></h2>
+<p>Another application of congruences is in the definition of format checkers.
+A format checker describes a subset of a term language using a recursive pattern.
+This can be used to verify input or output of a transformation, and for documentation purposes.
+Format checkers defined with congruences can check subsets of signatures or regular tree grammars.
+For example, the subset of terms of a signature in a some normal form.</p>
+<p>As an example, consider checking the output of the <code>dnf</code> and <code>cnf</code> transformations.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">conj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">conj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">conj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<span class="nv">disj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">Or</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">disj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">disj</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+
+<span class="c c-Singleline">// Conjunctive normal form</span><span class="w"></span>
+<span class="nv">conj-nf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">conj</span><span class=" -Punctuation">(</span><span class="nv">disj</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">)))</span><span class="w"></span>
+
+<span class="c c-Singleline">// Disjunctive normal form</span><span class="w"></span>
+<span class="nv">disj-nf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">disj</span><span class=" -Punctuation">(</span><span class="nv">conj</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="nv">id</span><span class=" -Punctuation">)))</span><span class="w"></span>
+</code></pre></div>
+<p>The strategies <code>conj(s)</code> and <code>disj(s)</code> check that the subject term is a conjunct or a disjunct, respectively, with terms satisfying s at the leaves.
+The strategies <code>conj-nf</code> and <code>disj-nf</code> check that the subject term is in conjunctive or disjunctive normal form, respectively.</p>
+<h2 id="generic-traversal">Generic Traversal<a class="headerlink" href="#generic-traversal" title="Permanent link">&para;</a></h2>
+<p>Using congruence operators we constructed a generic, i.e. transformation independent, bottom-up traversal for proposition terms.
+The same can be done for other data types.
+However, since the sets of constructors of abstract syntax trees of typical programming languages can be quite large, this may still amount to quite a bit of work that is not reusable across data types; even though a strategy such as bottom-up traversal, is basically data-type independent.
+Thus, Stratego provides generic traversal by means of several generic one-step descent operators.
+The operator <code>all</code>, applies a strategy to all direct subterms.
+The operator <code>one</code>, applies a strategy to one direct subterm, and the operator <code>some</code>, applies a strategy to as many direct subterms as possible, and at least one.</p>
 <h2 id="visiting-all-subterms">Visiting All Subterms<a class="headerlink" href="#visiting-all-subterms" title="Permanent link">&para;</a></h2>
-<p>The all(s) strategy transforms a constructor application by applying the parameter strategy s to each direct subterm. An application of all(s) fails if the application to one of the subterms fails. The following example shows how all (1) applies to any term, and (2) applies its argument strategy uniformly to all direct subterms. That is, it is not possible to do something special for a particular subterm (that’s what congruences are for).</p>
-<p>stratego&gt; !Plus(Int("14"),Int("3"))
-Plus(Int("14"),Int("3"))
-stratego&gt; all(!Var("a"))
-Plus(Var("a"),Var("a"))
-stratego&gt; !Times(Var("b"),Int("3"))
-Times(Var("b"),Int("3"))
-stratego&gt; all(!Var("z"))
-Times(Var("z"),Var("z"))
-The all(s) operator is really the ultimate replacement for the traversal rules that we saw above. Instead of specifying a rule or congruence for each constructor, the single application of the all operator takes care of traversing all constructors. Thus, we can replace the propbu strategy by a completely generic definition of bottom-up traversal. Consider again the last definition of propbu:</p>
-<p>proptr(s) = Not(s) &lt;+ And(s, s) &lt;+ Or(s, s) &lt;+ Impl(s, s) &lt;+ Eq(s, s)
-propbu(s) = try(proptr(propbu(s))); s
-The role of proptr(s) in this definition can be replaced by all(s), since that achieves exactly the same, namely applying s to the direct subterms of constructors:</p>
-<p>propbu(s) = all(propbu(s)); s
-Moreover, all succeeds on any constructor in any signature, so we can also as you see above drop the try as well, which was there only because proptr fails on the Atom(...), True(), and False() nodes at the leaves.</p>
-<p>However, the strategy now is completely generic, i.e. independent of the particular structure it is applied to. In the Stratego Library this strategy is called bottomup(s), and defined as follows:</p>
-<p>bottomup(s) = all(bottomup(s)); s
-It first recursively transforms the subterms of the subject term and then applies s to the result. Using this definition, the normalization of propositions now reduces to the following module, which is only concerned with the selection and composition of rewrite rules:</p>
-<p>module prop-dnf11
-imports libstrategolib prop-rules
-strategies
-  main = io-wrap(dnf)
-strategies
-  dnf = bottomup(try(DN &lt;+ (DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DAOL &lt;+ DAOR); dnf))
-  cnf = bottomup(try(DN &lt;+ (DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DOAL &lt;+ DOAR); cnf))
-In fact, these definitions still contain a reusable pattern. With a little squinting we see that the definitions match the following pattern:</p>
-<p>dnf = bottomup(try(dnf-rules; dnf))
-cnf = bottomup(try(cnf-rules; cnf))
-In which we can recognize the definition of innermost reduction, which the Stratego Library defines as:</p>
-<p>innermost(s) = bottomup(try(s; innermost(s)))
-The innermost strategy performs a bottom-up traversal of a term. After transforming the subterms of a term it tries to apply the transformation s. If successful the result is recursively transformed with an application of innermost. This brings us to the final form for the proposition normalizations:</p>
-<p>module prop-dnf12
-imports libstrategolib prop-rules
-strategies
-  main = io-wrap(dnf)
-strategies
-  dnf = innermost(DN &lt;+ DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DAOL &lt;+ DAOR)
-  cnf = innermost(DN &lt;+ DefI &lt;+ DefE &lt;+ DMA &lt;+ DMO &lt;+ DOAL &lt;+ DOAR)
-Different transformations can be achieved by using a selection of rules and a strategy, which is generic, yet defined in Stratego itself using strategy combinators.</p>
+<p>The <code>all(s)</code> strategy transforms a constructor application by applying the parameter strategy <code>s</code> to each direct subterm.
+An application of <code>all(s)</code> fails if the application to one of the subterms fails.
+The following example shows how all (1) applies to any term, and (2) applies its argument strategy uniformly to all direct subterms.
+That is, it is not possible to do something special for a particular subterm (that’s what congruences are for).</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="k">all</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;14&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="k">all</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;b&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<h2 id="defining-traversals-with-all">Defining Traversals with All<a class="headerlink" href="#defining-traversals-with-all" title="Permanent link">&para;</a></h2>
+<p>The <code>all(s)</code> operator is really the ultimate replacement for the <a href="/background/stratego/traversal-with-rules/">traversal with rules</a> idiom.
+Instead of specifying a rule or congruence for each constructor, the single application of the <code>all</code> operator takes care of traversing all constructors.
+Thus, we can replace the <code>propbu</code> strategy by a completely generic definition of bottom-up traversal.
+Consider again the last definition of <code>propbu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Impl</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">Eq</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)));</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>The role of <code>proptr(s)</code> in this definition can be replaced by <code>all(s)</code>, since that achieves exactly the same, namely applying <code>s</code> to the direct subterms of constructors:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">all</span><span class=" -Punctuation">(</span><span class="nv">propbu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">));</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>Moreover, <code>all</code> succeeds on any constructor in any signature, so we can also drop the <code>try</code> as well, which was there only because <code>proptr</code> fails on the <code>Atom(...)</code>, <code>True()</code>, and <code>False()</code> nodes at the leaves.</p>
+<p>However, the strategy now is completely generic, i.e. independent of the particular structure it is applied to.
+In the Stratego Library this strategy is called <code>bottomup(s)</code>, and defined as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">all</span><span class=" -Punctuation">(</span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">));</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>It first recursively transforms the subterms of the subject term and then applies <code>s</code> to the result.
+Using this definition, the normalization of propositions now reduces to the following module, which is only concerned with the selection and composition of rewrite rules:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-dnf11</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">prop-rules</span><span class="w"></span>
+<span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">dnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="w">  </span><span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAR</span><span class=" -Punctuation">);</span><span class="w"> </span><span class="nv">cnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>In fact, these definitions still contain a reusable pattern.
+With a little squinting we see that the definitions match the following pattern:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">dnf-rules</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">dnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">cnf-rules</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">cnf</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>In which we can recognize the definition of innermost reduction, which the Stratego Library defines as:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">bottomup</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)))</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>innermost</code> strategy performs a bottom-up traversal of a term.
+After transforming the subterms of a term it tries to apply the transformation <code>s</code>.
+If successful the result is recursively transformed with an application of <code>innermost</code>.
+This brings us to the final form for the proposition normalizations:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">prop-dnf12</span><span class="w"></span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">prop-rules</span><span class="w"></span>
+<span class="k">strategies</span><span class="w"></span>
+<span class="w">  </span><span class="nv">dnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DAOR</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">cnf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">DN</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefI</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DefE</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMA</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DMO</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAL</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">DOAR</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Different transformations can be achieved by using a selection of rules and a strategy, which is generic, yet defined in Stratego itself using strategy combinators.</p>
 <h2 id="visiting-one-subterm">Visiting One Subterm<a class="headerlink" href="#visiting-one-subterm" title="Permanent link">&para;</a></h2>
-<p>The one(s) strategy transforms a constructor application by applying the parameter strategy s to exactly one direct subterm. An application of one(s) fails if the application to all of the subterms fails. The following Stratego Shell session illustrates the behavior of the combinator:</p>
-<p>stratego&gt; !Plus(Int("14"),Int("3"))
-Plus(Int("14"),Int("3"))
-stratego&gt; one(!Var("a"))
-Plus(Var("a"),Int("3"))
-stratego&gt; one( Int(x) -&gt; Int(<addS>(x,"1"))  )
-Plus(Var("a"),Int("4"))
-stratego&gt; one(?Plus(<em>,</em>))
-command failed
-A frequently used application of one is the oncetd(s) traversal, which performs a left to right depth first search/transformation that stops as soon as s has been successfully applied.</p>
-<p>oncetd(s) = s &lt;+ one(oncetd(s))
-Thus, s is first applied to the root of the subject term. If that fails, its direct subterms are searched one by one (from left to right), with a recursive call to oncetd(s).</p>
-<p>An application of oncetd is the contains(|t) strategy, which checks whether the subject term contains a subterm that is equal to t.</p>
-<p>contains(|t) = oncetd(?t)
-Through the depth first search of oncetd, either an occurrence of t is found, or all subterms are verified to be unequal to t.</p>
+<p>The <code>one(s)</code> strategy transforms a constructor application by applying the parameter strategy <code>s</code> to exactly one direct subterm.
+An application of <code>one(s)</code> fails if the application to all of the subterms fails.
+The following applications illustrate the behavior of the combinator:</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="k">one</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;14&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="k">one</span><span class=" -Punctuation">(</span>\<span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(&lt;</span><span class="nv">addS</span><span class=" -Punctuation">&gt;(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span>\<span class="w"> </span><span class=" -Punctuation">)&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;4&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="k">one</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="nv">_</span><span class=" -Punctuation">))&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;a&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;4&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="c c-Singleline">// fails</span><span class="w"></span>
+</code></pre></div>
+<h2 id="defining-traversals-with-one">Defining Traversals with One<a class="headerlink" href="#defining-traversals-with-one" title="Permanent link">&para;</a></h2>
+<p>A frequently used application of <code>one</code> is the <code>oncetd(s)</code> traversal, which performs a left to right depth first search/transformation that stops as soon as s has been successfully applied.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">oncetd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="k">one</span><span class=" -Punctuation">(</span><span class="nv">oncetd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>Thus, <code>s</code> is first applied to the root of the subject term.
+If that fails, its direct subterms are searched one by one (from left to right), with a recursive call to <code>oncetd(s)</code>.</p>
+<p>An application of <code>oncetd</code> is the <code>contains(|t)</code> strategy, which checks whether the subject term contains a subterm that is equal to t.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">contains</span><span class=" -Punctuation">(|</span><span class="nv">t</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">oncetd</span><span class=" -Punctuation">(</span><span class="o">?</span><span class="nv">t</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Through the depth first search of <code>oncetd</code>, either an occurrence of <code>t</code> is found, or all subterms are verified to be unequal to <code>t</code>.</p>
 <p>Here are some other one-pass traversals using the one combinator:</p>
-<p>oncebu(s)  = one(oncebu(s)) &lt;+ s
-spinetd(s) = s; try(one(spinetd(s)))
-spinebu(s) = try(one(spinebu(s))); s
-Exercise: figure out what these strategies do.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">oncebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">one</span><span class=" -Punctuation">(</span><span class="nv">oncebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<span class="nv">spinetd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="k">one</span><span class=" -Punctuation">(</span><span class="nv">spinetd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="nv">spinebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="k">one</span><span class=" -Punctuation">(</span><span class="nv">spinebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)));</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
 <p>Here are some fixe-point traversals, i.e., traversals that apply their argument transformation exhaustively to the subject term.</p>
-<p>reduce(s)     = repeat(rec x(one(x) + s))
-outermost(s)  = repeat(oncetd(s))
-innermostI(s) = repeat(oncebu(s))
-The difference is the subterm selection strategy. Exercise: create rewrite rules and terms that demonstrate the differences between these strategies.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">reduce</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w">     </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="k">rec</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">(</span><span class="k">one</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">outermost</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">oncetd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">innermostI</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="nv">oncebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
+<p>The difference is the subterm selection strategy.</p>
 <h2 id="visiting-some-subterms">Visiting Some Subterms<a class="headerlink" href="#visiting-some-subterms" title="Permanent link">&para;</a></h2>
-<p>The some(s) strategy transforms a constructor application by applying the parameter strategy s to as many direct subterms as possible and at least one. An application of some(s) fails if the application to all of the subterms fails.</p>
+<p>The <code>some(s)</code> strategy transforms a constructor application by applying the parameter strategy <code>s</code> to as many direct subterms as possible and at least one. An application of <code>some(s)</code> fails if the application to all of the subterms fails.</p>
 <p>Some one-pass traversals based on some:</p>
-<p>sometd(s) = s &lt;+ some(sometd(s))
-somebu(s) = some(somebu(s)) &lt;+ s
-A fixed-point traversal with some:</p>
-<p>reduce-par(s) = repeat(rec x(some(x) + s))</p>
+<div class="highlight"><pre><span></span><code><span class="nv">sometd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="k">some</span><span class=" -Punctuation">(</span><span class="nv">sometd</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+<span class="nv">somebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="k">some</span><span class=" -Punctuation">(</span><span class="nv">somebu</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+</code></pre></div>
+<p>A fixed-point traversal with some:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">reduce-par</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="k">rec</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">(</span><span class="k">some</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+</code></pre></div>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
                 
               
