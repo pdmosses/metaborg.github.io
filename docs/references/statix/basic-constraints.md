@@ -48,6 +48,7 @@ $Term == $Term $Message?
 Asserts that two terms are equal. When necessary, this constraint infers values
 for free variables in the terms. Statically, both terms should have the same type.
 
+
 ## Disequality
 
 ```statix
@@ -194,13 +195,13 @@ Unlike other constraints, arithmetic constraint do no inference of values in
 the `$ArithExp`. Hence, having any free variables in this expression will cause
 the constraint to fail.
 
-!!! note
+!!! note "Separate Arithmetic Expression Syntax"
     As discussed, Statix has a special syntactic category for arithmetic expressions.
     Therefore, arithmetic expressions cannot be used at regular term positions.
     Instead, arithmetic expressions can be embedded in terms using the
     [Arithmetic Expressions](../terms#arithmetic-operations) term syntax.
 
-??? note
+??? note "Java Integers"
     Arithmetic Expressions are implemented using standard Java integers, and hence
     have the same size limitations.
 

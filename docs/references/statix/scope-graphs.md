@@ -45,7 +45,7 @@ $Term -$Label-> $Term
 This constraint ensures that an edge from the first term argument to the last
 argument (which must have type `scope`) with a label `$Label` exists.
 
-??? info
+??? info "Edge Assertions not Idempotent"
     Edge constraints are _not_ idempotent. That is, repeated edge assertions will
     result in multiple equivalent edges in a scope graph. However, because query
     results have set semantics, and edges have structural identity, declarations
