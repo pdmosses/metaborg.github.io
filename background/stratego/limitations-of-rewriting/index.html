@@ -2018,8 +2018,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intermezzo-dnf-in-spoofaxeclipse" class="md-nav__link">
-    Intermezzo: DNF in Spoofax/Eclipse
+  <a href="#intermezzo-dnf-in-spoofaxeclipse-move-to-tutorial" class="md-nav__link">
+    Intermezzo: DNF in Spoofax/Eclipse (move to tutorial?)
   </a>
   
 </li>
@@ -2035,6 +2035,18 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../traversal-with-rules/" class="md-nav__link">
+        Factoring out Traversal
+      </a>
     </li>
   
 
@@ -2115,8 +2127,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intermezzo-dnf-in-spoofaxeclipse" class="md-nav__link">
-    Intermezzo: DNF in Spoofax/Eclipse
+  <a href="#intermezzo-dnf-in-spoofaxeclipse-move-to-tutorial" class="md-nav__link">
+    Intermezzo: DNF in Spoofax/Eclipse (move to tutorial?)
   </a>
   
 </li>
@@ -2249,18 +2261,18 @@ The <code>D</code> rules are default rules that are only applied if none of the 
 <span class="w">   </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="s">&quot;r&quot;</span><span class=" -Punctuation">)),</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="s">&quot;p&quot;</span><span class=" -Punctuation">)),</span><span class="w"></span>
 <span class="w">         </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="s">&quot;p&quot;</span><span class=" -Punctuation">),</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="s">&quot;q&quot;</span><span class=" -Punctuation">)),</span><span class="nv">Atom</span><span class=" -Punctuation">(</span><span class="s">&quot;p&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
 </code></pre></div>
-<h2 id="intermezzo-dnf-in-spoofaxeclipse">Intermezzo: DNF in Spoofax/Eclipse<a class="headerlink" href="#intermezzo-dnf-in-spoofaxeclipse" title="Permanent link">&para;</a></h2>
+<h2 id="intermezzo-dnf-in-spoofaxeclipse-move-to-tutorial">Intermezzo: DNF in Spoofax/Eclipse (move to tutorial?)<a class="headerlink" href="#intermezzo-dnf-in-spoofaxeclipse-move-to-tutorial" title="Permanent link">&para;</a></h2>
 <p>If you’re going to try to run this example in Spoofax/Eclipse, a few words of caution.
 First, it’s easiest to just accumulate all of the different test modules as imports in your main language <code>“.str”</code> file.
 But if you do that, all of the rules will be in the same namespace.
 So you’re going to want to use different identifiers (say <code>E3</code> and <code>D3</code>) in place of <code>E</code> and <code>D</code> in your prop-dnf3.str file.
-Also, the concrete syntax has no way to represent the “extra” function symbol Dnf that is used here, so you’ll want to use alternate triggering strategies like</p>
+Also, the concrete syntax has no way to represent the “extra” function symbol <code>Dnf</code> that is used here, so you’ll want to use alternate triggering strategies like</p>
 <div class="highlight"><pre><span></span><code><span class="nv">make-nf</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">E3</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="nv">D3</span><span class=" -Punctuation">)</span><span class="w"></span>
 <span class="nv">dnf3</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">make-nf</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Dnf</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
-<p>that wrap the input in Dnf( ... ) themselves.</p>
-<p>For conjunctive normal form we can create a similar definition, which can now co-exist with the definition of DNF.
-Indeed, we could then simultaneously rewrite one subterm to DNF and the other to CNF.</p>
+<p>that wrap the input in <code>Dnf( ... )</code> themselves.</p>
+<p>For conjunctive normal form we can create a similar definition, which can now co-exist with the definition of <code>DNF</code>.
+Indeed, we could then simultaneously rewrite one subterm to <code>DNF</code> and the other to <code>CNF</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">E</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">DC</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">Dnf</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Cnf</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h2>
@@ -2270,7 +2282,6 @@ For each new transformation a new traversal function and new transformation func
 Many additional rules had to be added to traverse the term to find the places to apply the rules.
 In the modular solution we had 5 basic rules and 2 additional rules for DNF and 2 rules for CNF, 9 in total.
 In the functionalized version we needed 13 rules for each transformation, that is 26 rules in total.</p>
-<p>In the example repository, you can find both the dnf and cnf strategies in <code>trans/prop-dnf3.str</code> and <code>trans/prop-cnf3.str</code>.</p>
                 
               
               
@@ -2308,13 +2319,13 @@ In the functionalized version we needed 13 rules for each transformation, that i
         </a>
       
       
-        <a href="../strategic-rewriting/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../traversal-with-rules/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Strategic Rewriting
+              Factoring out Traversal
             </div>
           </div>
           <div class="md-footer__button md-icon">

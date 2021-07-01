@@ -1981,6 +1981,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../traversal-with-rules/" class="md-nav__link">
+        Factoring out Traversal
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -2060,6 +2072,13 @@
         <li class="md-nav__item">
   <a href="#local-transformations" class="md-nav__link">
     Local Transformations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -2170,6 +2189,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2214,7 +2240,7 @@ COBOL    : 300 - 1200
 Another advantage of pure term rewriting is the separation of the specification of the rules and the strategy that controls their application.
 Intertwining these specifications makes it more difficult to understand the specification, since rules cannot be distinguished from the transformation they are part of.
 Furthermore, intertwining makes it impossible to reuse the rules in a different transformation.</p>
-<p>Stratego introduced the paradigm of programmable rewriting strategies with generic traversals, a unifying solution in which application of rules can be carefully controlled, while incurring minimal traversal overhead and preserving separation of rules and strategies.</p>
+<p>Stratego introduces the paradigm of programmable rewriting strategies with generic traversals, a unifying solution in which application of rules can be carefully controlled, while incurring minimal traversal overhead and preserving separation of rules and strategies<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
 <p>The following are the design criteria for strategies in Stratego:</p>
 <ul>
 <li>Separation of rules and strategy: Basic transformation rules can be defined separately from the strategy that applies them, such that they can be understood independently.</li>
@@ -2396,6 +2422,15 @@ Thus, cascading transformations are applied locally to terms for which the trans
 Of course more sophisticated strategies can be used for finding application locations, as well as for applying the rules locally.
 Nevertheless, the key observation underlying this idiom remains: Because the transformations to be applied are local, special knowledge about the subject program at the point of application can be used.
 This allows the application of rules that would not be otherwise applicable.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Eelco Visser, Zine-El-Abidine Benaissa, and Andrew P. Tolmach. Building program optimizers with rewriting strategies. In Matthias Felleisen, Paul Hudak, and Christian Queinnec, editors, <em>Proceedings of the third ACM SIGPLAN international conference on Functional programming</em>, 13&ndash;26. Baltimore, Maryland, United States, 1998. ACM. URL: <a href="http://doi.acm.org/10.1145/289423.289425">http://doi.acm.org/10.1145/289423.289425</a>, <a href="https://doi.org/10.1145/289423.289425">doi:10.1145/289423.289425</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
@@ -2418,7 +2453,7 @@ This allows the application of rules that would not be otherwise applicable.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../limitations-of-rewriting/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../traversal-with-rules/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2427,7 +2462,7 @@ This allows the application of rules that would not be otherwise applicable.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Limitations of Rewriting
+              Factoring out Traversal
             </div>
           </div>
         </a>
