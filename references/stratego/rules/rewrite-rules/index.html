@@ -2415,7 +2415,7 @@
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 </code></pre></div>
 <p>It consists of a name that identifies the rule, a left-hand side term pattern, and a right-hand side term pattern.</p>
-<p>Applying a rule to a term <code>t</code> entails <a href="../patterns/">matching</a> <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
+<p>Applying a rule to a term <code>t</code> entails <a href="../../terms/patterns/">matching</a> <code>t</code> against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.</p>
 <p>For example, the rewrite rule <code>DeMorgan</code></p>
 <div class="highlight"><pre><span></span><code><span class="nv">DeMorgan</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">  </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Or</span><span class=" -Punctuation">(</span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Not</span><span class=" -Punctuation">(</span><span class="nv">e2</span><span class=" -Punctuation">))</span><span class="w"></span>
@@ -2424,7 +2424,7 @@
 Applying this rule to the term <code>Not(And(Var(p), Var(q)))</code> results in a substitution binding <code>Var(p)</code> to <code>e1</code> and <code>Var(q)</code> to <code>e2</code>, and the instantiation <code>Or(Not(Var(p)), Not(Var(q)))</code> of the right-hand side of the rule.</p>
 <p>Note that a rewrite rule defines a <em>partial computation</em>.
 Only if the pattern match succeeds is the transformation applied.
-Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with <a href="../strategy-combinators/">strategy combinators</a>.</p>
+Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with <a href="../../strategies/sequential/">strategy combinators</a>.</p>
 <h2 id="rules-with-the-same-name">Rules with the Same Name<a class="headerlink" href="#rules-with-the-same-name" title="Permanent link">&para;</a></h2>
 <p>Multiple rewrite rules may have the same name.
 When a (simple) rewrite rule fails to apply to a term, the next rule with the same name is tried.</p>
@@ -2461,7 +2461,7 @@ When overlapping rules are defined in separate modules, the order is undefined.<
 <span class="w">  </span>$<span class="nv">Term</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
 <span class="w">  </span><span class="k">where</span><span class="w"> </span>$<span class="nv">Strategy</span><span class="w"></span>
 </code></pre></div>
-<p>where the <a href="../strategy-combinators/">strategy expression</a> represents a computation that may fail.
+<p>where the <a href="../../strategies/sequential/">strategy expression</a> represents a computation that may fail.
 When the condition fails, the expectation is that some other rule will pick up the computation.</p>
 <p>For example, the following conditional rewrite rules combine pattern matching with the predicate <code>is-atom</code> to select the rule to apply:</p>
 <div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
@@ -2521,7 +2521,7 @@ Therefore a <code>with</code> is used.</p>
 <span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">operator-to-coperator</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">op</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">cop</span><span class="w"></span>
 </code></pre></div>
 <p>The <code>where</code> condition tests whether the rule should be applied using the <code>is-operator</code> strategy.
-(By using <a href="../strategy-combinators/">generic term deconstruction</a> to obtain the term constructor.)
+(By using <a href="../../strategies/type-unifying/">generic term deconstruction</a> to obtain the term constructor.)
 The <code>with</code> premises define side computations.</p>
 <h2 id="parameterized-rewrite-rules">Parameterized Rewrite Rules<a class="headerlink" href="#parameterized-rewrite-rules" title="Permanent link">&para;</a></h2>
 <p>Rewrite rules can be parameterized with transformation strategies and with terms.
@@ -2561,7 +2561,7 @@ In that case, the parentheses can be left out as well.</p>
 In a future version of the language, this syntactic distiction may no longer be necessary based on types.</p>
 </div>
 <h2 id="typing-rewrite-rules">Typing Rewrite Rules<a class="headerlink" href="#typing-rewrite-rules" title="Permanent link">&para;</a></h2>
-<p>As noted in the <a href="../types/">type</a> section, rewrite rules can be typed using a signature of the form</p>
+<p>As noted in the <a href="../../terms/types/">type</a> section, rewrite rules can be typed using a signature of the form</p>
 <div class="highlight"><pre><span></span><code>  $Id($StrategyTypes | $TermTypes) :: $Type -&gt; $Type
 </code></pre></div>
 <p>Not providing a type signature amounts to declaring the rule as having signature</p>

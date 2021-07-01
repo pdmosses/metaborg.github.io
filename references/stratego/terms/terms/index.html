@@ -2372,10 +2372,10 @@ But Stratego does not much care what a term represents.
 Terms can just as well represent structured documents, software models, or anything else that can be rendered in a structured format.
 Generally program text is transformed into a term by means of parsing,
 and turned back into program text by means of pretty-printing.
-One way to achieve this is by using <a href="../../syntax/">SDF3</a>.</p>
+One way to achieve this is by using <a href="../../../syntax/">SDF3</a>.</p>
 <h2 id="annotated-term-format">Annotated Term Format<a class="headerlink" href="#annotated-term-format" title="Permanent link">&para;</a></h2>
 <p>Terms in Stratego are terms in the <em>Annotated Term Format</em>, or <em>ATerms</em>
-for short <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+for short<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
 The ATerm format provides a set of constructs for representing trees, comparable to XML or abstract data types in
 functional programming languages.
 For example, the code <code>4 + f(5 * x)</code> might be represented in a term as:</p>
@@ -2386,8 +2386,7 @@ For example, the code <code>4 + f(5 * x)</code> might be represented in a term a
 <li>
 <p><strong>Integer</strong>: An integer constant, that is a list of decimal digits,
     is an ATerm.</p>
-<p>Examples: <code>1</code>, <code>12343</code>{.docutils
-.literal .notranslate}.</p>
+<p>Examples: <code>1</code>, <code>12343</code>.</p>
 </li>
 <li>
 <p><strong>String</strong>: A string constant, that is a list of characters between
@@ -2402,12 +2401,14 @@ For example, the code <code>4 + f(5 * x)</code> might be represented in a term a
 <p><strong>Constructor application</strong>: A constructor is an identifier, that is
     an alphanumeric string starting with a letter, or a double quoted
     string.</p>
-<p>A constructor application <code>c(t1,...,tn)</code> creates a term by applying a constructor to a list of
+<p>A constructor application <code>c(t1,...,tn)</code> creates a term by applying a constructor to a sequence of
 zero or more terms. For example, the term
 <code>Plus(Int("4"),Var("x"))</code>uses the
 constructors <code>Plus</code>,
 <code>Int</code>, and <code>Var</code> to create a nested term from the strings
-<code>"4"</code> and <code>"x"</code>.</p>
+<code>"4"</code> and <code>"x"</code>.
+The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with <a href="../patterns/">variables</a>.
+Thus, <code>True()</code> is a constructor application, but <code>True</code> is a variable.</p>
 </li>
 <li>
 <p><strong>List</strong>: A list is a term of the form <code>[t1,...,tn]</code>, that is a list of zero or more terms between
@@ -2441,7 +2442,7 @@ pointers rather than manipulating a textual representation of terms. But
 this is completely hidden from the Stratego programmer.</p>
 <h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
 <p>Currently, the constructors of terms live in a global namespace.
-In the future, we want to support qualified names. </p>
+In the future, we want to support qualified names.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />

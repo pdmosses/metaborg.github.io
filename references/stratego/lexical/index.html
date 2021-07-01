@@ -1271,15 +1271,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-names" class="md-nav__link">
-    Module Names
+  <a href="#identifiers" class="md-nav__link">
+    Identifiers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#identifiers" class="md-nav__link">
-    Identifiers
+  <a href="#reserved-words" class="md-nav__link">
+    Reserved Words
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-names" class="md-nav__link">
+    Module Names
   </a>
   
 </li>
@@ -1301,13 +1308,6 @@
         <li class="md-nav__item">
   <a href="#comments" class="md-nav__link">
     Comments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reserved-words" class="md-nav__link">
-    Reserved Words
   </a>
   
 </li>
@@ -2333,15 +2333,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-names" class="md-nav__link">
-    Module Names
+  <a href="#identifiers" class="md-nav__link">
+    Identifiers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#identifiers" class="md-nav__link">
-    Identifiers
+  <a href="#reserved-words" class="md-nav__link">
+    Reserved Words
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-names" class="md-nav__link">
+    Module Names
   </a>
   
 </li>
@@ -2367,13 +2374,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#reserved-words" class="md-nav__link">
-    Reserved Words
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2392,14 +2392,19 @@
                 
                 
                 <h1 id="lexical">Lexical<a class="headerlink" href="#lexical" title="Permanent link">&para;</a></h1>
-<h2 id="module-names">Module Names<a class="headerlink" href="#module-names" title="Permanent link">&para;</a></h2>
-<p>Module names can be ???</p>
 <h2 id="identifiers">Identifiers<a class="headerlink" href="#identifiers" title="Permanent link">&para;</a></h2>
 <p>Identifiers used as names of constructors and transformations have the form</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ID</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">a-zA-Z</span><span class=" -Punctuation">][</span><span class="nv">a-zA-Z0-9</span>\<span class="nv">-</span>\<span class="nv">_</span><span class=" -Punctuation">]</span><span class="o">*</span><span class="w"></span>
 </code></pre></div>
 <p>In particular, hyphens can be part of identifiers.</p>
 <p>Identifiers cannot be followed by identifiers or keywords without intervening whitespace.</p>
+<h2 id="reserved-words">Reserved Words<a class="headerlink" href="#reserved-words" title="Permanent link">&para;</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>provide list of reserved words</p>
+</div>
+<h2 id="module-names">Module Names<a class="headerlink" href="#module-names" title="Permanent link">&para;</a></h2>
+<p>Module names can be sequences of identifiers separated by <code>/</code>.</p>
 <h2 id="integers">Integers<a class="headerlink" href="#integers" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">INT</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="m">0</span><span class="nv">-9</span><span class=" -Punctuation">]</span><span class="o">+</span><span class="w"></span>
 </code></pre></div>
@@ -2411,7 +2416,7 @@
 <p>Spaces, tabs, and newlines are whitespace and can occur between any two tokens.</p>
 <h2 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h2>
 <p>Comments follow the C/Java tradition.
-That is, the language supports single line comments after <code>\\</code></p>
+That is, the language supports single line comments after <code>//</code></p>
 <div class="highlight"><pre><span></span><code><span class="c c-Singleline">// a single line comment</span><span class="w"></span>
 </code></pre></div>
 <p>and multi-line comments between <code>/*</code> and <code>*/</code></p>
@@ -2426,11 +2431,6 @@ That is, the language supports single line comments after <code>\\</code></p>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
 <p>but this should be changed so that multi-line comments can be nested</p>
-</div>
-<h2 id="reserved-words">Reserved Words<a class="headerlink" href="#reserved-words" title="Permanent link">&para;</a></h2>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>provide list of reserved words</p>
 </div>
                 
               

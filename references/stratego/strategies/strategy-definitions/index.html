@@ -2382,7 +2382,7 @@
                 <h1 id="strategy-definitions">Strategy Definitions<a class="headerlink" href="#strategy-definitions" title="Permanent link">&para;</a></h1>
 <p>Strategy definitions give a name to a strategy expression.</p>
 <h2 id="simple-definitions">Simple Definitions<a class="headerlink" href="#simple-definitions" title="Permanent link">&para;</a></h2>
-<p>A simple strategy definition gaves a name to a <a href="../strategy-combinators/">strategy expression</a>.</p>
+<p>A simple strategy definition gaves a name to a <a href="../sequential/">strategy expression</a>.</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
 </code></pre></div>
 <p>For example, the following definition defines <code>desugar</code> as an application of the <code>innermost</code> strategy to the rewrite rule(s) <code>desugar-exp</code>.</p>
@@ -2391,7 +2391,7 @@
 <span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">desugar-exp</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <h2 id="parameterized-definitions">Parameterized Definitions<a class="headerlink" href="#parameterized-definitions" title="Permanent link">&para;</a></h2>
-<p>Just like <a href="../rewrite-rules/">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
+<p>Just like <a href="../../rules/rewrite-rules/">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
 $<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
 </code></pre></div>
@@ -2419,7 +2419,7 @@ When definitions are defined in separate modules, the order is undefined.</p>
 <h2 id="local-definitions">Local Definitions<a class="headerlink" href="#local-definitions" title="Permanent link">&para;</a></h2>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
-<p>finish this section on local definitions </p>
+<p>finish this section on local definitions</p>
 </div>
                 
               

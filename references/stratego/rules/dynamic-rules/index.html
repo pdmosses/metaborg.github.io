@@ -1369,9 +1369,95 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Dynamic Rules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Dynamic Rules
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-dynamic-rules" class="md-nav__link">
+    Defining Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invoking-dynamic-rules" class="md-nav__link">
+    Invoking Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterized-dynamic-rules" class="md-nav__link">
+    Parameterized Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-definitions" class="md-nav__link">
+    Multiple Definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-dynamic-rules" class="md-nav__link">
+    Overriding Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-rule-scope" class="md-nav__link">
+    Dynamic Rule Scope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-right-hand-sides" class="md-nav__link">
+    Multiple Right-Hand Sides
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependent-dynamic-rules" class="md-nav__link">
+    Dependent Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2263,6 +2349,77 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-dynamic-rules" class="md-nav__link">
+    Defining Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invoking-dynamic-rules" class="md-nav__link">
+    Invoking Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterized-dynamic-rules" class="md-nav__link">
+    Parameterized Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-definitions" class="md-nav__link">
+    Multiple Definitions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-dynamic-rules" class="md-nav__link">
+    Overriding Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-rule-scope" class="md-nav__link">
+    Dynamic Rule Scope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-right-hand-sides" class="md-nav__link">
+    Multiple Right-Hand Sides
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependent-dynamic-rules" class="md-nav__link">
+    Dependent Dynamic Rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2279,6 +2436,110 @@
                 
                 
                 <h1 id="dynamic-rules">Dynamic Rules<a class="headerlink" href="#dynamic-rules" title="Permanent link">&para;</a></h1>
+<p>Plain <a href="../rewrite-rules/">rewrite rules</a> are context-free, i.e. do not take their context into account.
+Context-sensitive transformations can be defined by passing context information using additional arguments to rules and strategies.
+Alternatively, Stratego provides linguistic support to dynamically define rewrite rules based on context information<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<h2 id="defining-dynamic-rules">Defining Dynamic Rules<a class="headerlink" href="#defining-dynamic-rules" title="Permanent link">&para;</a></h2>
+<p>A dynamic rule definition is a regular (conditional) <a href="../rewrite-rules/">rewrite rule</a> that is defined as part of a strategy rather than at top-level.
+A dynamic rule definition has the form</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class=" -Punctuation">(</span><span class="w"> </span>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$<span class="nv">Rule</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The difference is that any variables that are bound in the context of the rule, take their binding from the context, rather then being universally quantified.
+Thus, a dynamic rule instance can be thought of as having the context variables replaced by the corresponding terms from the context.</p>
+<p>For example, the following strategy <code>DefineInlineCall</code> defines the dynamic rule <code>InlineCall</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">DefineInlineCall</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="o">?</span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">args</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="k">rules</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">InlineCall</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">        </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="nv">f</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">zip</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">args</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec</span>*<span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>The variables <code>f</code>, <code>args</code>, and <code>e</code> in the dynamic rule are bound in context, while the variables <code>es</code> and <code>dec*</code> are universally quantified.
+The variables <code>x</code> and <code>e</code> in the embedded lambda rule are local to that rule.
+Thus, the application</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+</code></pre></div>
+<p>can be thought of to give rise to the definition</p>
+<div class="highlight"><pre><span></span><code><span class="nv">InlineCall</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">zip</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec</span>*<span class="w"></span>
+</code></pre></div>
+<h2 id="invoking-dynamic-rules">Invoking Dynamic Rules<a class="headerlink" href="#invoking-dynamic-rules" title="Permanent link">&para;</a></h2>
+<p>When <code>$Id</code> is defined as a dynamic rule it can be invoke like a regular rule or strategies.
+The invocation only succeeds when applied to a term that coincide with the left-hand side pattern variables bindings inherited from the context.</p>
+<p>Thus, in the example above <code>InlineCall</code> can be called to invoke a previously defined dynamic rule.
+For example, the following are calls to <code>DefineInlineCall</code> and <code>InlineCall</code></p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">InlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Mul</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;y&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))])</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">Let</span><span class=" -Punctuation">([</span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Mul</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;y&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">)))],</span><span class="w"></span>
+<span class="w">       </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">InlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;foo&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[])</span><span class="w"> </span><span class="c c-Singleline">// fails</span><span class="w"></span>
+</code></pre></div>
+<p>Note that the application to <code>Call("foo", [])</code> fails since it does not match the dynamically defined rule.</p>
+<h2 id="parameterized-dynamic-rules">Parameterized Dynamic Rules<a class="headerlink" href="#parameterized-dynamic-rules" title="Permanent link">&para;</a></h2>
+<p>Dynamic rules can be parameterized like regular rewrite rules and strategies.</p>
+<h2 id="multiple-definitions">Multiple Definitions<a class="headerlink" href="#multiple-definitions" title="Permanent link">&para;</a></h2>
+<p>Dynamic rules can be defined for multiple contexts simultaneously.</p>
+<p>For example, the following applications of <code>DefineInlineCall</code></p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+
+<span class=" -Punctuation">&lt;</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="s">&quot;y&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">Mul</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+</code></pre></div>
+<p>can be thought of defining multiple top-level rewrite rules</p>
+<div class="highlight"><pre><span></span><code><span class="nv">InlineCall</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;1&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">zip</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec</span>*<span class="w"></span>
+
+<span class="nv">InlineCall</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Mul</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;y&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;2&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">zip</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="s">&quot;y&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec</span>*<span class="w"></span>
+</code></pre></div>
+<h2 id="overriding-dynamic-rules">Overriding Dynamic Rules<a class="headerlink" href="#overriding-dynamic-rules" title="Permanent link">&para;</a></h2>
+<p>A definition of a dynamic rule <em>with the same left-hand side</em> as a previous definition, overrides that previous definition.</p>
+<p>Thus, if after the applications of <code>DefineInlineCall</code> above, we apply</p>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">&lt;</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+</code></pre></div>
+<p>Then the dynamic rule for <code>twice</code> above is <em>undefined</em>, and instead the rule</p>
+<div class="highlight"><pre><span></span><code><span class="nv">InlineCall</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">)))</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">zip</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">VarDec</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">es</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec</span>*<span class="w"></span>
+</code></pre></div>
+<p>is added to the collection of rules.</p>
+<h2 id="dynamic-rule-scope">Dynamic Rule Scope<a class="headerlink" href="#dynamic-rule-scope" title="Permanent link">&para;</a></h2>
+<p>It is possible to limit the <em>scope</em> in which dynamic rule definitions are available.
+The construct <code>{| $Id ... : $Strategy |}</code> limits the availability of a dynamic rule defined within the brackets to that scope.
+After exiting the scope, the state of the dynamic rule definitions before the scope is restored.</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">inline-functions</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec1</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec2</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">{|</span><span class="w"> </span><span class="nv">InlineCall</span><span class="w"></span>
+<span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">()&gt;</span><span class="w"> </span><span class="nv">dec1</span>*<span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec2</span>*<span class="w"></span>
+<span class="w">          </span><span class=" -Punctuation">|}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="multiple-right-hand-sides">Multiple Right-Hand Sides<a class="headerlink" href="#multiple-right-hand-sides" title="Permanent link">&para;</a></h2>
+<h2 id="dependent-dynamic-rules">Dependent Dynamic Rules<a class="headerlink" href="#dependent-dynamic-rules" title="Permanent link">&para;</a></h2>
+<p>Dependent dynamic rules<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Martin Bravenboer, Arthur van Dam, Karina Olmos, and Eelco Visser. Program transformation with scoped dynamic rewrite rules. <em>Fundamenta Informaticae</em>, 69<span class="arithmatex">\(1\-2\)</span>:123&ndash;178, 2006. URL: <a href="https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06">https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Karina Olmos and Eelco Visser. Composing source-to-source data-flow transformations with rewriting strategies and dependent dynamic rewrite rules. In Rastislav Bodík, editor, <em>Compiler Construction, 14<sup>th</sup> International Conference, CC 2005, Held as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2005, Edinburgh, UK, April 4-8, 2005, Proceedings</em>, volume 3443 of Lecture Notes in Computer Science, 204&ndash;220. Springer, 2005. URL: <a href="https://doi.org/10.1007/978-3-540-31985-6_14">https://doi.org/10.1007/978-3-540-31985-6_14</a>, <a href="https://doi.org/10.1007/978-3-540-31985-6_14">doi:10.1007/978-3-540-31985-6_14</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               

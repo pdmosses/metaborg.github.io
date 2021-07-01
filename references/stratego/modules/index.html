@@ -2428,7 +2428,7 @@ For example, consider the following directory structure</p>
     - desugar.str2
 </code></pre></div>
 A declaration of or reference to a module uses its fully qualified name, with <code>/</code> to indicate the directory structure, relative to a 'root' directory.</p>
-<p>For example, if <code>trans</code> is <a href="../config/">declared as a root</a>, then the module names for the modules above are</p>
+<p>For example, if <code>trans</code> is <a href="../../config/">declared as a root</a>, then the module names for the modules above are</p>
 <div class="highlight"><pre><span></span><code>- compilation/optimization
 - compilation/translation
 - desugaring/desugar
@@ -2455,24 +2455,27 @@ A declaration of or reference to a module uses its fully qualified name, with <c
 <p>Thus, a module starts with a module header followed by a list of <code>imports</code>.
 The name of a module in the header and imports should correspond to the file name, relative to a 'root' directory.</p>
 <p>The rest of a module consists of <code>signature</code>, <code>rules</code>, and <code>strategies</code> sections, in any order and possibly repeated.
-A <a href="../types/">signature</a> section introduces sorts and constructors.
-<a href="../rewrite-rules/">Rule</a> definitions and <a href="../strategies/">strategy</a> definitions introduce named transformations.
+A <a href="../terms/types/">signature</a> section introduces sorts and constructors.
+<a href="../rules/rewrite-rules/">Rule</a> definitions and <a href="../strategies/strategy-definitions/">strategy</a> definitions introduce named transformations.
 The <code>rules</code> and <code>strategies</code> section headers are indicative only; rule and strategy definitions can actually be mixed.</p>
 <h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
 <p>A module should import all other modules from which it uses definitions.
 Imports are non-transitive and may be mutually recursive.</p>
 <p>Modules can extend rule and strategy definitions from other modules.
 This allows the modular extension of a language.</p>
+<p>When imported, all definitions in a module are visible.
+There are currently no mechanisms for hiding definitions.</p>
 <h2 id="libraries">Libraries<a class="headerlink" href="#libraries" title="Permanent link">&para;</a></h2>
 <p>A Stratego library is a closed collection of modules.
 A library can be pre-compiled since client programs may not extend its definitions.
-A library should provide external definitions to publicize the signatures of constructors and transformations it defines.</p>
+A library is used by importing a collection of <em>external</em> definitions of the signatures of constructors and transformations it defines.
+Even if definitions in a library are not included in a libraries external definition, they cannot be redefined, as that produces link errors.</p>
 <h2 id="source-inclusion">Source Inclusion<a class="headerlink" href="#source-inclusion" title="Permanent link">&para;</a></h2>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
 </div>
 <h2 id="concrete-syntax">Concrete Syntax<a class="headerlink" href="#concrete-syntax" title="Permanent link">&para;</a></h2>
-<p>When using <a href="concrete-syntax/">concrete syntax</a> in a module, a <code>.meta</code> file accompanying the module indicates the parse table to use.</p>
+<p>When using <a href="../rules/concrete-syntax/">concrete syntax</a> in a module, a <code>.meta</code> file accompanying the module indicates the parse table to use.</p>
                 
               
               
