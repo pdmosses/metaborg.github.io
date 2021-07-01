@@ -1442,8 +1442,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependent-dynamic-rules" class="md-nav__link">
-    Dependent Dynamic Rules
+  <a href="#other-dynamic-rule-extensions" class="md-nav__link">
+    Other Dynamic Rule Extensions
   </a>
   
 </li>
@@ -2405,8 +2405,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependent-dynamic-rules" class="md-nav__link">
-    Dependent Dynamic Rules
+  <a href="#other-dynamic-rule-extensions" class="md-nav__link">
+    Other Dynamic Rule Extensions
   </a>
   
 </li>
@@ -2517,23 +2517,52 @@ For example, the following are calls to <code>DefineInlineCall</code> and <code>
 <p>is added to the collection of rules.</p>
 <h2 id="dynamic-rule-scope">Dynamic Rule Scope<a class="headerlink" href="#dynamic-rule-scope" title="Permanent link">&para;</a></h2>
 <p>It is possible to limit the <em>scope</em> in which dynamic rule definitions are available.
-The construct <code>{| $Id ... : $Strategy |}</code> limits the availability of a dynamic rule defined within the brackets to that scope.
+The <em>dynamic rule scope</em> <code>{| $Id ... : $Strategy |}</code> limits the availability of dynamic rules named <code>$Id ..</code> defined within the brackets to that scope.
 After exiting the scope, the state of the dynamic rule definitions before the scope is restored.</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">inline-functions</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<p>For example, the following strategy defines inlining rules that are only available during the visit of the body of the <code>Let</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nv">inline</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
 <span class="w">    </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec1</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e1</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Let</span><span class=" -Punctuation">(</span><span class="nv">dec2</span>*<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">inline</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">dec1</span>*<span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec2</span>*<span class="w"></span>
 <span class="w">    </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">{|</span><span class="w"> </span><span class="nv">InlineCall</span><span class="w"></span>
-<span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">()&gt;</span><span class="w"> </span><span class="nv">dec1</span>*<span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">dec2</span>*<span class="w"></span>
+<span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span><span class="nv">try</span><span class=" -Punctuation">(</span><span class="nv">DefineInlineCall</span><span class=" -Punctuation">))&gt;</span><span class="w"> </span><span class="nv">dec2</span>*<span class="w"></span>
+<span class="w">          </span><span class=" -Punctuation">;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">inline</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e1</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">e2</span><span class="w"></span>
 <span class="w">          </span><span class=" -Punctuation">|}</span><span class="w"></span>
 </code></pre></div>
+<p>Application of this strategy to the program term</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Let</span><span class=" -Punctuation">([</span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;inc&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">],</span><span class="w"> </span>..<span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">],</span><span class="w"> </span>..<span class=" -Punctuation">)]</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">      </span><span class="nv">Let</span><span class=" -Punctuation">([</span><span class="nv">FunDef</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">],</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">])]</span><span class="w"></span>
+<span class="w">        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">]))</span><span class="w"> </span><span class="c c-Singleline">// inline second def of twice</span><span class="w"></span>
+<span class="w">      </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Call</span><span class=" -Punctuation">(</span><span class="s">&quot;twice&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>..<span class=" -Punctuation">])</span><span class="w"> </span><span class="c c-Singleline">// inline first def of twice</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>will result in locally overriding the first dynamic rule for <code>"twice"</code>, but undoing that override at the end of the dynamic rule scope, such that it is available again at the second call to <code>"twice"</code>.</p>
+<p>While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the <a href="../../../statix/">Statix</a> meta-language and perform a uniquify transformation to guarantee unique names. </p>
 <h2 id="multiple-right-hand-sides">Multiple Right-Hand Sides<a class="headerlink" href="#multiple-right-hand-sides" title="Permanent link">&para;</a></h2>
-<h2 id="dependent-dynamic-rules">Dependent Dynamic Rules<a class="headerlink" href="#dependent-dynamic-rules" title="Permanent link">&para;</a></h2>
-<p>Dependent dynamic rules<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<p>In order to collect multiple ways to rewrite a term use <code>rules( $Id :+ $Rule)</code>.</p>
+<p>For example, the following is a small API for for emitting nodes in a control-flow graph consisting of blocks.  </p>
+<div class="highlight"><pre><span></span><code><span class="nv">add-cfg-node</span><span class="w">  </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">CBlock</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">CBlock</span><span class="w"></span>
+<span class="k">all</span><span class="nv">-cfg-nodes</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">CBlock</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">CBlock</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="nv">add-cfg-node</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class="o">?</span><span class="nv">block</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="k">rules</span><span class=" -Punctuation">(</span><span class="w"> </span><span class="nv">CFGNode</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="o">+</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="k">all</span><span class="nv">-cfg-nodes</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">&lt;</span><span class="nv">bagof-CFGNode</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="o">+</span><span class="w"> </span><span class="o">!</span><span class=" -Punctuation">[]&gt;()</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>bagof-$Id</code> strategy is generated automatically and produces all right-hand sides corresponding to a left-hand side.</p>
+<h2 id="other-dynamic-rule-extensions">Other Dynamic Rule Extensions<a class="headerlink" href="#other-dynamic-rule-extensions" title="Permanent link">&para;</a></h2>
+<p>The papers by Olmos and Visser<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and Bravenboer et. al<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> describe more advanced features of dynamic rules, primarily inspired by data-flow transformations.
+For defining data-flow analyses, Spoofax now provides the <a href="../../../flowspec/introduction/">FlowSpec</a> meta-language.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Martin Bravenboer, Arthur van Dam, Karina Olmos, and Eelco Visser. Program transformation with scoped dynamic rewrite rules. <em>Fundamenta Informaticae</em>, 69<span class="arithmatex">\(1\-2\)</span>:123&ndash;178, 2006. URL: <a href="https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06">https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Martin Bravenboer, Arthur van Dam, Karina Olmos, and Eelco Visser. Program transformation with scoped dynamic rewrite rules. <em>Fundamenta Informaticae</em>, 69<span class="arithmatex">\(1\-2\)</span>:123&ndash;178, 2006. URL: <a href="https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06">https://content.iospress.com/articles/fundamenta-informaticae/fi69-1-2-06</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
 <p>Karina Olmos and Eelco Visser. Composing source-to-source data-flow transformations with rewriting strategies and dependent dynamic rewrite rules. In Rastislav Bodík, editor, <em>Compiler Construction, 14<sup>th</sup> International Conference, CC 2005, Held as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2005, Edinburgh, UK, April 4-8, 2005, Proceedings</em>, volume 3443 of Lecture Notes in Computer Science, 204&ndash;220. Springer, 2005. URL: <a href="https://doi.org/10.1007/978-3-540-31985-6_14">https://doi.org/10.1007/978-3-540-31985-6_14</a>, <a href="https://doi.org/10.1007/978-3-540-31985-6_14">doi:10.1007/978-3-540-31985-6_14</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
