@@ -2405,7 +2405,7 @@ the name of the constraint must be unique within a specification.</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">ConstraintName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>*<span class="w"></span>
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">Terminology</p>
 <p>In this reference manual, we consistently use the term 'constraint declaration'
 for the introduction of new user-defined constraints. However, in practise,
 these are sometimes also referred to as 'predicate' or just simply 'constraint'.</p>
@@ -2476,14 +2476,14 @@ Otherwise, their syntax is the same.</p>
 <p>Semantically, the output term of applying the constraint is substituted at the
 position of the application of the functional predicate.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">Terminology: Functional vs. Predicative</p>
 <p>When we want to make the distinction between these two forms of constraints
 explicit, we usually refer to either groups with 'predicative constraint
 declarations' and 'predicative constraints', versus 'functional constraint
 declarations' and 'functional constraints', respectively.</p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
+<p class="admonition-title">Normalization</p>
 <p>Every specification with functional predicates is normalized to a form with
 only regular predicates. To show the normal form of a specification in
 Eclipse, use the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
@@ -2535,7 +2535,7 @@ the arguments. This implicitly requires the input lists to be of equal length.
 The creation of a cartesian product can be achieved by repeated application of
 the <code>maps</code> construct for each argument.</p>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
+<p class="admonition-title">Normalization</p>
 <p>Similar to functional constraints, constraints derived using the <code>maps</code>
 construct are normalized to regular predicative constraints. This normalization
 can be inspected using the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
