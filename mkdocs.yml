@@ -208,6 +208,7 @@ plugins:
       enabled_if_env: CI
   - macros:
       module_name: docs/macro
+      include_dir: include
   - bibtex:
       bib_dir: "bibliographies"
       cite_style: "pandoc"
