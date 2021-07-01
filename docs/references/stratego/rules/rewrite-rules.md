@@ -2,6 +2,24 @@
 
 Rewrite rules are used to define basic transformations in Stratego.
 
+## Typing Rewrite Rules
+
+As noted in the [type](../terms/types.md) section, rewrite rules can be typed using a signature of the form
+
+```
+  $Id($StrategyTypes | $TermTypes) :: $Type -> $Type
+```
+
+Not providing a type signature amounts to declaring the rule as having signature
+
+```
+  $Id(?|?) :: ? -> ?
+```
+
+That is, nothing is known about the term that is transformed or the strategies and terms that are passed.
+
+But do note that the arity of the strategy and term arguments is relevant for identifying the transformation rule that is defined.
+
 
 ## Simple Rewrite Rules
 
@@ -213,22 +231,3 @@ In that case, the parentheses can be left out as well.
 !!! note
     In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
     In a future version of the language, this syntactic distiction may no longer be necessary based on types.
-
-
-## Typing Rewrite Rules
-
-As noted in the [type](../terms/types.md) section, rewrite rules can be typed using a signature of the form
-
-```
-  $Id($StrategyTypes | $TermTypes) :: $Type -> $Type
-```
-
-Not providing a type signature amounts to declaring the rule as having signature
-
-```
-  $Id(?|?) :: ? -> ?
-```
-
-That is, nothing is known about the term that is transformed or the strategies and terms that are passed.
-
-But do note that the arity of the strategy and term arguments is relevant for identifying the transformation rule that is defined.
