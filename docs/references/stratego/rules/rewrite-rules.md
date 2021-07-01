@@ -14,7 +14,7 @@ $Id:
 
 It consists of a name that identifies the rule, a left-hand side term pattern, and a right-hand side term pattern.
 
-Applying a rule to a term `t` entails [matching](../patterns/) `t` against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.
+Applying a rule to a term `t` entails [matching](../terms/patterns.md) `t` against the left-hand side, binding any variables and replacing it with an instantiation of the right-hand side.
 
 For example, the rewrite rule `DeMorgan`
 
@@ -28,7 +28,7 @@ Applying this rule to the term `Not(And(Var(p), Var(q)))` results in a substitut
 
 Note that a rewrite rule defines a _partial computation_.
 Only if the pattern match succeeds is the transformation applied.
-Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with [strategy combinators](../strategy-combinators/).
+Such (pattern match) failure is a first-class citizen in Stratego and its effects are discussed with [strategy combinators](../strategies/sequential.md).
 
 
 ## Rules with the Same Name
@@ -77,7 +77,7 @@ $Id :
   where $Strategy
 ```
 
-where the [strategy expression](../strategy-combinators/) represents a computation that may fail.
+where the [strategy expression](../strategies/sequential.md) represents a computation that may fail.
 When the condition fails, the expectation is that some other rule will pick up the computation.
 
 For example, the following conditional rewrite rules combine pattern matching with the predicate `is-atom` to select the rule to apply:
@@ -160,7 +160,7 @@ explicate-exp :
 ```
 
 The `where` condition tests whether the rule should be applied using the `is-operator` strategy.
-(By using [generic term deconstruction](../strategy-combinators/) to obtain the term constructor.)
+(By using [generic term deconstruction](../strategies/type-unifying.md) to obtain the term constructor.)
 The `with` premises define side computations.
 
 ## Parameterized Rewrite Rules
@@ -217,7 +217,7 @@ In that case, the parentheses can be left out as well.
 
 ## Typing Rewrite Rules
 
-As noted in the [type](../types/) section, rewrite rules can be typed using a signature of the form
+As noted in the [type](../terms/types.md) section, rewrite rules can be typed using a signature of the form
 
 ```
   $Id($StrategyTypes | $TermTypes) :: $Type -> $Type

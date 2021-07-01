@@ -4,7 +4,7 @@ Strategy definitions give a name to a strategy expression.
 
 ## Simple Definitions
 
-A simple strategy definition gaves a name to a [strategy expression](../strategy-combinators/).
+A simple strategy definition gaves a name to a [strategy expression](sequential.md).
 
 ```stratego
 $Id = s
@@ -20,7 +20,7 @@ strategies
 
 ## Parameterized Definitions
 
-Just like [rewrite rules](../rewrite-rules/), strategy definitions can be parameterized with strategies and terms.
+Just like [rewrite rules](../rules/rewrite-rules.md), strategy definitions can be parameterized with strategies and terms.
 
 ```stratego
 $Id($StrategyArg, ... | $TermArg, ...) :: $Type -> $Type
@@ -64,4 +64,4 @@ libraries
 ## Local Definitions
 
 !!! todo
-    finish this section on local definitions 
+    finish this section on local definitions

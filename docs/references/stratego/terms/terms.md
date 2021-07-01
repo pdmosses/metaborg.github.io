@@ -6,12 +6,12 @@ But Stratego does not much care what a term represents.
 Terms can just as well represent structured documents, software models, or anything else that can be rendered in a structured format.
 Generally program text is transformed into a term by means of parsing,
 and turned back into program text by means of pretty-printing.
-One way to achieve this is by using [SDF3](../../syntax/).
+One way to achieve this is by using [SDF3](../../syntax/index.md).
 
 ## Annotated Term Format
 
 Terms in Stratego are terms in the *Annotated Term Format*, or *ATerms*
-for short [@BrandJKO00].
+for short[@BrandJKO00].
 The ATerm format provides a set of constructs for representing trees, comparable to XML or abstract data types in
 functional programming languages.
 For example, the code `4 + f(5 * x)` might be represented in a term as:
@@ -25,8 +25,7 @@ ATerms are constructed from the following elements:
 -   **Integer**: An integer constant, that is a list of decimal digits,
     is an ATerm.
 
-    Examples: `1`, `12343`{.docutils
-    .literal .notranslate}.
+    Examples: `1`, `12343`.
 
 -   **String**: A string constant, that is a list of characters between
     double quotes is an ATerm. Special characters such as double quotes
@@ -41,12 +40,14 @@ ATerms are constructed from the following elements:
     an alphanumeric string starting with a letter, or a double quoted
     string.
 
-    A constructor application `c(t1,...,tn)` creates a term by applying a constructor to a list of
+    A constructor application `c(t1,...,tn)` creates a term by applying a constructor to a sequence of
     zero or more terms. For example, the term
     `Plus(Int("4"),Var("x"))`uses the
     constructors `Plus`,
     `Int`, and `Var` to create a nested term from the strings
     `"4"` and `"x"`.
+    The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with [variables](patterns.md).
+    Thus, `True()` is a constructor application, but `True` is a variable.
 
 -   **List**: A list is a term of the form `[t1,...,tn]`, that is a list of zero or more terms between
     square brackets. While all applications of a specific constructor
@@ -82,7 +83,7 @@ this is completely hidden from the Stratego programmer.
 ## Namespaces
 
 Currently, the constructors of terms live in a global namespace.
-In the future, we want to support qualified names. 
+In the future, we want to support qualified names.
 
 ## References
 

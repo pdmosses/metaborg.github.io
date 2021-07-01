@@ -19,7 +19,7 @@ Given these basic mechanisms, we conclude with an exploration of idioms for trav
 
 ## Congruence Operators
 
-Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](/background/stratego/traversal-with-rules/).
+Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](/background/stratego/traversal-with-rules.md).
 A congruence operator applies a strategy to each direct subterm of a specific constructor.
 For each n-ary constructor `c` declared in a signature, there is a corresponding congruence operator `c(s1 , ..., sn)`, which applies to terms of the form `c(t1 , ..., tn)` by applying the argument strategies to the corresponding argument terms.
 A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.
@@ -86,6 +86,7 @@ strategies
 
 Observe how the five traversal rules have been reduced to five congruences which fit on a single line.
 
+
 ## Traversing Tuples and Lists
 
 Congruences can also be applied to tuples, `(s1,s2,...,sn)`, and lists, `[s1,s2,...,sn]`.
@@ -133,6 +134,7 @@ even = where(<eq>(<mod>(<id>,2),0))
 <filter(even)> [1,2,3,4,5,6,7,8] => [2,4,6,8]
 ```
 
+
 ## Format Checking
 
 Another application of congruences is in the definition of format checkers.
@@ -157,6 +159,7 @@ disj-nf = disj(conj(Not(Atom(id)) <+ Atom(id)))
 The strategies `conj(s)` and `disj(s)` check that the subject term is a conjunct or a disjunct, respectively, with terms satisfying s at the leaves.
 The strategies `conj-nf` and `disj-nf` check that the subject term is in conjunctive or disjunctive normal form, respectively.
 
+
 ## Generic Traversal
 
 Using congruence operators we constructed a generic, i.e. transformation independent, bottom-up traversal for proposition terms.
@@ -165,6 +168,7 @@ However, since the sets of constructors of abstract syntax trees of typical prog
 Thus, Stratego provides generic traversal by means of several generic one-step descent operators.
 The operator `all`, applies a strategy to all direct subterms.
 The operator `one`, applies a strategy to one direct subterm, and the operator `some`, applies a strategy to as many direct subterms as possible, and at least one.
+
 
 ## Visiting All Subterms
 
@@ -182,9 +186,10 @@ That is, it is not possible to do something special for a particular subterm (th
   Times(Var("b"), Int("3")) => Times(Var("z"), Var("z"))
 ```
 
+
 ## Defining Traversals with All
 
-The `all(s)` operator is really the ultimate replacement for the [traversal with rules](/background/stratego/traversal-with-rules/) idiom.
+The `all(s)` operator is really the ultimate replacement for the [traversal with rules](/background/stratego/traversal-with-rules.md) idiom.
 Instead of specifying a rule or congruence for each constructor, the single application of the `all` operator takes care of traversing all constructors.
 Thus, we can replace the `propbu` strategy by a completely generic definition of bottom-up traversal.
 Consider again the last definition of `propbu`:
@@ -249,6 +254,7 @@ strategies
 
 Different transformations can be achieved by using a selection of rules and a strategy, which is generic, yet defined in Stratego itself using strategy combinators.
 
+
 ## Visiting One Subterm
 
 The `one(s)` strategy transforms a constructor application by applying the parameter strategy `s` to exactly one direct subterm.
@@ -265,6 +271,7 @@ The following applications illustrate the behavior of the combinator:
 <one(?Plus(_,_))>
   Plus(Var("a"), Int("4")) // fails
 ```
+
 
 ## Defining Traversals with One
 

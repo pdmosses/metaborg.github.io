@@ -140,13 +140,17 @@ These rules are mutually exclusive, since there is no term that matches the left
 Combining the rules with left choice into `PlusAssoc <+ PlusZero` creates a strategy that transforms terms matching both rules as illustrated by the following applications:
 
 ```stratego
-<PlusAssoc> Plus(Int("0"),Int("3")) // fails
+<PlusAssoc>
+  Plus(Int("0"),Int("3")) // fails
 
-<PlusAssoc <+ PlusZero> Plus(Int("0"),Int("3")) => Int("3")
+<PlusAssoc <+ PlusZero>
+  Plus(Int("0"),Int("3")) => Int("3")
 
-<PlusZero> Plus(Plus(Var("x"),Int("42")),Int("3")) // fails
+<PlusZero>
+  Plus(Plus(Var("x"),Int("42")),Int("3")) // fails
 
-<PlusAssoc <+ PlusZero> Plus(Plus(Var("x"),Int("42")),Int("3")) => Plus(Var("x"),Plus(Int("42"),Int("3")))
+<PlusAssoc <+ PlusZero>
+  Plus(Plus(Var("x"),Int("42")),Int("3")) => Plus(Var("x"),Plus(Int("42"),Int("3")))
 ```
 
 ## Ordering Overlapping Rules.
@@ -282,7 +286,7 @@ The if-then-else-end strategy is just syntactic sugar for a combination of guard
 ```
 
 The strategy `where(s)` succeeds if `s` succeeds, but returns the original subject term.
-The implementation of the `where` combinator is discussed in the section on [matching and building terms](../strategy-combinators-match-build/).
+The implementation of the `where` combinator is discussed in the section on [matching and building terms](term.md).
 The following laws show that the branches are selected by success or failure of the condition:
 
 ```stratego
