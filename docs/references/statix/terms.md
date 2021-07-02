@@ -6,8 +6,7 @@ atoms and composites, such as constructors, tuples and lists. Additionally, Stat
 allows to inline several constraint results in terms.
 
 In this section, we explain the various types of terms that Statix supports, and,
-when appropriate, how their types should be declared. For a more in-depth
-explanation of the Statix Type System, see the section [Types](../types).
+when appropriate, how their types should be declared.
 
 !!! note "Terminology: Sort vs. Type"
     Throughout this reference manual, we use the term 'sort' for syntactic
