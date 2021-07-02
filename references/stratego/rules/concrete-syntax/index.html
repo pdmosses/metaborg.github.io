@@ -1511,8 +1511,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#imploding-terms" class="md-nav__link">
-    Imploding Terms
+  <a href="#using-mixed-parse-tables-to-allow-concrete-syntax" class="md-nav__link">
+    Using Mixed Parse Tables to Allow Concrete Syntax
   </a>
   
 </li>
@@ -2956,8 +2956,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#imploding-terms" class="md-nav__link">
-    Imploding Terms
+  <a href="#using-mixed-parse-tables-to-allow-concrete-syntax" class="md-nav__link">
+    Using Mixed Parse Tables to Allow Concrete Syntax
   </a>
   
 </li>
@@ -2980,9 +2980,112 @@
                 
                 
                 <h1 id="concrete-syntax">Concrete Syntax<a class="headerlink" href="#concrete-syntax" title="Permanent link">&para;</a></h1>
+<p>When writing language-to-language transformations in Stratego, it is possible to use different approaches, for example, writing AST-to-AST transformations. However, to write such transformations, the language engineer needs to know the constructors of both languages. Moreover, AST nodes in rules that define such transformations may contain many nested children, making the work of writing such rules cumbersome and error-prone. Note that Stratego only statically checks the name and arity of constructors, thus, errors would only be detected when pretty-printing the generated AST to the target language.</p>
+<p>As an example of this approach, the rule below specifies a transformation of a Calc program to a Java program.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">program-to-java</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Program</span><span class=" -Punctuation">(</span><span class="nv">stats</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">CompilationUnit</span><span class=" -Punctuation">(</span><span class="nv">None</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                      </span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"></span>
+<span class="w">                                    </span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="w"> </span><span class="nv">ClassDeclaration</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">                                          </span><span class=" -Punctuation">[</span><span class="nv">Public</span><span class=" -Punctuation">()]</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Id</span><span class=" -Punctuation">(</span><span class="s">&quot;Program&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">None</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">None</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">None</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="w"> </span><span class="nv">MethodDecl</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">[</span><span class="nv">Public</span><span class=" -Punctuation">(),</span><span class="w"> </span><span class="nv">Static</span><span class=" -Punctuation">()]</span><span class="w"></span>
+<span class="w">                                            </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">MethodHeader</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">                                                </span><span class="nv">java-type</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Id</span><span class=" -Punctuation">(</span><span class="s">&quot;eval&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">NoParams</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[]</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">None</span><span class=" -Punctuation">()</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                            </span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Block</span><span class=" -Punctuation">(</span><span class="w"></span>
+<span class="w">                                                </span><span class=" -Punctuation">[</span><span class="w"> </span><span class="nv">java-stats</span>*<span class="w"></span>
+<span class="w">                                                </span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">                                              </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                            </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                          </span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">                                        </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">                                      </span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">                                    </span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"></span>
+<span class="w">      </span><span class="nv">java-type</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+<span class="w">      </span><span class="nv">java-stats</span>*<span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+</code></pre></div>
+<p>An alternative approach consists of using string interpolation. Instead of generating abstract terms of the target language, transformations generate source code directly, interpolating strings with boilerplate code of the target language and variables defined in the transformation itself. The problem with this approach is that syntax errors in the string fragments of the target language are not detected statically.</p>
+<p>Consider the rule shown previously, rewritten below using string interpolation (the code between $[ and ]). Note that if the fragment would contain a typo, the syntax error would only be detected after the code had been generated. Note also that one can interpolate Stratego variables with the fragment of the target language by escaping them between [ and ].</p>
+<div class="highlight"><pre><span></span><code><span class="nv">program-to-java</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Program</span><span class=" -Punctuation">(</span><span class="nv">stats</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class=" -Punctuation">[</span><span class="nv">public</span><span class="w"> </span><span class="nv">class</span><span class="w"> </span><span class="nv">Program</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nv">public</span><span class="w"> </span><span class="nv">static</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">java-type</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">eval</span><span class=" -Punctuation">()</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"></span>
+<span class="w">                          </span><span class=" -Punctuation">[</span><span class="nv">java-stats</span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">                        </span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">                      </span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">                     </span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"></span>
+<span class="w">      </span><span class="nv">java-type</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+<span class="w">      </span><span class="nv">java-stats</span><span class="w">  </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+</code></pre></div>
+<p>The third option is to use concrete syntax. When using concrete syntax, the transformation is still AST-to-AST but the AST of the target language is abstracted over using the concrete syntax of the language instead. That is, the concrete syntax fragment is parsed internally producing an AST, and that AST is resulted from the transformation.</p>
+<p>The same rule defined using concrete syntax is shown below. Note that any syntax error in the fragment would in fact, be detected by the editor, as the fragment is being parsed internally. Moreover, the fragment also has the syntax highlighting of the target language when shown by the editor.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">program-to-java</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Program</span><span class=" -Punctuation">(</span><span class="nv">stats</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">compilation-unit</span><span class="w"></span>
+<span class="w">                      </span><span class=" -Punctuation">|[</span><span class="w"> </span><span class="nv">public</span><span class="w"> </span><span class="nv">class</span><span class="w"> </span><span class="nv">Program</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"></span>
+<span class="w">                           </span><span class="nv">public</span><span class="w"> </span><span class="nv">static</span><span class="w"> </span>~<span class="nv">type</span><span class=" -Punctuation">:</span><span class="nv">java-type</span><span class="w"> </span><span class="nv">eval</span><span class=" -Punctuation">()</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"></span>
+<span class="w">                             </span>~<span class="nv">bstm</span>*<span class=" -Punctuation">:</span><span class="nv">java-stats</span>*<span class="w"></span>
+<span class="w">                           </span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">                         </span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">                      </span><span class=" -Punctuation">]|</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"></span>
+<span class="w">    </span><span class="nv">java-type</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+<span class="w">    </span><span class="nv">java-stats</span>*<span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
+</code></pre></div>
+<p>There are two aspects to consider when enabling concrete syntax inside Spoofax. The first one is being able to write Stratego transformations with fragments of a target (or source) language. In other words, the first aspect consists of generating a mixed parse table that embeds the desired target language inside Stratego. The second aspect consists of including the parse table inside an Spoofax project, adding an additional .meta file to then enable concrete syntax for a specific Stratego file. Below, we describe both aspects with more detail.</p>
 <h2 id="mixing-grammars">Mixing Grammars<a class="headerlink" href="#mixing-grammars" title="Permanent link">&para;</a></h2>
-<p>ToTerm and FromTerm</p>
-<h2 id="imploding-terms">Imploding Terms<a class="headerlink" href="#imploding-terms" title="Permanent link">&para;</a></h2>
+<p>To generate a mixed parse table that embeds a language inside Stratego, it is necessary to modify the original Stratego grammar, extending it with the desired language. One problem that may occur when combining the grammars of two different languages is name clashing, i.e., non-terminals that have the same name in Stratego and the embedded language. For that reason, the embedding occurs using a modified Stratego grammar, which renames all Stratego context-free non-terminals using by prefixing it with <code>StrategoLang</code>, avoiding name clashes. Inside Spoofax, you can add a source dependency on the <code>org.metaborg:stratego.lang:${metaborgVersion}</code> project in you <code>metaborg.yaml</code> file, then you can import the so-called namespaced grammar.</p>
+<p>Once you have access to the namespaced grammar, the next step consists of defining the embedding grammar, the grammar that actually mixes the two languages. A grammar that embeds one language into another may contain three types of productions: productions that define quotations for elements of the target language in the host language, productions that define anti-quotations back to the host language from the target language, and variables, which are shortcuts to anti-quotations, and may appear inside the target language fragments.</p>
+<p>When embedding a language into Stratego, it is common to allow fragments of the host language as Stratego terms. For that reason, quotation productions are injected into Stratego terms. For example, the productions below, written in SDF3, indicates that a Java compilation unit can occur in Stratego in a place where a Stratego term can occur.</p>
+<div class="no-ligatures highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
+<span class="w">  </span><span class="nv">StrategoLang</span>/<span class="nv">sugar</span>/<span class="nv">terms-namespaced</span><span class="w"></span>
+<span class="w">  </span><span class="nv">java</span>/<span class="nv">packages</span>/<span class="nv">CompilationUnits</span><span class="w"></span>
+
+<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
+<span class="w">  </span><span class="nv">StrategoLang-PreTerm</span><span class=" -Punctuation">.</span><span class="nv">ToTerm</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">compilation-unit</span><span class="w"> </span><span class=" -Punctuation">|[</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">CompilationUnit</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">]|&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">StrategoLang-PreTerm</span><span class=" -Punctuation">.</span><span class="nv">ToTerm</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;|[</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">CompilationUnit</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">]|&gt;</span><span class="w"></span>
+</code></pre></div>
+<p>Anti-quotation productions define points to insert elements of the host language inside fragments of the target language. For example, with the production below, we allow Stratego terms to occur in a Java fragment whenever a non-terminal <code>Type</code> can occur.</p>
+<div class="no-ligatures highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
+<span class="w">  </span><span class="nv">java</span>/<span class="nv">types</span>/<span class="nv">Main</span><span class="w"></span>
+
+<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Type</span><span class=" -Punctuation">.</span><span class="nv">FromTerm</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span>~<span class=" -Punctuation">[</span><span class="nv">StrategoLang-Term</span><span class=" -Punctuation">]]</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Type</span><span class=" -Punctuation">.</span><span class="nv">FromTerm</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span>~<span class="nv">type</span><span class=" -Punctuation">:[</span><span class="nv">StrategoLang-Term</span><span class=" -Punctuation">]]</span><span class="w"></span>
+</code></pre></div>
+<p>Note that the constructor <code>FromTerm</code> indicates that productions represent anti-quotations. Furthermore, note that anti-quotations may also be named after the non-terminal being referenced (e.g., <code>~type:</code>).</p>
+<p>Using anti-quotations might make the fragment of the target language quite verbose. Therefore, it is also possible to define variables as shortcuts to anti-quotations. For example, the productions below define variables to reference anti-quotations to <code>Type</code> fragments. That is, instead of reference to a Stratego variable <code>X</code> by using <code>~type:X</code>, one may name this variable <code>t_1</code> which corresponds to a variable for a non-terminal <code>Type</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">variables</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Type</span><span class="w"> </span>=<span class="w"> </span><span class="s">&quot;t_&quot;</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="m">0</span><span class="nv">-9</span>\&#39;<span class=" -Punctuation">]</span><span class="o">*</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="k">prefer</span><span class=" -Punctuation">}</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>prefer</code> annotation indicates that in case of an ambiguity, the variable production should be preferred.</p>
+<p>Using the three types of productions above, it is possible to specify which fragments one wants to write using concrete syntax and which symbols may appear inside these fragments as Stratego variables (using anti-quotation or variables with a specific name).</p>
+<p>Finally, it is necessary to define a module <code>Stratego-&lt;LanguageName&gt;</code> that should import the Stratego grammar and the embedding grammar. This module should be defined in a file named <code>Stratego-&lt;LanguageName&gt;.sdf3</code> and put in the <code>syntax</code> folder so that Spoofax can locate it and build the mixed table. That is, if we define the module for our <code>Stratego-Java</code> mixed grammar:</p>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">Stratego-Java</span><span class="w"></span>
+
+<span class="k">imports</span><span class="w"></span>
+<span class="w">  </span><span class="nv">EmbeddedJava</span><span class="w"></span>
+<span class="w">  </span><span class="nv">StrategoLang</span>/<span class="nv">import-namespaced</span><span class="w"></span>
+
+<span class="k">context-free</span><span class="w"> </span><span class="k">start-symbols</span><span class="w"></span>
+<span class="w">  </span><span class="nv">StrategoLang-Module</span><span class="w"></span>
+</code></pre></div>
+<p>Note that it is necessary to define the start symbol of the mixed grammar as <code>StrategoLang-Module</code>. After defining the embedding grammar and the <code>Stratego-&lt;LanguageName&gt;</code> module, Spoofax generates the mixed table inside the trans folder when rebuilding the project.</p>
+<h2 id="using-mixed-parse-tables-to-allow-concrete-syntax">Using Mixed Parse Tables to Allow Concrete Syntax<a class="headerlink" href="#using-mixed-parse-tables-to-allow-concrete-syntax" title="Permanent link">&para;</a></h2>
+<p>Assuming a mixed parse table has been successfully generated or already exists, the next step is to allow concrete syntax in transformations using that table. The table needs to be in a folder that can be discovered by the Stratego compiler. By default it will be generated in the <code>trans</code> folder of the project that defines the mixed grammar, to be used within the project. If you wish to use the mixed grammar in another project, make sure to export the generate table by adding an entry for it in the <code>metaborg.yaml</code> file. Then any other project that depends on your mixed grammar project with a source dependency will also provide the table file to the Stratego compiler.</p>
+<p>Next, together with the file in which we would like to enable concrete syntax, it is necessary to create a <code>.meta</code> file with the same name. That is, to enable concrete syntax in a file <code>generate.str</code>, it is necessary to create, in the same directory, an addition file <code>generate.meta</code>. This file should indicate which mixed table should be used to parse <code>generate.str</code>. For that reason it should contain:</p>
+<div class="highlight"><pre><span></span><code>Meta<span class=" -Punctuation">([</span>Syntax<span class=" -Punctuation">(</span><span class="s">&quot;&lt;ParseTableName&gt;&quot;</span><span class=" -Punctuation">)])</span><span class="w"></span>
+</code></pre></div>
+<p>where <code>&lt;ParseTableName&gt;</code> is the filename of the parse table without extension, <code>Stratego-Java</code> in our example.</p>
+<p>With the configuration above, Spoofax automatically detects that the file contains concrete syntax and use that table to parse it. In that file, one may write rules containing concrete syntax as defined by the productions in the mixed grammar.</p>
                 
               
               
