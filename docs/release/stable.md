@@ -1,5 +1,8 @@
 # Stable Releases
-This page lists the stable releases of Spoofax. While this version is recommended for most users, there is also the [development](develop.md) version.
+{% macro latest() -%}
+[version {{ release.rel.version }} released on {{ release.rel.date }}](note/{{ release.rel.version }}.md)
+{%- endmacro %}
+This page lists the latest stable release of Spoofax: {{ latest() }}.
 
 Choose the _Eclipse Bundle_ installation (recommended), the _Eclipse Plugin_ installation, or the _Homebrew_ installation ({{ os.macos }} only):
 
