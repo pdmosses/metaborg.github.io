@@ -125,17 +125,14 @@ expects a single scope as argument.
     generated, which cannot be solved successfully. Hence, only the declaration
     for `"x"` is included in the eventual query answer.
 
-There are two shorthands for common data well-formedness predicates:
+There are three shorthands for common data well-formedness predicates:
 
 - `true`, which is equivalent to `{ _ :- true }`. This shorthand
   will thus include all encountered declaration in the query result.
 - `false`, which is equivalent to `{ _ :- false }`. This shorthand
   will include no declarations in the query answer.
-<!---
-This pattern does not yet work correctly
-- `{ $Pattern }`, is equivalent to `{ $Pattern :- true }` and hence will include
-  all declarations that match `$Pattern`.
--->
+- `eq($Term)`, is equivalent to `{ x :- x == $Term }` and hence will include
+  all declarations that are equal to `$Term`.
 Syntactically, the query filter can be omitted entirely, or the data well-formedness
 predicate can be omitted, even if a path filter is provided. By default, the
 path filter is `~0`, meaning that every path is considered valid, and the data

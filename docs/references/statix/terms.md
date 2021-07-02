@@ -269,4 +269,4 @@ For more information on querying the scope graph, see the [Queries](../queries) 
 ??? tip "Declaration Match as Query"
     In terms of [regular queries](../queries), the declaration match is equal
     to a query with filter `e`, expecting a single output. E.g. `T == ?var["x"] in s`
-    is equal to `query var filter e and { x' :- x' == "x"} in s |-> [(_, (_, T))]`.
+    is equal to `query var filter e and { x' :- x' == "x" } in s |-> [(_, (_, T))]`.
