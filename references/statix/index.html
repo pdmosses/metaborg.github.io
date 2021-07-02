@@ -1076,9 +1076,39 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Statix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Statix
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    Sources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2903,6 +2933,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    Sources
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2919,7 +2964,33 @@
                 
                 
                 <h1 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h1>
-<p>Meta-language for Specification of Static Semantics.</p>
+<p>Statix is a Meta-language for the Specification of Static Semantics. Statix
+specifications are organised in <a href="modules/">modules</a>. In Statix, programs,
+types and all other data are represented using <a href="terms/">terms</a>. Type-checking
+a program is performed by solving a set of <a href="basic-constraints/">constraints</a>
+over terms. In addition to these built-in constraints, specification writers can
+define their <a href="rules/">own constraints</a>.</p>
+<p>Type-checking is closely related to, and strongly intertwined with, name
+resolution. For that reason, Statix has built-in support for modelling name
+binding patterns in the form of <a href="scope-graphs/">scope graphs</a>. During
+type-checking, names can be resolved using <a href="queries/">queries</a>.</p>
+<p>When transforming programs using in <a href="../stratego">Stratego</a>, Statix
+specifications can be executed, and the results accesssed using the
+<a href="stratego-api/">Stratego API for Statix</a>.</p>
+<p>Statix has a special <a href="tests/">test format</a>, which can be used for isolating
+issues in a specification, or in the Statix ecosystem.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Readers with little or no familiarity with Statix are recommended to read
+the <a href="concepts/">Language Concepts</a> section first.</p>
+</div>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<p>The sources of the different Statix components can be found at:</p>
+<ul>
+<li><a href="https://github.com/metaborg/nabl/tree/master/statix.lang">https://github.com/metaborg/nabl/tree/master/statix.lang</a>: The Statix Language</li>
+<li><a href="https://github.com/metaborg/nabl/tree/master/statix.runtime">https://github.com/metaborg/nabl/tree/master/statix.runtime</a>: The Statix Runtime</li>
+<li><a href="https://github.com/metaborg/nabl/tree/master/statix.solver">https://github.com/metaborg/nabl/tree/master/statix.solver</a>: The Statix Solver</li>
+</ul>
                 
               
               

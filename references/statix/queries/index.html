@@ -3124,23 +3124,20 @@ solved successfully. For <code>"y"</code> however, the constraint <code>"y" == "
 generated, which cannot be solved successfully. Hence, only the declaration
 for <code>"x"</code> is included in the eventual query answer.</p>
 </details>
-<p>There are two shorthands for common data well-formedness predicates:</p>
+<p>There are three shorthands for common data well-formedness predicates:</p>
 <ul>
 <li><code>true</code>, which is equivalent to <code>{ _ :- true }</code>. This shorthand
   will thus include all encountered declaration in the query result.</li>
 <li><code>false</code>, which is equivalent to <code>{ _ :- false }</code>. This shorthand
   will include no declarations in the query answer.</li>
-</ul>
-<!---
-This pattern does not yet work correctly
-- `{ $Pattern }`, is equivalent to `{ $Pattern :- true }` and hence will include
-  all declarations that match `$Pattern`.
--->
-<p>Syntactically, the query filter can be omitted entirely, or the data well-formedness
+<li><code>eq($Term)</code>, is equivalent to <code>{ x :- x == $Term }</code> and hence will include
+  all declarations that are equal to <code>$Term</code>.
+Syntactically, the query filter can be omitted entirely, or the data well-formedness
 predicate can be omitted, even if a path filter is provided. By default, the
 path filter is <code>~0</code>, meaning that every path is considered valid, and the data
 well-formedness predicate is <code>true</code>, meaning that every datum will be returned
-in the query answer.</p>
+in the query answer.</li>
+</ul>
 <h2 id="shadowing">Shadowing<a class="headerlink" href="#shadowing" title="Permanent link">&para;</a></h2>
 <p>For many languages, name resolution involves dealing with shadowing correctly.
 In Statix queries, it is possible to encode shadowing policies using label orders

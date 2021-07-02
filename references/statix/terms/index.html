@@ -3165,8 +3165,7 @@ annotation, or anything else that the specification defines. Terms are built fro
 atoms and composites, such as constructors, tuples and lists. Additionally, Statix
 allows to inline several constraint results in terms.</p>
 <p>In this section, we explain the various types of terms that Statix supports, and,
-when appropriate, how their types should be declared. For a more in-depth
-explanation of the Statix Type System, see the section <a href="../types">Types</a>.</p>
+when appropriate, how their types should be declared.</p>
 <div class="admonition note">
 <p class="admonition-title">Terminology: Sort vs. Type</p>
 <p>Throughout this reference manual, we use the term 'sort' for syntactic
@@ -3337,7 +3336,7 @@ type of the term is the output type of the relation.</p>
 <p>For more information on querying the scope graph, see the <a href="../queries">Queries</a> section.</p>
 <details class="tip"><summary>Declaration Match as Query</summary><p>In terms of <a href="../queries">regular queries</a>, the declaration match is equal
 to a query with filter <code>e</code>, expecting a single output. E.g. <code>T == ?var["x"] in s</code>
-is equal to <code>query var filter e and { x' :- x' == "x"} in s |-&gt; [(_, (_, T))]</code>.</p>
+is equal to <code>query var filter e and { x' :- x' == "x" } in s |-&gt; [(_, (_, T))]</code>.</p>
 </details>
                 
               
