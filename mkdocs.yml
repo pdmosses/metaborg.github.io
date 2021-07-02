@@ -116,7 +116,6 @@ nav:
       - references/pipelines/expressions.md
   - Background:
     - background/index.md
-    - background/test.md
     - Bibliography:
       - background/bibliography/index.md
       - background/bibliography/stratego.md
