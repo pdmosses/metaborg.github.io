@@ -8,7 +8,7 @@ Perform a manual installation of the Spoofax plugin in [Eclipse 3.5][1] or newer
     {{ release.rel.eclipse.repository }}
     ```
 
-    ([Development releases](../release/develop.md)).
+    ([Development releases](../../release/develop.md)).
 
 3.  Uncheck _Group items by category_ to make the plugin visible.
 4.  Check _Spoofax Eclipse meta-tooling_, _Spoofax Eclipse meta-tooling M2E integration_ and _Spoofax Eclipse runtime_.

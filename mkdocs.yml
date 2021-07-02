@@ -18,9 +18,9 @@ nav:
   - How-Tos:
     - howtos/index.md
     - Installation:
-      - howtos/install-eclipse-bundle.md
-      - howtos/install-eclipse-plugin-manually.md
-      - howtos/install-from-source.md
+      - howtos/installation/install-eclipse-bundle.md
+      - howtos/installation/install-eclipse-plugin-manually.md
+      - howtos/installation/install-from-source.md
     - Transformation:
       - howtos/stratego/run-stratego-programs.md
       - howtos/stratego/exchange-terms.md
@@ -28,6 +28,13 @@ nav:
       - howtos/stratego/debug-stratego.md
     - Editor Services:
       - howtos/editor-services/rename-refactoring.md
+    - Development:
+      - howtos/development/index.md
+      - Requirements: howtos/development/requirements.md
+      - Maven: howtos/development/maven.md
+      - Building: howtos/development/building.md
+      - Developing: howtos/development/developing.md
+      - Releasing: howtos/development/releasing.md
   - References:
     - references/index.md
     - Configuration:
@@ -109,6 +116,7 @@ nav:
       - references/pipelines/expressions.md
   - Background:
     - background/index.md
+    - background/test.md
     - Bibliography:
       - background/bibliography/index.md
       - background/bibliography/stratego.md

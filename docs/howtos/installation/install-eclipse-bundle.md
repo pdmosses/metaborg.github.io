@@ -19,7 +19,7 @@ Install an Eclipse instance with the latest stable release of the Spoofax plugin
     [:fontawesome-brands-microsoft:<br>Windows x64 (64-bit)]({{ release.rel.eclipse.install.windows_64 }}){ .md-button .md-button--primary .md-button-download }
     [:fontawesome-brands-microsoft:<br>Windows x86 (32-bit)]({{ release.rel.eclipse.install.windows_32 }}){ .md-button .md-button--primary .md-button-download }
 
-[Development releases](../release/develop.md).
+[Development releases](../../release/develop.md).
 
 ## Troubleshooting
 

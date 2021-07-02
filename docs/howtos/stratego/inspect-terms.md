@@ -1,4 +1,4 @@
-# How To Inspect Terms
+# Inspect Terms
 
 As a Stratego programmer you will be looking a lot at raw ATerms.
 Stratego pioneers did this by opening an ATerm file in *emacs* and

@@ -1,4 +1,4 @@
-# How to Debug Stratego Programs
+# Debug Stratego Programs
 
 ## Types
 
