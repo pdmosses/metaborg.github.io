@@ -114,27 +114,16 @@ nav:
       - background/statix/index.md
     - Transformations:
       - background/stratego/index.md
-      - background/stratego/term-rewriting.md
-      - background/stratego/limitations-of-rewriting.md
-      - background/stratego/traversal-with-rules.md
-      - background/stratego/strategic-rewriting.md
-      - background/stratego/lexical.md
-      - background/stratego/modules.md
-      - Terms:
-        - background/stratego/terms/terms.md
-        - background/stratego/terms/types.md
-        - background/stratego/terms/patterns.md
-      - Rules:
-        - background/stratego/rules/rewrite-rules.md
-        - background/stratego/rules/dynamic-rules.md
-        - background/stratego/rules/concrete-syntax.md
-        - background/stratego/rules/overlays.md
-      - Strategies:
-        - background/stratego/strategies/strategy-definitions.md
-        - background/stratego/strategies/sequential.md
-        - background/stratego/strategies/term.md
-        - background/stratego/strategies/traversal.md
-        - background/stratego/strategies/type-unifying.md
+      - Strategic Rewriting:
+        - background/stratego/strategic-rewriting/term-rewriting.md
+        - background/stratego/strategic-rewriting/limitations-of-rewriting.md
+        - background/stratego/strategic-rewriting/traversal-with-rules.md
+        - background/stratego/strategic-rewriting/strategic-rewriting.md
+      - Strategy Combinators:
+        - background/stratego/strategy-combinators/sequential.md
+        - background/stratego/strategy-combinators/term.md
+        - background/stratego/strategy-combinators/traversal.md
+        - background/stratego/strategy-combinators/type-unifying.md
     - Documentation:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md

@@ -3,9 +3,6 @@
 Rather than defining rewrite rules and high-level strategies as primitives of the language, Stratego provides _strategy combinators_ as basic building blocks from which these can defined[@VisserBT98].
 Thus, Stratego consists of a core language[@VisserB98] and a 'sugar' language defined by reduction to the core language.
 
-!!! warning
-    While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs such as [rewrite rules](../rules/rewrite-rules.md) where possible.
-
 ## Identity and Failure
 
 The most basic operations in Stratego are `id` and `fail`.
