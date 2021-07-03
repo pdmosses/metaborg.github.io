@@ -2,6 +2,12 @@
 
 Strategy definitions give a name to a strategy expression.
 
+
+```stratego
+$Id($StrategyArg, ... | $TermArg, ...) =
+  $StrategyExp
+```
+
 ## Simple Definitions
 
 A simple strategy definition gaves a name to a [strategy expression](sequential.md).

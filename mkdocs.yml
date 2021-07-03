@@ -78,14 +78,11 @@ nav:
       - references/stratego/modules.md
       - references/stratego/terms.md
       - references/stratego/types.md
-      - Rules:
-        - references/stratego/rules/rewrite-rules.md
-        - references/stratego/rules/dynamic-rules.md
-        - references/stratego/rules/concrete-syntax.md
-        - references/stratego/rules/overlays.md
+      - references/stratego/rewrite-rules.md
+      - references/stratego/strategy-definitions.md
+      - references/stratego/strategy-combinators.md
+      - references/stratego/dynamic-rules.md
       - Strategies:
-        - references/stratego/strategies/strategy-definitions.md
-        - references/stratego/strategies/sequential.md
         - references/stratego/strategies/term.md
         - references/stratego/strategies/traversal.md
         - references/stratego/strategies/type-unifying.md

@@ -7,17 +7,17 @@ Alternatively, Stratego provides linguistic support to dynamically define rewrit
 
 ## Defining Dynamic Rules
 
-A dynamic rule definition is a regular (conditional) [rewrite rule](rewrite-rules.md) that is defined as part of a strategy rather than at top-level.
-A dynamic rule definition has the form
-
 ```stratego
 rules( $Id : $Rule ... )
 ```
 
+A dynamic rule definition is a regular (conditional) [rewrite rule](rewrite-rules.md) that is defined as part of a strategy rather than at top-level.
+
 The difference is that any variables that are bound in the context of the rule, take their binding from the context, rather then being universally quantified.
 Thus, a dynamic rule instance can be thought of as having the context variables replaced by the corresponding terms from the context.
 
-For example, the following strategy `DefineInlineCall` defines the dynamic rule `InlineCall`:
+Example.
+The following strategy `DefineInlineCall` defines the dynamic rule `InlineCall`:
 
 ```stratego
 DefineInlineCall =
@@ -158,7 +158,7 @@ Let([FunDef("inc", [..], ..)
 
 will result in locally overriding the first dynamic rule for `"twice"`, but undoing that override at the end of the dynamic rule scope, such that it is available again at the second call to `"twice"`.
 
-While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the [Statix](../../statix/index.md) meta-language and perform a uniquify transformation to guarantee unique names. 
+While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the [Statix](../../statix/index.md) meta-language and perform a uniquify transformation to guarantee unique names.
 
 
 ## Multiple Right-Hand Sides
