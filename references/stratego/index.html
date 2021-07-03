@@ -1438,29 +1438,8 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6_6" type="checkbox" id="__nav_4_6_6" >
-      
-      <label class="md-nav__link" for="__nav_4_6_6">
-        Rules
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Rules" data-md-level="3">
-        <label class="md-nav__title" for="__nav_4_6_6">
-          <span class="md-nav__icon md-icon"></span>
-          Rules
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
     <li class="md-nav__item">
-      <a href="rules/rewrite-rules/" class="md-nav__link">
+      <a href="rewrite-rules/" class="md-nav__link">
         Rewrite Rules
       </a>
     </li>
@@ -1472,70 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rules/dynamic-rules/" class="md-nav__link">
-        Dynamic Rules
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="rules/concrete-syntax/" class="md-nav__link">
-        Concrete Syntax
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="rules/overlays/" class="md-nav__link">
-        Overlays
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6_7" type="checkbox" id="__nav_4_6_7" >
-      
-      <label class="md-nav__link" for="__nav_4_6_7">
-        Strategies
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Strategies" data-md-level="3">
-        <label class="md-nav__title" for="__nav_4_6_7">
-          <span class="md-nav__icon md-icon"></span>
-          Strategies
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="strategies/strategy-definitions/" class="md-nav__link">
+      <a href="strategy-definitions/" class="md-nav__link">
         Strategy Definitions
       </a>
     </li>
@@ -1547,8 +1463,8 @@
   
   
     <li class="md-nav__item">
-      <a href="strategies/sequential/" class="md-nav__link">
-        Sequential Combinators
+      <a href="strategy-combinators/" class="md-nav__link">
+        Strategy Combinators
       </a>
     </li>
   
@@ -1559,39 +1475,9 @@
   
   
     <li class="md-nav__item">
-      <a href="strategies/term/" class="md-nav__link">
-        Term Combinators
+      <a href="dynamic-rules/" class="md-nav__link">
+        Dynamic Rules
       </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="strategies/traversal/" class="md-nav__link">
-        Traversal Combinators
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="strategies/type-unifying/" class="md-nav__link">
-        Type Unifying Traversal
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -3205,12 +3091,12 @@
 <p>The Stratego language caters for the definition of program transformations.</p>
 <p>Transformations operate on the abstract syntax trees of programs.
 Abstract syntax trees are represented by means of first-order <a href="terms/terms.md">terms</a>.
-By using the <a href="rules/concrete-syntax/">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
+By using the <a href="rules/concrete-syntax.md">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
 <p>A program is structured as a collection of <a href="modules/">modules</a>, which may import each other.</p>
-<p>Transformations are defined by means of named <a href="rules/rewrite-rules/">rewrite rules</a>.
+<p>Transformations are defined by means of named <a href="rules/rewrite-rules.md">rewrite rules</a>.
 Rules may explicitly invoke rules.
-Alternatively, rules may be invoked by <a href="strategies/strategy-definitions/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategies/sequential/">strategy combinators</a>.
-Context-sensitive transformations can be expressed using <a href="rules/dynamic-rules/">dynamic rewrite rules</a>.</p>
+Alternatively, rules may be invoked by <a href="strategies/strategy-definitions.md">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategies/sequential.md">strategy combinators</a>.
+Context-sensitive transformations can be expressed using <a href="rules/dynamic-rules.md">dynamic rewrite rules</a>.</p>
 <p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="terms/types.md">typed</a>.</p>
 <h2 id="placeholder-convention">Placeholder Convention<a class="headerlink" href="#placeholder-convention" title="Permanent link">&para;</a></h2>
 <p>In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
