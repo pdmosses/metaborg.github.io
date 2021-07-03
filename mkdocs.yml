@@ -142,7 +142,6 @@ nav:
         - background/stratego/strategies/term.md
         - background/stratego/strategies/traversal.md
         - background/stratego/strategies/type-unifying.md
-    - background/documentation.md
     - Documentation:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md
