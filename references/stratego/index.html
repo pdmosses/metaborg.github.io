@@ -1365,9 +1365,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#not-in-reference-manual" class="md-nav__link">
+    Not in Reference Manual
+  </a>
+  
+    <nav class="md-nav" aria-label="Not in Reference Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concrete-syntax" class="md-nav__link">
+    Concrete Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#library" class="md-nav__link">
     Library
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3057,9 +3077,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#not-in-reference-manual" class="md-nav__link">
+    Not in Reference Manual
+  </a>
+  
+    <nav class="md-nav" aria-label="Not in Reference Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concrete-syntax" class="md-nav__link">
+    Concrete Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#library" class="md-nav__link">
     Library
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3090,14 +3130,13 @@
                 <h1 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h1>
 <p>The Stratego language caters for the definition of program transformations.</p>
 <p>Transformations operate on the abstract syntax trees of programs.
-Abstract syntax trees are represented by means of first-order <a href="terms/terms.md">terms</a>.
-By using the <a href="rules/concrete-syntax.md">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
+Abstract syntax trees are represented by means of first-order <a href="terms/">terms</a>.</p>
 <p>A program is structured as a collection of <a href="modules/">modules</a>, which may import each other.</p>
-<p>Transformations are defined by means of named <a href="rules/rewrite-rules.md">rewrite rules</a>.
+<p>Transformations are defined by means of named <a href="rewrite-rules/">rewrite rules</a>.
 Rules may explicitly invoke rules.
-Alternatively, rules may be invoked by <a href="strategies/strategy-definitions.md">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategies/sequential.md">strategy combinators</a>.
-Context-sensitive transformations can be expressed using <a href="rules/dynamic-rules.md">dynamic rewrite rules</a>.</p>
-<p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="terms/types.md">typed</a>.</p>
+Alternatively, rules may be invoked by <a href="strategy-definitions/">strategies</a> that define how to combine rules into a more complex transformation using <a href="strategy-combinators/">strategy combinators</a>.
+Context-sensitive transformations can be expressed using <a href="dynamic-rules/">dynamic rewrite rules</a>.</p>
+<p>Starting with Stratego 2, terms and transformation strategies are (gradually) <a href="types/">typed</a>.</p>
 <h2 id="placeholder-convention">Placeholder Convention<a class="headerlink" href="#placeholder-convention" title="Permanent link">&para;</a></h2>
 <p>In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
 For example, a rewrite rule has the form</p>
@@ -3107,7 +3146,10 @@ For example, a rewrite rule has the form</p>
 <p>in which the <code>$Label</code> is the name of the rule, the first <code>$Term</code> the left-hand side, and the second the right-hand side of the rule.
 This convention should give an indication of the formal structure of a construct, without going down to the precise details of the syntax definition.
 As a side effect, the schema also shows the preferred indentation of language constructs where that is applicable.</p>
-<h2 id="library">Library<a class="headerlink" href="#library" title="Permanent link">&para;</a></h2>
+<h2 id="not-in-reference-manual">Not in Reference Manual<a class="headerlink" href="#not-in-reference-manual" title="Permanent link">&para;</a></h2>
+<h3 id="concrete-syntax">Concrete Syntax<a class="headerlink" href="#concrete-syntax" title="Permanent link">&para;</a></h3>
+<p>By using the <a href="../../howtos/stratego/concrete-syntax/">concrete syntax</a> of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.</p>
+<h3 id="library">Library<a class="headerlink" href="#library" title="Permanent link">&para;</a></h3>
 <p>The Stratego standard library is a collection of modules that are available with each Stratego program and on which the runtime library relies.</p>
 <p>Find automatically generated documentation at the following sites:</p>
 <ul>

@@ -1677,7 +1677,14 @@
       
         <li class="md-nav__item">
   <a href="#generic-term-deconstruction" class="md-nav__link">
-    Generic Term (De)construction
+    Generic Term Deconstruction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-construction" class="md-nav__link">
+    Generic Term Construction
   </a>
   
 </li>
@@ -3512,7 +3519,14 @@
       
         <li class="md-nav__item">
   <a href="#generic-term-deconstruction" class="md-nav__link">
-    Generic Term (De)construction
+    Generic Term Deconstruction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generic-term-construction" class="md-nav__link">
+    Generic Term Construction
   </a>
   
 </li>
@@ -3542,6 +3556,7 @@
                 
                 
                 <h1 id="strategy-combinators">Strategy Combinators<a class="headerlink" href="#strategy-combinators" title="Permanent link">&para;</a></h1>
+<p>A <em>strategy expression</em> combines the application of rules using <em>strategy combinators</em>.</p>
 <h2 id="sequential-combinators">Sequential Combinators<a class="headerlink" href="#sequential-combinators" title="Permanent link">&para;</a></h2>
 <h3 id="identity-and-failure">Identity and Failure<a class="headerlink" href="#identity-and-failure" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nv">id</span><span class="w"></span>
@@ -4167,15 +4182,22 @@ If that fails, its direct subterms are searched one by one (from left to right),
 <p>A fixed-point traversal with some:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">reduce-par</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">repeat</span><span class=" -Punctuation">(</span><span class="k">rec</span><span class="w"> </span><span class="nv">x</span><span class=" -Punctuation">(</span><span class="k">some</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
-<h2 id="generic-term-deconstruction">Generic Term (De)construction<a class="headerlink" href="#generic-term-deconstruction" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span>#<span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">)</span><span class="w"></span>
+<h2 id="generic-term-deconstruction">Generic Term Deconstruction<a class="headerlink" href="#generic-term-deconstruction" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span>#<span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="c c-Singleline">// in a match pattern</span><span class="w"></span>
 </code></pre></div>
+<p>The term pattern expression <code>c#(ts)</code> used in a match pattern succeeds when applied to a constructor application and matches the constructor name (as a string) to <code>c</code> and the list of term arguments to <code>ts</code>.</p>
+<h2 id="generic-term-construction">Generic Term Construction<a class="headerlink" href="#generic-term-construction" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span>#<span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">)</span><span class="w">   </span><span class="c c-Singleline">// in a build pattern</span><span class="w"></span>
+</code></pre></div>
+<p>The term pattern expression <code>c#(ts)</code> used in a build pattern succeeds when
+<code>c</code> constructs a string and <code>ts</code> constructs a list of terms.
+It then builds the corresponding constructor application <code>c(ts)</code>.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>Rather than defining rewrite rules and high-level strategies as primitives of the language, Stratego provides <em>strategy combinators</em> as basic building blocks from which these can defined<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
 Thus, Stratego consists of a core language<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and a 'sugar' language defined by reduction to the core language.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs such as <a href="../rules/rewrite-rules.md">rewrite rules</a> where possible.</p>
+<p>While it useful to understand the constructs defined in this section, their use should be avoided in favour of the higher-level language constructs, such as <a href="../rewrite-rules/">rewrite rules</a>, where possible.</p>
 </div>
 <div class="footnote">
 <hr />

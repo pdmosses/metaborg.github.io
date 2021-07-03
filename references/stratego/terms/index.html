@@ -3317,7 +3317,7 @@ The backslash character itself should be escaped as well.</p>
 <p>A constructor is an identifier, that is an alphanumeric string starting with a letter, or a double quoted string.</p>
 <p>A constructor application <code>c(t1,...,tn)</code> creates a term by applying a constructor to a sequence of zero or more terms.</p>
 <p>For example, the term <code>Plus(Int("4"),Var("x"))</code>uses the constructors <code>Plus</code>, <code>Int</code>, and <code>Var</code> to create a nested term from the strings <code>"4"</code> and <code>"x"</code>.</p>
-<p>The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with <a href="patterns.md">variables</a>.
+<p>The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with <a href="#term-patterns">variables</a>.
 Thus, <code>True()</code> is a constructor application, but <code>True</code> is a variable.</p>
 <h3 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class=" -Punctuation">[</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">]</span><span class="w"></span>
@@ -3350,7 +3350,7 @@ The <em>non-linear</em> pattern</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>stands for a <code>Plus</code> term with identical arguments.</p>
-<p>A term pattern without variables (aka <a href="../terms/">term</a>) is <em>ground</em>.</p>
+<p>A term pattern without variables (aka term) is <em>ground</em>.</p>
 <h3 id="substitution">Substitution<a class="headerlink" href="#substitution" title="Permanent link">&para;</a></h3>
 <p><em>Substitution</em> is the process of applying a map from variables to terms to a term pattern, replacing occurrence of variables in the domain of the map with the corresponding terms in the codomain of the map.</p>
 <p><em>Substitution</em> is also the name for the mapping of variables to terms.</p>

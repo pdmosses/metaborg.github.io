@@ -3121,7 +3121,7 @@
 </code></pre></div>
 <p>A strategy definition gives a name to a strategy expression, has zero or more strategy arguments, and zero or more term arguments.</p>
 <h2 id="simple-definitions">Simple Definitions<a class="headerlink" href="#simple-definitions" title="Permanent link">&para;</a></h2>
-<p>A simple strategy definition gaves a name to a <a href="sequential.md">strategy expression</a>.</p>
+<p>A simple strategy definition gaves a name to a <a href="../strategy-combinators/">strategy expression</a>.</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
 </code></pre></div>
 <p>For example, the following definition defines <code>desugar</code> as an application of the <code>innermost</code> strategy to the rewrite rule(s) <code>desugar-exp</code>.</p>
@@ -3130,7 +3130,7 @@
 <span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">desugar-exp</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <h2 id="parameterized-definitions">Parameterized Definitions<a class="headerlink" href="#parameterized-definitions" title="Permanent link">&para;</a></h2>
-<p>Just like <a href="../rules/rewrite-rules.md">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
+<p>Just like <a href="../rewrite-rules/">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
 <div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
 $<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
 </code></pre></div>
