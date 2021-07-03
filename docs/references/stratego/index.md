@@ -1,4 +1,4 @@
-# Stratego Transformation Language 
+# Stratego
 
 The Stratego language caters for the definition of program transformations.
 

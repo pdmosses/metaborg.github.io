@@ -129,3 +129,59 @@ map(s) : [hd | tl] -> [<s>hd | <map(s)> tl]
 !!! note
     In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
     In a future version of the language, this syntactic distiction may no longer be necessary based on types.
+
+
+### Desugaring
+
+A conditional rewrite rule can be desugared to a [strategy definition](strategy-definitions.md) using basic [strategy combinators](strategy-combinators.md).
+
+A simple rewrite rule succeeds if the match of the left-hand side succeeds.
+Sometimes it is useful to place additional requirements on the application of a rule, or to compute some value for use in the right-hand side of the rule.
+This can be achieved with conditional rewrite rules.
+
+A conditional rule `L: p1 -> p2` where `s` is a simple rule extended with an additional computation `s` which should succeed in order for the rule to apply.
+The condition can be used to test properties of terms in the left-hand side, or to compute terms to be used in the right-hand side.
+The latter is done by binding such new terms to variables used in the right-hand side.
+
+For example, the `EvalPlus` rule in the following session uses a condition to compute the sum of `i` and `j`:
+
+```stratego
+EvalPlus:
+  Plus(Int(i),Int(j)) -> Int(k)
+  where !(i,j); addS; ?k
+
+<EvalPlus>
+  Plus(Int("14"),Int("3")) => Int("17")
+```
+
+A conditional rule can be desugared similarly to an unconditional rule.
+That is, a conditional rule of the form
+
+```stratego
+L : p1 -> p2 where s
+```
+
+is syntactic sugar for
+
+```stratego
+L = ?p1; where(s); !p2
+```
+
+Thus, after the match with `p1` succeeds the strategy `s` is applied to the subject term.
+Only if the application of `s` succeeds, is the right-hand side `p2` built.
+Note that since `s` is applied within a where, the build `!p2` is applied to the original subject term; only variable bindings computed within `s` can be used in `p2`.
+
+As an example, consider the following constant folding rule, which reduces an addition of two integer constants to the constant obtained by computing the addition.
+
+```stratego
+EvalPlus :
+  Add(Int(i),Int(j)) -> Int(k) where !(i,j); addS; ?k
+```
+
+The addition is computed by applying the primitive strategy addS to the pair of integers `(i,j)` and matching the result against the variable `k`, which is then used in the right-hand side.
+This rule is desugared to
+
+```stratego
+EvalPlus =
+  ?Add(Int(i),Int(j)); where(!(i,j); addS; ?k); !Int(k)
+```
