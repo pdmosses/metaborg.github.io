@@ -6,8 +6,7 @@ atoms and composites, such as constructors, tuples and lists. Additionally, Stat
 allows to inline several constraint results in terms.
 
 In this section, we explain the various types of terms that Statix supports, and,
-when appropriate, how their types should be declared. For a more in-depth
-explanation of the Statix Type System, see the section [Types](../types).
+when appropriate, how their types should be declared.
 
 !!! note "Terminology: Sort vs. Type"
     Throughout this reference manual, we use the term 'sort' for syntactic
@@ -269,4 +268,4 @@ For more information on querying the scope graph, see the [Queries](../queries) 
 ??? tip "Declaration Match as Query"
     In terms of [regular queries](../queries), the declaration match is equal
     to a query with filter `e`, expecting a single output. E.g. `T == ?var["x"] in s`
-    is equal to `query var filter e and { x' :- x' == "x"} in s |-> [(_, (_, T))]`.
+    is equal to `query var filter e and { x' :- x' == "x" } in s |-> [(_, (_, T))]`.

@@ -1,1 +1,1 @@
-# How to Run Stratego Programs
+# Run Stratego Programs
