@@ -1,5 +1,6 @@
 # Strategy Combinators
 
+A _strategy expression_ combines the application of rules using _strategy combinators_.
 
 
 ## Sequential Combinators
@@ -1005,17 +1006,24 @@ A fixed-point traversal with some:
 reduce-par(s) = repeat(rec x(some(x) + s))
 ```
 
-## Generic Term (De)construction
+## Generic Term Deconstruction
 
 ```stratego
-$Term#($Term)
+$Term#($Term)   // in a match pattern
 ```
 
+The term pattern expression `c#(ts)` used in a match pattern succeeds when applied to a constructor application and matches the constructor name (as a string) to `c` and the list of term arguments to `ts`.
 
 
+## Generic Term Construction
 
+```stratego
+$Term#($Term)   // in a build pattern
+```
 
-
+The term pattern expression `c#(ts)` used in a build pattern succeeds when
+`c` constructs a string and `ts` constructs a list of terms.
+It then builds the corresponding constructor application `c(ts)`.
 
 
 ## References
@@ -1024,7 +1032,7 @@ Rather than defining rewrite rules and high-level strategies as primitives of th
 Thus, Stratego consists of a core language[@VisserB98] and a 'sugar' language defined by reduction to the core language.
 
 !!! warning
-    While it useful to understand the constructs defined in this and the next sections, their use should be avoided in favour of the higher-level language constructs such as [rewrite rules](../rules/rewrite-rules.md) where possible.
+    While it useful to understand the constructs defined in this section, their use should be avoided in favour of the higher-level language constructs, such as [rewrite rules](rewrite-rules.md), where possible.
 
 
 \bibliography

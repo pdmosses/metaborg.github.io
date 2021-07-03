@@ -87,7 +87,7 @@ imports B
 
 ## Signatures
 
-A [signature](terms/types.md) section introduces sorts, constructors, and overlays.
+A [signature](types.md) section introduces sorts, constructors, and overlays.
 
 ```stratego
 signature
@@ -100,7 +100,7 @@ signature
 
 ## Rules and Strategies
 
-[Rule](rules/rewrite-rules.md) definitions and [strategy](strategies/strategy-definitions.md) definitions introduce named transformations.
+[Rule](rewrite-rules.md) definitions and [strategy](strategy-definitions.md) definitions introduce named transformations.
 
 ```stratego
 rules
@@ -127,4 +127,4 @@ Even if definitions in a library are not included in a libraries external defini
 
 ## Concrete Syntax
 
-When using [concrete syntax](rules/concrete-syntax.md) in a module, a `.meta` file accompanying the module indicates the parse table to use.
+When using [concrete syntax](../../howtos/stratego/concrete-syntax.md) in a module, a `.meta` file accompanying the module indicates the parse table to use.

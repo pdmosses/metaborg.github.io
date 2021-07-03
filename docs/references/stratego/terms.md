@@ -75,7 +75,7 @@ A constructor application `c(t1,...,tn)` creates a term by applying a constructo
 
 For example, the term `Plus(Int("4"),Var("x"))`uses the constructors `Plus`, `Int`, and `Var` to create a nested term from the strings `"4"` and `"x"`.
 
-The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with [variables](patterns.md).
+The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with [variables](#term-patterns).
 Thus, `True()` is a constructor application, but `True` is a variable.
 
 
@@ -141,7 +141,7 @@ Plus(e, e)
 
 stands for a `Plus` term with identical arguments.
 
-A term pattern without variables (aka [term](../terms/)) is _ground_.
+A term pattern without variables (aka term) is _ground_.
 
 
 ### Substitution
