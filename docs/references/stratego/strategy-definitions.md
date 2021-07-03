@@ -1,12 +1,12 @@
 # Strategy Definitions
 
-Strategy definitions give a name to a strategy expression.
-
-
 ```stratego
 $Id($StrategyArg, ... | $TermArg, ...) =
   $StrategyExp
 ```
+
+A strategy definition gives a name to a strategy expression, has zero or more strategy arguments, and zero or more term arguments.
+
 
 ## Simple Definitions
 
