@@ -2,6 +2,20 @@
 
 A Stratego program is organised as a collection of modules, which are imported from a main module.
 
+
+## Module Structure
+
+```stratego
+module $ModuleName
+$Imports*
+$Section*
+```
+
+A module starts with a module header followed by a list of `imports`.
+The name of a module in the header and imports should correspond to the file name, relative to a 'root' directory.
+
+The rest of a module consists of `signature`, `rules`, and `strategies` sections, in any order, and possibly repeated.
+
 ## File Name and File Extension
 
 A module coincides with the file it resides in. It is not possible to define more than one module in a file, which precludes nested modules.
@@ -10,7 +24,8 @@ The name of a module coincides with the file name, which should be fully qualifi
 A Stratego is a file with the extension `.str2` for Stratego 2.
 Modules for the Stratego 1 version of the language have extension `.str`.
 The file extension does not feature in the module names used in the language.
-Consider the following example of a module header:
+
+The following is example module header:
 
 ```stratego
 module compilation/translation
@@ -40,39 +55,11 @@ For example, if `trans` is [declared as a root](../config/index.md), then the mo
 - desugaring/desugar
 ```
 
-
-## Module Structure
-
-A Stratego module has the following structure, where a single occurrence of a construct can be multiplied:
+## Imports
 
 ```stratego
-module $ModuleName
-
-imports $ModuleName
-
-signature
-  sort $Sort
-  constructors
-    $ConstructorDef
-
-rules
-
-  $RuleDef
-
-strategies
-
-  $StrategyDef
+imports $ModuleName+
 ```
-
-Thus, a module starts with a module header followed by a list of `imports`.
-The name of a module in the header and imports should correspond to the file name, relative to a 'root' directory.
-
-The rest of a module consists of `signature`, `rules`, and `strategies` sections, in any order and possibly repeated.
-A [signature](terms/types.md) section introduces sorts and constructors.
-[Rule](rules/rewrite-rules.md) definitions and [strategy](strategies/strategy-definitions.md) definitions introduce named transformations.
-The `rules` and `strategies` section headers are indicative only; rule and strategy definitions can actually be mixed.
-
-## Imports
 
 A module should import all other modules from which it uses definitions.
 Imports are non-transitive and may be mutually recursive.
@@ -82,6 +69,50 @@ This allows the modular extension of a language.
 
 When imported, all definitions in a module are visible.
 There are currently no mechanisms for hiding definitions.
+
+An `imports` can list multiple modules.
+The form
+
+```stratego
+imports A B
+```
+
+is equivalent to
+
+```stratego
+imports A
+imports B
+```
+
+
+## Signatures
+
+A [signature](terms/types.md) section introduces sorts, constructors, and overlays.
+
+```stratego
+signature
+  sorts $Sort*
+  constructors
+    $ConstructorDef*
+  overlays
+    $OverlayDef*
+```
+
+## Rules and Strategies
+
+[Rule](rules/rewrite-rules.md) definitions and [strategy](strategies/strategy-definitions.md) definitions introduce named transformations.
+
+```stratego
+rules
+  $RuleDef*
+```
+
+```stratego
+strategies  
+  $StrategyDef*
+```
+
+The `rules` and `strategies` section headers are indicative only; rule and strategy definitions can actually be mixed.
 
 ## Libraries
 
