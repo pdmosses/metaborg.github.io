@@ -1845,8 +1845,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bibliography/stratego/" class="md-nav__link">
-        A Stratego Bibliography
+      <a href="../../../bibliography/statix/" class="md-nav__link">
+        A Statix Bibliography
       </a>
     </li>
   
@@ -1857,8 +1857,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bibliography/statix/" class="md-nav__link">
-        A Statix Bibliography
+      <a href="../../../bibliography/stratego/" class="md-nav__link">
+        A Stratego Bibliography
       </a>
     </li>
   
@@ -3092,7 +3092,7 @@ We start with explicitly programmed traversals using recursive traversal rules. 
 Finally, generic traversal operators support data type independent definitions of traversals, which can be reused for any data type.
 Given these basic mechanisms, we conclude with an exploration of idioms for traversal and standard traversal strategies in the Stratego Library.</p>
 <h2 id="congruence-operators">Congruence Operators<a class="headerlink" href="#congruence-operators" title="Permanent link">&para;</a></h2>
-<p>Congruence operators provide a convenient abbreviation of <a href="../../../background/stratego/traversal-with-rules.md">traversal with rewrite rules</a>.
+<p>Congruence operators provide a convenient abbreviation of <a href="../../strategic-rewriting/traversal-with-rules/">traversal with rewrite rules</a>.
 A congruence operator applies a strategy to each direct subterm of a specific constructor.
 For each n-ary constructor <code>c</code> declared in a signature, there is a corresponding congruence operator <code>c(s1 , ..., sn)</code>, which applies to terms of the form <code>c(t1 , ..., tn)</code> by applying the argument strategies to the corresponding argument terms.
 A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.</p>
@@ -3125,7 +3125,7 @@ Forgetting this import would lead to a complaint about an undeclared operator:
 -->
 
 <h2 id="defining-traversals-with-congruences">Defining Traversals with Congruences<a class="headerlink" href="#defining-traversals-with-congruences" title="Permanent link">&para;</a></h2>
-<p>Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of <a href="../../../background/stratego/traversal-with-rules.md">traversal rules</a>.
+<p>Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of <a href="../../strategic-rewriting/traversal-with-rules/">traversal rules</a>.
 That is, a traversal rule such as</p>
 <div class="highlight"><pre><span></span><code><span class="nv">proptr</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">And</span><span class=" -Punctuation">(&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">x</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">s</span><span class=" -Punctuation">&gt;</span><span class="nv">y</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
@@ -3207,7 +3207,7 @@ That is, it is not possible to do something special for a particular subterm (th
 <span class="w">  </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;b&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;3&quot;</span><span class=" -Punctuation">))</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">Times</span><span class=" -Punctuation">(</span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span><span class="nv">Var</span><span class=" -Punctuation">(</span><span class="s">&quot;z&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
 </code></pre></div>
 <h2 id="defining-traversals-with-all">Defining Traversals with All<a class="headerlink" href="#defining-traversals-with-all" title="Permanent link">&para;</a></h2>
-<p>The <code>all(s)</code> operator is really the ultimate replacement for the <a href="../../../background/stratego/traversal-with-rules.md">traversal with rules</a> idiom.
+<p>The <code>all(s)</code> operator is really the ultimate replacement for the <a href="../../strategic-rewriting/traversal-with-rules/">traversal with rules</a> idiom.
 Instead of specifying a rule or congruence for each constructor, the single application of the <code>all</code> operator takes care of traversing all constructors.
 Thus, we can replace the <code>propbu</code> strategy by a completely generic definition of bottom-up traversal.
 Consider again the last definition of <code>propbu</code>:</p>

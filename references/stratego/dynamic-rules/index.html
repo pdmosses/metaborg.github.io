@@ -1943,8 +1943,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../background/bibliography/stratego/" class="md-nav__link">
-        A Stratego Bibliography
+      <a href="../../../background/bibliography/statix/" class="md-nav__link">
+        A Statix Bibliography
       </a>
     </li>
   
@@ -1955,8 +1955,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../background/bibliography/statix/" class="md-nav__link">
-        A Statix Bibliography
+      <a href="../../../background/bibliography/stratego/" class="md-nav__link">
+        A Stratego Bibliography
       </a>
     </li>
   
@@ -3152,7 +3152,7 @@ After exiting the scope, the state of the dynamic rule definitions before the sc
 <span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>will result in locally overriding the first dynamic rule for <code>"twice"</code>, but undoing that override at the end of the dynamic rule scope, such that it is available again at the second call to <code>"twice"</code>.</p>
-<p>While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the <a href="../../statix/index.md">Statix</a> meta-language and perform a uniquify transformation to guarantee unique names.</p>
+<p>While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the <a href="../../statix/">Statix</a> meta-language and perform a uniquify transformation to guarantee unique names.</p>
 <h2 id="multiple-right-hand-sides">Multiple Right-Hand Sides<a class="headerlink" href="#multiple-right-hand-sides" title="Permanent link">&para;</a></h2>
 <p>In order to collect multiple ways to rewrite a term use <code>rules( $Id :+ $Rule)</code>.</p>
 <p>For example, the following is a small API for for emitting nodes in a control-flow graph consisting of blocks.  </p>
@@ -3169,7 +3169,7 @@ After exiting the scope, the state of the dynamic rule definitions before the sc
 <p>The <code>bagof-$Id</code> strategy is generated automatically and produces all right-hand sides corresponding to a left-hand side.</p>
 <h2 id="other-dynamic-rule-extensions">Other Dynamic Rule Extensions<a class="headerlink" href="#other-dynamic-rule-extensions" title="Permanent link">&para;</a></h2>
 <p>The papers by Olmos and Visser<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and Bravenboer et. al<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> describe more advanced features of dynamic rules, primarily inspired by data-flow transformations.
-For defining data-flow analyses, Spoofax now provides the <a href="../../flowspec/introduction.md">FlowSpec</a> meta-language.</p>
+For defining data-flow analyses, Spoofax now provides the <a href="../../flowspec/introduction/">FlowSpec</a> meta-language.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />

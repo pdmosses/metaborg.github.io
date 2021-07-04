@@ -1845,18 +1845,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="../stratego/" class="md-nav__link">
-        A Stratego Bibliography
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -1937,6 +1925,18 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stratego/" class="md-nav__link">
+        A Stratego Bibliography
+      </a>
     </li>
   
 
@@ -3007,7 +3007,7 @@
                 
                 
                 <h1 id="a-statix-bibliography">A Statix Bibliography<a class="headerlink" href="#a-statix-bibliography" title="Permanent link">&para;</a></h1>
-<p>The Statix meta-language provides support for the declarative definition of the static semantics of programming languages in terms of unification constraints and scope graph constraints for name resolution<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> guaranteeing query stability<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.
+<p>The Statix<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> meta-language provides support for the declarative definition of the static semantics of programming languages in terms of unification constraints and scope graph constraints for name resolution<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> guaranteeing query stability<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.
 Here we trace the development of the Statix language.</p>
 <h2 id="the-nabl-name-binding-language">The NaBL Name Binding Language<a class="headerlink" href="#the-nabl-name-binding-language" title="Permanent link">&para;</a></h2>
 <p>The NaBL<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> language provides support for the declaration of the name binding rules of programming languages in terms of <em>definitions</em>, <em>references</em>, and <em>scoping</em>.</p>
@@ -3032,7 +3032,7 @@ In particular, it was not possible to generate constraints based on information 
 For example, a subtyping rule operating on types computed during constraint resolution</p>
 <p>Furthermore, the NaBL2 language itself was untyped, making it easy to make errors in specifications.</p>
 <h2 id="statix-language">Statix Language<a class="headerlink" href="#statix-language" title="Permanent link">&para;</a></h2>
-<p>The Statix language<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> was designed to overcome the limitations of NaBL2.</p>
+<p>The Statix language<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> was designed to overcome the limitations of NaBL2.</p>
 <p>The language is typed, with signatures describing the types of ASTs, and typing rules declaring the types of predicates.
 The type system of Statix is expressed in NaBL2, making the specification of rules statically checked and much less prone to errors.
 This also provided a useful testbed of the ideas of scope graphs and constraints.</p>
@@ -3042,7 +3042,7 @@ For example, the definition of structural record types can be expressed by a que
 <p>Necessarily these changes entail that queries need to be executed in a scope graph that is not in its final form.</p>
 <p>This necessitate a theory of query stability.
 Name resolution queries such be scheduled such that they produce stable results, i.e. results that would also be produced at the end of the process.
-The this end a theory of <em>critical edges</em> was developed that asserts when it is safe to perform a query in a certain scope<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+The this end a theory of <em>critical edges</em> was developed that asserts when it is safe to perform a query in a certain scope<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
 <p>The Statix solver implements the operational semantics on the language in order to automatically derive type checkers from specifications.
 Optimizations of this solver can be based on the generaly underlying theory and be applied to all languages for which Statix specifications have been written.
 One such optimization is the derivation of <em>implicitly parallel</em> type checkers from Statix specifications<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>.</p>
@@ -3053,10 +3053,10 @@ One such optimization is the derivation of <em>implicitly parallel</em> type che
 <hr />
 <ol>
 <li id="fn:1">
-<p>Hendrik van Antwerpen, Casper Bach Poulsen, Arjen Rouvoet, and Eelco Visser. Scopes as types. <em>Proceedings of the ACM on Programming Languages</em>, 2018. URL: <a href="https://doi.org/10.1145/3276484">https://doi.org/10.1145/3276484</a>, <a href="https://doi.org/10.1145/3276484">doi:10.1145/3276484</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Hendrik van Antwerpen, Casper Bach Poulsen, Arjen Rouvoet, and Eelco Visser. Scopes as types. <em>Proceedings of the ACM on Programming Languages</em>, 2018. URL: <a href="https://doi.org/10.1145/3276484">https://doi.org/10.1145/3276484</a>, <a href="https://doi.org/10.1145/3276484">doi:10.1145/3276484</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Arjen Rouvoet, Hendrik van Antwerpen, Casper Bach Poulsen, Robbert Krebbers, and Eelco Visser. Knowing when to ask: sound scheduling of name resolution in type checkers derived from declarative specifications. <em>Proceedings of the ACM on Programming Languages</em>, 2020. URL: <a href="https://doi.org/10.1145/3428248">https://doi.org/10.1145/3428248</a>, <a href="https://doi.org/10.1145/3428248">doi:10.1145/3428248</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Arjen Rouvoet, Hendrik van Antwerpen, Casper Bach Poulsen, Robbert Krebbers, and Eelco Visser. Knowing when to ask: sound scheduling of name resolution in type checkers derived from declarative specifications. <em>Proceedings of the ACM on Programming Languages</em>, 2020. URL: <a href="https://doi.org/10.1145/3428248">https://doi.org/10.1145/3428248</a>, <a href="https://doi.org/10.1145/3428248">doi:10.1145/3428248</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
 <p>Gabriël Konat, Lennart C. L. Kats, Guido Wachsmuth, and Eelco Visser. Declarative name binding and scope rules. In Krzysztof Czarnecki and Görel Hedin, editors, <em>Software Language Engineering, 5<sup>th</sup> International Conference, SLE 2012, Dresden, Germany, September 26-28, 2012, Revised Selected Papers</em>, volume 7745 of Lecture Notes in Computer Science, 311&ndash;331. Springer, 2012. URL: <a href="http://dx.doi.org/10.1007/978-3-642-36089-3_18">http://dx.doi.org/10.1007/978-3-642-36089-3_18</a>, <a href="https://doi.org/10.1007/978-3-642-36089-3_18">doi:10.1007/978-3-642-36089-3_18</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
@@ -3100,7 +3100,7 @@ One such optimization is the derivation of <em>implicitly parallel</em> type che
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../stratego/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../sdf3/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -3109,19 +3109,19 @@ One such optimization is the derivation of <em>implicitly parallel</em> type che
               <span class="md-footer__direction">
                 Previous
               </span>
-              A Stratego Bibliography
+              An SDF3 Bibliography
             </div>
           </div>
         </a>
       
       
-        <a href="../../statix/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../stratego/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Statix Background
+              A Stratego Bibliography
             </div>
           </div>
           <div class="md-footer__button md-icon">
