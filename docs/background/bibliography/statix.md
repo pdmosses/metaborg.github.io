@@ -1,6 +1,6 @@
 # A Statix Bibliography
 
-The Statix meta-language provides support for the declarative definition of the static semantics of programming languages in terms of unification constraints and scope graph constraints for name resolution[@AntwerpenPRV18] guaranteeing query stability[@RouvoetAPKV20].
+The Statix[@AntwerpenPRV18] [@RouvoetAPKV20] meta-language provides support for the declarative definition of the static semantics of programming languages in terms of unification constraints and scope graph constraints for name resolution[@AntwerpenPRV18] guaranteeing query stability[@RouvoetAPKV20].
 Here we trace the development of the Statix language.
 
 ## The NaBL Name Binding Language
