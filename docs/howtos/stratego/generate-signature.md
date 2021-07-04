@@ -1,3 +1,8 @@
+# How to Generate a Signature
+
+It is tedious to write a signature that is in sync with a syntax definition.
+Therefore, Spoofax automatically generates a signature from a syntax definition for the abstract syntax trees that the parser for that syntax definition produces.
+
 ## Signature from Syntax Definition
 
 Signatures can be generated automatically from a syntax definition in [SDF3](../../syntax/).
