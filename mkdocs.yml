@@ -109,9 +109,10 @@ nav:
     - background/index.md
     - Bibliography:
       - background/bibliography/index.md
+      # - background/bibliography/references.md
       - background/bibliography/sdf3.md
-      - background/bibliography/stratego.md
       - background/bibliography/statix.md
+      - background/bibliography/stratego.md
     - Static Semantics:
       - background/statix/index.md
     - Transformations:

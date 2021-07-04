@@ -19,6 +19,7 @@ Spoofax was also one of the tools featured in a survey of language workbenches w
 
 ## Bibliographies
 
+<!-- - [References](references.md): the full collection of references  -->
 - [SDF3](sdf3.md): papers about the syntax definition formalism and its predecessors
 - [Statix](statix.md): papers about the static semantics meta-language and its predecessors
 - [Stratego](stratego.md): papers about the transformation meta-language
