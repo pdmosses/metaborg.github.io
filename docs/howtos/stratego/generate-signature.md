@@ -61,7 +61,7 @@ signature
 ```
 
 The injection from strings into the lexical `IntConst` sort reflects the fact that tokens are represented as strings in ASTs.
-The placeholder constructors generated for the sorts are used to represent incomplete programs and syntactic code completion[@AmorimEV18].
+The placeholder constructors generated for the sorts are used to represent incomplete programs and syntactic code completion[@AmorimEWV16].
 
 
 ## Use Signature
