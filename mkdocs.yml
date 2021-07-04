@@ -22,10 +22,12 @@ nav:
       - howtos/installation/install-eclipse-plugin-manually.md
       - howtos/installation/install-from-source.md
     - Transformation:
+      - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
+      - howtos/stratego/debug-stratego.md
+      - howtos/stratego/concrete-syntax.md
       - howtos/stratego/exchange-terms.md
       - howtos/stratego/inspect-terms.md
-      - howtos/stratego/debug-stratego.md
     - Editor Services:
       - howtos/editor-services/rename-refactoring.md
     - Development:
