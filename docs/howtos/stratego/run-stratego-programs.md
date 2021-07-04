@@ -1,4 +1,4 @@
-# Run Stratego Programs
+# How to Run Stratego Programs
 
 Stratego programs that are part of a language project in Spoofax/Eclipse are run by creating a menu entry that invokes a strategy in your program.
 
