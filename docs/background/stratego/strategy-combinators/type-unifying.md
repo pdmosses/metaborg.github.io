@@ -150,7 +150,7 @@ AssignSize : (e1, e2)         -> <add; inc>(e1, e2)
 IfSize     : (e1, e2, e3)     -> <add; inc>(e1, <add>(e2, e3))
 ```
 
-This looks suspiciously like the [traversal with rules](../../../background/stratego/traversal-with-rules.md) pattern.
+This looks suspiciously like the [traversal with rules](../../../background/stratego/strategic-rewriting/traversal-with-rules.md) pattern.
 Defining folds in this manner has several limitations.
 In the definition of fold, one parameter for each constructor is provided and traversal is defined explicitly for each constructor.
 Furthermore, in the instantiation of fold, one rule for each constructor is needed, and the default behaviour is not generically specified.

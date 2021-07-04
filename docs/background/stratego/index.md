@@ -9,7 +9,7 @@ This section reviews the classic definition of term rewriting and motivates the 
 - [Term rewriting](strategic-rewriting/term-rewriting.md)
 - [Limitations of term rewriting](strategic-rewriting/limitations-of-rewriting.md)
 - [Factoring out Traversal](strategic-rewriting/traversal-with-rules.md)
-- [Strategic Rewriting](strategic-rewriting/strategig-rewriting.md)
+- [Strategic Rewriting](strategic-rewriting/strategic-rewriting.md)
 
 ## Strategy Combinators
 

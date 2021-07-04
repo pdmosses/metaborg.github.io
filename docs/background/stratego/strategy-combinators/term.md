@@ -1,6 +1,6 @@
 # Term Combinators
 
-[Previously](term-rewriting.md) we have presented rewrite rules as basic transformation steps.
+[Previously](../strategic-rewriting/term-rewriting.md) we have presented rewrite rules as basic transformation steps.
 However, rules are not atomic transformation actions.
 To see this, consider what happens when the rewrite rule
 

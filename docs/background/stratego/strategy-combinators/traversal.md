@@ -19,7 +19,7 @@ Given these basic mechanisms, we conclude with an exploration of idioms for trav
 
 ## Congruence Operators
 
-Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](../../../background/stratego/traversal-with-rules.md).
+Congruence operators provide a convenient abbreviation of [traversal with rewrite rules](../../../background/stratego/strategic-rewriting/traversal-with-rules.md).
 A congruence operator applies a strategy to each direct subterm of a specific constructor.
 For each n-ary constructor `c` declared in a signature, there is a corresponding congruence operator `c(s1 , ..., sn)`, which applies to terms of the form `c(t1 , ..., tn)` by applying the argument strategies to the corresponding argument terms.
 A congruence fails if the application of one the argument strategies fails or if constructor of the operator and that of the term do not match.
@@ -62,7 +62,7 @@ command failed
 
 ## Defining Traversals with Congruences
 
-Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of [traversal rules](../../../background/stratego/traversal-with-rules.md).
+Since congruence operators define a one-step traversal for a specific constructor, they capture the pattern of [traversal rules](../../../background/stratego/strategic-rewriting/traversal-with-rules.md).
 That is, a traversal rule such as
 
 ```stratego
@@ -188,7 +188,7 @@ That is, it is not possible to do something special for a particular subterm (th
 
 ## Defining Traversals with All
 
-The `all(s)` operator is really the ultimate replacement for the [traversal with rules](../../../background/stratego/traversal-with-rules.md) idiom.
+The `all(s)` operator is really the ultimate replacement for the [traversal with rules](../../../background/stratego/strategic-rewriting/traversal-with-rules.md) idiom.
 Instead of specifying a rule or congruence for each constructor, the single application of the `all` operator takes care of traversing all constructors.
 Thus, we can replace the `propbu` strategy by a completely generic definition of bottom-up traversal.
 Consider again the last definition of `propbu`:

@@ -158,7 +158,7 @@ Let([FunDef("inc", [..], ..)
 
 will result in locally overriding the first dynamic rule for `"twice"`, but undoing that override at the end of the dynamic rule scope, such that it is available again at the second call to `"twice"`.
 
-While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the [Statix](../../statix/index.md) meta-language and perform a uniquify transformation to guarantee unique names.
+While dynamic rule scopes can deal with lexical scope systems, the preferred way to deal with scope in programming languages is to perform name (and type) analysis using the [Statix](../statix/index.md) meta-language and perform a uniquify transformation to guarantee unique names.
 
 
 ## Multiple Right-Hand Sides
@@ -184,7 +184,7 @@ The `bagof-$Id` strategy is generated automatically and produces all right-hand 
 ## Other Dynamic Rule Extensions
 
 The papers by Olmos and Visser[@OlmosV05] and Bravenboer et. al[@BravenboerDOV06] describe more advanced features of dynamic rules, primarily inspired by data-flow transformations.
-For defining data-flow analyses, Spoofax now provides the [FlowSpec](../../flowspec/introduction.md) meta-language.
+For defining data-flow analyses, Spoofax now provides the [FlowSpec](../flowspec/introduction.md) meta-language.
 
 
 
