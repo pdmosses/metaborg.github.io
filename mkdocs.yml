@@ -21,6 +21,8 @@ nav:
       - howtos/installation/install-eclipse-bundle.md
       - howtos/installation/install-eclipse-plugin-manually.md
       - howtos/installation/install-from-source.md
+    - Static Semantics:
+      - howtos/statix/debugging.md
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
@@ -136,6 +138,7 @@ nav:
       - Links: background/documentation/links.md
       - Citations: background/documentation/citations.md
       - Structure: background/documentation/structure.md
+      - Troubleshooting: background/documentation/troubleshooting.md
   - Support:
     - support/index.md
     - support/contributions.md
@@ -229,8 +232,6 @@ markdown_extensions:
   - abbr
   - admonition
   - attr_list
-  - codehilite:
-      guess_lang: false
   - def_list
   - footnotes
   - toc:
@@ -244,8 +245,14 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      guess_lang: false
   - pymdownx.inlinehilite
-  - pymdownx.keys
+  - pymdownx.keys:
+      key_map:
+        click: "Click"
+        left-click: "Left Click"
+        right-click: "Right Click"
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.saneheaders
