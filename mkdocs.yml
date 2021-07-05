@@ -24,6 +24,7 @@ nav:
     - Static Semantics:
       - howtos/statix/debugging.md
       - howtos/statix/migrating-from-nabl2.md
+      - howtos/statix/migrating-to-concurrent-solver.md
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
