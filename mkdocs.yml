@@ -136,6 +136,7 @@ nav:
       - Links: background/documentation/links.md
       - Citations: background/documentation/citations.md
       - Structure: background/documentation/structure.md
+      - Troubleshooting: background/documentation/troubleshooting.md
   - Support:
     - support/index.md
     - support/contributions.md
