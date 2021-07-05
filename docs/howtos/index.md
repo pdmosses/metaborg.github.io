@@ -8,10 +8,12 @@ These are some How-To's that help you to get to a specific goal or result with S
 - [Install Spoofax from Source](installation/install-from-source.md)
 
 ## Stratego
-- [Run Stratego Programs](stratego/run-stratego-programs.md)
+- How to [generate Stratego signatures](stratego/generate-signature.md)
+- How to [run Stratego programs](stratego/run-stratego-programs.md)
+- How to [generate pretty-printers](stratego/generate-pretty-printer.md)
+- How to [debug Stratego programs](stratego/debug-stratego.md)
 - [Exchange Terms](stratego/exchange-terms.md)
 - [Inspect Terms](stratego/inspect-terms.md)
-- [Debug Stratego Programs](stratego/debug-stratego.md)
 
 ## Editor Services
 - [Add Rename Refactoring to an Existing Project](editor-services/rename-refactoring.md)
@@ -22,4 +24,3 @@ These are some How-To's that help you to get to a specific goal or result with S
 - [Build Spoofax](development/building.md)
 - [Develop Spoofax](development/developing.md)
 - [Release Spoofax](development/releasing.md)
-

@@ -24,6 +24,7 @@ nav:
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
+      - howtos/stratego/generate-pretty-printer.md
       - howtos/stratego/debug-stratego.md
       - howtos/stratego/concrete-syntax.md
       - howtos/stratego/exchange-terms.md
