@@ -1,6 +1,7 @@
 # Debugging
 
-This section describes several techniques that can be used to debug your Statix specification if it does not work as you expect.
+This section describes several techniques that can be used to debug your Statix
+specification if it does not work as you expect.
 
 !!! attention "Important"
     The single most useful thing you can do when debugging is to make the problem
@@ -329,19 +330,19 @@ using the `Spoofax > Evaluate > Evaluate Test` menu. Evaluation outputs a
 
 ```
 substitution
-   T |-> INT()
+  T |-> INT()
 
- analysis
-   scope graph
+analysis
+  scope graph
 
- errors
-   *   INT() == LONG()
-     > statics!subtype(INT(), LONG())
-     > ... trace truncated ...
+errors
+  *   INT() == LONG()
+    > statics!subtype(INT(), LONG())
+    > ... trace truncated ...
 
- warnings
+warnings
 
- notes
+notes
 ```
 
 The test result shows the value of top-level variables from the `resolve` block
