@@ -230,8 +230,6 @@ markdown_extensions:
   - abbr
   - admonition
   - attr_list
-  - codehilite:
-      guess_lang: false
   - def_list
   - footnotes
   - toc:
@@ -245,6 +243,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      guess_lang: false
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink
