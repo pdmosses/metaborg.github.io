@@ -3520,7 +3520,58 @@
                 
                 
                 <h1 id="strategy-combinators">Strategy Combinators<a class="headerlink" href="#strategy-combinators" title="Permanent link">&para;</a></h1>
-<p>A <em>strategy expression</em> combines the application of rules using <em>strategy combinators</em>.</p>
+<p>A <em>strategy expression</em> combines the application of rules using <em>strategy combinators</em>.
+We first provide a concise overview of (the syntax of) all combinators.
+After that, we provide a more detailed description of each combinator.</p>
+<p><a href="#sequential-combinators">Sequential Combinators</a></p>
+<ul>
+<li><code>id</code>   : <a href="#sequential-combinators">identity</a></li>
+<li><code>fail</code> : <a href="#sequential-combinators">failure</a></li>
+<li><code>s1 ; s2</code> : <a href="#sequential-composition">sequential composition</a></li>
+<li><code>s1 &lt;+ s2</code> : <a href="#left-choice">left choice</a></li>
+<li><code>s1 &lt; s2 + s3</code> : <a href="#guarded-left-choice">guarded left choice</a></li>
+<li><code>if s1 then s2 else s3</code> : <a href="#if-then-else">if-then-else</a></li>
+<li><code>switch ... end</code> : <a href="#switch">switch</a></li>
+<li><code>s1 + s2</code> : <a href="#non-deterministic-choice">non-deterministic choice</a></li>
+<li><code>rec x(s)</code> : <a href="#fixpoint-recursion">fixpoint recursion</a></li>
+</ul>
+<p><a href="#term-combinators">Term Combinators</a></p>
+<ul>
+<li><code>!p</code> : <a href="#building-terms">build</a></li>
+<li><code>?p</code> : <a href="#matching-terms">match</a></li>
+<li><code>{x, ... : s}</code> : <a href="#term-variable-scope">term variable scope</a></li>
+</ul>
+<p><a href="#combing-match-and-build">Strategy Sugar</a></p>
+<ul>
+<li><code>(p1 -&gt; p2)</code> : <a href="#anonymous-rewrite-rule">anonymous rewrite rule</a></li>
+<li><code>where(s)</code> : <a href="#where">where</a></li>
+<li><code>with(s)</code> : <a href="#with">with</a></li>
+<li><code>\ p1 -&gt; p2 where s \</code> : <a href="#lambda-rules">lamba rules</a></li>
+<li><code>&lt;s&gt; p</code> : <a href="#apply-and-match">apply</a></li>
+<li><code>s =&gt; p</code> : <a href="#apply-and-match">match</a></li>
+<li><code>&lt;s&gt; p1 =&gt; p2</code> : <a href="#apply-and-match">apply and match</a></li>
+<li><code>p1 := p2</code> : <a href="#assign">assign</a></li>
+</ul>
+<p>Term Sugar</p>
+<ul>
+<li><code>&lt;s&gt; p</code> : <a href="#applying-strategies-in-build">apply in build</a></li>
+<li><code>!p[&lt;s&gt;]</code> : <a href="#term-wrap">term wrap</a></li>
+<li><code>?p[&lt;s&gt;]</code> : <a href="#term-project">term project</a></li>
+</ul>
+<p><a href="#traversal-combinators">Traversal Combinators</a></p>
+<ul>
+<li><code>c(s1, ..., sn)</code> : <a href="#congruence">congruence</a></li>
+<li><code>(s1, ..., sn)</code> : <a href="#tuple-and-list-congruences">tuple congruence</a></li>
+<li><code>[s1, ..., sn]</code> : <a href="#tuple-and-list-congruences">list congruence</a></li>
+<li><code>[s1, ..., sn | s]</code> : <a href="#tuple-and-list-congruences">list congruence</a></li>
+<li><code>all(s)</code> : <a href="#visiting-all-subterms">all</a></li>
+<li><code>one(s)</code> : <a href="#visiting-one-subterms">one</a></li>
+<li><code>some(s)</code> : <a href="#visiting-some-subterms">some</a></li>
+</ul>
+<p>Generic Term (De)Construction</p>
+<ul>
+<li><code>c#(ts)</code> : <a href="#generic-term-construction">generic term (de)construction</a></li>
+</ul>
 <h2 id="sequential-combinators">Sequential Combinators<a class="headerlink" href="#sequential-combinators" title="Permanent link">&para;</a></h2>
 <h3 id="identity-and-failure">Identity and Failure<a class="headerlink" href="#identity-and-failure" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nv">id</span><span class="w"></span>
