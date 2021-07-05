@@ -23,6 +23,7 @@ nav:
       - howtos/installation/install-from-source.md
     - Static Semantics:
       - howtos/statix/debugging.md
+      - howtos/statix/migrating-from-nabl2.md
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
