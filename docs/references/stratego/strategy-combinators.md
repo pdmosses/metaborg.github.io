@@ -1,6 +1,57 @@
 # Strategy Combinators
 
 A _strategy expression_ combines the application of rules using _strategy combinators_.
+We first provide a concise overview of (the syntax of) all combinators.
+After that, we provide a more detailed description of each combinator.
+
+[Sequential Combinators](#sequential-combinators)
+
+- `id`   : [identity](#sequential-combinators)
+- `fail` : [failure](#sequential-combinators)
+- `s1 ; s2` : [sequential composition](#sequential-composition)
+- `s1 <+ s2` : [left choice](#left-choice)
+- `s1 < s2 + s3` : [guarded left choice](#guarded-left-choice)
+- `if s1 then s2 else s3` : [if-then-else](#if-then-else)
+- `switch ... end` : [switch](#switch)
+- `s1 + s2` : [non-deterministic choice](#non-deterministic-choice)
+- `rec x(s)` : [fixpoint recursion](#fixpoint-recursion)
+
+[Term Combinators](#term-combinators)
+
+- `!p` : [build](#building-terms)
+- `?p` : [match](#matching-terms)
+- `{x, ... : s}` : [term variable scope](#term-variable-scope)
+
+[Strategy Sugar](#combing-match-and-build)
+
+- `(p1 -> p2)` : [anonymous rewrite rule](#anonymous-rewrite-rule)
+- `where(s)` : [where](#where)
+- `with(s)` : [with](#with)
+- `\ p1 -> p2 where s \` : [lamba rules](#lambda-rules)
+- `<s> p` : [apply](#apply-and-match)
+- `s => p` : [match](#apply-and-match)
+- `<s> p1 => p2` : [apply and match](#apply-and-match)
+- `p1 := p2` : [assign](#assign)
+
+Term Sugar
+
+- `<s> p` : [apply in build](#applying-strategies-in-build)
+- `!p[<s>]` : [term wrap](#term-wrap)
+- `?p[<s>]` : [term project](#term-project)
+
+[Traversal Combinators](#traversal-combinators)
+
+- `c(s1, ..., sn)` : [congruence](#congruence)
+- `(s1, ..., sn)` : [tuple congruence](#tuple-and-list-congruences)
+- `[s1, ..., sn]` : [list congruence](#tuple-and-list-congruences)
+- `[s1, ..., sn | s]` : [list congruence](#tuple-and-list-congruences)
+- `all(s)` : [all](#visiting-all-subterms)
+- `one(s)` : [one](#visiting-one-subterms)
+- `some(s)` : [some](#visiting-some-subterms)
+
+Generic Term (De)Construction
+
+- `c#(ts)` : [generic term (de)construction](#generic-term-construction)
 
 
 ## Sequential Combinators
