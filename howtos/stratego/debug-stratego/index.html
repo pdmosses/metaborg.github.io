@@ -590,8 +590,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../generate-signature/" class="md-nav__link">
+        How to Generate a Stratego Signature
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../run-stratego-programs/" class="md-nav__link">
-        Run Stratego Programs
+        How to Run Stratego Programs
       </a>
     </li>
   
@@ -602,20 +614,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../exchange-terms/" class="md-nav__link">
-        Exchange Terms
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../inspect-terms/" class="md-nav__link">
-        Inspect Terms
+      <a href="../generate-pretty-printer/" class="md-nav__link">
+        How to Generate a Pretty-Printer
       </a>
     </li>
   
@@ -659,6 +659,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#signatures" class="md-nav__link">
+    Signatures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#types" class="md-nav__link">
     Types
   </a>
@@ -666,8 +673,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with" class="md-nav__link">
-    With
+  <a href="#use-with-instead-of-where" class="md-nav__link">
+    Use With instead of Where
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-spt-tests" class="md-nav__link">
+    Define SPT tests
   </a>
   
 </li>
@@ -683,6 +697,42 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concrete-syntax/" class="md-nav__link">
+        Concrete Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exchange-terms/" class="md-nav__link">
+        Exchange Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inspect-terms/" class="md-nav__link">
+        Inspect Terms
+      </a>
     </li>
   
 
@@ -2927,6 +2977,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#signatures" class="md-nav__link">
+    Signatures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#types" class="md-nav__link">
     Types
   </a>
@@ -2934,8 +2991,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#with" class="md-nav__link">
-    With
+  <a href="#use-with-instead-of-where" class="md-nav__link">
+    Use With instead of Where
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-spt-tests" class="md-nav__link">
+    Define SPT tests
   </a>
   
 </li>
@@ -2965,11 +3029,46 @@
                 
                 
                 <h1 id="debug-stratego-programs">Debug Stratego Programs<a class="headerlink" href="#debug-stratego-programs" title="Permanent link">&para;</a></h1>
-<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
-<h2 id="with">With<a class="headerlink" href="#with" title="Permanent link">&para;</a></h2>
-<h2 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">debug</span><span class=" -Punctuation">(</span><span class="o">!</span><span class="s">&quot;&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+<p>Debugging Stratego programs can be frustrating.
+In <a href="../../../background/stratego/strategic-rewriting/strategic-rewriting/">strategic programming</a> failure is a first-class citizen and the language supports dynamically typed programming.
+Thes are useful features for realizing generic and modular programming.
+However, this may mean that that errors may show up late in the game.
+A program fails much later then where the error occurs.
+Often during pretty-printing.
+Here we discuss some remedies for finding the problem.</p>
+<h2 id="signatures">Signatures<a class="headerlink" href="#signatures" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Add</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
 </code></pre></div>
+<p>Define a good signature for your terms.</p>
+<p>Ideally define the syntax of your language in a syntax definition in SDF3, and declare all sorts explicitly, and avoid injections.
+This will ensure that a signature and matching pretty-printer are generated automatically, as well as a signature for Statix.</p>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Instr</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Define type signatures for transformations.</p>
+<p>Starting with Stratego2, the language supports the definition of <a href="../../references/stratego/types.md/#transformation-types">type signatures for transformations</a>.
+This will catch many obvious errors.</p>
+<h2 id="use-with-instead-of-where">Use With instead of Where<a class="headerlink" href="#use-with-instead-of-where" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">concat</span><span class=" -Punctuation">&gt;[</span><span class="nv">instrs1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">instrs2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Add</span><span class=" -Punctuation">()]]</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e1</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs1</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e2</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs2</span><span class="w"></span>
+</code></pre></div>
+<p>The <a href="/references/stratego/rewrite-rules.md/#with-condition">with</a> clause expresses that you expect a premisse of a rewrite rule to succeed in all cases.
+When this expectation is violated, the rule will throw an exception and display a stack trace, instead of silently failing.</p>
+<h2 id="define-spt-tests">Define SPT tests<a class="headerlink" href="#define-spt-tests" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>test translate [[
+  1 + 2
+]] run translate
+</code></pre></div>
+<p>Define unit tests in the SPT testing language.</p>
+<h2 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">dbg</span><span class=" -Punctuation">(|</span><span class="s">&quot;translate/Add: &quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>In case the measures above fail, use <code>dbg</code> to figure out where the error is in your program.</p>
                 
               
               
@@ -2992,7 +3091,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../inspect-terms/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../generate-pretty-printer/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -3001,19 +3100,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Inspect Terms
+              How to Generate a Pretty-Printer
             </div>
           </div>
         </a>
       
       
-        <a href="../../editor-services/rename-refactoring/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../concrete-syntax/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Add Rename Refactoring to an Existing Project
+              Concrete Syntax
             </div>
           </div>
           <div class="md-footer__button md-icon">

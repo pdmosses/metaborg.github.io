@@ -13,14 +13,14 @@
         <meta name="author" content="Spoofax Team">
       
       
-        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-signature/">
+        <link rel="canonical" href="https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-pretty-printer/">
       
       <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>How to Generate a Stratego Signature - Spoofax</title>
+        <title>How to Generate a Pretty-Printer - Spoofax</title>
       
     
     
@@ -60,9 +60,9 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - How to Generate a Stratego Signature" />
+<meta property="og:title" content="Spoofax - How to Generate a Pretty-Printer" />
 <meta property="og:description" content="Spoofax language workbench" />
-<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-signature/" />
+<meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-pretty-printer/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1080" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-generate-a-stratego-signature" class="md-skip">
+        <a href="#how-to-generate-a-pretty-printer" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to Generate a Stratego Signature
+              How to Generate a Pretty-Printer
             
           </span>
         </div>
@@ -588,72 +588,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          How to Generate a Stratego Signature
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../generate-signature/" class="md-nav__link">
         How to Generate a Stratego Signature
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#write-a-syntax-definition" class="md-nav__link">
-    Write a Syntax Definition
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generate-signature" class="md-nav__link">
-    Generate Signature
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-signature" class="md-nav__link">
-    Use Signature
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -673,11 +612,79 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../generate-pretty-printer/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to Generate a Pretty-Printer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         How to Generate a Pretty-Printer
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#production-templates" class="md-nav__link">
+    Production Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-pretty-printer" class="md-nav__link">
+    Generate Pretty-Printer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-pretty-printer" class="md-nav__link">
+    Use Pretty-Printer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-builder" class="md-nav__link">
+    Define Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-menu-action" class="md-nav__link">
+    Define Menu Action
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2970,29 +2977,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#write-a-syntax-definition" class="md-nav__link">
-    Write a Syntax Definition
+  <a href="#production-templates" class="md-nav__link">
+    Production Templates
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-signature" class="md-nav__link">
-    Generate Signature
+  <a href="#generate-pretty-printer" class="md-nav__link">
+    Generate Pretty-Printer
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-signature" class="md-nav__link">
-    Use Signature
+  <a href="#use-pretty-printer" class="md-nav__link">
+    Use Pretty-Printer
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#define-builder" class="md-nav__link">
+    Define Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-menu-action" class="md-nav__link">
+    Define Menu Action
   </a>
   
 </li>
@@ -3009,76 +3023,29 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/howtos/stratego/generate-signature.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/metaborg/spoofax-docs/edit/main/docs/howtos/stratego/generate-pretty-printer.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="how-to-generate-a-stratego-signature">How to Generate a Stratego Signature<a class="headerlink" href="#how-to-generate-a-stratego-signature" title="Permanent link">&para;</a></h1>
-<p>It is tedious to write a signature that is in sync with a syntax definition.
-Therefore, Spoofax automatically generates a signature from a syntax definition for the abstract syntax trees that the parser for that syntax definition produces.</p>
-<h2 id="write-a-syntax-definition">Write a Syntax Definition<a class="headerlink" href="#write-a-syntax-definition" title="Permanent link">&para;</a></h2>
-<p>In the <code>/syntax/</code> directory in your language project for language <code>lang</code> write a syntax definition in file <code>lang.sdf3</code>.</p>
-<p>Possibly write additional syntax defininitions modules and import the in <code>lang.sdf3</code>.</p>
-<p>Example.
-Consider the following SDF3 syntax definition:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">lang</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">Base</span><span class="w"></span>
-
-<span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="k">lexical</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
-<span class="w">  </span><span class="nv">IntConst</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="m">0</span><span class="nv">-9</span><span class=" -Punctuation">]</span><span class="o">+</span><span class="w"></span>
-<span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Int</span><span class="w">     </span>=<span class="w"> </span><span class="nv">IntConst</span><span class="w">  </span>
-<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class="w">   </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Exp</span><span class="w">         </span>=<span class="w"> </span><span class=" -Punctuation">[([</span><span class="nv">Exp</span><span class=" -Punctuation">])]</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="k">bracket</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="k">context-free</span><span class="w"> </span><span class="k">priorities</span><span class="w"></span>
-<span class="w">  </span><span class=" -Punctuation">{</span><span class="k">left</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class=" -Punctuation">}</span><span class="w"></span>
+                <h1 id="how-to-generate-a-pretty-printer">How to Generate a Pretty-Printer<a class="headerlink" href="#how-to-generate-a-pretty-printer" title="Permanent link">&para;</a></h1>
+<p>A pretty-printer is a mapping from abstract syntax trees (terms) to text.
+The resulting text should observe the syntactic rules</p>
+<h2 id="production-templates">Production Templates<a class="headerlink" href="#production-templates" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
-<h2 id="generate-signature">Generate Signature<a class="headerlink" href="#generate-signature" title="Permanent link">&para;</a></h2>
-<p>The build for your language project will invoke the SDF3 compiler to generate a signature file for each SDF3 file in your project in directory <code>/src-gen/signatures/</code> with suffix <code>-sig</code> and extension <code>.str</code>.</p>
-<p>The build should be invoked as soon as you save a file.</p>
-<p>Thus <code>lang.sdf3</code> generates <code>/src-gen/signatures/lang-sig.str</code>.</p>
+<h2 id="generate-pretty-printer">Generate Pretty-Printer<a class="headerlink" href="#generate-pretty-printer" title="Permanent link">&para;</a></h2>
+<p>automatically in build</p>
+<p>generates rules for translation from AST to Box</p>
 <p>Example.
-For the SDF3 file above, the following signature is automatically generated:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">Base-sig</span><span class="w"></span>
-
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">                   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Int</span><span class="w">            </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Plus</span><span class="w">           </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Minus</span><span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+Generate pretty-print rules</p>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
-<p>The injection from strings into the lexical <code>IntConst</code> sort reflects the fact that tokens are represented as strings in ASTs.
-The placeholder constructors generated for the sorts are used to represent incomplete programs and syntactic code completion<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<h2 id="use-signature">Use Signature<a class="headerlink" href="#use-signature" title="Permanent link">&para;</a></h2>
-<p>To use the signature, import it into the Stratego module that uses its constructors.</p>
-<p>Example.
-To use the signature for the example import it as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">desugar</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span><span class="w"></span>
-<span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="c c-Singleline">// ...</span><span class="w"></span>
-</code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Luis Eduardo de Souza Amorim, Sebastian Erdweg, Guido Wachsmuth, and Eelco Visser. Principled syntactic code completion using placeholders. In Tijs van der Storm, Emilie Balland, and Dániel Varró, editors, <em>Proceedings of the 2016 ACM SIGPLAN International Conference on Software Language Engineering, Amsterdam, The Netherlands, October 31 - November 1, 2016</em>, 163&ndash;175. ACM, 2016. URL: <a href="http://dx.doi.org/10.1145/2997364.2997374">http://dx.doi.org/10.1145/2997364.2997374</a>, <a href="https://doi.org/10.1145/2997364.2997374">doi:10.1145/2997364.2997374</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<h2 id="use-pretty-printer">Use Pretty-Printer<a class="headerlink" href="#use-pretty-printer" title="Permanent link">&para;</a></h2>
+<h2 id="define-builder">Define Builder<a class="headerlink" href="#define-builder" title="Permanent link">&para;</a></h2>
+<p>for interactive use</p>
+<h2 id="define-menu-action">Define Menu Action<a class="headerlink" href="#define-menu-action" title="Permanent link">&para;</a></h2>
+<p>to invoke the builder</p>
                 
               
               
@@ -3101,7 +3068,7 @@ To use the signature for the example import it as follows:</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../installation/install-from-source/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../run-stratego-programs/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -3110,19 +3077,19 @@ To use the signature for the example import it as follows:</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Install Spoofax from Source
+              How to Run Stratego Programs
             </div>
           </div>
         </a>
       
       
-        <a href="../run-stratego-programs/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../debug-stratego/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              How to Run Stratego Programs
+              Debug Stratego Programs
             </div>
           </div>
           <div class="md-footer__button md-icon">

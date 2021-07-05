@@ -20,7 +20,7 @@
     
     
       
-        <title>Run Stratego Programs - Spoofax</title>
+        <title>How to Run Stratego Programs - Spoofax</title>
       
     
     
@@ -60,7 +60,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Run Stratego Programs" />
+<meta property="og:title" content="Spoofax - How to Run Stratego Programs" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/spoofax-docs/howtos/stratego/run-stratego-programs/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#run-stratego-programs" class="md-skip">
+        <a href="#how-to-run-stratego-programs" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Run Stratego Programs
+              How to Run Stratego Programs
             
           </span>
         </div>
@@ -588,6 +588,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../generate-signature/" class="md-nav__link">
+        How to Generate a Stratego Signature
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -599,10 +611,118 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to Run Stratego Programs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Run Stratego Programs
+        How to Run Stratego Programs
       </a>
       
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#extend-spoofax-menu" class="md-nav__link">
+    Extend Spoofax Menu
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-builder" class="md-nav__link">
+    Define Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-parser" class="md-nav__link">
+    Example: Parser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-term-builder" class="md-nav__link">
+    Example: Term Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-pretty-printing-builder" class="md-nav__link">
+    Example: Pretty Printing Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-spt-tests" class="md-nav__link">
+    Define SPT Tests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-on-save" class="md-nav__link">
+    Run On Save
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generate-pretty-printer/" class="md-nav__link">
+        How to Generate a Pretty-Printer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debug-stratego/" class="md-nav__link">
+        Debug Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concrete-syntax/" class="md-nav__link">
+        Concrete Syntax
+      </a>
     </li>
   
 
@@ -626,18 +746,6 @@
     <li class="md-nav__item">
       <a href="../inspect-terms/" class="md-nav__link">
         Inspect Terms
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../debug-stratego/" class="md-nav__link">
-        Debug Stratego Programs
       </a>
     </li>
   
@@ -2876,6 +2984,63 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#extend-spoofax-menu" class="md-nav__link">
+    Extend Spoofax Menu
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-builder" class="md-nav__link">
+    Define Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-parser" class="md-nav__link">
+    Example: Parser
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-term-builder" class="md-nav__link">
+    Example: Term Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-pretty-printing-builder" class="md-nav__link">
+    Example: Pretty Printing Builder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-spt-tests" class="md-nav__link">
+    Define SPT Tests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-on-save" class="md-nav__link">
+    Run On Save
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2891,7 +3056,84 @@
                   </a>
                 
                 
-                <h1 id="run-stratego-programs">Run Stratego Programs<a class="headerlink" href="#run-stratego-programs" title="Permanent link">&para;</a></h1>
+                <h1 id="how-to-run-stratego-programs">How to Run Stratego Programs<a class="headerlink" href="#how-to-run-stratego-programs" title="Permanent link">&para;</a></h1>
+<p>Stratego programs that are part of a language project in Spoofax/Eclipse are run by creating a menu entry that invokes a strategy in your program.</p>
+<h2 id="extend-spoofax-menu">Extend Spoofax Menu<a class="headerlink" href="#extend-spoofax-menu" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$ModuleName<span class="w"></span>
+<span class="k">menus</span><span class="w"></span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;$Menu&quot;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;$MenuEntry&quot;</span><span class="w"> </span>=<span class="w"> </span>$Id<span class="w"></span>
+</code></pre></div>
+<p>Add a new ESV file in the <code>editor/</code> directory of your project or use an existing one.</p>
+<p>In the <code>menus</code> section, create a menu with an appropriate name.
+Adding the attribute <code>openeditor</code> ensures that the result of running the program will be opened in an editor.</p>
+<p>Add an action entry to the menu with the name of the menu entry and the name of the builder strategy to invoke.</p>
+<p>This should add a menu entry <code>Spoofax &gt; Menu &gt; Action</code> to the editor for your language.</p>
+<h2 id="define-builder">Define Builder<a class="headerlink" href="#define-builder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">filename</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">result</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">guarantee-extension</span><span class=" -Punctuation">(|</span>$<span class="nv">Extension</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">path</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">result</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span>$<span class="nv">Strategy</span><span class=" -Punctuation">&gt;</span><span class="nv">node</span><span class="w"></span>
+</code></pre></div>
+<p>In your Stratego program, probably in some top-level file in the <code>trans/</code> directory of your project, add a 'builder' rewrite rule.
+Such a rewrite rule defines the interface between the user-interface (action menu entry) and your program.</p>
+<p>A builder has the interface shown above.
+When invoking the builder, Spoofax takes care of parsing the program and converting it to abstract syntax term.
+It takes a quintuple of the selected AST <code>node</code>, the entire <code>ast</code>, the file <code>path</code>, and the <code>project-path</code> and returns a pair of the <code>filename</code> and <code>result</code>.</p>
+<p>The results are computed in the conditions of the builder rule.
+The new <code>filename</code> is typically derived from the old file name in <code>path</code>
+The <code>result</code> is computed by invoking a strategy on the selected <code>node</code> or on the entire <code>ast</code>.</p>
+<h2 id="example-parser">Example: Parser<a class="headerlink" href="#example-parser" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>Syntax<span class="w"></span>
+<span class="c c-Singleline">//...</span><span class="w"></span>
+<span class="k">menus</span><span class="w"></span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Syntax&quot;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Show parsed AST&quot;</span><span class="w"> </span>=<span class="w"> </span>debug-show-aterm<span class="w"> </span><span class=" -Punctuation">(</span><span class="k">source</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">debug-show-aterm</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">filename</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">result</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"></span>
+<span class="w">    </span><span class="nv">filename</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">guarantee-extension</span><span class=" -Punctuation">(|</span><span class="s">&quot;aterm&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">path</span><span class="w"></span>
+<span class="w">  </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">result</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class="nv">node</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>debug-show-aterm</code> provided with new Spoofax projects returns the selected <code>node</code> as result.
+Since Spoofax ensures that the content of the editor is parsed, this returns the AST of the editor content as a (pretty-printed) term.</p>
+<h2 id="example-term-builder">Example: Term Builder<a class="headerlink" href="#example-term-builder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>Compilation<span class="w"></span>
+<span class="k">menus</span><span class="w"></span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Compilation&quot;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Desugar (AST)&quot;</span><span class="w"> </span>=<span class="w"> </span>desugar-aterm<span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">desugar-aterm</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">filename</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">result</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">guarantee-extension</span><span class=" -Punctuation">(|</span><span class="s">&quot;d.aterm&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">path</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="nv">result</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">desugar</span><span class=" -Punctuation">&gt;</span><span class="nv">node</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>Desugar (AST)</code> menu action calls the <code>desugar-aterm</code> builder, which in turn uses the <code>desugar</code> strategy to transform the selected <code>node</code>.
+The result is returned in a file with extension <code>d.aterm</code>.</p>
+<h2 id="example-pretty-printing-builder">Example: Pretty Printing Builder<a class="headerlink" href="#example-pretty-printing-builder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>Compilation<span class="w"></span>
+<span class="k">menus</span><span class="w"></span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Compilation&quot;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Desugar&quot;</span><span class="w"> </span>=<span class="w"> </span>desugar-pp<span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">desugar-pp</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">_</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">filename</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">result</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">guarantee-extension</span><span class=" -Punctuation">(|</span><span class="s">&quot;d.tig&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">path</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="nv">result</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">desugar</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">pp-tiger-string</span><span class=" -Punctuation">&gt;</span><span class="nv">node</span><span class="w">  </span>
+</code></pre></div>
+<p>The <code>Desugar</code> menu action calls the <code>desugar-pp</code> builder.
+That strategy transforms the selected <code>node</code> with <code>desugar</code> and pretty-prints the resulting term with <code>pp-tiger-string</code>.
+The result is returned in a file with extension <code>d.tig</code>.</p>
+<h2 id="define-spt-tests">Define SPT Tests<a class="headerlink" href="#define-spt-tests" title="Permanent link">&para;</a></h2>
+<p>An alternative way to run transformations is to test them using SPT tests.</p>
+<p>This allows you to systematically run a transformation on a number of typical cases.</p>
+<h2 id="run-on-save">Run On Save<a class="headerlink" href="#run-on-save" title="Permanent link">&para;</a></h2>
+<p>When a Stratego program is applied in production, a transformation can be applied automatically whenever a program in your language is saved.</p>
                 
               
               
@@ -2914,7 +3156,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../installation/install-from-source/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../generate-signature/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2923,19 +3165,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Install Spoofax from Source
+              How to Generate a Stratego Signature
             </div>
           </div>
         </a>
       
       
-        <a href="../exchange-terms/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../generate-pretty-printer/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Exchange Terms
+              How to Generate a Pretty-Printer
             </div>
           </div>
           <div class="md-footer__button md-icon">
