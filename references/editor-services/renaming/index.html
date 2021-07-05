@@ -593,6 +593,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/statix/migrating-from-nabl2/" class="md-nav__link">
+        Migrating from NaBL2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/statix/migrating-to-concurrent-solver/" class="md-nav__link">
+        Migrating to the Concurrent Solver
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1736,6 +1760,13 @@
         <li class="md-nav__item">
   <a href="#statix" class="md-nav__link">
     Statix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
   </a>
   
 </li>
@@ -3028,6 +3059,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#see-also" class="md-nav__link">
     See Also
   </a>
@@ -3070,10 +3108,18 @@
 <h2 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h2>
 <p>For the renaming to work correctly in all cases when using Statix, terms that represent a declaration of a program entity, such as a function or a variable, need to set the <code>@decl</code> property on the name of the entity. For example, when declaring a type:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">declareType</span><span class="p">(</span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
-<span class="w">  </span><span class="k">scope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">Type</span><span class="p">{</span><span class="nv">name</span><span class="p">}</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="nv">typeOfDecl</span><span class="w"> </span><span class="nv">T</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span>!<span class="nv">type</span>[<span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span>@<span class="nv">name</span><span class="p">.</span><span class="k">decl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">typeOfDecl</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">Type</span><span class="p">{</span><span class="nv">name</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="nv">_</span>]<span class="p">.</span><span class="w"></span>
 </code></pre></div>
+<h2 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
+<p>When a parse tree of a name is preceded by a term which is parsed from an empty
+string. The renaming algorithm will incorrectly select the preceding term to be
+renamed, and mostly fail accordingly. Sometimes, this issue can be circumvented
+by selecting the complete surrounding term. This issue is known to occur for:</p>
+<ul>
+<li>Statix predicate names.</li>
+</ul>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
 <li>How-To: <a href="../../../howtos/editor-services/rename-refactoring/">Add Rename Refactoring to an Existing Project</a></li>

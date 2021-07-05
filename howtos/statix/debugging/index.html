@@ -700,6 +700,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrating-from-nabl2/" class="md-nav__link">
+        Migrating from NaBL2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrating-to-concurrent-solver/" class="md-nav__link">
+        Migrating to the Concurrent Solver
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -3150,7 +3174,8 @@
                 
                 
                 <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
-<p>This section describes several techniques that can be used to debug your Statix specification if it does not work as you expect.</p>
+<p>This section describes several techniques that can be used to debug your Statix
+specification if it does not work as you expect.</p>
 <div class="admonition attention">
 <p class="admonition-title">Important</p>
 <p>The single most useful thing you can do when debugging is to make the problem
@@ -3426,19 +3451,19 @@ that can appear in a rule body. After that, the test may specify <code>imports</
 using the <code>Spoofax &gt; Evaluate &gt; Evaluate Test</code> menu. Evaluation outputs a
 <code>.stxresult</code> file, which looks as follows:</p>
 <div class="highlight"><pre><span></span><code>substitution
-   T |-&gt; INT()
+  T |-&gt; INT()
 
- analysis
-   scope graph
+analysis
+  scope graph
 
- errors
-   *   INT() == LONG()
-     &gt; statics!subtype(INT(), LONG())
-     &gt; ... trace truncated ...
+errors
+  *   INT() == LONG()
+    &gt; statics!subtype(INT(), LONG())
+    &gt; ... trace truncated ...
 
- warnings
+warnings
 
- notes
+notes
 </code></pre></div>
 <p>The test result shows the value of top-level variables from the <code>resolve</code> block
 (in this case <code>T</code>), the scope graph that was constructed (in this case empty),
@@ -3736,13 +3761,13 @@ other shows a very similar variant that does not exhibit the problem.</p>
         </a>
       
       
-        <a href="../../stratego/generate-signature/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../migrating-from-nabl2/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              How to Generate a Stratego Signature
+              Migrating from NaBL2
             </div>
           </div>
           <div class="md-footer__button md-icon">
