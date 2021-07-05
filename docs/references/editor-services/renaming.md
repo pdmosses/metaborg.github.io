@@ -29,12 +29,20 @@ For the renaming to work correctly in all cases when using Statix, terms that re
 
 ```statix
 declareType(scope, name, T) :-
-  scope -> Type{name} with typeOfDecl T,
+  !type[name, T] in scope,
   @name.decl := name,
-  typeOfDecl of Type{name} in scope |-> [(_, (_, T))].
+  query type filter P* I* and { name' :- name' == name } in scope |-> [_].
 ```
 
 
+## Known Issues
+
+When a parse tree of a name is preceded by a term which is parsed from an empty
+string. The renaming algorithm will incorrectly select the preceding term to be
+renamed, and mostly fail accordingly. Sometimes, this issue can be circumvented
+by selecting the complete surrounding term. This issue is known to occur for:
+
+- Statix predicate names.
+
 ## See Also
 - How-To: [Add Rename Refactoring to an Existing Project](../../howtos/editor-services/rename-refactoring.md)
-
