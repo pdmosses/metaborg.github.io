@@ -21,6 +21,8 @@ nav:
       - howtos/installation/install-eclipse-bundle.md
       - howtos/installation/install-eclipse-plugin-manually.md
       - howtos/installation/install-from-source.md
+    - Static Semantics:
+      - howtos/statix/debugging.md
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
@@ -246,7 +248,11 @@ markdown_extensions:
   - pymdownx.highlight:
       guess_lang: false
   - pymdownx.inlinehilite
-  - pymdownx.keys
+  - pymdownx.keys:
+      key_map:
+        click: "Click"
+        left-click: "Left Click"
+        right-click: "Right Click"
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.saneheaders

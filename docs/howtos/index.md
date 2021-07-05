@@ -1,11 +1,13 @@
 # How-To's
 These are some How-To's that help you to get to a specific goal or result with Spoofax. For hands-on tutorials on learning Spoofax, see the [Tutorials](../tutorials/index.md) section. For the Spoofax languages references, see the [References](../references/index.md) section.
 
-
 ## Spoofax Installation
 - [Install the Eclipse with Spoofax Plugin Bundle](installation/install-eclipse-bundle.md)
 - [Install the Spoofax Eclipse Plugin Manually](installation/install-eclipse-plugin-manually.md)
 - [Install Spoofax from Source](installation/install-from-source.md)
+
+## Statix
+- [Debugging Statix Specifications](statix/debugging.md)
 
 ## Stratego
 - How to [generate Stratego signatures](stratego/generate-signature.md)
