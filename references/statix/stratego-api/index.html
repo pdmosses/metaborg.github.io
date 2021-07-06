@@ -3062,8 +3062,198 @@
                 
                 
                 <h1 id="stratego-api">Stratego API<a class="headerlink" href="#stratego-api" title="Permanent link">&para;</a></h1>
+<p>The Statix solver can be called from a Stratego Transformation using the API in
+the <a href="https://github.com/metaborg/nabl/tree/master/statix.runtime">Statix Runtime</a>
+project. After analysis is executed, the analysis result can be queried using
+other strategies. In this section, we provide an overview of the availble
+strategies.</p>
+<p>The public API of the Statix runtime is available
+<a href="https://github.com/metaborg/nabl/blob/master/statix.runtime/trans/statix/api.str">here</a>.
+This API strongly depends on the Spoofax constraint analysis library, which is
+available in the <a href="https://github.com/metaborg/spoofax/blob/master/meta.lib.spoofax/trans/libspoofax/analysis/constraint.str">Spoofax Meta Library</a>.</p>
 <h2 id="executing-the-solver">Executing the Solver<a class="headerlink" href="#executing-the-solver" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
+<p>Applies single-file analysis with the specification provided in the arguments.
+Since this strategy only performs single-file analysis, the current term should
+always have <code>AnalyzeSingle</code> as top-level constructor. The term and strategy
+arguments are explained in the following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th align="left">Type</th>
+<th align="left">Default</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>pre</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left"><code>id</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>post</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left"><code>id</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>spec-name</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"></td>
+<td align="left">The full path to the root module of the specification.</td>
+</tr>
+<tr>
+<td align="left"><code>init-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"></td>
+<td align="left">The name of the constraint that should be applied to the pre-transformed AST. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code>: Start</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>post</code> and <code>pre</code> arguments may be omitted (in that order).</p>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-elaborate</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Find out what this is?</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
+<p>Applies multi-file analysis with the specification provided in the arguments.
+Since this strategy only performs multi-file analysis, the current term should
+always have <code>AnalyzeMulti</code> as top-level constructor. This strategy chooses the
+solver based on the <code>metaborg.yaml</code> configuration of the project and the language.
+The term and strategy arguments are explained in the following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>pre</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>post</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>spec-name</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The full path to the root module of the specification.</td>
+</tr>
+<tr>
+<td align="left"><code>project-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+</tr>
+<tr>
+<td align="left"><code>file-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
+<p>Applies concurrent multi-file analysis with the specification provided in the
+arguments. Since this strategy only performs multi-file analysis, the current
+term should always have <code>AnalyzeMulti</code> as top-level constructor. This strategy
+chooses the solver based on the <code>metaborg.yaml</code> configuration of the project and
+the language, but fails with a fatal error if the concurrent solver is not
+enabled on this project. The term and strategy arguments are explained in the
+following table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>pre</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>group</code></td>
+<td align="left"><code>(Resource * AST) -&gt; List(String)</code></td>
+<td align="left">Strategy that decides in which group a resource is analyzed. Should return a list with the identifiers of the groups in which the resource should be analyzed.</td>
+</tr>
+<tr>
+<td align="left"><code>post</code></td>
+<td align="left"><code>AST -&gt; AST</code></td>
+<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+</tr>
+<tr>
+<td align="left"><code>spec-name</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The full path to the root module of the specification.</td>
+</tr>
+<tr>
+<td align="left"><code>project-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+</tr>
+<tr>
+<td align="left"><code>group-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+</tr>
+<tr>
+<td align="left"><code>file-constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-evaluate</span><span class=" -Punctuation">(|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>Type: <code>List(Term) -&gt; Term</code></p>
+<p>Evaluates a <em>functional constraint</em>. The terms in the current term are passed
+as argument to the constraint, and the result term is the output term of the
+constraint.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>spec-name</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The full path to the root module of the specification.</td>
+</tr>
+<tr>
+<td align="left"><code>constraint</code></td>
+<td align="left"><code>String</code></td>
+<td align="left">The name of the constraint that should be applied to the term arguments.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="querying-the-analysis-result">Querying the Analysis Result<a class="headerlink" href="#querying-the-analysis-result" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-analysis-has-errors</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx--analysis-has-errors</span><span class="w"></span>
+</code></pre></div>
+<p>Type: <code>Analysis -&gt; Analysis</code></p>
+<p>Fails if the current term has <em>no</em> errors, succeeds otherwise.</p>
                 
               
               
