@@ -1307,15 +1307,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#executing-the-solver" class="md-nav__link">
-    Executing the Solver
+  <a href="#single-file-analysis" class="md-nav__link">
+    Single-File Analysis
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#querying-the-analysis-result" class="md-nav__link">
-    Querying the Analysis Result
+  <a href="#single-file-elaboration" class="md-nav__link">
+    Single-File Elaboration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-file-analysis" class="md-nav__link">
+    Multi-File Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrent-analysis" class="md-nav__link">
+    Concurrent Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraint-evaluation" class="md-nav__link">
+    Constraint Evaluation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-errors" class="md-nav__link">
+    Analysis Errors
   </a>
   
 </li>
@@ -3031,15 +3059,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#executing-the-solver" class="md-nav__link">
-    Executing the Solver
+  <a href="#single-file-analysis" class="md-nav__link">
+    Single-File Analysis
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#querying-the-analysis-result" class="md-nav__link">
-    Querying the Analysis Result
+  <a href="#single-file-elaboration" class="md-nav__link">
+    Single-File Elaboration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-file-analysis" class="md-nav__link">
+    Multi-File Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrent-analysis" class="md-nav__link">
+    Concurrent Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constraint-evaluation" class="md-nav__link">
+    Constraint Evaluation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-errors" class="md-nav__link">
+    Analysis Errors
   </a>
   
 </li>
@@ -3071,7 +3127,7 @@ strategies.</p>
 <a href="https://github.com/metaborg/nabl/blob/master/statix.runtime/trans/statix/api.str">here</a>.
 This API strongly depends on the Spoofax constraint analysis library, which is
 available in the <a href="https://github.com/metaborg/spoofax/blob/master/meta.lib.spoofax/trans/libspoofax/analysis/constraint.str">Spoofax Meta Library</a>.</p>
-<h2 id="executing-the-solver">Executing the Solver<a class="headerlink" href="#executing-the-solver" title="Permanent link">&para;</a></h2>
+<h2 id="single-file-analysis">Single-File Analysis<a class="headerlink" href="#single-file-analysis" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
@@ -3116,12 +3172,14 @@ arguments are explained in the following table:</p>
 </tbody>
 </table>
 <p>The <code>post</code> and <code>pre</code> arguments may be omitted (in that order).</p>
+<h2 id="single-file-elaboration">Single-File Elaboration<a class="headerlink" href="#single-file-elaboration" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-editor-elaborate</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
 <p>Find out what this is?</p>
 </div>
+<h2 id="multi-file-analysis">Multi-File Analysis<a class="headerlink" href="#multi-file-analysis" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
@@ -3166,6 +3224,7 @@ The term and strategy arguments are explained in the following table:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="concurrent-analysis">Concurrent Analysis<a class="headerlink" href="#concurrent-analysis" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
@@ -3222,6 +3281,7 @@ following table:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="constraint-evaluation">Constraint Evaluation<a class="headerlink" href="#constraint-evaluation" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-evaluate</span><span class=" -Punctuation">(|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>Type: <code>List(Term) -&gt; Term</code></p>
@@ -3249,7 +3309,7 @@ constraint.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="querying-the-analysis-result">Querying the Analysis Result<a class="headerlink" href="#querying-the-analysis-result" title="Permanent link">&para;</a></h2>
+<h2 id="analysis-errors">Analysis Errors<a class="headerlink" href="#analysis-errors" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nv">stx-analysis-has-errors</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx--analysis-has-errors</span><span class="w"></span>
 </code></pre></div>
 <p>Type: <code>Analysis -&gt; Analysis</code></p>
