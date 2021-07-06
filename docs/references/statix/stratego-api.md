@@ -11,7 +11,8 @@ The public API of the Statix runtime is available
 This API strongly depends on the Spoofax constraint analysis library, which is
 available in the [Spoofax Meta Library](https://github.com/metaborg/spoofax/blob/master/meta.lib.spoofax/trans/libspoofax/analysis/constraint.str).
 
-## Executing the Solver
+
+## Single-File Analysis
 
 ```stratego
 stx-editor-analyze(pre, post|spec-name, init-constraint)
@@ -33,12 +34,18 @@ arguments are explained in the following table:
 
 The `post` and `pre` arguments may be omitted (in that order).
 
+
+## Single-File Elaboration
+
 ```stratego
 stx-editor-elaborate(pre, post|spec-name, init-constraint)
 ```
 
 !!! todo
     Find out what this is?
+
+
+## Multi-File Analysis
 
 ```stratego
 stx-editor-analyze(pre, post|spec-name, project-constraint, file-constraint)
@@ -60,6 +67,8 @@ The term and strategy arguments are explained in the following table:
 | `project-constraint` | `String`                           | The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form `$Module!$ConstraintName`, or just a `$ConstraintName`. In the latter case, the name will be qualified with the `spec-name` argument. This constraint should have the (Statix) type `#!statix : scope`                                       |
 | `file-constraint`    | `String`                           | The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form `$Module!$ConstraintName`, or just a `$ConstraintName`. In the latter case, the name will be qualified with the `spec-name` argument. This constraint should have the (Statix) type `#!statix : scope * Start` |
 
+
+## Concurrent Analysis
 
 ```stratego
 stx-editor-analyze(pre, group, post|spec-name, project-constraint, group-constraint, file-constraint)
@@ -85,6 +94,9 @@ following table:
 | `group-constraint`   | `String`                           | The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form `$Module!$ConstraintName`, or just a `$ConstraintName`. In the latter case, the name will be qualified with the `spec-name` argument. This constraint should have the (Statix) type `#!statix : scope * string * scope`                             |
 | `file-constraint`    | `String`                           | The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form `$Module!$ConstraintName`, or just a `$ConstraintName`. In the latter case, the name will be qualified with the `spec-name` argument. This constraint should have the (Statix) type `#!statix : scope * Start` |
 
+
+## Constraint Evaluation
+
 ```stratego
 stx-evaluate(|spec-name, constraint)
 ```
@@ -101,9 +113,7 @@ constraint.
 | `constraint`      | `String`     | The name of the constraint that should be applied to the term arguments. |
 
 
-
-## Querying the Analysis Result
-
+## Analysis Errors
 
 ```stratego
 stx-analysis-has-errors = stx--analysis-has-errors
