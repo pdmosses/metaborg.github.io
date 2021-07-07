@@ -76,3 +76,10 @@
 code.no-ligatures {
     font-variant-ligatures: none;
 }
+
+.md-header__topic a {
+    transition: opacity .25s;
+}
+.md-header__topic a:hover {
+    opacity: 0.7;
+}
