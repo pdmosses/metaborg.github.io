@@ -216,7 +216,6 @@ theme:
   font:
     code: JetBrains Mono
   features:
-    - navigation.instant
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
