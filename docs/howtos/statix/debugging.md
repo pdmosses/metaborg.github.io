@@ -410,7 +410,7 @@ first term argument (which specifies the module to use, by default `"statics"`)
 is the new module name (in this case `statics/mylang`).
 
 On the other hand, if you kept `statics` as the top-level module and have it
-import the module `statcs/mylang`, then you have to change the call to
+import the module `statics/mylang`, then you have to change the call to
 `stx-editor-analyze` in `trans/analysis.str` such that the second and third term
 argument (which specify the predicates to apply to projects and files, respectively)
 are qualified by the module name (in this case `"statics/mylang!projectOk"` and
@@ -500,7 +500,7 @@ to help you find the root cause of the probem:
 !!! info
     Since Spoofax 2.5.17, many cascading errors should not be displayed anymore.
     If you encounter a message that is clearly a cascading error from another
-    constraint, and not part of a cycle of unsolver constraints, consider
+    constraint, and not part of a cycle of unsolved constraints, consider
     reporting this as a bug.
 
     Also, the delays and unclosed critical edges should be displayed explicitly
