@@ -41,7 +41,23 @@ brought into scope with the type inferred from the rule type. Otherwise, it is
 required that the variable is introduced earlier, with the correct type.
 Apart from introduction in rule heads, variables can be introduced by
 [existential constraints](../basic-constraints#exists). In that case, the type
-of the variable is derived from its usage.
+of the variable is derived from its usage. Rule patterns may be non-linear
+(containing multiple occurrences of a variable), variables in an existential
+must be unique. That is, the constraint `{x x} ...`  will give a type error.
+Shadowing variables is allowed, but discouraged by a warning.
+
+??? info "Substitution and Unification"
+    Although the Statix language does not distinguish between variables in rule
+    heads and existentials, the solver treats those quite differently.
+    On rule application, occurrences of variables from rule heads in the body of
+    the rule are _substituted_ by the actual arguments. For example, in a
+    specification containing the rule `#!statix rule(x) :- x == ().`, simplifying
+    the constraint `rule(())` will result in the residual constraint `() == ()`,
+    which trivially holds. However, when simplifying the constraint `{x} x == ()`,
+    simplifying will generate a fresh unification variable (say `?x-1`), and
+    substitute that in the constraint, yielding `?x-1 == ()`. Solving that will
+    create a new mapping `?x-1 |-> ()` in the unifier of the solver result.
+    ```
 
 
 ## Wildcards

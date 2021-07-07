@@ -507,6 +507,98 @@ to help you find the root cause of the probem:
     on the message of unsolved constraints. This helps figuring out dependencies
     between failed constraints.
 
+**6.** Constraint solving does not terminate. This is caused by infinite
+recursion in a user-defined constraint. Three common causes of this problem are.
+
+First, the specification contains recursive predicates, such as
+`rule(x, T) :- /* ... */, rule(x, T), /* ... */.`. As can be trivially seen, the
+solver will simplify `rule(x, T)` infinitely many times.
+
+Second, the specification contains a rule that creates a declaration, queries it,
+and then calls itself on the query result. If the result contains the declaration
+made by the rule, it will instantiate itself infinitely. An example of such a
+specification is:
+
+```statix
+declareTVar(s, x, T) :- {Tvs}
+  !tvar[x, T] in s,
+  query tvar /* */ in s |-> Tvs,
+  declareTVars(s, Tvs).
+```
+
+Often, this pattern is not easily observable, since the recursion may be indirect,
+and the declarations, queries and recursive calls are specified in different rules.
+
+!!! info
+    This pattern often occurs in incorrect specifications for parametric types
+    with lazy substitution.
+
+Third, for a user-defined constraint on a existential variable, optimistic rule
+selection can cause infinite generation and refinement of new, unconstrained
+variables. Consider for example the following specification:
+
+```statix
+rules
+  ruleWithoutBaseCase: list(int)
+  ruleWithoutBaseCase([x|xs]) :- ruleWithoutBaseCase(xs).
+```
+
+Although the recursive call _seems to be_ on a strictly smaller term (namely,
+the tail of the list), infinite recursion can still happen when this rule is
+instantiated with a free variable, such as in this constraint:
+
+```statix
+{x} ruleWithoutBaseCase(x), x == [].
+```
+
+While this constraint should fail, it can be that the solver decides to simplify
+`ruleWithoutBaseCase(x)` first. Due to optimistic rule selection, it will
+refine `x` to `[x1 | xs]`, and simplify to `ruleWithoutBaseCase(xs)`. When later
+the constraint `x == []` is solved, it will simply fail. But since `xs` is free,
+the sequence of simplifying `ruleWithoutBaseCase` on a free variable repeats
+indefinitely.
+
+The Statix normalization often introduces new existential variables. Therefore
+it might not be completely obvious that a specification is susceptible to this
+behavior. Consider for example the following specification:
+
+```statix
+rules
+  ruleWithoutBaseCase: list(int)
+  ruleWithoutBaseCase([x|xs]) :- ruleWithoutBaseCase(xs).
+
+  nil: -> list(int)
+  nil() = [].
+
+  test:
+  test() :- ruleWithoutBaseCase(nil()).
+```
+
+Although this specification does not seem to have existential variables, its
+normalized equivalent (see below), actually does.
+
+```statix
+rules
+  ruleWithoutBaseCase: list(int)
+  ruleWithoutBaseCase([x|xs]) :- ruleWithoutBaseCase(xs).
+
+  nil: list(int)
+  nil([]).
+
+  test:
+  test() :- {nil1} ruleWithoutBaseCase(nil1), nil(nil1).
+```
+
+Now, it can be seen that the normalized `test` rule is again susceptile to this
+type of infinite recursion.
+
+In order to debug non-terminating specifications, first add base cases like
+`rule(_, _, ..) :- false` for all user-defined constraints that do not yet have
+those. This prevents recursion by optimistic rule selection. Potential errors
+that pop up now demonstrate which rule was incorrectly selected optimistically.
+If that does not work out, the other techniques in this section should be applied
+to isolate the recursion.
+
 ## Getting Help and Reporting Issues
 
 If the techniques above did not help to solve your problem, you can ask us for
