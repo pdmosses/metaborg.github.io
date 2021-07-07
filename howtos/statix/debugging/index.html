@@ -3516,7 +3516,7 @@ change the call to <code>stx-editor-analyze</code> in <code>trans/analysis.str</
 first term argument (which specifies the module to use, by default <code>"statics"</code>)
 is the new module name (in this case <code>statics/mylang</code>).</p>
 <p>On the other hand, if you kept <code>statics</code> as the top-level module and have it
-import the module <code>statcs/mylang</code>, then you have to change the call to
+import the module <code>statics/mylang</code>, then you have to change the call to
 <code>stx-editor-analyze</code> in <code>trans/analysis.str</code> such that the second and third term
 argument (which specify the predicates to apply to projects and files, respectively)
 are qualified by the module name (in this case <code>"statics/mylang!projectOk"</code> and
@@ -3617,12 +3617,84 @@ to help you find the root cause of the probem:</p>
 <p class="admonition-title">Info</p>
 <p>Since Spoofax 2.5.17, many cascading errors should not be displayed anymore.
 If you encounter a message that is clearly a cascading error from another
-constraint, and not part of a cycle of unsolver constraints, consider
+constraint, and not part of a cycle of unsolved constraints, consider
 reporting this as a bug.</p>
 <p>Also, the delays and unclosed critical edges should be displayed explicitly
 on the message of unsolved constraints. This helps figuring out dependencies
 between failed constraints.</p>
 </div>
+<p><strong>6.</strong> Constraint solving does not terminate. This is caused by infinite
+recursion in a user-defined constraint. Three common causes of this problem are.</p>
+<p>First, the specification contains recursive predicates, such as
+<code>rule(x, T) :- /* ... */, rule(x, T), /* ... */.</code>. As can be trivially seen, the
+solver will simplify <code>rule(x, T)</code> infinitely many times.</p>
+<p>Second, the specification contains a rule that creates a declaration, queries it,
+and then calls itself on the query result. If the result contains the declaration
+made by the rule, it will instantiate itself infinitely. An example of such a
+specification is:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">declareTVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">Tvs</span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span>!<span class="nv">tvar</span>[<span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">tvar</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nv">declareTVars</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>Often, this pattern is not easily observable, since the recursion may be indirect,
+and the declarations, queries and recursive calls are specified in different rules.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This pattern often occurs in incorrect specifications for parametric types
+with lazy substitution.</p>
+</div>
+<p>Third, for a user-defined constraint on a existential variable, optimistic rule
+selection can cause infinite generation and refinement of new, unconstrained
+variables. Consider for example the following specification:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>Although the recursive call <em>seems to be</em> on a strictly smaller term (namely,
+the tail of the list), infinite recursion can still happen when this rule is
+instantiated with a free variable, such as in this constraint:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nv">x</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">x</span><span class="p">),</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<p>While this constraint should fail, it can be that the solver decides to simplify
+<code>ruleWithoutBaseCase(x)</code> first. Due to optimistic rule selection, it will
+refine <code>x</code> to <code>[x1 | xs]</code>, and simplify to <code>ruleWithoutBaseCase(xs)</code>. When later
+the constraint <code>x == []</code> is solved, it will simply fail. But since <code>xs</code> is free,
+the sequence of simplifying <code>ruleWithoutBaseCase</code> on a free variable repeats
+indefinitely.</p>
+<p>The Statix normalization often introduces new existential variables. Therefore
+it might not be completely obvious that a specification is susceptible to this
+behavior. Consider for example the following specification:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">()</span><span class="w"> </span>=<span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">test</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil</span><span class="p">()).</span><span class="w"></span>
+</code></pre></div>
+<p>Although this specification does not seem to have existential variables, its
+normalized equivalent (see below), actually does.</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">(</span>[]<span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">test</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">nil1</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil1</span><span class="p">),</span><span class="w"> </span><span class="nv">nil</span><span class="p">(</span><span class="nv">nil1</span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
+<p>Now, it can be seen that the normalized <code>test</code> rule is again susceptile to this
+type of infinite recursion.</p>
+<p>In order to debug non-terminating specifications, first add base cases like
+<code>rule(_, _, ..) :- false</code> for all user-defined constraints that do not yet have
+those. This prevents recursion by optimistic rule selection. Potential errors
+that pop up now demonstrate which rule was incorrectly selected optimistically.
+If that does not work out, the other techniques in this section should be applied
+to isolate the recursion.</p>
 <h2 id="getting-help-and-reporting-issues">Getting Help and Reporting Issues<a class="headerlink" href="#getting-help-and-reporting-issues" title="Permanent link">&para;</a></h2>
 <p>If the techniques above did not help to solve your problem, you can ask us for
 help or report the issue you found. To make this process as smooth as possible,

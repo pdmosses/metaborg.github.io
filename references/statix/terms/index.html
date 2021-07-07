@@ -3275,7 +3275,22 @@ brought into scope with the type inferred from the rule type. Otherwise, it is
 required that the variable is introduced earlier, with the correct type.
 Apart from introduction in rule heads, variables can be introduced by
 <a href="../basic-constraints#exists">existential constraints</a>. In that case, the type
-of the variable is derived from its usage.</p>
+of the variable is derived from its usage. Rule patterns may be non-linear
+(containing multiple occurrences of a variable), variables in an existential
+must be unique. That is, the constraint <code>{x x} ...</code>  will give a type error.
+Shadowing variables is allowed, but discouraged by a warning.</p>
+<details class="info"><summary>Substitution and Unification</summary><p>Although the Statix language does not distinguish between variables in rule
+heads and existentials, the solver treats those quite differently.
+On rule application, occurrences of variables from rule heads in the body of
+the rule are <em>substituted</em> by the actual arguments. For example, in a
+specification containing the rule <code class="highlight"><span class="nv">rule</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">().</span><span class="w"></span></code>, simplifying
+the constraint <code>rule(())</code> will result in the residual constraint <code>() == ()</code>,
+which trivially holds. However, when simplifying the constraint <code>{x} x == ()</code>,
+simplifying will generate a fresh unification variable (say <code>?x-1</code>), and
+substitute that in the constraint, yielding <code>?x-1 == ()</code>. Solving that will
+create a new mapping <code>?x-1 |-&gt; ()</code> in the unifier of the solver result.
+```</p>
+</details>
 <h2 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h2>
 <p>Wildcards are represented as <code>_</code>, and denote variables without identity.
 Every occurrence of a wildcard is interpreted as a new variable. Because
