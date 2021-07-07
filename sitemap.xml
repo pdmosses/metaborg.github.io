@@ -1,606 +1,606 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/</loc>
+     <loc>https://www.spoofax.dev/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/getting-started/</loc>
+     <loc>https://www.spoofax.dev/getting-started/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/tutorials/</loc>
+     <loc>https://www.spoofax.dev/tutorials/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/</loc>
+     <loc>https://www.spoofax.dev/howtos/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/installation/install-eclipse-bundle/</loc>
+     <loc>https://www.spoofax.dev/howtos/installation/install-eclipse-bundle/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/installation/install-eclipse-plugin-manually/</loc>
+     <loc>https://www.spoofax.dev/howtos/installation/install-eclipse-plugin-manually/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/installation/install-from-source/</loc>
+     <loc>https://www.spoofax.dev/howtos/installation/install-from-source/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/statix/debugging/</loc>
+     <loc>https://www.spoofax.dev/howtos/statix/debugging/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/statix/migrating-from-nabl2/</loc>
+     <loc>https://www.spoofax.dev/howtos/statix/migrating-from-nabl2/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/statix/migrating-to-concurrent-solver/</loc>
+     <loc>https://www.spoofax.dev/howtos/statix/migrating-to-concurrent-solver/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-signature/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/generate-signature/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/run-stratego-programs/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/run-stratego-programs/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/generate-pretty-printer/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/generate-pretty-printer/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/debug-stratego/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/debug-stratego/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/concrete-syntax/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/concrete-syntax/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/exchange-terms/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/exchange-terms/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/stratego/inspect-terms/</loc>
+     <loc>https://www.spoofax.dev/howtos/stratego/inspect-terms/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/editor-services/rename-refactoring/</loc>
+     <loc>https://www.spoofax.dev/howtos/editor-services/rename-refactoring/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/requirements/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/requirements/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/maven/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/maven/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/building/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/building/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/developing/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/developing/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/howtos/development/releasing/</loc>
+     <loc>https://www.spoofax.dev/howtos/development/releasing/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/</loc>
+     <loc>https://www.spoofax.dev/references/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/config/</loc>
+     <loc>https://www.spoofax.dev/references/config/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/modules/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/modules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/symbols/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/symbols/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/productions/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/productions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/lexical-syntax/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/lexical-syntax/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/context-free-syntax/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/context-free-syntax/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/kernel-syntax/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/kernel-syntax/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/start-symbols/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/start-symbols/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/templates/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/templates/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/disambiguation/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/disambiguation/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/layout-sensitivity/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/layout-sensitivity/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/recovery/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/recovery/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/syntax/configuration/</loc>
+     <loc>https://www.spoofax.dev/references/syntax/configuration/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/</loc>
+     <loc>https://www.spoofax.dev/references/statix/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/concepts/</loc>
+     <loc>https://www.spoofax.dev/references/statix/concepts/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/modules/</loc>
+     <loc>https://www.spoofax.dev/references/statix/modules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/terms/</loc>
+     <loc>https://www.spoofax.dev/references/statix/terms/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/basic-constraints/</loc>
+     <loc>https://www.spoofax.dev/references/statix/basic-constraints/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/rules/</loc>
+     <loc>https://www.spoofax.dev/references/statix/rules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/scope-graphs/</loc>
+     <loc>https://www.spoofax.dev/references/statix/scope-graphs/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/queries/</loc>
+     <loc>https://www.spoofax.dev/references/statix/queries/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/tests/</loc>
+     <loc>https://www.spoofax.dev/references/statix/tests/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/statix/stratego-api/</loc>
+     <loc>https://www.spoofax.dev/references/statix/stratego-api/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/introduction/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/introduction/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/structure/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/structure/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/Stratego_API/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/Stratego_API/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/configuration/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/configuration/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/testing/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/testing/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/glossary/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/glossary/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/flowspec/references/</loc>
+     <loc>https://www.spoofax.dev/references/flowspec/references/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/lexical/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/lexical/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/modules/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/modules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/terms/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/terms/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/types/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/types/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/rewrite-rules/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/rewrite-rules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-definitions/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/strategy-definitions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/strategy-combinators/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/strategy-combinators/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/stratego/dynamic-rules/</loc>
+     <loc>https://www.spoofax.dev/references/stratego/dynamic-rules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/testing/</loc>
+     <loc>https://www.spoofax.dev/references/testing/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/esv/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/esv/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/analysis/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/analysis/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/file-extensions/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/file-extensions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/hover/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/hover/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/menus/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/menus/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/on-save/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/on-save/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/outline/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/outline/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/parsing/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/parsing/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/reference-resolution/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/reference-resolution/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/renaming/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/renaming/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/stratego/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/stratego/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/editor-services/syntax-highlighting/</loc>
+     <loc>https://www.spoofax.dev/references/editor-services/syntax-highlighting/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/modules/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/modules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/types/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/types/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/generics/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/generics/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/functions/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/functions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/references/pipelines/expressions/</loc>
+     <loc>https://www.spoofax.dev/references/pipelines/expressions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/</loc>
+     <loc>https://www.spoofax.dev/background/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/bibliography/</loc>
+     <loc>https://www.spoofax.dev/background/bibliography/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/bibliography/sdf3/</loc>
+     <loc>https://www.spoofax.dev/background/bibliography/sdf3/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/bibliography/statix/</loc>
+     <loc>https://www.spoofax.dev/background/bibliography/statix/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/bibliography/stratego/</loc>
+     <loc>https://www.spoofax.dev/background/bibliography/stratego/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/statix/</loc>
+     <loc>https://www.spoofax.dev/background/statix/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategic-rewriting/term-rewriting/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategic-rewriting/term-rewriting/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategic-rewriting/limitations-of-rewriting/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategic-rewriting/limitations-of-rewriting/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategic-rewriting/traversal-with-rules/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategic-rewriting/traversal-with-rules/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategic-rewriting/strategic-rewriting/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategic-rewriting/strategic-rewriting/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategy-combinators/sequential/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategy-combinators/sequential/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategy-combinators/term/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategy-combinators/term/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategy-combinators/traversal/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategy-combinators/traversal/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/stratego/strategy-combinators/type-unifying/</loc>
+     <loc>https://www.spoofax.dev/background/stratego/strategy-combinators/type-unifying/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/pages/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/pages/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/links/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/links/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/citations/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/citations/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/structure/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/structure/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/background/documentation/troubleshooting/</loc>
+     <loc>https://www.spoofax.dev/background/documentation/troubleshooting/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/support/</loc>
+     <loc>https://www.spoofax.dev/support/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/support/contributions/</loc>
+     <loc>https://www.spoofax.dev/support/contributions/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/stable/</loc>
+     <loc>https://www.spoofax.dev/release/stable/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/develop/</loc>
+     <loc>https://www.spoofax.dev/release/develop/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.16/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.16/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.15/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.15/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.14/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.14/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.13/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.13/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.12/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.12/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.11/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.11/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.10/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.10/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.9/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.9/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.8/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.8/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.7/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.7/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.6/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.6/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.5/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.5/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.4/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.4/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.3/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.3/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.2/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.2/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.1/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.1/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.5.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.5.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.4.1/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.4.1/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.4.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.4.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.3.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.3.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.2.1/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.2.1/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.2.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.2.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.1.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.1.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.0.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.0.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/2.0.0-beta1/</loc>
+     <loc>https://www.spoofax.dev/release/note/2.0.0-beta1/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.5.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.5.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.4.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.4.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.3.1/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.3.1/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.3.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.3.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.2.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.2.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.1.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.1.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.0.2/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.0.2/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/1.0.0/</loc>
+     <loc>https://www.spoofax.dev/release/note/1.0.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/note/vnext/</loc>
+     <loc>https://www.spoofax.dev/release/note/vnext/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/2.5.15/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/2.5.15/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/2.5.10/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/2.5.10/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/2.5.5/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/2.5.5/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/2.1.0/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/2.1.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/2.0.0/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/2.0.0/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/march2016_project_structure/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/march2016_project_structure/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://www.spoofax.dev/spoofax-docs/release/migrate/vnext/</loc>
+     <loc>https://www.spoofax.dev/release/migrate/vnext/</loc>
      <lastmod>2021-07-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
