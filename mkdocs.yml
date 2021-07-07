@@ -1,13 +1,13 @@
 site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
-site_url: https://www.spoofax.dev/spoofax-docs/
+site_url: https://www.spoofax.dev/
 
 copyright: "Copyright &copy; 2010-2021 Spoofax Team"
 
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
-edit_uri: https://github.com/metaborg/spoofax-docs/edit/main/docs
+edit_uri: https://github.com/metaborg/metaborg.github.io/edit/main/docs
 
 nav:
   - Home:
