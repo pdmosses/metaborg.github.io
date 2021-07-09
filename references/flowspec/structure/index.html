@@ -1487,15 +1487,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lattices" class="md-nav__link">
-    Lattices
+  <a href="#types" class="md-nav__link">
+    Types
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#types" class="md-nav__link">
-    Types
+  <a href="#lattices" class="md-nav__link">
+    Lattices
   </a>
   
 </li>
@@ -1642,18 +1642,6 @@
     <li class="md-nav__item">
       <a href="../testing/" class="md-nav__link">
         Testing
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../glossary/" class="md-nav__link">
-        Glossary
       </a>
     </li>
   
@@ -3329,15 +3317,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lattices" class="md-nav__link">
-    Lattices
+  <a href="#types" class="md-nav__link">
+    Types
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#types" class="md-nav__link">
-    Types
+  <a href="#lattices" class="md-nav__link">
+    Lattices
   </a>
   
 </li>
@@ -3483,6 +3471,7 @@ $section*
      | &quot;{&quot; {(term &quot;|-&gt;&quot; term) &quot;,&quot;}* &quot;}&quot;
      | &quot;{&quot; term &quot;|-&gt;&quot; term &quot;|&quot; {(term &quot;|-&gt;&quot; term) &quot;,&quot;}* &quot;}&quot;
 </code></pre></div>
+<p>Examples of these terms can be found in the Expressions subsection.</p>
 <p>Control flow and data flow rules can use patterns to define which rules apply to which AST nodes.</p>
 <div class="highlight"><pre><span></span><code>pattern = ctor-id &quot;(&quot; {pattern &quot;,&quot;}* &quot;)&quot;
   | &quot;(&quot; {pattern &quot;,&quot;}* &quot;)&quot;
@@ -3490,6 +3479,9 @@ $section*
   | &quot;_&quot;
   | var-id
 </code></pre></div>
+<p><em>Example.</em> The following shows an example of a pattern, matching a <code>VarDec</code> constructor with an <code>Int</code> child, binding some of the subterms.
+<div class="highlight"><pre><span></span><code>VarDec(n, _, num@Int(i))
+</code></pre></div></p>
 <h2 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h2>
 <p>The control-flow section contains the rules that define the control-flow for the subject language.</p>
 <div class="highlight"><pre><span></span><code>control-flow rules
@@ -3566,6 +3558,24 @@ prop-pattern = name &quot;-&gt;&quot; pattern
   values(prev -&gt; VarDec(n, _, _))      = { k |-&gt; v | (k |-&gt; v) &lt;- values(prev), k != n } \/ {n |-&gt; Top()}
   values(prev -&gt; _) = values(prev)
 </code></pre></div></p>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
+<p>Algebraic datatypes can be defined for use within lattices definitions. Users can directly match these datatypes, or construct new values.</p>
+<div class="highlight"><pre><span></span><code>types
+
+  type-definition*
+</code></pre></div>
+<p>An algebraic datatype consists of a constructor and zero or more arguments. </p>
+<div class="highlight"><pre><span></span><code>name =
+  (&quot;|&quot; ctor-id &quot;(&quot; {type &quot;,&quot;}* &quot;)&quot;)+
+</code></pre></div>
+<p><em>Example.</em> The definition for an algebraic type <code>ConstProp</code> used in constant value analysis.</p>
+<div class="highlight"><pre><span></span><code>types
+
+  ConstProp =
+  | Top()
+  | Const(int)
+  | Bottom()
+</code></pre></div>
 <h2 id="lattices">Lattices<a class="headerlink" href="#lattices" title="Permanent link">&para;</a></h2>
 <p>Lattices are the main data type used in data-flow analysis, because of their desirable properties. Properties (the analysis results) must always be of type lattice. FlowSpec contains some builtin lattice types, but users can also specify their own.</p>
 <div class="highlight"><pre><span></span><code>lattices
@@ -3579,23 +3589,18 @@ prop-pattern = name &quot;-&gt;&quot; pattern
   top = expr
   bottom = expr
 </code></pre></div>
-<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
-<p>Aside from lattices, algebraic datatypes can be defined for use within lattices definitions. Users can directly match these datatypes, or construct new values.</p>
-<div class="highlight"><pre><span></span><code>types
-
-  type-definition*
-</code></pre></div>
-<p>An algebraic datatype consists of a constructor and zero or more arguments. </p>
-<div class="highlight"><pre><span></span><code>name =
-  (&quot;|&quot; ctor-id &quot;(&quot; {type &quot;,&quot;}* &quot;)&quot;)+
-</code></pre></div>
-<p><em>Example.</em> The definition for an algebraic type used in constant value analysis.</p>
-<div class="highlight"><pre><span></span><code>types
-
-  ConstProp =
-  | Top()
-  | Const(int)
-  | Bottom()
+<p><em>Example.</em> A lattice definition using the <code>ConstProp</code> above to define a <code>Value</code> type.</p>
+<div class="highlight"><pre><span></span><code>lattices
+  Value where
+    type = ConstProp
+    bottom = Bottom()
+    top = Top()
+    lub(l, r) = match (l, r) with
+      | (Top(), _) =&gt; Top()
+      | (_, Top()) =&gt; Top()
+      | (Const(i), Const(j)) =&gt; if i == j then Const(i) else Top()
+      | (_, Bottom()) =&gt; l
+      | (Bottom(), _) =&gt; r
 </code></pre></div>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>Functions make it possible to reuse functionality and avoid duplication of logic.</p>
@@ -3636,6 +3641,19 @@ prop-pattern = name &quot;-&gt;&quot; pattern
 <li>Containment/lookup [<code>in</code>]</li>
 </ul>
 <p>There are also comprehensions of the form <code>{ new | old &lt;- set, conditions }</code> or <code>{ newkey |-&gt; newvalue | oldkey |-&gt; oldvalue &lt;- map, condition }</code>, where new elements or bindings are gathered based on old ones from a set or map, as long as the boolean condition expressions hold. Such a condition expression may also be a match expression without a body for the arms. This is commonly used to filter maps or sets.</p>
+<p><em>Example.</em> The following are some examples of sets and maps.
+<div class="highlight"><pre><span></span><code>// A map comprehension filtering the key n
+{ k |-&gt; v | (k |-&gt; v) &lt;- values(prev), k != n }
+
+// A map literal
+{n |-&gt; Top()}
+
+// A set comprehension filtering the value n
+{ k | k &lt;- live(prev), k != n }
+
+// A set literal
+{ n, &quot;b&quot;, &quot;foo&quot; }
+</code></pre></div></p>
 <h3 id="match">Match<a class="headerlink" href="#match" title="Permanent link">&para;</a></h3>
 <p>Pattern matching can be done with a match expression: <code>match expr with | pattern1 =&gt; expr2 | pattern2 =&gt; expr2</code>, where expr are expressions and pattern are patterns. Terms and patterns are defined at the start of the reference.</p>
 <h3 id="variables-and-references">Variables and References<a class="headerlink" href="#variables-and-references" title="Permanent link">&para;</a></h3>
@@ -3644,8 +3662,11 @@ prop-pattern = name &quot;-&gt;&quot; pattern
 <p>User defined functions are invoked with <code>functionname(arg1, arg2)</code>. Lattice operations can be similarly invoked, requiring the type name: <code>MaySet.lub(s1, s2)</code>.</p>
 <h3 id="property-lookup">Property Lookup<a class="headerlink" href="#property-lookup" title="Permanent link">&para;</a></h3>
 <p>Property lookup is similar to a function call, although property lookup only ever has a single argument.</p>
+<p><em>Example.</em> The following property rule performs a set comprehension over the results of a property lookup, <code>live(prev)</code>, where the property <code>live</code> has been declared in the <code>properties</code> section, and <code>next</code> is bound in the pattern.
+<div class="highlight"><pre><span></span><code>live(VarDec(n, _, _) -&gt; next) = { k | k &lt;- live(next), k != n }
+</code></pre></div></p>
 <h3 id="term-positions">Term Positions<a class="headerlink" href="#term-positions" title="Permanent link">&para;</a></h3>
-<p>FlowSpec provides a builtin function that returns the position of a term: <code>position(term)</code>. This can be used to differentiate two terms from an AST that are otherwise the same.</p>
+<p>FlowSpec provides a builtin function that returns the position of a term: <code>position(term)</code>. This can be used to differentiate two terms from an AST that are otherwise equal.</p>
 <h2 id="lexical-grammar">Lexical Grammar<a class="headerlink" href="#lexical-grammar" title="Permanent link">&para;</a></h2>
 <h3 id="identifiers">Identifiers<a class="headerlink" href="#identifiers" title="Permanent link">&para;</a></h3>
 <p>Most identifiers in FlowSpec fall into one of two categories, which we will refer to as:</p>
@@ -3666,7 +3687,7 @@ Uppercase identifiers, that start with an uppercase character, and must match th
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-07
+      Last update: 2021-07-09
     
   </small>
 </div>

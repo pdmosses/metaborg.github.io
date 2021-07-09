@@ -1549,18 +1549,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossary/" class="md-nav__link">
-        Glossary
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../references/" class="md-nav__link">
         References
       </a>
@@ -3261,312 +3249,312 @@
                 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>Using the Stratego API requires a dependency on the FlowSpec Stratego code (source dependency), and an import of <code>flowspec/api</code>.</p>
 <p><em>Example.</em> A Stratego module importing the FlowSpec API.</p>
-<div class="highlight"><pre><span></span><code>module example
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">example</span><span class="w"></span>
 
-imports
+<span class="k">imports</span><span class="w"></span>
 
-  flowspec/api
+<span class="w">  </span><span class="nv">flowspec</span>/<span class="nv">api</span><span class="w"></span>
 </code></pre></div>
 <h2 id="running-the-analysis">Running the analysis<a class="headerlink" href="#running-the-analysis" title="Permanent link">&para;</a></h2>
 <p>There are strategies to integrate FlowSpec analysis in the NaBL2 analysis, and strategies for doing both NaBL2 analysis and FlowSpec analysis on an AST.</p>
 <h3 id="integrated-into-nabl2-analysis">Integrated into NaBL2 analysis<a class="headerlink" href="#integrated-into-nabl2-analysis" title="Permanent link">&para;</a></h3>
 <p>These can be used in the final phase of the NaBL2 analysis process using the <a href="http://www.metaborg.org/en/latest/source/langdev/meta/lang/nabl2/stratego-api.html#nabl2-custom-analysis">Stratego hooks</a>.</p>
-<div class="highlight"><pre><span></span><code>/**
- * Analyze the given AST with FlowSpec.
- * The FlowSpec analysis is added to given NaBL2 analysis result and returned.
- *
- * @param analysis:Analysis
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; Analysis
- */
-flowspec-analyze(|analysis)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with FlowSpec.</span>
+<span class="cm"> * The FlowSpec analysis is added to given NaBL2 analysis result and returned.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param analysis:Analysis</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; Analysis</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze</span><span class=" -Punctuation">(|</span><span class="nv">analysis</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with FlowSpec, but only the given FlowSpec properties.
- * The FlowSpec analysis is added to given NaBL2 analysis result and returned.
- *
- * @param analysis:Analysis
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; Analysis
- */
-flowspec-analyze(|analysis, propnames)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with FlowSpec, but only the given FlowSpec properties.</span>
+<span class="cm"> * The FlowSpec analysis is added to given NaBL2 analysis result and returned.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param analysis:Analysis</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; Analysis</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze</span><span class=" -Punctuation">(|</span><span class="nv">analysis</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propnames</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <p>The analysis results are also usable at that point for generating editor messages. Integration with NaBL2 is done by giving the FlowSpec analysis result as the “custom final analysis result”:</p>
-<div class="highlight"><pre><span></span><code>nabl2-custom-analysis-unit-hook:
-    (resource, ast, custom-initial-result) -&gt; (resource, ast)
+<div class="highlight"><pre><span></span><code><span class="nv">nabl2-custom-analysis-unit-hook</span><span class=" -Punctuation">:</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">custom-initial-result</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-nabl2-custom-analysis-final-hook(|a):
-    (resource, custom-initial-result, custom-unit-results) -&gt; (errors, warnings, notes, custom-final-result)
-  with asts     := &lt;map(\(ast-resource, ast) -&gt; &lt;nabl2--index-ast(|ast-resource)&gt; ast\)&gt; custom-unit-results ; // workaround for https://yellowgrass.org/issue/NaBL2/54
-       custom-final-result := &lt;flowspec-analyze(|a)&gt; asts ;
-       errors   := ... ;
-       warnings := ... ;
-       notes    := ...
+<span class="nv">nabl2-custom-analysis-final-hook</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">):</span><span class="w"></span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">custom-initial-result</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">custom-unit-results</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">errors</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">warnings</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">notes</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">custom-final-result</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">asts</span><span class="w">     </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">map</span><span class=" -Punctuation">(</span>\<span class=" -Punctuation">(</span><span class="nv">ast-resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">nabl2--index-ast</span><span class=" -Punctuation">(|</span><span class="nv">ast-resource</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>\<span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">custom-unit-results</span><span class="w"> </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="c c-Singleline">// workaround for https://yellowgrass.org/issue/NaBL2/54</span><span class="w"></span>
+<span class="w">       </span><span class="nv">custom-final-result</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">flowspec-analyze</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">asts</span><span class="w"> </span><span class=" -Punctuation">;</span><span class="w"></span>
+<span class="w">       </span><span class="nv">errors</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">;</span><span class="w"></span>
+<span class="w">       </span><span class="nv">warnings</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">;</span><span class="w"></span>
+<span class="w">       </span><span class="nv">notes</span><span class="w">    </span><span class=" -Punctuation">:=</span><span class="w"> </span>...<span class="w"></span>
 </code></pre></div>
 <p>This propagates the AST of each unit from the unit phase, and analyzes all of them together in the final phase. The <code>custom-final-result</code> is returned so that NaBL2 preserves it for later usage. FlowSpec provides convenience functions that request the custom final result again later:</p>
 <h3 id="running-the-analysis-manually">Running the analysis manually<a class="headerlink" href="#running-the-analysis-manually" title="Permanent link">&para;</a></h3>
 <p>Sometimes you need data-flow analysis between transformations which change the program. That means you need to run the analysis just before a transformation to have analysis results corresponding to the current program.</p>
 <p>The following strategies execute the analysis and help with consuming the resulting tuple.</p>
-<div class="highlight"><pre><span></span><code>/**
- * Analyze the given AST with NaBL2 and FlowSpec
- *
- * @param resource:String
- * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
- */
-flowspec-analyze-ast(|resource)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast</span><span class=" -Punctuation">(|</span><span class="nv">resource</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with NaBL2 and FlowSpec.
- * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
- *
- * @param pre:Term -&gt; Term
- * @param post:Term -&gt; Term
- * @param resource:String
- * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
- */
-flowspec-analyze-ast(pre,post|resource)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec.</span>
+<span class="cm"> * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param pre:Term -&gt; Term</span>
+<span class="cm"> * @param post:Term -&gt; Term</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">resource</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
- *
- * @param resource:String
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
- */
-flowspec-analyze-ast(|resource, propname)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast</span><span class=" -Punctuation">(|</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propname</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
- * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
- *
- * @param pre:Term -&gt; Term
- * @param post:Term -&gt; Term
- * @param resource:String
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))
- */
-flowspec-analyze-ast(pre,post|resource, propnames)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.</span>
+<span class="cm"> * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param pre:Term -&gt; Term</span>
+<span class="cm"> * @param post:Term -&gt; Term</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage))</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propnames</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Take the analyze-ast 5-tuple output and return the result of applying the given strategy to the AST.
- * Note that the strategy takes the analysis object as a term argument.
- *
- * @param s(|Analysis): Term -&gt; Term
- * @type ast: (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage)) -&gt; Term
- */
-flowspec-then(s)
+<span class="cm">/**</span>
+<span class="cm"> * Take the analyze-ast 5-tuple output and return the result of applying the given strategy to the AST.</span>
+<span class="cm"> * Note that the strategy takes the analysis object as a term argument.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param s(|Analysis): Term -&gt; Term</span>
+<span class="cm"> * @type ast: (ast:Term, Analysis, errors:List(EditorMessage), warnings:List(EditorMessage), notes:List(EditorMessage)) -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-then</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
- * Then return the result of applying the given strategy to the AST.
- * Note that the strategy takes the analysis object as a term argument.
- *
- * @param s(|Analysis): Term -&gt; Term
- * @param resource:String
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; Term
- */
-flowspec-analyze-ast-then(s|resource, propnames)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.</span>
+<span class="cm"> * Then return the result of applying the given strategy to the AST.</span>
+<span class="cm"> * Note that the strategy takes the analysis object as a term argument.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param s(|Analysis): Term -&gt; Term</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast-then</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">|</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propnames</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.
- * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.
- * Then return the result of applying the given strategy to the AST.
- * Note that the strategy takes the analysis object as a term argument.
- *
- * @param pre:Term -&gt; Term
- * @param post:Term -&gt; Term
- * @param s(|Analysis): Term -&gt; Term
- * @param resource:String
- * @param propnames:String or List(String)
- * @type ast:Term -&gt; Term
- */
-flowspec-analyze-ast-then(pre, post, s|resource, propnames)
+<span class="cm">/**</span>
+<span class="cm"> * Analyze the given AST with NaBL2 and FlowSpec, but only the given FlowSpec properties.</span>
+<span class="cm"> * Transform the AST with pre before the FlowSpec analysis, and with post after the FlowSpec analysis.</span>
+<span class="cm"> * Then return the result of applying the given strategy to the AST.</span>
+<span class="cm"> * Note that the strategy takes the analysis object as a term argument.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param pre:Term -&gt; Term</span>
+<span class="cm"> * @param post:Term -&gt; Term</span>
+<span class="cm"> * @param s(|Analysis): Term -&gt; Term</span>
+<span class="cm"> * @param resource:String</span>
+<span class="cm"> * @param propnames:String or List(String)</span>
+<span class="cm"> * @type ast:Term -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-analyze-ast-then</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">|</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propnames</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <h2 id="querying-analysis">Querying analysis<a class="headerlink" href="#querying-analysis" title="Permanent link">&para;</a></h2>
 <p>The NaBL2 API defines several <a href="http://www.metaborg.org/en/latest/source/langdev/meta/lang/nabl2/stratego-api.html#nabl2-get-analysis-result">strategies to get an analysis term by resource name or from an AST node</a>. This analysis term can then be passed to the querying strategies that give access to the data flow properties, if you hooked FlowSpec into the NaBL2 analysis process.</p>
 <p>The other way to get the analysis term is to execute the analysis with the flowspec-analyze-ast* variants.</p>
 <h3 id="control-flow-graph">Control-flow graph<a class="headerlink" href="#control-flow-graph" title="Permanent link">&para;</a></h3>
 <p>There are a number of strategies to get the control-flow graph nodes associated with an AST fragment, as well as control-flow graph navigation strategies and AST search strategies to get back to the AST from a control-flow graph node. Note that querying the control-flow graph is cheap but finding the way back from the control-flow graph to the AST is more expensive.</p>
-<div class="highlight"><pre><span></span><code>/**
- * Get the control flow graph node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-node(|a)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-node</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-start-node(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-start-node</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-end-node(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-end-node</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-entry-node(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-entry-node</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-exit-node(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-exit-node</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-prev-nodes(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-prev-nodes</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the control flow graph start node associated with the given term.
- *
- * @param a : Analysis
- * @type term:Term -&gt; CFGNode
- */
-flowspec-get-cfg-next-nodes(|a)
+<span class="cm">/**</span>
+<span class="cm"> * Get the control flow graph start node associated with the given term.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @type term:Term -&gt; CFGNode</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-cfg-next-nodes</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Find AST node corresponding to the CFGNode back again
- *
- * @param ast : Term
- * @type node:CFGNode -&gt; Term
- */
-flowspec-cfg-node-ast(|ast)
+<span class="cm">/**</span>
+<span class="cm"> * Find AST node corresponding to the CFGNode back again</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param ast : Term</span>
+<span class="cm"> * @type node:CFGNode -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-cfg-node-ast</span><span class=" -Punctuation">(|</span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Find AST node corresponding to the CFGNode back again
- *
- * @param ast : Term
- * @type pos:Position -&gt; Term
- */
-flowspec-pos-ast(|ast)
+<span class="cm">/**</span>
+<span class="cm"> * Find AST node corresponding to the CFGNode back again</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param ast : Term</span>
+<span class="cm"> * @type pos:Position -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-pos-ast</span><span class=" -Punctuation">(|</span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Find parent of AST node corresponding to the CFGNode back again by matching the parent with
- *  the parent argument and giving back the child that is likely to be a match to the CFG node.
- *
- * @param parent : Term -&gt; Term
- * @param ast : Term
- * @type node:CFGNode -&gt; Term
- */
-flowspec-cfg-node-ast(parent|ast)
+<span class="cm">/**</span>
+<span class="cm"> * Find parent of AST node corresponding to the CFGNode back again by matching the parent with</span>
+<span class="cm"> *  the parent argument and giving back the child that is likely to be a match to the CFG node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param parent : Term -&gt; Term</span>
+<span class="cm"> * @param ast : Term</span>
+<span class="cm"> * @type node:CFGNode -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-cfg-node-ast</span><span class=" -Punctuation">(</span><span class="nv">parent</span><span class=" -Punctuation">|</span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Find parent of AST node corresponding to the CFGNode back again by matching the parent with
- *  the parent argument and giving back the child that is likely to be a match to the CFG node.
- *
- * @param parent : Term -&gt; Term
- * @param ast : Term
- * @type pos:Position -&gt; Term
- */
-flowspec-pos-ast(parent|ast)
+<span class="cm">/**</span>
+<span class="cm"> * Find parent of AST node corresponding to the CFGNode back again by matching the parent with</span>
+<span class="cm"> *  the parent argument and giving back the child that is likely to be a match to the CFG node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param parent : Term -&gt; Term</span>
+<span class="cm"> * @param ast : Term</span>
+<span class="cm"> * @type pos:Position -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-pos-ast</span><span class=" -Punctuation">(</span><span class="nv">parent</span><span class=" -Punctuation">|</span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the position of an AST node.
- *
- * @type Term -&gt; Position
- */
-flowspec-get-position
+<span class="cm">/**</span>
+<span class="cm"> * Get the position of an AST node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @type Term -&gt; Position</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-position</span><span class="w"></span>
 </code></pre></div>
 <h3 id="data-flow-properties">Data flow properties<a class="headerlink" href="#data-flow-properties" title="Permanent link">&para;</a></h3>
 <p>FlowSpec properties can be read in two versions, pre and post. These indicate whether the effect of the cfg node has been applied yet. Whether or not it is applied depends on the direction of the analysis. pre for a forward analysis is without the effect of the node, but pre for a backward analysis includes the effect of the node.</p>
 <p>Note that each strategy can simply take the term that’s associated with the control-flow graph node. But the control-flow graph node itself is also an accepted input.</p>
-<div class="highlight"><pre><span></span><code>/**
- * Get the property of the control flow graph node associated with
- * the given term. The value returned is the value of the property
- * _before_ the effect of the control flow graph node.
- *
- * @param a : Analysis
- * @param prop : String
- * @type term:Term -&gt; Term
- */
-flowspec-get-property-pre(|a, propname)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Get the property of the control flow graph node associated with</span>
+<span class="cm"> * the given term. The value returned is the value of the property</span>
+<span class="cm"> * _before_ the effect of the control flow graph node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @param prop : String</span>
+<span class="cm"> * @type term:Term -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-property-pre</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propname</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the property of the control flow graph node associated with
- * the given term. The value returned is the value of the property
- * _after_ the effect of the control flow graph node.
- *
- * @param a : Analysis
- * @param prop : String
- * @type term:Term -&gt; Term
- */
-flowspec-get-property-post(|a, propname)
+<span class="cm">/**</span>
+<span class="cm"> * Get the property of the control flow graph node associated with</span>
+<span class="cm"> * the given term. The value returned is the value of the property</span>
+<span class="cm"> * _after_ the effect of the control flow graph node.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @param prop : String</span>
+<span class="cm"> * @type term:Term -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-property-post</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">propname</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Get the property of the control flow graph node associated with
- * the given term. The value returned is the value of the property
- * _after_ the effect of the control flow graph node. If no node
- * is found the exit control flow graph node of the AST node is
- * queried for its post-effect property value.
- *
- * @param a : Analysis
- * @param prop : String
- * @type term:Term -&gt; Term
- */
-flowspec-get-property-post-or-exit-post(|analysis-result, analysis-name)
+<span class="cm">/**</span>
+<span class="cm"> * Get the property of the control flow graph node associated with</span>
+<span class="cm"> * the given term. The value returned is the value of the property</span>
+<span class="cm"> * _after_ the effect of the control flow graph node. If no node</span>
+<span class="cm"> * is found the exit control flow graph node of the AST node is</span>
+<span class="cm"> * queried for its post-effect property value.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a : Analysis</span>
+<span class="cm"> * @param prop : String</span>
+<span class="cm"> * @type term:Term -&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-get-property-post-or-exit-post</span><span class=" -Punctuation">(|</span><span class="nv">analysis-result</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">analysis-name</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <h3 id="flowspec-data-helpers">FlowSpec data helpers<a class="headerlink" href="#flowspec-data-helpers" title="Permanent link">&para;</a></h3>
 <p>FlowSpec sets and maps are passed back to Stratego as lists wrapped in Set and Map constructors. As a convenience, the most common operations are lifted and added to the flowspec API:
-<div class="highlight"><pre><span></span><code>/**
- * Check if a FlowSpec Set contains an element. Succeeds if the given strategy succeeds for at
- * least one element.
- *
- * @param s: Term -?&gt;
- * @type FlowSpecSet -?&gt; FlowSpecSet
- */
-flowspec-set-contains(s)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Check if a FlowSpec Set contains an element. Succeeds if the given strategy succeeds for at</span>
+<span class="cm"> * least one element.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param s: Term -?&gt;</span>
+<span class="cm"> * @type FlowSpecSet -?&gt; FlowSpecSet</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-set-contains</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Look up elements in a FlowSpec Set of pairs. Returns the right elements of all pairs where
- * the given strategy succeeds on the left element.
- *
- * @param s: Term -?&gt;
- * @type FlowSpecSet -?&gt; List(Term)
- */
-flowspec-set-lookup(s)
+<span class="cm">/**</span>
+<span class="cm"> * Look up elements in a FlowSpec Set of pairs. Returns the right elements of all pairs where</span>
+<span class="cm"> * the given strategy succeeds on the left element.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param s: Term -?&gt;</span>
+<span class="cm"> * @type FlowSpecSet -?&gt; List(Term)</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-set-lookup</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"></span>
 
-/**
- * Look up a key in a FlowSpec Map. Returns the element if the given key exists in the map.
- *
- * @param k: Term
- * @type FlowSpecMap -?&gt; Term
- */
-flowspec-map-lookup(|k)
+<span class="cm">/**</span>
+<span class="cm"> * Look up a key in a FlowSpec Map. Returns the element if the given key exists in the map.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param k: Term</span>
+<span class="cm"> * @type FlowSpecMap -?&gt; Term</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-map-lookup</span><span class=" -Punctuation">(|</span><span class="nv">k</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div></p>
 <h3 id="hover-text">Hover text<a class="headerlink" href="#hover-text" title="Permanent link">&para;</a></h3>
 <p>For a hover implementation that displays name, type and FlowSpec properties use:</p>
-<div class="highlight"><pre><span></span><code>/**
- * Provides a strategy for a hover message with as much information as possible about name, type
- * (from NaBl2) and FlowSpec properties.
- */
-flowspec-editor-hover(language-pp)
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Provides a strategy for a hover message with as much information as possible about name, type</span>
+<span class="cm"> * (from NaBl2) and FlowSpec properties.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-editor-hover</span><span class=" -Punctuation">(</span><span class="nv">language-pp</span><span class=" -Punctuation">)</span><span class="w"></span>
 </code></pre></div>
 <h3 id="profiling-information">Profiling information<a class="headerlink" href="#profiling-information" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>/**
- * If flowspec-debug-profile is extended to succeed, some timing information will be printed in
- * stderr when using flowspec-analyze*.
- */
-flowspec-debug-profile
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * If flowspec-debug-profile is extended to succeed, some timing information will be printed in</span>
+<span class="cm"> * stderr when using flowspec-analyze*.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="nv">flowspec-debug-profile</span><span class="w"></span>
 </code></pre></div>
                 
                   
@@ -3576,7 +3564,7 @@ flowspec-debug-profile
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-07
+      Last update: 2021-07-09
     
   </small>
 </div>
