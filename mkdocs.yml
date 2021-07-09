@@ -42,6 +42,7 @@ nav:
       - Building: howtos/development/building.md
       - Developing: howtos/development/developing.md
       - Releasing: howtos/development/releasing.md
+      - Troubleshooting: howtos/development/troubleshooting.md
   - References:
     - references/index.md
     - Configuration:
