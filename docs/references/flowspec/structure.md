@@ -26,6 +26,9 @@ term = ctor-id "(" {term ","}* ")"
      | "{" term "|->" term "|" {(term "|->" term) ","}* "}"
 ```
 
+Examples of these terms can be found in the Expressions subsection.
+
+
 Control flow and data flow rules can use patterns to define which rules apply to which AST nodes.
 
 ```
@@ -34,6 +37,11 @@ pattern = ctor-id "(" {pattern ","}* ")"
   | var-id "@" pattern
   | "_"
   | var-id
+```
+
+_Example._ The following shows an example of a pattern, matching a `VarDec` constructor with an `Int` child, binding some of the subterms.
+```
+VarDec(n, _, num@Int(i))
 ```
 
 ## Control Flow
@@ -146,6 +154,34 @@ property rules
   values(prev -> _) = values(prev)
 ```
 
+## Types
+
+Algebraic datatypes can be defined for use within lattices definitions. Users can directly match these datatypes, or construct new values.
+
+```
+types
+
+  type-definition*
+```
+
+An algebraic datatype consists of a constructor and zero or more arguments. 
+
+```
+name =
+  ("|" ctor-id "(" {type ","}* ")")+
+```
+
+_Example._ The definition for an algebraic type `ConstProp` used in constant value analysis.
+
+```
+types
+  
+  ConstProp =
+  | Top()
+  | Const(int)
+  | Bottom()
+```
+
 ## Lattices
 
 Lattices are the main data type used in data-flow analysis, because of their desirable properties. Properties (the analysis results) must always be of type lattice. FlowSpec contains some builtin lattice types, but users can also specify their own.
@@ -166,33 +202,22 @@ name where
   bottom = expr
 ```
 
-## Types
-
-Aside from lattices, algebraic datatypes can be defined for use within lattices definitions. Users can directly match these datatypes, or construct new values.
+_Example._ A lattice definition using the `ConstProp` above to define a `Value` type.
 
 ```
-types
-
-  type-definition*
+lattices
+  Value where
+    type = ConstProp
+    bottom = Bottom()
+    top = Top()
+    lub(l, r) = match (l, r) with
+      | (Top(), _) => Top()
+      | (_, Top()) => Top()
+      | (Const(i), Const(j)) => if i == j then Const(i) else Top()
+      | (_, Bottom()) => l
+      | (Bottom(), _) => r
 ```
 
-An algebraic datatype consists of a constructor and zero or more arguments. 
-
-```
-name =
-  ("|" ctor-id "(" {type ","}* ")")+
-```
-
-_Example._ The definition for an algebraic type used in constant value analysis.
-
-```
-types
-  
-  ConstProp =
-  | Top()
-  | Const(int)
-  | Bottom()
-```
 
 ## Functions
 
@@ -246,6 +271,22 @@ Operations on sets and maps include
 
 There are also comprehensions of the form `{ new | old <- set, conditions }` or `{ newkey |-> newvalue | oldkey |-> oldvalue <- map, condition }`, where new elements or bindings are gathered based on old ones from a set or map, as long as the boolean condition expressions hold. Such a condition expression may also be a match expression without a body for the arms. This is commonly used to filter maps or sets.
 
+
+_Example._ The following are some examples of sets and maps.
+```
+// A map comprehension filtering the key n
+{ k |-> v | (k |-> v) <- values(prev), k != n }
+
+// A map literal
+{n |-> Top()}
+
+// A set comprehension filtering the value n
+{ k | k <- live(prev), k != n }
+
+// A set literal
+{ n, "b", "foo" }
+```
+
 ### Match
 
 Pattern matching can be done with a match expression: `match expr with | pattern1 => expr2 | pattern2 => expr2`, where expr are expressions and pattern are patterns. Terms and patterns are defined at the start of the reference.
@@ -262,9 +303,14 @@ User defined functions are invoked with `functionname(arg1, arg2)`. Lattice oper
 
 Property lookup is similar to a function call, although property lookup only ever has a single argument.
 
+_Example._ The following property rule performs a set comprehension over the results of a property lookup, `live(prev)`, where the property `live` has been declared in the `properties` section, and `next` is bound in the pattern.
+```
+live(VarDec(n, _, _) -> next) = { k | k <- live(next), k != n }
+```
+
 ### Term Positions
 
-FlowSpec provides a builtin function that returns the position of a term: `position(term)`. This can be used to differentiate two terms from an AST that are otherwise the same.
+FlowSpec provides a builtin function that returns the position of a term: `position(term)`. This can be used to differentiate two terms from an AST that are otherwise equal.
 
 ## Lexical Grammar
 
