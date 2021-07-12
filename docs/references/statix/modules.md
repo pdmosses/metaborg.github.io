@@ -3,6 +3,7 @@
 A Statix Specification is organised as a collection of modules. Each module
 corresponds to a file with a `.stx` extension.
 
+
 ## Module Structure
 
 The structure of a Statix module looks as follows:
@@ -19,6 +20,7 @@ to the closest source root.
 
 !!! todo
     Link to documentation on source roots.
+
 
 ## Imports
 
@@ -38,6 +40,7 @@ labels and relations are non-transitive. Furthermore, overloading by type,
 shadowing of top-level definitions, and duplicate imports of specification
 entities are not allowed.
 
+
 ## Signatures
 
 In a `signature` section, type definitions are located.
@@ -50,6 +53,7 @@ signature
 
 Examples of signatures are: sort and constructor declarations or label and relation
 declarations. Each of these will be explained in the appropriate subsection.
+
 
 ## Rules
 

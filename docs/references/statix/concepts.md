@@ -3,6 +3,7 @@
 In this section, a brief description of the main concepts of the Statix language
 is provided.
 
+
 ## Terms
 
 The data model that underlies all Statix specifications is algebraic data.
@@ -10,6 +11,7 @@ Besides several built-in primitives, such as integer and string literals, users
 can build composite terms using term constructors, tuples and lists. Statix is
 a sorted logic, in the sense that all runtime data should adhere to a
 multi-sorted signature.
+
 
 ## Constraints
 
@@ -20,6 +22,7 @@ program. In order to express such constraint problems, a versatile set of built-
 constraints is provided by the Statix language. For more information on constraints,
 see the [Basic Constraints](../basic-constraints) section.
 
+
 ## Rules
 
 Besides using built-in constraints, users can define their own constraints using
@@ -28,6 +31,7 @@ the arguments to the constraint, and (optionally) a guard, which indicates when
 to apply the rule. The body is a regular constraint, which, when proven, asserts
 that the constraint holds. More detailed information about user-defined constraints
 can be found in the [Rules](../rules) section.
+
 
 ## Scope Graphs
 

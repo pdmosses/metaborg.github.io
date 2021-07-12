@@ -4,6 +4,7 @@ User-defined constraints and their rules make up the main part of a Statix speci
 In this section, we describe the definition and usage of user-defined constraints
 and their rules.
 
+
 ## Constraint Definitions
 
 In order to define a custom constraint, its type must be declared first. A
@@ -18,7 +19,7 @@ the name of the constraint must be unique within a specification.
 $ConstraintName : {$Type "*"}*
 ```
 
-!!! note
+!!! note "Terminology"
     In this reference manual, we consistently use the term 'constraint declaration'
     for the introduction of new user-defined constraints. However, in practise,
     these are sometimes also referred to as 'predicate' or just simply 'constraint'.
@@ -27,7 +28,7 @@ When a constraint declaration is provided this way, it can be used as a constrai
 by providing concrete arguments, separated by comma's.
 
 ```statix
-$ConstraintName({$Term ","}*)
+$ConstraintName({$Term ","}*) $Message?
 ```
 
 The sorts of the argument terms should be equal to the sorts in the constraint
@@ -123,16 +124,17 @@ $ConstraintName({$Term ","}*)
 Semantically, the output term of applying the constraint is substituted at the
 position of the application of the functional predicate.
 
-!!! note
+!!! note "Terminology: Functional vs. Predicative"
     When we want to make the distinction between these two forms of constraints
     explicit, we usually refer to either groups with 'predicative constraint
     declarations' and 'predicative constraints', versus 'functional constraint
     declarations' and 'functional constraints', respectively.
 
-!!! info
+!!! info "Normalization"
     Every specification with functional predicates is normalized to a form with
     only regular predicates. To show the normal form of a specification in
     Eclipse, use the `Spoofax > Syntax > Format normalized AST` menu action.
+
 
 ## Mapping rules
 
@@ -195,10 +197,11 @@ the arguments. This implicitly requires the input lists to be of equal length.
 The creation of a cartesian product can be achieved by repeated application of
 the `maps` construct for each argument.
 
-!!! info
+!!! info "Normalization"
     Similar to functional constraints, constraints derived using the `maps`
     construct are normalized to regular predicative constraints. This normalization
     can be inspected using the `Spoofax > Syntax > Format normalized AST` menu action.
+
 
 ## Injections of Namespaces and Relations
 

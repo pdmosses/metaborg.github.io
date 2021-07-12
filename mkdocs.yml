@@ -1,35 +1,48 @@
 site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
-site_url: https://www.spoofax.dev/spoofax-docs/
+site_url: https://www.spoofax.dev/
 
 copyright: "Copyright &copy; 2010-2021 Spoofax Team"
 
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
-edit_uri: https://github.com/metaborg/spoofax-docs/edit/main/docs
+edit_uri: https://github.com/metaborg/metaborg.github.io/edit/main/docs
 
 nav:
   - Home:
     - index.md
     - getting-started.md
-    - stable.md
-    - nightly.md
   - Tutorials:
     - tutorials/index.md
   - How-Tos:
     - howtos/index.md
     - Installation:
-      - howtos/install-eclipse-bundle.md
-      - howtos/install-eclipse-plugin-manually.md
-      - howtos/install-from-source.md
+      - howtos/installation/install-eclipse-bundle.md
+      - howtos/installation/install-eclipse-plugin-manually.md
+      - howtos/installation/install-from-source.md
+    - Static Semantics:
+      - howtos/statix/debugging.md
+      - howtos/statix/migrating-from-nabl2.md
+      - howtos/statix/migrating-to-concurrent-solver.md
     - Transformation:
+      - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
+      - howtos/stratego/generate-pretty-printer.md
+      - howtos/stratego/debug-stratego.md
+      - howtos/stratego/concrete-syntax.md
       - howtos/stratego/exchange-terms.md
       - howtos/stratego/inspect-terms.md
-      - howtos/stratego/debug-stratego.md
     - Editor Services:
       - howtos/editor-services/rename-refactoring.md
+    - Development:
+      - howtos/development/index.md
+      - Requirements: howtos/development/requirements.md
+      - Maven: howtos/development/maven.md
+      - Building: howtos/development/building.md
+      - Developing: howtos/development/developing.md
+      - Releasing: howtos/development/releasing.md
+      - Troubleshooting: howtos/development/troubleshooting.md
   - References:
     - references/index.md
     - Configuration:
@@ -65,27 +78,17 @@ nav:
       - references/flowspec/Stratego_API.md
       - references/flowspec/configuration.md
       - references/flowspec/testing.md
-      - references/flowspec/glossary.md
       - references/flowspec/references.md
     - Transformation:
       - references/stratego/index.md
       - references/stratego/lexical.md
       - references/stratego/modules.md
-      - Terms:
-        - references/stratego/terms/terms.md
-        - references/stratego/terms/types.md
-        - references/stratego/terms/patterns.md
-      - Rules:
-        - references/stratego/rules/rewrite-rules.md
-        - references/stratego/rules/dynamic-rules.md
-        - references/stratego/rules/concrete-syntax.md
-        - references/stratego/rules/overlays.md
-      - Strategies:
-        - references/stratego/strategies/strategy-definitions.md
-        - references/stratego/strategies/sequential.md
-        - references/stratego/strategies/term.md
-        - references/stratego/strategies/traversal.md
-        - references/stratego/strategies/type-unifying.md
+      - references/stratego/terms.md
+      - references/stratego/types.md
+      - references/stratego/rewrite-rules.md
+      - references/stratego/strategy-definitions.md
+      - references/stratego/strategy-combinators.md
+      - references/stratego/dynamic-rules.md
     - Testing:
       - references/testing/index.md
     - Editor Services:
@@ -113,14 +116,80 @@ nav:
     - background/index.md
     - Bibliography:
       - background/bibliography/index.md
+      # - background/bibliography/references.md
+      - background/bibliography/sdf3.md
+      - background/bibliography/statix.md
       - background/bibliography/stratego.md
     - Static Semantics:
       - background/statix/index.md
     - Transformations:
-      - background/stratego/term-rewriting.md
-      - background/stratego/limitations-of-rewriting.md
-      - background/stratego/strategic-rewriting.md
-    - background/documentation.md
+      - background/stratego/index.md
+      - Strategic Rewriting:
+        - background/stratego/strategic-rewriting/term-rewriting.md
+        - background/stratego/strategic-rewriting/limitations-of-rewriting.md
+        - background/stratego/strategic-rewriting/traversal-with-rules.md
+        - background/stratego/strategic-rewriting/strategic-rewriting.md
+      - Strategy Combinators:
+        - background/stratego/strategy-combinators/sequential.md
+        - background/stratego/strategy-combinators/term.md
+        - background/stratego/strategy-combinators/traversal.md
+        - background/stratego/strategy-combinators/type-unifying.md
+    - Documentation:
+      - background/documentation/index.md
+      - Adding Pages: background/documentation/pages.md
+      - Links: background/documentation/links.md
+      - Citations: background/documentation/citations.md
+      - Structure: background/documentation/structure.md
+      - Troubleshooting: background/documentation/troubleshooting.md
+  - Support:
+    - support/index.md
+    - support/contributions.md
+  - Releases:
+    - release/stable.md
+    - release/develop.md
+    - Release Notes:
+      - release/note/2.5.16.md
+      - release/note/2.5.15.md
+      - release/note/2.5.14.md
+      - release/note/2.5.13.md
+      - release/note/2.5.12.md
+      - release/note/2.5.11.md
+      - release/note/2.5.10.md
+      - release/note/2.5.9.md
+      - release/note/2.5.8.md
+      - release/note/2.5.7.md
+      - release/note/2.5.6.md
+      - release/note/2.5.5.md
+      - release/note/2.5.4.md
+      - release/note/2.5.3.md
+      - release/note/2.5.2.md
+      - release/note/2.5.1.md
+      - release/note/2.5.0.md
+      - release/note/2.4.1.md
+      - release/note/2.4.0.md
+      - release/note/2.3.0.md
+      - release/note/2.2.1.md
+      - release/note/2.2.0.md
+      - release/note/2.1.0.md
+      - release/note/2.0.0.md
+      - release/note/2.0.0-beta1.md
+      - release/note/1.5.0.md
+      - release/note/1.4.0.md
+      - release/note/1.3.1.md
+      - release/note/1.3.0.md
+      - release/note/1.2.0.md
+      - release/note/1.1.0.md
+      - release/note/1.0.2.md
+      - release/note/1.0.0.md
+      - release/note/vnext.md
+    - Migration Guides:
+      - release/migrate/2.5.15.md
+      - release/migrate/2.5.10.md
+      - release/migrate/2.5.5.md
+      - release/migrate/2.1.0.md
+      - release/migrate/2.0.0.md
+      - release/migrate/march2016_project_structure.md
+      - release/migrate/vnext.md
 
 theme:
   name: material
@@ -147,7 +216,6 @@ theme:
   font:
     code: JetBrains Mono
   features:
-    - navigation.instant
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
@@ -165,8 +233,6 @@ markdown_extensions:
   - abbr
   - admonition
   - attr_list
-  - codehilite:
-      guess_lang: false
   - def_list
   - footnotes
   - toc:
@@ -180,8 +246,14 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      guess_lang: false
   - pymdownx.inlinehilite
-  - pymdownx.keys
+  - pymdownx.keys:
+      key_map:
+        click: "Click"
+        left-click: "Left Click"
+        right-click: "Right Click"
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.saneheaders
@@ -198,6 +270,7 @@ plugins:
       enabled_if_env: CI
   - macros:
       module_name: docs/macro
+      include_dir: include
   - bibtex:
       bib_dir: "bibliographies"
       cite_style: "pandoc"

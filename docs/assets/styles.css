@@ -7,7 +7,7 @@
     --md-primary-fg-color--light: #a7a4b2;
     --md-primary-fg-color--dark: #1b1632;
 
-    
+
     --md-accent-fg-color: #ff5f24;
     --md-accent-fg-color--light: #ffb142;
     --md-accent-fg-color--dark: #b33939;
@@ -72,4 +72,14 @@
 }
 .no-ligatures code {
     font-variant-ligatures: none;
+}
+code.no-ligatures {
+    font-variant-ligatures: none;
+}
+
+.md-header__topic a {
+    transition: opacity .25s;
+}
+.md-header__topic a:hover {
+    opacity: 0.7;
 }

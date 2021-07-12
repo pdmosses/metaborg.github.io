@@ -4,7 +4,7 @@ Using the Stratego API requires a dependency on the FlowSpec Stratego code (sour
 
 _Example._ A Stratego module importing the FlowSpec API.
 
-```
+```stratego
 module example
 
 imports
@@ -20,7 +20,7 @@ There are strategies to integrate FlowSpec analysis in the NaBL2 analysis, and s
 
 These can be used in the final phase of the NaBL2 analysis process using the [Stratego hooks](http://www.metaborg.org/en/latest/source/langdev/meta/lang/nabl2/stratego-api.html#nabl2-custom-analysis).
 
-```
+```stratego
 /**
  * Analyze the given AST with FlowSpec.
  * The FlowSpec analysis is added to given NaBL2 analysis result and returned.
@@ -44,7 +44,7 @@ flowspec-analyze(|analysis, propnames)
 
 The analysis results are also usable at that point for generating editor messages. Integration with NaBL2 is done by giving the FlowSpec analysis result as the “custom final analysis result”:
 
-```
+```stratego
 nabl2-custom-analysis-unit-hook:
     (resource, ast, custom-initial-result) -> (resource, ast)
 
@@ -65,7 +65,7 @@ Sometimes you need data-flow analysis between transformations which change the p
 
 The following strategies execute the analysis and help with consuming the resulting tuple.
 
-```
+```stratego
 /**
  * Analyze the given AST with NaBL2 and FlowSpec
  *
@@ -153,7 +153,7 @@ The other way to get the analysis term is to execute the analysis with the flows
 
 There are a number of strategies to get the control-flow graph nodes associated with an AST fragment, as well as control-flow graph navigation strategies and AST search strategies to get back to the AST from a control-flow graph node. Note that querying the control-flow graph is cheap but finding the way back from the control-flow graph to the AST is more expensive.
 
-```
+```stratego
 /**
  * Get the control flow graph node associated with the given term.
  *
@@ -260,7 +260,7 @@ FlowSpec properties can be read in two versions, pre and post. These indicate wh
 
 Note that each strategy can simply take the term that’s associated with the control-flow graph node. But the control-flow graph node itself is also an accepted input.
 
-```
+```stratego
 /**
  * Get the property of the control flow graph node associated with
  * the given term. The value returned is the value of the property
@@ -300,7 +300,7 @@ flowspec-get-property-post-or-exit-post(|analysis-result, analysis-name)
 ### FlowSpec data helpers
 
 FlowSpec sets and maps are passed back to Stratego as lists wrapped in Set and Map constructors. As a convenience, the most common operations are lifted and added to the flowspec API:
-```
+```stratego
 /**
  * Check if a FlowSpec Set contains an element. Succeeds if the given strategy succeeds for at
  * least one element.
@@ -332,7 +332,7 @@ flowspec-map-lookup(|k)
 
 For a hover implementation that displays name, type and FlowSpec properties use:
 
-```
+```stratego
 /**
  * Provides a strategy for a hover message with as much information as possible about name, type
  * (from NaBl2) and FlowSpec properties.
@@ -342,7 +342,7 @@ flowspec-editor-hover(language-pp)
 
 ### Profiling information
 
-```
+```stratego
 /**
  * If flowspec-debug-profile is extended to succeed, some timing information will be printed in
  * stderr when using flowspec-analyze*.

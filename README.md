@@ -1,10 +1,10 @@
 # Spoofax Documentation
 
-[![Build](https://github.com/metaborg/spoofax-docs/actions/workflows/docs.yml/badge.svg)](https://github.com/metaborg/spoofax-docs/actions)
-[![Docs](https://img.shields.io/badge/docs-latest-brightgreen)](https://www.spoofax.dev/spoofax-docs/)
-[![GitHub](https://img.shields.io/github/license/metaborg/spoofax-docs)](https://github.com/metaborg/spoofax-docs/blob/main/LICENSE)
+[![Build](https://github.com/metaborg/metaborg.github.io/actions/workflows/docs.yml/badge.svg)](https://github.com/metaborg/metaborg.github.io/actions)
+[![Docs](https://img.shields.io/badge/docs-latest-brightgreen)](https://www.spoofax.dev/)
+[![GitHub](https://img.shields.io/github/license/metaborg/metaborg.github.io)](https://github.com/metaborg/metaborg.github.io/blob/main/LICENSE)
 
-This is the repository for the [Spoofax documentation](https://www.spoofax.dev/spoofax-docs/).
+This is the repository for the [Spoofax documentation](https://www.spoofax.dev/).
 This documentation uses [MkDocs Material][1].
 
 To build the pages and see edits live using Docker:
