@@ -11,7 +11,7 @@ when appropriate, how their types should be declared.
 !!! note "Terminology: Sort vs. Type"
     Throughout this reference manual, we use the term 'sort' for syntactic
     categories, and 'type' for all other types (such as lists, tuples, scopes, etc.).
-    However, in practise, these terms are both used in both meanings.
+    However, in practice, these terms are both used in both meanings.
 
 
 ## Numerals
@@ -193,7 +193,7 @@ expressions, see [Arithmetic Constraints](../basic-constraints#arithmetic-constr
 
 ## AST Identifier
 
-In Spoofax, all terms in an AST are assigned an unique identifier (the term index)
+In Spoofax, all terms in an AST are assigned a unique identifier (the term index)
 before analysis. This term identifier can be isolated as follows:
 
 ```statix
