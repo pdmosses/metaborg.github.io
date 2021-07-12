@@ -3068,31 +3068,377 @@
                 
                 
                 <h1 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h1>
-<p>There are several built-in types in the PIE DSL.
-The PIE DSL also allows defining custom types.</p>
+<p>This page explains the type system of the PIE DSL and lists all the built-in types.</p>
+<h1 id="the-type-system">The type system<a class="headerlink" href="#the-type-system" title="Permanent link">&para;</a></h1>
+<p>A type system checks for type errors.
+PIE DSL uses a static type system, so type errors are found before compilation.
+The PIE DSL supports subtypes, generics and methods on types.</p>
+<h2 id="super-types-and-subtypes">Super types and subtypes<a class="headerlink" href="#super-types-and-subtypes" title="Permanent link">&para;</a></h2>
+<p>When a type <code>X</code> is a subtype of type <code>Y</code>, you can use an expression with type <code>X</code> wherever an expression with type <code>Y</code> is expected.
+When <code>X</code> is a subtype of <code>Y</code>, <code>Y</code> is the super type of <code>X</code>
+For example, the method <code>cutFruit(fruit: Fruit) -&gt; Piece*</code> expects a <code>Fruit</code>.
+If an <code>Apple</code> is declared to be a subtype of <code>Fruit</code>, we can pass an <code>Apple</code>: <code>cutFruit(getApple())</code></p>
+<p>Subtypes are transitive, which means that if <code>A</code> is a subtype of <code>B</code>, and <code>B</code> is a subtype of <code>C</code>, then <code>A</code> is a subtype of <code>C</code>, even if that is not explicitly declared.</p>
+<p>The PIE DSL allows declaring exactly one super type.</p>
+<p>The top type is a super type of everything.
+As such, any expression can be assigned to the top type.</p>
+<p>The bottom type is a subtype of everything.
+As such, an expression with the bottom type can be assigned to everything.</p>
+<h2 id="generics">Generics<a class="headerlink" href="#generics" title="Permanent link">&para;</a></h2>
+<p>Generics refer to making a type or a function generic over types, that is, add type parameters to the type or function.
+You likely already know about these, lists are an example of parameterized types.
+It's not just any list, it's a list of <code>some type here</code>.</p>
+<p>Every data type in the PIE DSL is generic.
+When declaring a datatype in a data definition, there is a list of generic parameters: <code>data Box&lt;T&gt; = $DataImpl</code>.
+When referring to a type, there is a list of generic parameters:
+<code>val box: Box&lt;string&gt; = $Exp</code>.
+These lists can be empty: <code>data Apple&lt;&gt; = $DataImpl</code>.
+This makes the term "generic" a bit meaningless, but <code>Apple</code> is still considered generic for the purposes of the semantics.
+That is to say, <code>Apple</code> is treated as a generic type that just happens to have zero generic parameters, in the same way that <code>Box</code> happens to have one generic parameter and <code>Foo&lt;A, B, C&gt;</code> happens to have three.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type parameter/argument list can sometimes be omitted.
+Parameter lists can be omitted if they are empty: <code>data Apple = $DataImpl</code>, <code>func notGeneric(string) -&gt; unit = $FuncImpl</code>.
+Type argument lists can be omitted for empty lists and for calls to <a href="../expressions#create-supplier">the built-in <code>supplier</code> function</a>.
+For example, <code>Apple</code>, <code>notGeneric("regular argument")</code>.</p>
+</div>
+<p>A type declares zero or more generic parameters.
+These can be used in methods of that type to parameterize the method.</p>
+<p>A function or method can also declare generic parameters to be used in that function or method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike Java, the PIE DSL does not derive bounds for datatypes based on super types.
+The following would be possible in Java but will not work in the PIE DSL:
+<div class="highlight"><pre><span></span><code>data CustomAnimalSet&lt;A : Animal&gt; = $DataImpl
+data OrderedAnimalSet&lt;T&gt; : CustomAnimalSet&lt;T&gt; = $DataImpl
+// error on `T` in `CustomAnimalSet&lt;T&gt;`: `T` is not within upper bound `Animal`
+// Solution: declare the bound on the subtype as well
+data OrderedAnimalSet2&lt;T : Animal&gt; : CustomAnimalSet&lt;T&gt; = $DataImpl
+</code></pre></div></p>
+</div>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
-<p>write about the types in PIE</p>
+<p>Explain generics</p>
 </div>
-<h1 id="the-type-system">The type system<a class="headerlink" href="#the-type-system" title="Permanent link">&para;</a></h1>
+<h2 id="methods-and-overriding">Methods and overriding<a class="headerlink" href="#methods-and-overriding" title="Permanent link">&para;</a></h2>
+<p>Every type can have methods.
+For now, the only data types are <code>foreign java</code> datatypes, so methods follow Java semantics for overriding.</p>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Explain overriding.</p>
+</div>
 <h1 id="built-in-types">Built-in types<a class="headerlink" href="#built-in-types" title="Permanent link">&para;</a></h1>
+<p>The PIE DSL has several built-in types.
+This section explains all of them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PIE DSL does not consider types equivalent when their backing Java class is equal.
+This means that a built-in type and a custom datatype backed by the same class cannot be used interchangeably.</p>
+</div>
+<p>The following table gives a quick overview of the built-in types, click on the name to go to the documentation.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>syntax</th>
+<th>description</th>
+<th>values</th>
+<th>methods</th>
+<th>backing Java class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#unit">unit</a></td>
+<td><code>unit</code></td>
+<td>Unit type, only has a single value. Use as return type for methods without a meaningful return value</td>
+<td><code>unit</code></td>
+<td>-</td>
+<td><code>mb.pie.api.None</code></td>
+</tr>
+<tr>
+<td><a href="#bool">bool</a></td>
+<td><code>bool</code></td>
+<td>Booleans. Used as flags and for conditions in <code>if</code> and <code>if-else</code>.</td>
+<td><code>true</code>, <code>false</code></td>
+<td>-</td>
+<td><code>java.lang.Boolean</code></td>
+</tr>
+<tr>
+<td><a href="#int">int</a></td>
+<td><code>int</code></td>
+<td>Integers. Range from <span class="arithmatex">\(-2^{31}\)</span> to <span class="arithmatex">\(2^{31}-1\)</span>, inclusive.</td>
+<td>-2147483648, ... -1, 0, 1, 2, 3, ... 2147483647</td>
+<td>-</td>
+<td><code>java.lang.Integer</code></td>
+</tr>
+<tr>
+<td><a href="#path">path</a></td>
+<td><code>path</code></td>
+<td>Paths on the file system. Might not exist.</td>
+<td>E.g. <code>./src/test/resources/test1.txt</code>, <code>/home/users/me/programming</code></td>
+<td>-</td>
+<td><code>mb.resource.fs.FSPath</code></td>
+</tr>
+<tr>
+<td><a href="#null-type">null type</a></td>
+<td>-</td>
+<td>Type of the literal <code>null</code>. Subtype of every <a href="#nullable-types">nullable type</a>.</td>
+<td><code>null</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="#top">top</a></td>
+<td>-</td>
+<td>The top type is the super type of all other types.</td>
+<td>every value is an instance of <code>top</code></td>
+<td>-</td>
+<td><code>java.lang.Object</code></td>
+</tr>
+<tr>
+<td><a href="#bottom">bottom</a></td>
+<td>-</td>
+<td>The bottom type is a subtype of all other types. It has no values by definition. An expression of type bottom will never return normally.</td>
+<td>No values</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="#nullable-types">Nullable types</a></td>
+<td><code>$Type?</code>, e.g. <code>string?</code></td>
+<td>Makes a type nullable.</td>
+<td>All values of the original type and <code>null</code></td>
+<td>All methods of the original type</td>
+<td>Original backing class</td>
+</tr>
+<tr>
+<td><a href="#lists">Lists</a></td>
+<td><code>$Type*</code>, e.g. <code>int*</code></td>
+<td>A list. Unknown amount of elements, all with the same type.</td>
+<td>-</td>
+<td><code>[]</code>, <code>[e1]</code>, <code>[e1, e2]</code>, <code>[e1, e2, e3]</code>, where <code>e1</code>, <code>e2</code> and <code>e3</code> are valid elements of the list element type.</td>
+<td><code>java.util.ArrayList</code></td>
+</tr>
+<tr>
+<td><a href="#tuples">Tuples</a></td>
+<td><code>($Types)</code></td>
+<td>A tuple of elements. Known amount of elements, can be different types.</td>
+<td>elements of the inner types, e.g. <code>(e1, e2)</code> is a value of <code>(T1, T2)</code> if <code>e1</code> and <code>e2</code> are values of <code>T1</code> and <code>T2</code> respectively</td>
+<td>-</td>
+<td><code>mb.pie.TupleX</code>, where <code>X</code> is the number of elements.</td>
+</tr>
+<tr>
+<td><a href="#supplier">supplier</a></td>
+<td><code>supplier&lt;$Type&gt;</code></td>
+<td>A supplier of a value. Useful for performance in certain situations.</td>
+<td>Can be created using <code>supplier($Exp)</code> or <code>$FUNCID.supplier&lt;$TypeArgs&gt;($Exps)</code></td>
+<td><code>func get&lt;&gt;() -&gt; T</code> for <code>supplier&lt;T&gt;</code></td>
+<td><code>mb.pie.api.Supplier</code></td>
+</tr>
+<tr>
+<td><a href="#function-types">Function types</a></td>
+<td>-</td>
+<td>The type of a function. Functions cannot be used as values, but their type can be seen by hovering over the name</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="#wildcards">Wildcards</a></td>
+<td><code>_$UpperBound$LowerBound</code></td>
+<td>Represent a set of types. Can only be used as type argument.</td>
+<td>Instances of types in the type set</td>
+<td>-</td>
+<td>Backed by the Java wildcard: <code>?</code></td>
+</tr>
+<tr>
+<td><a href="#custom-datatypes">Custom datatypes</a></td>
+<td><code>$TYPEID</code></td>
+<td>A type defined in a pie file with.</td>
+<td>Instances of the type, ultimately obtained from <code>foreign java</code> functions</td>
+<td>The methods that are declared on the type itself, and the methods of its super types</td>
+<td>The declared backing class</td>
+</tr>
+</tbody>
+</table>
 <h2 id="unit">unit<a class="headerlink" href="#unit" title="Permanent link">&para;</a></h2>
+<p><code>unit</code> is a type with only a single value: <code>unit</code>.
+It is meant to be used as return value for functions that have no meaningful return value, for example functions that operate via side effects like writing to a file.
+It is backed by <code>mb.pie.api.None</code>.</p>
 <h2 id="bool">bool<a class="headerlink" href="#bool" title="Permanent link">&para;</a></h2>
+<p><code>bool</code> represents booleans and as such has two values: <code>true</code> and <code>false</code>.
+Booleans are used as flags and as conditions for <code>if</code> and <code>if-else</code>.
+<code>bool</code> is backed by <code>java.lang.Boolean</code>.</p>
 <h2 id="int">int<a class="headerlink" href="#int" title="Permanent link">&para;</a></h2>
+<p><code>int</code> represents integers.
+It is backed by <code>java.lang.Integer</code>, and as such has a range of <span class="arithmatex">\(-2^{31}\)</span> to <span class="arithmatex">\(2^{31}-1\)</span>, inclusive.</p>
 <h2 id="string">string<a class="headerlink" href="#string" title="Permanent link">&para;</a></h2>
+<p><code>string</code> represents strings.
+Strings have many built-in methods which have yet to be added to the implementation.
+It is backed by java <code>String</code>.</p>
 <h2 id="path">path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h2>
-<h2 id="null">null<a class="headerlink" href="#null" title="Permanent link">&para;</a></h2>
+<p><code>path</code> represents a path to a file or directory in the file system.
+The directory or file need not exist.
+Paths can be relative or absolute.
+Paths have many built-in methods which have yet to be added to the implementation.
+Paths are backed by <code>mb.resource.fs.FSPath</code></p>
+<h2 id="null-type">null type<a class="headerlink" href="#null-type" title="Permanent link">&para;</a></h2>
+<p>The null type cannot be expressed in the PIE DSL, meaning that there is no way to specify it as the type of something.
+Its only value is <code>null</code>.
+The null type is a subtype of every nullable type.</p>
 <h2 id="top">top<a class="headerlink" href="#top" title="Permanent link">&para;</a></h2>
+<p>The top type is a super type of every other type.
+It cannot be specified as a type.
+It is backed by <code>java.lang.Object</code></p>
 <h2 id="bottom">bottom<a class="headerlink" href="#bottom" title="Permanent link">&para;</a></h2>
+<p>The bottom type is a subtype of every other type.
+It cannot be specified as a type.
+The bottom type has no values, and as such an expression with bottom type will never return normally to the function it is defined in.
+It is the element type of empty lists, and in the future also of <code>return</code> and <code>fail</code> expressions.
+This type is not backed by any java class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Code that has the bottom type will fail to compile.
+Remove the code that has bottom type to resolve this.</p>
+</div>
 <h2 id="nullable-types">Nullable types<a class="headerlink" href="#nullable-types" title="Permanent link">&para;</a></h2>
+<p>Nullable types are represented with a question mark after the type.
+For example, a nullable <code>int</code> is <code>int?</code>.
+A nullable type <code>X?</code> represents a value that could either be a regular value <code>X</code> or "missing", represented with the expression <code>null</code>.
+A nullable type <code>X?</code> is a super type of both <code>X</code> and the null type.
+It is an error to make a nullable type nullable again, so <code>X??</code> is not allowed.
+Java types are always nullable, so the nullable type <code>X?</code> is backed by Java type <code>X</code>.</p>
 <h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
-<p>(todo: also discuss empty lists)</p>
+<p>Lists are represented with an asterisk behind the type.
+For example, a nullable <code>path</code> is <code>path*</code>.
+Lists of <code>X</code> can contain any element that could be assigned to <code>X</code>.
+Lists do not have subtypes besides the bottom type.
+This means that <code>Apple*</code> is not a subtype of <code>Fruit*</code>.
+Lists do not have methods yet.
+Lists are backed by Java <code>java.util.ArrayList</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The PIE DSL type system keeps track of empty lists for implementation reasons.
+Because it is doing this anyway, it gives warnings when doing certain non-sensical things such as appending an empty list to another list or list comprehension over empty lists.</p>
+</div>
 <h2 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h2>
-<h2 id="suppliers">Suppliers<a class="headerlink" href="#suppliers" title="Permanent link">&para;</a></h2>
+<p>Tuple types represent a combination of multiple types.
+They are specified as the types between parentheses.
+For example, <code>(string, int*)</code> represents a pair of a <code>string</code> and a list of <code>int</code>s.
+Tuple types differ from lists because lists have a variable amount of elements of a single type, while tuples have a set number of elements with heterogenous types.
+Tuple types can be deconstructed to get their values:
+<div class="highlight"><pre><span></span><code>val pair: (string, int*) = (&quot;Alice&quot;, [9, 4, 6, 7]);
+val (name: string, grades: int*) = pair;
+</code></pre></div>
+Tuples are backed by Java classes <code>mb.pie.TupleX</code>, where <code>X</code> is a number representing the amount of elements, e.g. <code>Tuple2</code> for a pair.
+This is because Java is not generic in the amount of generic elements.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>While the PIE DSL language does not specify a limit on the amount of elements in a tuple, the backing Java <code>TupleX</code> classes only go up to 10.
+If you run into this limit, use a foreign data type backed by a custom Java class instead.</p>
+</div>
+<h2 id="supplier">supplier<a class="headerlink" href="#supplier" title="Permanent link">&para;</a></h2>
+<p><code>supplier&lt;X&gt;</code> represents a supplier of a value of type <code>X</code>.
+Suppliers can supply values with <code>someSupplier.get&lt;&gt;()</code>, either by already having the value, or by calling a computation to get the value.
+Their main use case is as input types for tasks.
+If the supplier is faster to check for consistency than the value it supplies, the runtime performance is improved.
+As an example, consider
+<div class="highlight"><pre><span></span><code>func readFile() -&gt; string = read ./bundled.java
+
+func parse1(program: string) -&gt; IStrategoTerm =
+  mb:lang:java:parse(program)
+func parse2(program: supplier&lt;string&gt;) -&gt; IStrategoTerm =
+  mb:lang:java:parse(program.get&lt;&gt;())
+
+func parseBoth() -&gt; unit = {
+    parse1(readFile());
+    parse2(readfile.supplier());
+    unit
+}
+</code></pre></div>
+Both <code>parse1</code> and <code>parse2</code> need to read the file <code>./bundled.java</code>, strip of any whitespace, and then parse it with <code>mb:lang:java:parse</code> on the initial build.
+If we modify <code>./bundled.java</code> before the second build, <code>readFile</code> is now outdated and will need to read again.
+To check if the input for <code>parse1</code> is in the cache, the runtime needs to check the contents of the entire file against any cached values to see if it matches.
+To check if the input for <code>parse2</code> is in the cache, the runtime only checks if the supplier is in the cache.
+The supplier is a <code>TaskSupplier</code>, which is in the cache if its task is not outdated.
+The runtime only has to make a few calls to determine that the input for <code>parse2</code> is not cached.</p>
+<p>Suppliers are backed by <code>mb.pie.api.Supplier</code>.</p>
 <h2 id="function-types">Function types<a class="headerlink" href="#function-types" title="Permanent link">&para;</a></h2>
-<h2 id="datatypes">Datatypes<a class="headerlink" href="#datatypes" title="Permanent link">&para;</a></h2>
+<p>Function types are visible when hovering over a function name.
+They follow the pattern <code>func($Params) -&gt; $Type</code>.
+For example, <code>func(int, string) -&gt; bool</code> is a function that takes an int and a string and returns a boolean.
+Function types cannot be specified in PIE DSL, and they can also not be the type of a variable.
+Because function types cannot be the type of a variable, they are not backed by a Java class.</p>
 <h2 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h2>
+<p>Wildcards represent a set of types by using an upper or lower bound.
+They use the following syntax.
+The wildcard itself is represented by an underscore: <code>_</code>
+The upper bound is specified by a colon followed by a type: <code>: $Type</code>
+The lower bound is specified with a dash, colon and then a type: <code>-: $Type</code>
+If a the upper bound is omitted, it is implicitly the top type.
+If the lower bound is omitted, it is implicitly the bottom type.
+A wildcard cannot have both an upper and a lower bound.</p>
+<p>Here are some examples of wildcards and what they mean:
+<div class="highlight"><pre><span></span><code>_ // unbounded wildcard (bounds are implicitly the top and bottom type)
+_ : Fruit // upper bounded wildcard. Matches Fruit, Apple, Pear
+_ : path:to:module:Vegetable // qualified upper bound
+_ -: Fruit // lower bounded wildcard. Matches Fruit, Food, top type
+
+_ : Fruit -: Apple // both upper and lower bounded, gives an error
+
+_ : Iterable : Comparable // _not_ a type with multiple upper bounds, parsed as
+_ : Iterable:Comparable   // a single qualified upper bound.
+
+_ -: Apple : Fruit // _not_ a lower bound and then upper bound, parsed as
+_ -: Apple:Fruit   // a qualified lower bound
+</code></pre></div></p>
+<p>Wildcards can only be used as type arguments or as arguments to built-in types.
+They are useful when we want to allow any of the type arguments within the bounds.
+For example, <code>func buildZoo(Animal*) -&gt; Zoo</code> will only take a list with type <code>Animal*</code>, but not a list with type <code>Mammal*</code>, even though a zoo of just mammals can be pretty cool already.
+To allow any list of animals, we use a wildcard: <code>func buildZoo((_ : Animal)*) -&gt; Zoo</code>
+This <code>buildZoo</code> will take <code>Animal*</code>, <code>Mammal*</code>, <code>Bird*</code>, <code>Insect*</code> and even <code>Chicken*</code>.</p>
+<p>Wildcards are translated to Java wildcards.</p>
 <h1 id="custom-datatypes">Custom datatypes<a class="headerlink" href="#custom-datatypes" title="Permanent link">&para;</a></h1>
+<p>Custom datatypes are definitions using the <code>data</code> keyword.
+They look like this:
+<div class="highlight"><pre><span></span><code>$Modifiers data $TYPEID&lt;$GenericParameters&gt; : $SuperType = $DataImpl
+
+$Modifier = &quot;transient&quot;
+$DataImpl = foreign java $QID {
+    $FuncHeads
+}
+</code></pre></div></p>
+<p>Modifiers change the semantics of a datatype.
+The only modifier right now is <code>transient</code>.
+This modifier signifies to the PIE runtime that the datatype cannot be cached.
+It is an error to repeat modifiers, i.e. <code>transient transient data Foo = $DataImpl</code> is not allowed.</p>
+<p>The name can be any name that not already a built-in type.
+The convention is to use PascalCase, meaning that every first letter of a word is a capital letter.
+Names start with a letter or underscore, and can contain letters, numbers, a dash (<code>-</code>) and underscores (<code>_</code>).</p>
+<p>The list of generic parameters can be omitted.
+This is syntactic sugar for an empty list, so <code>Foo</code> is the same as <code>Foo&lt;&gt;</code>.
+For an explanation of generics in the PIE DSL, see <a href="../generics/">generics</a></p>
+<p>The super type specifies the super type of this data type.
+The super type can be omitted, for example <code>data Foo = $DataImpl</code>.
+If the super type is omitted, the top type implicitly becomes the super type.
+See <a href="#super-types-and-subtypes">the section about super types and subtypes earlier on this page</a> for an explanation of super types.</p>
+<p>The only implementation right now is <code>foreign java</code>.
+This implementation is a Java class.
+It looks like this
+<div class="highlight"><pre><span></span><code>foreign java $QID {
+    $FuncHeads
+}
+</code></pre></div>
+The <code>$QID</code> specifies the qualified name of the backing Java class.
+<code>$FuncHeads</code> is a newline separated list of function headers.
+These are declarations of the non-static methods of the class.
+Not all non-static methods of the class need to be declared here.
+Static methods of the class can be declared as <a href="../functions#foreign-java-functions"><code>foreign java</code> functions</a> outside this data definition.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Define foreign java datatypes in a separate module and import them into your main module to keep your main module cleaner.</p>
+</div>
                 
                   
                     
@@ -3101,7 +3447,7 @@ The PIE DSL also allows defining custom types.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-09
+      Last update: 2021-07-12
     
   </small>
 </div>
