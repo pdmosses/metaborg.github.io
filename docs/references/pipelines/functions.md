@@ -9,3 +9,5 @@ This section describes functions in the PIE DSL.
 
 !!! todo
     Write documentation
+
+# Foreign java functions
