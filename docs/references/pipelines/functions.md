@@ -11,3 +11,9 @@ This section describes functions in the PIE DSL.
     Write documentation
 
 # Foreign java functions
+
+
+# Parameters and values
+
+!!! todo
+    describe how values and parameters behave

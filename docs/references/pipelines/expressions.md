@@ -7,6 +7,8 @@ Expressions can use brackets to override the default priority rules, for example
 Brackets have the following form: `($Exp)`
 
 This section describes expressions in the PIE DSL.
+Expressions can use declared values.
+These are described [in this section of the functions documentation](../functions#parameters-and-values).
 
 !!! todo
     Add overview table: name, syntax, example, description, type
