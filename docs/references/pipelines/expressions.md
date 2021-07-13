@@ -136,10 +136,33 @@ Finally, adding a type `T2` to a list with type `T1*` has two cases
 
 # Value declaration
 
-// single, tuple
-// type hints
+Value declarations declare one or more values by name.
+Expressions that are evaluated afterwards in the same scope or an inner scope can use the declared values by [referencing them](#value-reference).
+For more information on values, see [parameters and values](../functions#parameters-and-values).
 
-# Value References
+A basic value declaration declares a name with a value: `val x = 9`.
+It is possible to give a type hint with the name: `val y: int? = 8`.
+The type of the declared value is the provided type from the type hint, or the type of the expression if there is no type hint.
+A value declaration can also do tuple destructuring and assign its values to multiple variables at once: `val (name: string, times: int*) = getPerformance(id)`.
+Each name in a tuple destructuring can have a type hint.
+
+Value declarations have the following syntax: `val $Binder = $Exp`, where the binder can be either a single binder `$Bind` or tuple binder `($Binds)`, and binds can be only a name `$VALID` or a name with a type hint `$VALID: Type`.
+
+??? example
+    Some examples of value declarations
+    ```
+    val firstName = "Bob"; // simple value declaration
+    val age: int = 27; // with type hint
+    val size: (int, int) = (800, 400); // assign tuple to single value.
+    val (width, height) = size; // tuple destructuring
+    // tuple destructuring with type hints
+    val (name: string, in: path, out: path) = ("expressions", ./in/expressions.pie, ./out/expressions.java);
+    // tuple destructuring with mixed type hints
+    val (year, values: (string, bool)*) = (2020, []);
+    ```
+
+
+# Value reference
 
 
 # if
