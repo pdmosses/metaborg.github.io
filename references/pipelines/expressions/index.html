@@ -3068,11 +3068,135 @@
                 
                 
                 <h1 id="expressions">Expressions<a class="headerlink" href="#expressions" title="Permanent link">&para;</a></h1>
-<p>This section describes expressions in the PIE DSL.</p>
+<p>Function bodies in PIE DSL consist entirely of expressions.
+Every expression has a type and returns a value of that type, with the exception of <code>fail</code> and <code>return</code>.</p>
+<p>Expressions can use brackets to override the default priority rules, for example <code>a &amp;&amp; (b || c)</code>.
+Brackets have the following form: <code>($Exp)</code></p>
+<p>This section describes expressions in the PIE DSL.
+Expressions can use declared values.
+These are described <a href="../functions#parameters-and-values">in this section of the functions documentation</a>.</p>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
-<p>Write documentation</p>
+<p>Give overview of priorities</p>
 </div>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Add overview table: name, syntax, example, description, type</p>
+</div>
+<h1 id="block">Block<a class="headerlink" href="#block" title="Permanent link">&para;</a></h1>
+<p>Blocks are expressed as <code>{$Exps}</code>, where <code>$Exps</code> is a list of semi-colon separated expressions.
+Its type and value are those of the final expressions in the block.
+The final expression does not end with a semi-colon.
+For example:
+<div class="highlight"><pre><span></span><code>{
+  val name = read ./example/name.txt;
+  val greeting = read ./example/greeting.txt;
+  &quot;$greeting $name&quot;
+}
+</code></pre></div></p>
+<p>Empty blocks (blocks without any expression) are allowed, their type and value is <a href="../types#unit"><code>unit</code></a>.</p>
+<p>Blocks introduce their own scope.
+Expressions in the block are evaluated in that scope.
+Values declared in the block are not allowed to shadow values or parameters outside the block.
+This means that it is not allowed to declare a value with a name that already exists.
+Values declared before the block are still visible inside the block.
+Values declared inside the block are not visible after the block.</p>
+<h1 id="make-nullable">Make nullable<a class="headerlink" href="#make-nullable" title="Permanent link">&para;</a></h1>
+<p>Make nullable is expressed as a question mark after an expression.
+As its name suggests, it makes a non-nullable expression nullable.
+The value remains unchanged, but the type of the expression is now <a href="../types#nullability">nullable</a>.
+Its syntax is <code>$Exp?</code>, for example <code>read ./name.txt == "Bob"?</code>.</p>
+<p>It is an error to use this expression on an expression that was nullable already.</p>
+<h1 id="make-non-nullable">Make non-nullable<a class="headerlink" href="#make-non-nullable" title="Permanent link">&para;</a></h1>
+<p>Make non-nullable is expressed as an exclamation mark after an expression.
+As its name suggests, it makes a nullable expression non-nullable.
+The value remains unchanged, but the type of the expression is now <a href="../types#nullability">non-nullable</a>.
+Its syntax is <code>$Exp!</code>, for example <code>read file!</code>.</p>
+<p>It is an error to use this expression on an expression that was non-nullable already.</p>
+<h1 id="not">Not<a class="headerlink" href="#not" title="Permanent link">&para;</a></h1>
+<p>Logical negation.
+It takes a <a href="../types#bool">boolean</a> expression and returns the opposite boolean value.
+Its syntax is <code>!$Exp</code>, for example <code>if (!exists file) fail "$file should exist</code>.</p>
+<h1 id="compare-for-equality">Compare for equality<a class="headerlink" href="#compare-for-equality" title="Permanent link">&para;</a></h1>
+<p>Compare two expressions for equality.
+Two values are considered equal if they are both <code>null</code> or if the <code>equals</code> method in the backing Java class for the first value returns <code>true</code> when applied to the second value.
+Its syntax is <code>$Exp == $Exp</code>, for example <code>x == 0</code></p>
+<h1 id="compare-for-inequality">Compare for inequality<a class="headerlink" href="#compare-for-inequality" title="Permanent link">&para;</a></h1>
+<p>Compare two expressions for inequality.
+Two values are considered inequal exactly one of them is <code>null</code> or if the <code>equals</code> method in the backing Java class for the first value returns <code>false</code> when applied to the second value.
+Its syntax is <code>$Exp != $Exp</code>, for example <code>x != 0</code></p>
+<h1 id="logical-or">Logical or<a class="headerlink" href="#logical-or" title="Permanent link">&para;</a></h1>
+<p>Logical or.
+Takes two boolean expressions and returns <code>true</code> if either of them is <code>true</code>.
+This operator short-circuits if the first expression is <code>true</code>, in which case the second expression will not be evaluated.
+Its syntax is <code>$Exp || $Exp</code>, for example <code>exists file || default != null</code>.</p>
+<h1 id="logical-and">logical and<a class="headerlink" href="#logical-and" title="Permanent link">&para;</a></h1>
+<p>Logical and.
+Takes two boolean expressions and returns <code>true</code> if both of them are <code>true</code>.
+This operator short-circuits if the first expression is <code>false</code>, in which case the second expression will not be evaluated.
+Its syntax is <code>$Exp &amp;&amp; $Exp</code>, for example <code>configFile != null &amp;&amp; exists configFile</code>.</p>
+<h1 id="addition">Addition<a class="headerlink" href="#addition" title="Permanent link">&para;</a></h1>
+<p>The add operator is an overloaded in the PIE DSL.
+Its syntax is <code>$Exp + $Exp</code>.</p>
+<p>The type of adding two values depends on their static types.
+Adding two <a href="../types#int"><code>int</code>s</a> uses mathematical plus: <code>1 + 2 // result: 3</code>, and the result is an <code>int</code> as well.</p>
+<p>Adding any value to a <a href="../types#string"><code>string</code></a> converts the value to a <code>string</code> and then concatenates the strings, resulting in a <code>string</code>: <code>"The value is:"  + x</code>.</p>
+<details class="tip"><summary>Tip</summary><p>It might be clearer to use <a href="#string">string interpolation.</a></p>
+</details>
+<p>Adding a <code>string</code> or a <code>path</code> to a relative <code>path</code> concatenates the values and results in a new <code>path</code>: <code>projectDir + ./src/test/resources/</code>
+Adding a <code>string</code> or a <code>path</code> to an absolute path results in a runtime error.</p>
+<details class="tip"><summary>Tip</summary><p>It might be clearer to use <a href="#path">path interpolation.</a></p>
+</details>
+<p>Finally, adding a type <code>T2</code> to a list with type <code>T1*</code> has two cases</p>
+<ul>
+<li>If <code>T2</code> is a list as well both lists will be concatenated.
+  The element type of <code>T2</code> must be a subtype of <code>T1</code>.</li>
+</ul>
+<details class="tip"><summary>Tip</summary><p>To add a list <code>list: T*</code> as an element to a list of lists <code>lists: T**</code>, wrap the list in another list: <code>lists + [list]</code></p>
+</details>
+<details class="info"><summary>Info</summary><p>The PIE DSL keeps track of empty lists statically.
+This allows it to give a warning when concatenating an empty list: <code>[1, 2, 3] + []</code> will give a warning.</p>
+</details>
+<ul>
+<li>All other cases will append the second item to the first list.
+  <code>T2</code> must be a (non-strict) subtype of <code>T1</code>.
+  The element type of the resulting list is <code>T1</code>, unless <code>T2</code> is <a href="../types#null-type">the null type</a>.
+  In that case, the element type of the resulting list is nullable as well.</li>
+</ul>
+<h1 id="value-declaration">Value declaration<a class="headerlink" href="#value-declaration" title="Permanent link">&para;</a></h1>
+<p>// single, tuple
+// type hints</p>
+<h1 id="value-references">Value References<a class="headerlink" href="#value-references" title="Permanent link">&para;</a></h1>
+<h1 id="if">if<a class="headerlink" href="#if" title="Permanent link">&para;</a></h1>
+<h1 id="if-else">if-else<a class="headerlink" href="#if-else" title="Permanent link">&para;</a></h1>
+<h1 id="listcomprehension">ListComprehension<a class="headerlink" href="#listcomprehension" title="Permanent link">&para;</a></h1>
+<h1 id="function-calls">Function calls<a class="headerlink" href="#function-calls" title="Permanent link">&para;</a></h1>
+<p>// can be qualified
+// type args</p>
+<h1 id="method-calls">Method calls<a class="headerlink" href="#method-calls" title="Permanent link">&para;</a></h1>
+<h1 id="create-supplier">create supplier<a class="headerlink" href="#create-supplier" title="Permanent link">&para;</a></h1>
+<h1 id="task-supplier">task supplier<a class="headerlink" href="#task-supplier" title="Permanent link">&para;</a></h1>
+<p>Note: getting from a supplier</p>
+<h1 id="requires">requires<a class="headerlink" href="#requires" title="Permanent link">&para;</a></h1>
+<h1 id="generates">generates<a class="headerlink" href="#generates" title="Permanent link">&para;</a></h1>
+<p>// with regex, pattern, patterns, extension, extensions
+// by modified, hash</p>
+<h1 id="list">list<a class="headerlink" href="#list" title="Permanent link">&para;</a></h1>
+<h1 id="walk">walk<a class="headerlink" href="#walk" title="Permanent link">&para;</a></h1>
+<h1 id="exists">exists<a class="headerlink" href="#exists" title="Permanent link">&para;</a></h1>
+<h1 id="read">read<a class="headerlink" href="#read" title="Permanent link">&para;</a></h1>
+<h1 id="return">Return<a class="headerlink" href="#return" title="Permanent link">&para;</a></h1>
+<h1 id="fail">fail<a class="headerlink" href="#fail" title="Permanent link">&para;</a></h1>
+<p>// not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library</p>
+<h1 id="unit-literal">Unit literal<a class="headerlink" href="#unit-literal" title="Permanent link">&para;</a></h1>
+<h1 id="true">True<a class="headerlink" href="#true" title="Permanent link">&para;</a></h1>
+<h1 id="false">False<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
+<h1 id="int-literal">int literal<a class="headerlink" href="#int-literal" title="Permanent link">&para;</a></h1>
+<h1 id="null">null<a class="headerlink" href="#null" title="Permanent link">&para;</a></h1>
+<h1 id="tuple-literal">Tuple literal<a class="headerlink" href="#tuple-literal" title="Permanent link">&para;</a></h1>
+<h1 id="list-literal">List literal<a class="headerlink" href="#list-literal" title="Permanent link">&para;</a></h1>
+<h1 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h1>
+<h1 id="path-literal">path literal<a class="headerlink" href="#path-literal" title="Permanent link">&para;</a></h1>
                 
                   
                     
@@ -3081,7 +3205,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-12
+      Last update: 2021-07-13
     
   </small>
 </div>

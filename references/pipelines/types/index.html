@@ -3073,6 +3073,12 @@
 <p>A type system checks for type errors.
 PIE DSL uses a static type system, so type errors are found before compilation.
 The PIE DSL supports subtypes, generics and methods on types.</p>
+<h2 id="nullability">Nullability<a class="headerlink" href="#nullability" title="Permanent link">&para;</a></h2>
+<p>PIE DSL keeps explicit track of nullability, so an expression cannot be null unless <a href="#nullable-type">the type of the expression is nullable</a>.</p>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Fully document nullability.</p>
+</div>
 <h2 id="super-types-and-subtypes">Super types and subtypes<a class="headerlink" href="#super-types-and-subtypes" title="Permanent link">&para;</a></h2>
 <p>When a type <code>X</code> is a subtype of type <code>Y</code>, you can use an expression with type <code>X</code> wherever an expression with type <code>Y</code> is expected.
 When <code>X</code> is a subtype of <code>Y</code>, <code>Y</code> is the super type of <code>X</code>
@@ -3447,7 +3453,7 @@ Static methods of the class can be declared as <a href="../functions#foreign-jav
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-12
+      Last update: 2021-07-13
     
   </small>
 </div>
