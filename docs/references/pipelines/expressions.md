@@ -170,6 +170,18 @@ The value of a value declaration is simply the value of the expression.
 
 # Value reference
 
+Value references reference a declared value or parameter by name.
+The name must be declared beforehand in the current scope or an outer scope.
+The type and value of a value reference is the type and value of the referenced value.
+The syntax is `$VALID`, for example:
+```
+func incrementInefficiently(x: int) -> int = {
+    val y = 1;
+    val res = x + y; // reference parameter x and value y
+    res // reference value res
+}
+```
+
 
 # if
 # if-else
