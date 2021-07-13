@@ -71,24 +71,27 @@ It takes a [boolean](../types#bool) expression and returns the opposite boolean 
 Its syntax is `!$Exp`, for example `if (!exists file) fail "$file should exist`.
 
 
-# Compare for equality
+# Compare for (in)equality
 
-Compare two expressions for equality.
+Compare two expressions for equality or inequality.
 Two values are considered equal if they are both `null` or if the `equals` method in the backing Java class for the first value returns `true` when applied to the second value.
-Its syntax is `$Exp == $Exp`, for example `x == 0`
+Otherwise, they are considered in-equal.
+The syntax for equals is `$Exp == $Exp`, for example `x == null`.
+The syntax for in-equals is `$Exp != $Exp`, for example `x != null`.
 
+Expressions can only be compared if one is a non-strict subtype of the other.
+This provides protection against accidentally comparing two expressions that can never be equal.
 
-# Compare for inequality
-
-Compare two expressions for inequality.
-Two values are considered in-equal if exactly one of them is `null` or if the `equals` method in the backing Java class for the first value returns `false` when applied to the second value.
-Its syntax is `$Exp != $Exp`, for example `x != 0`
+!!! hint
+    Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both `null`.
+    The same goes for list types with the empty list `[]`.
+    In these cases, check for these specific values: `x == null && y == null`.
 
 
 # Logical or
 
 Logical or.
-Takes two boolean expressions and returns `true` if either of them is `true`.
+Takes two boolean expressions and returns `true` if either of them is `true` and `false` if both are `false`.
 This operator short-circuits if the first expression is `true`, in which case the second expression will not be evaluated.
 Its syntax is `$Exp || $Exp`, for example `exists file || default != null`.
 
@@ -96,7 +99,7 @@ Its syntax is `$Exp || $Exp`, for example `exists file || default != null`.
 # logical and
 
 Logical and.
-Takes two boolean expressions and returns `true` if both of them are `true`.
+Takes two boolean expressions and returns `true` if both of them are `true` and `false` if either of them is `false`.
 This operator short-circuits if the first expression is `false`, in which case the second expression will not be evaluated.
 Its syntax is `$Exp && $Exp`, for example `configFile != null && exists configFile`.
 
