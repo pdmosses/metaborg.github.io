@@ -81,7 +81,7 @@ Its syntax is `$Exp == $Exp`, for example `x == 0`
 # Compare for inequality
 
 Compare two expressions for inequality.
-Two values are considered inequal exactly one of them is `null` or if the `equals` method in the backing Java class for the first value returns `false` when applied to the second value.
+Two values are considered in-equal if exactly one of them is `null` or if the `equals` method in the backing Java class for the first value returns `false` when applied to the second value.
 Its syntax is `$Exp != $Exp`, for example `x != 0`
 
 
