@@ -3117,22 +3117,28 @@ Its syntax is <code>$Exp!</code>, for example <code>read file!</code>.</p>
 <p>Logical negation.
 It takes a <a href="../types#bool">boolean</a> expression and returns the opposite boolean value.
 Its syntax is <code>!$Exp</code>, for example <code>if (!exists file) fail "$file should exist</code>.</p>
-<h1 id="compare-for-equality">Compare for equality<a class="headerlink" href="#compare-for-equality" title="Permanent link">&para;</a></h1>
-<p>Compare two expressions for equality.
+<h1 id="compare-for-inequality">Compare for (in)equality<a class="headerlink" href="#compare-for-inequality" title="Permanent link">&para;</a></h1>
+<p>Compare two expressions for equality or inequality.
 Two values are considered equal if they are both <code>null</code> or if the <code>equals</code> method in the backing Java class for the first value returns <code>true</code> when applied to the second value.
-Its syntax is <code>$Exp == $Exp</code>, for example <code>x == 0</code></p>
-<h1 id="compare-for-inequality">Compare for inequality<a class="headerlink" href="#compare-for-inequality" title="Permanent link">&para;</a></h1>
-<p>Compare two expressions for inequality.
-Two values are considered inequal exactly one of them is <code>null</code> or if the <code>equals</code> method in the backing Java class for the first value returns <code>false</code> when applied to the second value.
-Its syntax is <code>$Exp != $Exp</code>, for example <code>x != 0</code></p>
+Otherwise, they are considered in-equal.
+The syntax for equals is <code>$Exp == $Exp</code>, for example <code>x == null</code>.
+The syntax for in-equals is <code>$Exp != $Exp</code>, for example <code>x != null</code>.</p>
+<p>Expressions can only be compared if one is a non-strict subtype of the other.
+This provides protection against accidentally comparing two expressions that can never be equal.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both <code>null</code>.
+The same goes for list types with the empty list <code>[]</code>.
+In these cases, check for these specific values: <code>x == null &amp;&amp; y == null</code>.</p>
+</div>
 <h1 id="logical-or">Logical or<a class="headerlink" href="#logical-or" title="Permanent link">&para;</a></h1>
 <p>Logical or.
-Takes two boolean expressions and returns <code>true</code> if either of them is <code>true</code>.
+Takes two boolean expressions and returns <code>true</code> if either of them is <code>true</code> and <code>false</code> if both are <code>false</code>.
 This operator short-circuits if the first expression is <code>true</code>, in which case the second expression will not be evaluated.
 Its syntax is <code>$Exp || $Exp</code>, for example <code>exists file || default != null</code>.</p>
 <h1 id="logical-and">logical and<a class="headerlink" href="#logical-and" title="Permanent link">&para;</a></h1>
 <p>Logical and.
-Takes two boolean expressions and returns <code>true</code> if both of them are <code>true</code>.
+Takes two boolean expressions and returns <code>true</code> if both of them are <code>true</code> and <code>false</code> if either of them is <code>false</code>.
 This operator short-circuits if the first expression is <code>false</code>, in which case the second expression will not be evaluated.
 Its syntax is <code>$Exp &amp;&amp; $Exp</code>, for example <code>configFile != null &amp;&amp; exists configFile</code>.</p>
 <h1 id="addition">Addition<a class="headerlink" href="#addition" title="Permanent link">&para;</a></h1>
@@ -3164,9 +3170,43 @@ This allows it to give a warning when concatenating an empty list: <code>[1, 2, 
   In that case, the element type of the resulting list is nullable as well.</li>
 </ul>
 <h1 id="value-declaration">Value declaration<a class="headerlink" href="#value-declaration" title="Permanent link">&para;</a></h1>
-<p>// single, tuple
-// type hints</p>
-<h1 id="value-references">Value References<a class="headerlink" href="#value-references" title="Permanent link">&para;</a></h1>
+<p>Value declarations declare one or more named values.
+Expressions that are evaluated afterwards in the same scope or an inner scope can use the declared values by <a href="#value-reference">referencing them</a>.
+For more information on values, see <a href="../functions#parameters-and-values">parameters and values</a>.</p>
+<p>A basic value declaration declares a name with a value: <code>val x = 9</code>.
+It is possible to give a type hint with the name: <code>val y: int? = 8</code>.
+When a type hint is given, the type of the expression must be assignable to the type of the type hint.
+The type of the declared value is the provided type from the type hint, or the type of the expression if there is no type hint.
+A value declaration can also do tuple destructuring and assign its values to multiple variables at once: <code>val (name: string, times: int*) = getPerformance(id)</code>.
+Each name in a tuple destructuring can have a type hint.
+Tuple destructuring cannot be nested, so the following will not parse: <code>val (a, (b, c)) = (1, (2, 3))</code>.</p>
+<details class="example"><summary>Example</summary><p>Some examples of value declarations
+<div class="highlight"><pre><span></span><code>val firstName = &quot;Bob&quot;; // simple value declaration
+val age: int = 27; // with type hint
+val size: (int, int) = (800, 400); // assign tuple to single value.
+val (width, height) = size; // tuple destructuring
+// tuple destructuring with type hints
+val (name: string, in: path, out: path) = (&quot;expressions&quot;, ./in/expressions.pie, ./out/expressions.java);
+// tuple destructuring with mixed type hints
+val (year, values: (string, bool)*) = (2020, []);
+</code></pre></div></p>
+</details>
+<p>Value declarations have the following syntax: <code>val $Binder = $Exp</code>, where the binder can be either a single binder <code>$Bind</code> or tuple binder <code>($Binds)</code>, and binds can be only a name <code>$VALID</code> or a name with a type hint <code>$VALID: Type</code>.</p>
+<p>The type of a value declaration is the type of the variable(s) that it declares.
+It uses the type hint if available and the expression type otherwise.
+Single declarations have that single type, tuple declarations return a tuple of all the types that they declare.
+The value of a value declaration is simply the value of the expression.</p>
+<h1 id="value-reference">Value reference<a class="headerlink" href="#value-reference" title="Permanent link">&para;</a></h1>
+<p>Value references reference a declared value or parameter by name.
+The name must be declared beforehand in the current scope or an outer scope.
+The type and value of a value reference is the type and value of the referenced value.
+The syntax is <code>$VALID</code>, for example:
+<div class="highlight"><pre><span></span><code>func incrementInefficiently(x: int) -&gt; int = {
+    val y = 1;
+    val res = x + y; // reference parameter x and value y
+    res // reference value res
+}
+</code></pre></div></p>
 <h1 id="if">if<a class="headerlink" href="#if" title="Permanent link">&para;</a></h1>
 <h1 id="if-else">if-else<a class="headerlink" href="#if-else" title="Permanent link">&para;</a></h1>
 <h1 id="listcomprehension">ListComprehension<a class="headerlink" href="#listcomprehension" title="Permanent link">&para;</a></h1>
@@ -3205,7 +3245,7 @@ This allows it to give a warning when concatenating an empty list: <code>[1, 2, 
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-13
+      Last update: 2021-07-14
     
   </small>
 </div>
