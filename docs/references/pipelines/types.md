@@ -8,6 +8,13 @@ A type system checks for type errors.
 PIE DSL uses a static type system, so type errors are found before compilation.
 The PIE DSL supports subtypes, generics and methods on types.
 
+## Nullability
+
+PIE DSL keeps explicit track of nullability, so an expression cannot be null unless [the type of the expression is nullable](#nullable-type).
+
+!!! todo
+    Fully document nullability.
+
 ## Super types and subtypes
 
 When a type `X` is a subtype of type `Y`, you can use an expression with type `X` wherever an expression with type `Y` is expected.
