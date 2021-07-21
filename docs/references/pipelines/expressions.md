@@ -187,7 +187,67 @@ func incrementInefficiently(x: int) -> int = {
 
 
 # if
+
+An if expression conditionally evaluates an expression.
+It takes two expressions.
+The first one is the condition and is of type [boolean](../types#bool).
+The second one is the body and can have any type.
+Its syntax is `if ($Exp) $Exp`, for example `if (text == null) fail "Could not read $file"`.
+If the condition evaluates to `true`, the body is evaluated, otherwise not.
+The type of an `if` expression is [the `unit` type](../types#unit).
+The condition and body are evaluated in their own scope, so value declarations in an `if` expression are not visible after the `if`.
+Because an if expression is evaluated in its own scope and always returns the same value, the only use for an `if` expression is if the body has side-effects.
+
 # if-else
+
+Conditionally evaluates one of two expressions.
+It takes three expressions.
+The first one is the condition and is of type [boolean](../types#bool).
+The second one is the true-branch and can have any type.
+The third one is the false-branch and can also have any type.
+Its syntax is `if ($Exp) $Exp else $Exp`, for example `if (name != null) name else default`.
+If the condition evaluates to `true`, the true-branch is evaluated, otherwise the false-branch is evaluated.
+The type of an if-else expression is the least upper bound of both branches.
+It is an error if the least upper bound of the two branches is [the top type](../types#top).
+The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.
+
+???+ example
+    Some examples of least upper bound for the branches.
+    ```
+    val cat1: Cat = getCat(1);
+    val cat2: Cat = getCat(2);
+    val mammal: Mammal = getMammal();
+    val animal: Animal = getAnimal();
+    val dog: Dog = getDog();
+    val fish: Fish = getFish();
+    val animal1: Animal = getAnimal(1);
+    val animal2: Animal = getAnimal(2);
+    val catBox1: Box<Cat> = box(cat1);
+    val catBox2: Box<Cat> = box(cat2);
+    val anyBox1: Box<_> = box(animal1);
+    val anyBox2: Box<_> = box(catBox2);
+
+    // same type
+    if (flag) "hello" else "world"  // type: string
+    if (flag) 0 else 10             // type: int
+    if (flag) cat1 else cat2        // type: Cat
+    if (flag) animal1 else animal2  // type: Animal
+    if (flag) catBox1 else catBox2  // type: Box<Cat>
+    if (flag) anyBox1 else anyBox2  // type: Box<_>
+    
+    // subtypes
+    if (flag) cat else mammal       // type: Mammal
+    if (flag) catBox else anyBox    // type: Box<_>
+    
+
+    // different types
+    if (flag) cat1 else dog         // type: Mammal
+    if (flag) dog else cat2         // type: Mammal
+    if (flag) cat2 else fish        // type: Animal
+    if (flag) "hello" else 2        // type: top type, error
+    ```
+
+
 # ListComprehension
 
 # Function calls
