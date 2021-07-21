@@ -3208,7 +3208,60 @@ The syntax is <code>$VALID</code>, for example:
 }
 </code></pre></div></p>
 <h1 id="if">if<a class="headerlink" href="#if" title="Permanent link">&para;</a></h1>
+<p>An if expression conditionally evaluates an expression.
+It takes two expressions.
+The first one is the condition and is of type <a href="../types#bool">boolean</a>.
+The second one is the body and can have any type.
+Its syntax is <code>if ($Exp) $Exp</code>, for example <code>if (text == null) fail "Could not read $file"</code>.
+If the condition evaluates to <code>true</code>, the body is evaluated, otherwise not.
+The type of an <code>if</code> expression is <a href="../types#unit">the <code>unit</code> type</a>.
+The condition and body are evaluated in their own scope, so value declarations in an <code>if</code> expression are not visible after the <code>if</code>.
+Because an if expression is evaluated in its own scope and always returns the same value, the only use for an <code>if</code> expression is if the body has side-effects.</p>
 <h1 id="if-else">if-else<a class="headerlink" href="#if-else" title="Permanent link">&para;</a></h1>
+<p>Conditionally evaluates one of two expressions.
+It takes three expressions.
+The first one is the condition and is of type <a href="../types#bool">boolean</a>.
+The second one is the true-branch and can have any type.
+The third one is the false-branch and can also have any type.
+Its syntax is <code>if ($Exp) $Exp else $Exp</code>, for example <code>if (name != null) name else default</code>.
+If the condition evaluates to <code>true</code>, the true-branch is evaluated, otherwise the false-branch is evaluated.
+The type of an if-else expression is the least upper bound of both branches.
+It is an error if the least upper bound of the two branches is <a href="../types#top">the top type</a>.
+The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.</p>
+<details class="example" open="open"><summary>Example</summary><p>Some examples of least upper bound for the branches.
+<div class="highlight"><pre><span></span><code>val cat1: Cat = getCat(1);
+val cat2: Cat = getCat(2);
+val mammal: Mammal = getMammal();
+val animal: Animal = getAnimal();
+val dog: Dog = getDog();
+val fish: Fish = getFish();
+val animal1: Animal = getAnimal(1);
+val animal2: Animal = getAnimal(2);
+val catBox1: Box&lt;Cat&gt; = box(cat1);
+val catBox2: Box&lt;Cat&gt; = box(cat2);
+val anyBox1: Box&lt;_&gt; = box(animal1);
+val anyBox2: Box&lt;_&gt; = box(catBox2);
+
+// same type
+if (flag) &quot;hello&quot; else &quot;world&quot;  // type: string
+if (flag) 0 else 10             // type: int
+if (flag) cat1 else cat2        // type: Cat
+if (flag) animal1 else animal2  // type: Animal
+if (flag) catBox1 else catBox2  // type: Box&lt;Cat&gt;
+if (flag) anyBox1 else anyBox2  // type: Box&lt;_&gt;
+
+// subtypes
+if (flag) cat else mammal       // type: Mammal
+if (flag) catBox else anyBox    // type: Box&lt;_&gt;
+
+
+// different types
+if (flag) cat1 else dog         // type: Mammal
+if (flag) dog else cat2         // type: Mammal
+if (flag) cat2 else fish        // type: Animal
+if (flag) &quot;hello&quot; else 2        // type: top type, error
+</code></pre></div></p>
+</details>
 <h1 id="listcomprehension">ListComprehension<a class="headerlink" href="#listcomprehension" title="Permanent link">&para;</a></h1>
 <h1 id="function-calls">Function calls<a class="headerlink" href="#function-calls" title="Permanent link">&para;</a></h1>
 <p>// can be qualified
@@ -3245,7 +3298,7 @@ The syntax is <code>$VALID</code>, for example:
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-14
+      Last update: 2021-07-21
     
   </small>
 </div>
