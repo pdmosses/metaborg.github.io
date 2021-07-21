@@ -3280,13 +3280,13 @@ for <code>"x"</code> is included in the eventual query answer.</p>
 <li><code>false</code>, which is equivalent to <code>{ _ :- false }</code>. This shorthand
   will include no declarations in the query answer.</li>
 <li><code>eq($Term)</code>, is equivalent to <code>{ x :- x == $Term }</code> and hence will include
-  all declarations that are equal to <code>$Term</code>.
-Syntactically, the query filter can be omitted entirely, or the data well-formedness
+  all declarations that are equal to <code>$Term</code>.</li>
+</ul>
+<p>Syntactically, the query filter can be omitted entirely, or the data well-formedness
 predicate can be omitted, even if a path filter is provided. By default, the
 path filter is <code>~0</code>, meaning that every path is considered valid, and the data
 well-formedness predicate is <code>true</code>, meaning that every datum will be returned
-in the query answer.</li>
-</ul>
+in the query answer.</p>
 <h2 id="shadowing">Shadowing<a class="headerlink" href="#shadowing" title="Permanent link">&para;</a></h2>
 <p>For many languages, name resolution involves dealing with shadowing correctly.
 In Statix queries, it is possible to encode shadowing policies using label orders
