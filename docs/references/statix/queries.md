@@ -133,6 +133,7 @@ There are three shorthands for common data well-formedness predicates:
   will include no declarations in the query answer.
 - `eq($Term)`, is equivalent to `{ x :- x == $Term }` and hence will include
   all declarations that are equal to `$Term`.
+
 Syntactically, the query filter can be omitted entirely, or the data well-formedness
 predicate can be omitted, even if a path filter is provided. By default, the
 path filter is `~0`, meaning that every path is considered valid, and the data
