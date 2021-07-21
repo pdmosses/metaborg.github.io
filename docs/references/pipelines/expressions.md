@@ -250,6 +250,22 @@ The condition and branches are evaluated in their own scope, so value declaratio
 
 # ListComprehension
 
+List comprehensions apply an expression to every element of a list and return a new list with the new elements.
+They are special syntax for mapping a list, which would not ordinarily be possible in the PIE DSL because there are no higher-order functions.
+They have the syntax `[$Exp | $Binder <- $Exp]`, for example `["Key: $key; value: $value" | (key, value) <- pairs]`
+The last expression is the input list and must have type `T*` for some `T`.
+The binder defines names for the elements.
+It can either be a single binder to bind the complete element, or a tuple binder if the element is a tuple, see [value declarations for more explanation](#value-declaration)
+The first expression can use the names defined by the binder.
+The type of that expression is some type `Q`.
+The type of the full list comprehension is a list of the type that was mapped to, i.e. `Q*`.
+
+??? info "Empty lists"
+    A list comprehension over an empty list simply returns a new empty list.
+    A list comprehension will give a warning if the input list is statically known to be empty.
+    List comprehensions over empty lists are compiled to an immediate empty list of the declared type because it is not known what the element type of the empty list is.
+
+
 # Function calls
 // can be qualified
 // type args
