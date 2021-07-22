@@ -47,7 +47,7 @@ These lists can be empty: `data Apple<> = $DataImpl`.
 This makes the term "generic" a bit meaningless, but `Apple` is still considered generic for the purposes of the semantics.
 That is to say, `Apple` is treated as a generic type that just happens to have zero generic parameters, in the same way that `Box` happens to have one generic parameter and `Foo<A, B, C>` happens to have three.
 
-!!! tip
+??? tip "Omitting type parameter and argument lists"
     Type parameter/argument list can sometimes be omitted.
     Parameter lists can be omitted if they are empty: `data Apple = $DataImpl`, `func notGeneric(string) -> unit = $FuncImpl`.
     Type argument lists can be omitted for empty lists and for calls to [the built-in `supplier` function](../expressions#create-supplier).
@@ -58,7 +58,7 @@ These can be used in methods of that type to parameterize the method.
 
 A function or method can also declare generic parameters to be used in that function or method.
 
-!!! note
+??? note "PIE does not derive bounds"
     Unlike Java, the PIE DSL does not derive bounds for datatypes based on super types.
     The following would be possible in Java but will not work in the PIE DSL:
     ```
@@ -86,7 +86,7 @@ For now, the only data types are `foreign java` datatypes, so methods follow Jav
 The PIE DSL has several built-in types.
 This section explains all of them.
 
-!!! note
+??? note "Datatype equality with equal Java class"
     PIE DSL does not consider types equivalent when their backing Java class is equal.
     This means that a built-in type and a custom datatype backed by the same class cannot be used interchangeably.
 
@@ -159,7 +159,7 @@ It cannot be specified as a type.
 The bottom type has no values, and as such an expression with bottom type will never return normally to the function it is defined in.
 It is the element type of empty lists, and in the future also of `return` and `fail` expressions.
 This type is not backed by any java class.
-!!! note
+???+ failure "Compiling bottom type"
     Code that has the bottom type will fail to compile.
     Remove the code that has bottom type to resolve this.
 
@@ -182,7 +182,7 @@ This means that `Apple*` is not a subtype of `Fruit*`.
 Lists do not have methods yet.
 Lists are backed by Java `java.util.ArrayList`.
 
-!!! info
+??? info "Empty lists"
     The PIE DSL type system keeps track of empty lists for implementation reasons.
     Because it is doing this anyway, it gives warnings when doing certain non-sensical things such as appending an empty list to another list or list comprehension over empty lists.
 
@@ -200,7 +200,7 @@ val (name: string, grades: int*) = pair;
 Tuples are backed by Java classes `mb.pie.TupleX`, where `X` is a number representing the amount of elements, e.g. `Tuple2` for a pair.
 This is because Java is not generic in the amount of generic elements.
 
-!!! attention
+???+ attention "Limits on tuple sizes"
     While the PIE DSL language does not specify a limit on the amount of elements in a tuple, the backing Java `TupleX` classes only go up to 10.
     If you run into this limit, use a foreign data type backed by a custom Java class instead.
 
@@ -321,5 +321,5 @@ These are declarations of the non-static methods of the class.
 Not all non-static methods of the class need to be declared here.
 Static methods of the class can be declared as [`foreign java` functions](../functions#foreign-java-functions) outside this data definition.
 
-!!! tip
+???+ tip "Separate your imports"
     Define foreign java datatypes in a separate module and import them into your main module to keep your main module cleaner.

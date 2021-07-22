@@ -82,7 +82,7 @@ The syntax for in-equals is `$Exp != $Exp`, for example `x != null`.
 Expressions can only be compared if one is a non-strict subtype of the other.
 This provides protection against accidentally comparing two expressions that can never be equal.
 
-!!! hint
+??? hint "Comparing `null` and empty lists"
     Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both `null`.
     The same goes for list types with the empty list `[]`.
     In these cases, check for these specific values: `x == null && y == null`.
@@ -113,12 +113,12 @@ The type of adding two values depends on their static types.
 Adding two [`int`s](../types#int) uses mathematical plus: `1 + 2 // result: 3`, and the result is an `int` as well.
 
 Adding any value to a [`string`](../types#string) converts the value to a `string` and then concatenates the strings, resulting in a `string`: `"The value is:"  + x`.
-??? tip
+??? tip "String interpolation"
     It might be clearer to use [string interpolation.](#string)
 
 Adding a `string` or a `path` to a relative `path` concatenates the values and results in a new `path`: `projectDir + ./src/test/resources/`
 Adding a `string` or a `path` to an absolute path results in a runtime error.
-??? tip
+??? tip "Path interpolation"
     It might be clearer to use [path interpolation.](#path)
 
 Finally, adding a type `T2` to a list with type `T1*` has two cases
@@ -126,9 +126,9 @@ Finally, adding a type `T2` to a list with type `T1*` has two cases
 - If `T2` is a list as well both lists will be concatenated.
   The element type of `T2` must be a subtype of `T1`.
 
-??? tip
+??? tip "Adding a list as an element"
     To add a list `list: T*` as an element to a list of lists `lists: T**`, wrap the list in another list: `lists + [list]`
-??? info
+??? info "Empty lists"
     The PIE DSL keeps track of empty lists statically.
     This allows it to give a warning when concatenating an empty list: `[1, 2, 3] + []` will give a warning.
 - All other cases will append the second item to the first list.
@@ -151,8 +151,7 @@ A value declaration can also do tuple destructuring and assign its values to mul
 Each name in a tuple destructuring can have a type hint.
 Tuple destructuring cannot be nested, so the following will not parse: `val (a, (b, c)) = (1, (2, 3))`.
 
-??? example
-    Some examples of value declarations
+??? example "Some examples of value declarations"
     ```
     val firstName = "Bob"; // simple value declaration
     val age: int = 27; // with type hint
@@ -211,8 +210,7 @@ The type of an if-else expression is the least upper bound of both branches.
 It is an error if the least upper bound of the two branches is [the top type](../types#top).
 The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.
 
-???+ example
-    Some examples of least upper bound for the branches.
+??? example "Some examples of the least upper bound of different types"
     ```
     val cat1: Cat = getCat(1);
     val cat2: Cat = getCat(2);
