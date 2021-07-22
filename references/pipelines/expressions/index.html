@@ -3125,12 +3125,10 @@ The syntax for equals is <code>$Exp == $Exp</code>, for example <code>x == null<
 The syntax for in-equals is <code>$Exp != $Exp</code>, for example <code>x != null</code>.</p>
 <p>Expressions can only be compared if one is a non-strict subtype of the other.
 This provides protection against accidentally comparing two expressions that can never be equal.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both <code>null</code>.
+<details class="hint"><summary>Comparing <code>null</code> and empty lists</summary><p>Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both <code>null</code>.
 The same goes for list types with the empty list <code>[]</code>.
 In these cases, check for these specific values: <code>x == null &amp;&amp; y == null</code>.</p>
-</div>
+</details>
 <h1 id="logical-or">Logical or<a class="headerlink" href="#logical-or" title="Permanent link">&para;</a></h1>
 <p>Logical or.
 Takes two boolean expressions and returns <code>true</code> if either of them is <code>true</code> and <code>false</code> if both are <code>false</code>.
@@ -3147,20 +3145,20 @@ Its syntax is <code>$Exp + $Exp</code>.</p>
 <p>The type of adding two values depends on their static types.
 Adding two <a href="../types#int"><code>int</code>s</a> uses mathematical plus: <code>1 + 2 // result: 3</code>, and the result is an <code>int</code> as well.</p>
 <p>Adding any value to a <a href="../types#string"><code>string</code></a> converts the value to a <code>string</code> and then concatenates the strings, resulting in a <code>string</code>: <code>"The value is:"  + x</code>.</p>
-<details class="tip"><summary>Tip</summary><p>It might be clearer to use <a href="#string">string interpolation.</a></p>
+<details class="tip"><summary>String interpolation</summary><p>It might be clearer to use <a href="#string">string interpolation.</a></p>
 </details>
 <p>Adding a <code>string</code> or a <code>path</code> to a relative <code>path</code> concatenates the values and results in a new <code>path</code>: <code>projectDir + ./src/test/resources/</code>
 Adding a <code>string</code> or a <code>path</code> to an absolute path results in a runtime error.</p>
-<details class="tip"><summary>Tip</summary><p>It might be clearer to use <a href="#path">path interpolation.</a></p>
+<details class="tip"><summary>Path interpolation</summary><p>It might be clearer to use <a href="#path">path interpolation.</a></p>
 </details>
 <p>Finally, adding a type <code>T2</code> to a list with type <code>T1*</code> has two cases</p>
 <ul>
 <li>If <code>T2</code> is a list as well both lists will be concatenated.
   The element type of <code>T2</code> must be a subtype of <code>T1</code>.</li>
 </ul>
-<details class="tip"><summary>Tip</summary><p>To add a list <code>list: T*</code> as an element to a list of lists <code>lists: T**</code>, wrap the list in another list: <code>lists + [list]</code></p>
+<details class="tip"><summary>Adding a list as an element</summary><p>To add a list <code>list: T*</code> as an element to a list of lists <code>lists: T**</code>, wrap the list in another list: <code>lists + [list]</code></p>
 </details>
-<details class="info"><summary>Info</summary><p>The PIE DSL keeps track of empty lists statically.
+<details class="info"><summary>Empty lists</summary><p>The PIE DSL keeps track of empty lists statically.
 This allows it to give a warning when concatenating an empty list: <code>[1, 2, 3] + []</code> will give a warning.</p>
 </details>
 <ul>
@@ -3180,8 +3178,7 @@ The type of the declared value is the provided type from the type hint, or the t
 A value declaration can also do tuple destructuring and assign its values to multiple variables at once: <code>val (name: string, times: int*) = getPerformance(id)</code>.
 Each name in a tuple destructuring can have a type hint.
 Tuple destructuring cannot be nested, so the following will not parse: <code>val (a, (b, c)) = (1, (2, 3))</code>.</p>
-<details class="example"><summary>Example</summary><p>Some examples of value declarations
-<div class="highlight"><pre><span></span><code>val firstName = &quot;Bob&quot;; // simple value declaration
+<details class="example"><summary>Some examples of value declarations</summary><div class="highlight"><pre><span></span><code>val firstName = &quot;Bob&quot;; // simple value declaration
 val age: int = 27; // with type hint
 val size: (int, int) = (800, 400); // assign tuple to single value.
 val (width, height) = size; // tuple destructuring
@@ -3189,7 +3186,7 @@ val (width, height) = size; // tuple destructuring
 val (name: string, in: path, out: path) = (&quot;expressions&quot;, ./in/expressions.pie, ./out/expressions.java);
 // tuple destructuring with mixed type hints
 val (year, values: (string, bool)*) = (2020, []);
-</code></pre></div></p>
+</code></pre></div>
 </details>
 <p>Value declarations have the following syntax: <code>val $Binder = $Exp</code>, where the binder can be either a single binder <code>$Bind</code> or tuple binder <code>($Binds)</code>, and binds can be only a name <code>$VALID</code> or a name with a type hint <code>$VALID: Type</code>.</p>
 <p>The type of a value declaration is the type of the variable(s) that it declares.
@@ -3228,8 +3225,7 @@ If the condition evaluates to <code>true</code>, the true-branch is evaluated, o
 The type of an if-else expression is the least upper bound of both branches.
 It is an error if the least upper bound of the two branches is <a href="../types#top">the top type</a>.
 The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.</p>
-<details class="example" open="open"><summary>Example</summary><p>Some examples of least upper bound for the branches.
-<div class="highlight"><pre><span></span><code>val cat1: Cat = getCat(1);
+<details class="example"><summary>Some examples of the least upper bound of different types</summary><div class="highlight"><pre><span></span><code>val cat1: Cat = getCat(1);
 val cat2: Cat = getCat(2);
 val mammal: Mammal = getMammal();
 val animal: Animal = getAnimal();
@@ -3260,9 +3256,22 @@ if (flag) cat1 else dog         // type: Mammal
 if (flag) dog else cat2         // type: Mammal
 if (flag) cat2 else fish        // type: Animal
 if (flag) &quot;hello&quot; else 2        // type: top type, error
-</code></pre></div></p>
+</code></pre></div>
 </details>
 <h1 id="listcomprehension">ListComprehension<a class="headerlink" href="#listcomprehension" title="Permanent link">&para;</a></h1>
+<p>List comprehensions apply an expression to every element of a list and return a new list with the new elements.
+They are special syntax for mapping a list, which would not ordinarily be possible in the PIE DSL because there are no higher-order functions.
+They have the syntax <code>[$Exp | $Binder &lt;- $Exp]</code>, for example <code>["Key: $key; value: $value" | (key, value) &lt;- pairs]</code>
+The last expression is the input list and must have type <code>T*</code> for some <code>T</code>.
+The binder defines names for the elements.
+It can either be a single binder to bind the complete element, or a tuple binder if the element is a tuple, see <a href="#value-declaration">value declarations for more explanation</a>
+The first expression can use the names defined by the binder.
+The type of that expression is some type <code>Q</code>.
+The type of the full list comprehension is a list of the type that was mapped to, i.e. <code>Q*</code>.</p>
+<details class="info"><summary>Empty lists</summary><p>A list comprehension over an empty list simply returns a new empty list.
+A list comprehension will give a warning if the input list is statically known to be empty.
+List comprehensions over empty lists are compiled to an immediate empty list of the declared type because it is not known what the element type of the empty list is.</p>
+</details>
 <h1 id="function-calls">Function calls<a class="headerlink" href="#function-calls" title="Permanent link">&para;</a></h1>
 <p>// can be qualified
 // type args</p>
@@ -3298,7 +3307,7 @@ if (flag) &quot;hello&quot; else 2        // type: top type, error
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-21
+      Last update: 2021-07-22
     
   </small>
 </div>
