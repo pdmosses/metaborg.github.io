@@ -267,7 +267,7 @@ The type of the full list comprehension is a list of the type that was mapped to
 # Function calls
 
 Function calls [invoke a declared function](../functions#function-invocations).
-They have the syntax `[ModuleList][FUNCID][TypeArgs]([Exps])`, for example `stdLib:okResult<string>("Hello world!")`.
+They have the syntax `[$ModuleList][$FUNCID][$TypeArgs]([$Exps])`, for example `stdLib:okResult<string>("Hello world!")`.
 The second element is the [function name](../functions#name).
 This function name can either be qualified or left unqualified by the module list.
 If it is unqualified, the function name must be defined in the current module or be imported with a [function import](../modules#function-imports).
@@ -284,6 +284,7 @@ The type of a call is the type of the declared function, where generic parameter
     func test() -> unit = {
         id<string>("Hello world!"); // type is string
         id<int>(42);                // type is int
+        unit
     }
     ```
 
