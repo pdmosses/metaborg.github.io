@@ -265,8 +265,46 @@ The type of the full list comprehension is a list of the type that was mapped to
 
 
 # Function calls
-// can be qualified
-// type args
+
+Function calls [invoke a declared function](../functions#function-invocations).
+They have the syntax `[ModuleList][FUNCID][TypeArgs]([Exps])`, for example `stdLib:okResult<string>("Hello world!")`.
+The second element is the [function name](../functions#name).
+This function name can either be qualified or left unqualified by the module list.
+If it is unqualified, the function name must be defined in the current module or be imported with a [function import](../modules#function-imports).
+If it is qualified, [the function is looked up in that module](../modules#qualified-calls).
+The number of type arguments must match the number of [type parameters on the function declaration](../functions#type-parameters), and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the function.
+They must match the number of parameters that the function declared and they must be subtypes of the parameters.
+
+The type of a call is the type of the declared function, where generic parameters are replaced with their corresponding generic arguments.
+
+??? example "Return type is a generic parameter"
+    ```PIE
+    func id<T>(param: T) -> T = param
+    func test() -> unit = {
+        id<string>("Hello world!"); // type is string
+        id<int>(42);                // type is int
+    }
+    ```
+
+??? note "Arguments can declare values"
+    [Value declarations](#value-declaration) in the arguments are legal and are visible after the call.
+    Doing this is bad practice in almost all cases.
+    Declare the value before the call instead.
+    For example:
+    ```
+    // declares the value `x` with value 9
+    // also passes 9 as argument to `test`
+    test(val x = 9);
+    x // x is visible after the call.
+    ```
+    Better way:
+    ```
+    val x = 9; // declare before call
+    test(x); // refer to declared value
+    x
+    ```
+
 # Method calls
 
 # create supplier

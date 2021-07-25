@@ -10,10 +10,22 @@ This section describes functions in the PIE DSL.
 !!! todo
     Write documentation
 
+# Name
+
+!!! todo
+    describe legal function names, functions must be unique within a module (including function imports)
+
 # Foreign java functions
 
+
+# Type parameters
 
 # Parameters and values
 
 !!! todo
     describe how values and parameters behave
+
+# Function invocations
+
+!!! todo
+    describe function invocations
