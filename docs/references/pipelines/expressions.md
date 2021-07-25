@@ -308,6 +308,60 @@ The type of a call is the type of the declared function, where type parameters a
 
 # Method calls
 
+Method calls [invoke](../functions#function-invocations) a [declared method](../types#methods-and-overriding).
+They have the syntax `$Exp.$FUNCID$TypeArgs($Exps)`, for example `file.replaceExtension("pp.pie")`.
+The first element is an arbitrary expression.
+The second element is the method name.
+This method is looked up on the type of the first expression.
+The number of type arguments must match the number of [type parameters on the method declaration](../functions#type-parameters), and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the method.
+They must match the number of parameters that the method declared and they must be subtypes of the parameters.
+
+The type of a method call is the type of the declared method, where type parameters are replaced with their corresponding type arguments.
+
+??? example "Return type is a generic parameter"
+    ```PIE
+    data Box<T> = foreign java org.example.methodCall.Box {
+        func get() -> T
+    }
+    func test(box1: Box<int>, box2: Box<bool>) -> unit = {
+        box1.get(); // type is int
+        box2.get(); // type is bool
+        unit
+    }
+    ```
+
+??? note "Expression and arguments can declare values"
+    [Value declarations](#value-declaration) in the expression or the arguments are legal and are visible after the call.
+    Declarations in the expression are also visible to the expressions.
+    Doing this is bad practice in almost all cases.
+    Declare the value before the call instead.
+    For example:
+    ```
+    // declares the value `name` and `msg`
+    // also passes 9 as argument to `test`
+    // Note: getName returns an stdLib:Result<string, _ : Exception>
+    (val name = getName()).unwrapOrDefault(
+      // `name` is visible inside the arguments
+      val msg = "Could not get name, exception: ${if (val ok = name.isOk())
+          "No error"
+        else
+          name.unwrapErr()
+        }"
+    );
+    (name, ok, msg); // `name`, `ok` and `message` are visible after the call.
+    ```
+    Better way:
+    ```
+    val name = getName();
+    val ok = name.isOk();
+    val msg = if (ok)
+      "Could not get name, exception: No error"
+    else
+      "Could not get name, exception: ${name.unwrapErr()}"
+    ```
+
+
 # create supplier
 # task supplier
 
