@@ -276,7 +276,7 @@ The number of type arguments must match the number of [type parameters on the fu
 The expressions are the arguments to the function.
 They must match the number of parameters that the function declared and they must be subtypes of the parameters.
 
-The type of a call is the type of the declared function, where generic parameters are replaced with their corresponding generic arguments.
+The type of a call is the type of the declared function, where type parameters are replaced with their corresponding type arguments.
 
 ??? example "Return type is a generic parameter"
     ```PIE
