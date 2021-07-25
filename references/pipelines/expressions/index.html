@@ -3273,9 +3273,86 @@ A list comprehension will give a warning if the input list is statically known t
 List comprehensions over empty lists are compiled to an immediate empty list of the declared type because it is not known what the element type of the empty list is.</p>
 </details>
 <h1 id="function-calls">Function calls<a class="headerlink" href="#function-calls" title="Permanent link">&para;</a></h1>
-<p>// can be qualified
-// type args</p>
+<p>Function calls <a href="../functions#function-invocations">invoke a declared function</a>.
+They have the syntax <code>$ModuleList$FUNCID$TypeArgs($Exps)</code>, for example <code>stdLib:okResult&lt;string&gt;("Hello world!")</code>.
+The second element is the <a href="../functions#name">function name</a>.
+This function name can either be qualified or left unqualified by the module list.
+If it is unqualified, the function name must be defined in the current module or be imported with a <a href="../modules#function-imports">function import</a>.
+If it is qualified, <a href="../modules#qualified-calls">the function is looked up in that module</a>.
+The number of type arguments must match the number of <a href="../functions#type-parameters">type parameters on the function declaration</a>, and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the function.
+They must match the number of parameters that the function declared and they must be subtypes of the parameters.</p>
+<p>The type of a call is the type of the declared function, where type parameters are replaced with their corresponding type arguments.</p>
+<details class="example"><summary>Return type is a generic parameter</summary><div class="highlight"><pre><span></span><code>func id&lt;T&gt;(param: T) -&gt; T = param
+func test() -&gt; unit = {
+    id&lt;string&gt;(&quot;Hello world!&quot;); // type is string
+    id&lt;int&gt;(42);                // type is int
+    unit
+}
+</code></pre></div>
+</details>
+<details class="note"><summary>Arguments can declare values</summary><p><a href="#value-declaration">Value declarations</a> in the arguments are legal and are visible after the call.
+Doing this is bad practice in almost all cases.
+Declare the value before the call instead.
+For example:
+<div class="highlight"><pre><span></span><code>// declares the value `x` with value 9
+// also passes 9 as argument to `test`
+test(val x = 9);
+x // x is visible after the call.
+</code></pre></div>
+Better way:
+<div class="highlight"><pre><span></span><code>val x = 9; // declare before call
+test(x); // refer to declared value
+x
+</code></pre></div></p>
+</details>
 <h1 id="method-calls">Method calls<a class="headerlink" href="#method-calls" title="Permanent link">&para;</a></h1>
+<p>Method calls <a href="../functions#function-invocations">invoke</a> a <a href="../types#methods-and-overriding">declared method</a>.
+They have the syntax <code>$Exp.$FUNCID$TypeArgs($Exps)</code>, for example <code>file.replaceExtension("pp.pie")</code>.
+The first element is an arbitrary expression.
+The second element is the method name.
+This method is looked up on the type of the first expression.
+The number of type arguments must match the number of <a href="../functions#type-parameters">type parameters on the method declaration</a>, and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the method.
+They must match the number of parameters that the method declared and they must be subtypes of the parameters.</p>
+<p>The type of a method call is the type of the declared method, where type parameters are replaced with their corresponding type arguments.</p>
+<details class="example"><summary>Return type is a generic parameter</summary><div class="highlight"><pre><span></span><code>data Box&lt;T&gt; = foreign java org.example.methodCall.Box {
+    func get() -&gt; T
+}
+func test(box1: Box&lt;int&gt;, box2: Box&lt;bool&gt;) -&gt; unit = {
+    box1.get(); // type is int
+    box2.get(); // type is bool
+    unit
+}
+</code></pre></div>
+</details>
+<details class="note"><summary>Expression and arguments can declare values</summary><p><a href="#value-declaration">Value declarations</a> in the expression or the arguments are legal and are visible after the call.
+Declarations in the expression are also visible to the expressions.
+Doing this is bad practice in almost all cases.
+Declare the value before the call instead.
+For example:
+<div class="highlight"><pre><span></span><code>// declares the value `name` and `msg`
+// also passes 9 as argument to `test`
+// Note: getName returns an stdLib:Result&lt;string, _ : Exception&gt;
+(val name = getName()).unwrapOrDefault(
+  // `name` is visible inside the arguments
+  val msg = &quot;Could not get name, exception: ${if (val ok = name.isOk())
+      &quot;No error&quot;
+    else
+      name.unwrapErr()
+    }&quot;
+);
+(name, ok, msg); // `name`, `ok` and `message` are visible after the call.
+</code></pre></div>
+Better way:
+<div class="highlight"><pre><span></span><code>val name = getName();
+val ok = name.isOk();
+val msg = if (ok)
+  &quot;Could not get name, exception: No error&quot;
+else
+  &quot;Could not get name, exception: ${name.unwrapErr()}&quot;
+</code></pre></div></p>
+</details>
 <h1 id="create-supplier">create supplier<a class="headerlink" href="#create-supplier" title="Permanent link">&para;</a></h1>
 <h1 id="task-supplier">task supplier<a class="headerlink" href="#task-supplier" title="Permanent link">&para;</a></h1>
 <p>Note: getting from a supplier</p>
@@ -3307,7 +3384,7 @@ List comprehensions over empty lists are compiled to an immediate empty list of 
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-22
+      Last update: 2021-07-25
     
   </small>
 </div>

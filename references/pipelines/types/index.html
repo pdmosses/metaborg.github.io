@@ -3333,9 +3333,10 @@ This is because Java is not generic in the amount of generic elements.</p>
 If you run into this limit, use a foreign data type backed by a custom Java class instead.</p>
 </details>
 <h2 id="supplier">supplier<a class="headerlink" href="#supplier" title="Permanent link">&para;</a></h2>
-<p><code>supplier&lt;X&gt;</code> represents a supplier of a value of type <code>X</code>.
-Suppliers can supply values with <code>someSupplier.get&lt;&gt;()</code>, either by already having the value, or by calling a computation to get the value.
-Their main use case is as input types for tasks.
+<p><code>supplier&lt;T&gt;</code> represents a supplier of a value of type <code>T</code>.
+Suppliers represent a value, either by <a href="../expressions#create-supplier">being created with a value</a> or by deferring a task that returns the value.
+Suppliers have a single method <code>get&lt;&gt;() -&gt; T</code>, which returns the value of the supplier, either by returning the value if it already existed or by calling the task that the supplier supplies.</p>
+<p>The main use case for suppliers is as input types for tasks.
 If the supplier is faster to check for consistency than the value it supplies, the runtime performance is improved.
 As an example, consider
 <div class="highlight"><pre><span></span><code>func readFile() -&gt; string = read ./bundled.java
@@ -3439,7 +3440,7 @@ Static methods of the class can be declared as <a href="../functions#foreign-jav
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-22
+      Last update: 2021-07-25
     
   </small>
 </div>
