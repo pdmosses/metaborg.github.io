@@ -394,6 +394,21 @@ They must match the number of parameters that the function declared and they mus
 The type of a task supplier expression is `supplier<T>`, where `T` is the type of the declared function with the type parameters replaced with their corresponding type arguments.
 
 # requires
+
+A requires expression expresses that the current task depends on the given [path](../types#path).
+It has the syntax `requires $Exp $FilterPart? $StamperPart?`, for example `requires ./metaborg.yaml by hash` or `requires sampleDir with extension "sdf3"`.
+The expression is the path to depend on.
+The filter part is optional and adds a filter to filter out any paths that do not match the filter.
+It is described in [the section on common lexical elements](#filter-and-filterpart).
+The stamper part is also optional and provides a way to determine if a file or path is up-to-date.
+It is also described in [the section on common lexical elements](#stamper-stamperpart-and-stamperkind).
+
+The type and value of the expression is [unit](../types#unit).
+
+!!! todo "Exceptions?"
+    What happens if there is another task that provides the path? Does it quietly schedule that task before this one, does it throw an error? What if that other task runs after this task?
+
+
 # generates
 // with regex, pattern, patterns, extension, extensions
 // by modified, hash
