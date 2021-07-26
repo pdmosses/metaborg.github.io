@@ -446,3 +446,22 @@ The possible filters are listed in the table below.
 ??? note "Multiple filters"
     It is not allowed to use multiple filters.
     If you need multiple filters, encode your requirements in a regex filter instead.
+
+
+## Stamper, StamperPart and StamperKind
+
+A Stamper specifies how it is determined whether a path is up-to-date when executing incrementally.
+They are used by [requires](#requires) and [generates](#generates).
+They use the syntax `by $StamperKind`, where the stamper kind can be `hash` or `modified`.
+
+Stamping `by hash` will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
+Stamping `by modified` will check the modification time, and assumes it is up-to-date when that time is after the cached time.
+
+!!! note "Checking the full file contents"
+    There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
+
+!!! todo
+    Does it work for directories or only files?
+    Does the hash calculate md5 hash or another hash?
+    What happens when a file is generated `by modified` but required `by hash`?
+    What is the default modifier?
