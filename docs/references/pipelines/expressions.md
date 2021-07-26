@@ -423,11 +423,11 @@ The type of a task supplier expression is `supplier<T>`, where `T` is the type o
 This section describes common lexical elements that are used by multiple expressions.
 
 
-## FilterPart and Filter
+## Filter and FilterPart
 
 Filters are used expressions that read directories from the filesystem, so [requires](#requires), [list](#list) and [walk](#walk).
 They are used to keep certain paths and ignore all other paths based on the name and the extension.
-They have the syntax `with $Filter`.
+They have the syntax `with $Filter`, for example `with extension "str"` or `with patterns ["test-res", "result", "generated"]`
 The possible filters are listed in the table below.
 
 | name | expression | description |
