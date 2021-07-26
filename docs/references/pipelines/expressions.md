@@ -440,7 +440,8 @@ The possible filters are listed in the table below.
 
 !!! todo
     Find exact semantics for the filters.
-    See todos in the table.
+    Can they handle directories or do they only work on files?
+    See also todos in the table.
 
 ??? note "Multiple filters"
     It is not allowed to use multiple filters.
