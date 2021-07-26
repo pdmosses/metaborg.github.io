@@ -207,7 +207,7 @@ This is because Java is not generic in the amount of generic elements.
 
 ## supplier
 `supplier<T>` represents a supplier of a value of type `T`.
-Suppliers represent a value, either by [being created with a value](../expressions#create-supplier) or by deferring a task that returns the value.
+Suppliers represent a value, either by [being created with a value](../expressions#create-supplier) or by [deferring a task that returns the value](../expressions#task-supplier).
 Suppliers have a single method `get<>() -> T`, which returns the value of the supplier, either by returning the value if it already existed or by calling the task that the supplier supplies.
 
 The main use case for suppliers is as input types for tasks.

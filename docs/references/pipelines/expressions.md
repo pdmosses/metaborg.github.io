@@ -380,7 +380,18 @@ The type of a supplier creation expression is `supplier<T>`.
 
 # task supplier
 
-Note: getting from a supplier
+A task supplier expression creates a [supplier](../types#supplier) from a function.
+A task supplier expression does not execute the task yet, but instead defers it until the supplier's `get` method is called.
+It has the syntax `$ModuleList$FUNCID.supplier$TypeArgs($Exps)`, for example `lang:java:parse.supplier(file)`.
+The second element is the [function name](../functions#name).
+This function name can either be qualified or left unqualified by the module list.
+If it is unqualified, the function name must be defined in the current module or be imported with a [function import](../modules#function-imports).
+If it is qualified, [the function is looked up in that module](../modules#qualified-calls).
+The number of type arguments must match the number of [type parameters on the function declaration](../functions#type-parameters), and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the function.
+They must match the number of parameters that the function declared and they must be subtypes of the parameters.
+
+The type of a task supplier expression is `supplier<T>`, where `T` is the type of the declared function with the type parameters replaced with their corresponding type arguments.
 
 # requires
 # generates
