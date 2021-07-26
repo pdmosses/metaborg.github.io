@@ -417,3 +417,31 @@ The type of a task supplier expression is `supplier<T>`, where `T` is the type o
 # List literal
 # String
 # path literal
+
+# Common lexical elements
+
+This section describes common lexical elements that are used by multiple expressions.
+
+
+## FilterPart and Filter
+
+Filters are used expressions that read directories from the filesystem, so [requires](#requires), [list](#list) and [walk](#walk).
+They are used to keep certain paths and ignore all other paths based on the name and the extension.
+They have the syntax `with $Filter`.
+The possible filters are listed in the table below.
+
+| name | expression | description |
+| --- | --- | --- |
+| Regex | `regex $Exp` | Keeps files if they match the provided regular expression. The expression must be a [string](../types#string) representing a regular expression. Todo: Figure out what exactly it matches on (full path, name, includes extension?), regex flavor (Java, some other kind?) |
+| Pattern | `pattern $Exp` | Keeps files if the name contains the provided string. The expression must be a [string](../types#string). TODO: I assume that this only needs to match part of the name and does not include the extension |
+| Patterns | `patterns $Exp` | Keeps files if the name contains any of the provided strings. The expression must be a [list](../types#list) of [strings](../types#string). TODO: I assume that this only needs to match part of the name and does not include the extension |
+| Extension | `extension $Exp` | Keeps files if the file extension matches the provided string. The extension must match the string exactly, so `pie` is different from `PIE` and `PIE-simple`. The string should not include the period (`.`) separating the filename and the file extension. The expression must be a [string](../types#string). TODO: I assume that it needs to be an exact match. Can it match `pp.pie`? |
+| Extensions | `extensions $Exp` | Keeps files if the file extension matches any of the provided strings. The extension must match one of the strings exactly, so `pie` is different from `PIE` and `PIE-simple`. The strings should not include the period (`.`) separating the filename and the file extension. The expression must be a [list](../types#list) of [strings](../types#string). TODO: I assume that it needs to be an exact match. Can it match `pp.pie`? |
+
+!!! todo
+    Find exact semantics for the filters.
+    See todos in the table.
+
+??? note "Multiple filters"
+    It is not allowed to use multiple filters.
+    If you need multiple filters, encode your requirements in a regex filter instead.
