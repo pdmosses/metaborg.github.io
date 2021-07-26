@@ -363,6 +363,21 @@ The type of a method call is the type of the declared method, where type paramet
 
 
 # create supplier
+
+[A supplier](../types#supplier) for a value can be created with the `supplier` keyword.
+It has the syntax `supplier$TypeArgs($Exps)`, for example `supplier(47)` or `supplier<string>("Hello world!")`.
+The type arguments can either be omitted or must be a single type argument.
+The expressions are the arguments for the supplier.
+There should be only one argument, the value that the supplier will supply.
+The type `T` for the supplier is the type argument if it was provided, or the type of the argument otherwise.
+In case a type argument is provided, the argument should be a subtype of that type argument.
+The type of a supplier creation expression is `supplier<T>`.
+
+??? note
+    Creating a supplier is like a normal [function call](#function calls), but built into the language grammar for implementation reasons.
+    This is the only function call where the type argument is derived at the moment.
+
+
 # task supplier
 
 Note: getting from a supplier
