@@ -457,7 +457,7 @@ They use the syntax `by $StamperKind`, where the stamper kind can be `hash` or `
 Stamping `by hash` will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
 Stamping `by modified` will check the modification time, and assumes it is up-to-date when that time is after the cached time.
 
-!!! note "Checking the full file contents"
+??? note "Checking the full file contents"
     There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
     If you need this, write the task in Java or use [`read file`](#read).
 
