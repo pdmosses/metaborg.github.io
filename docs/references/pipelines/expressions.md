@@ -490,6 +490,13 @@ It returns a [boolean](../types#bool) indicating whether the file or path exists
 
 # read
 
+Reads the contents of the given file into a [string](../types#string).
+The syntax is `read $Exp`, for example `read pie.sdf3`.
+The expression is the file to be read, with type [path](../types#path).
+The file is read with the system default file encoding.
+It returns a string with the contents of the file.
+
+
 # Return
 # fail
 // not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library
