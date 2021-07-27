@@ -373,7 +373,7 @@ The type `T` for the supplier is the type argument if it was provided, or the ty
 In case a type argument is provided, the argument should be a subtype of that type argument.
 The type of a supplier creation expression is `supplier<T>`.
 
-??? note
+??? note "Supplier can be treated as a normal function"
     Creating a supplier is like a normal [function call](#function calls), but built into the language grammar for implementation reasons.
     This is the only function call where the type argument is derived at the moment.
 
