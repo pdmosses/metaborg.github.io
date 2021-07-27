@@ -481,6 +481,13 @@ A walk expression returns a [list](../types#list) of all the files in the given 
 
 
 # exists
+
+Checks if a file or folder exists.
+The syntax is `exists $Exp`, for example `exists ./config.json`.
+The expression is the [path](../types#path) for which it should be checked if it exists.
+It returns a [boolean](../types#bool) indicating whether the file or path exists.
+
+
 # read
 
 # Return
