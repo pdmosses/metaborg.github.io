@@ -3354,14 +3354,105 @@ else
 </code></pre></div></p>
 </details>
 <h1 id="create-supplier">create supplier<a class="headerlink" href="#create-supplier" title="Permanent link">&para;</a></h1>
+<p><a href="../types#supplier">A supplier</a> for a value can be created with the <code>supplier</code> keyword.
+It has the syntax <code>supplier$TypeArgs($Exps)</code>, for example <code>supplier(47)</code> or <code>supplier&lt;string&gt;("Hello world!")</code>.
+The type arguments can either be omitted or must be a single type argument.
+The expressions are the arguments for the supplier.
+There should be only one argument, the value that the supplier will supply.
+The type <code>T</code> for the supplier is the type argument if it was provided, or the type of the argument otherwise.
+In case a type argument is provided, the argument should be a subtype of that type argument.
+The type of a supplier creation expression is <code>supplier&lt;T&gt;</code>.</p>
+<details class="note"><summary>Note</summary><p>Creating a supplier is like a normal <a href="#function calls">function call</a>, but built into the language grammar for implementation reasons.
+This is the only function call where the type argument is derived at the moment.</p>
+</details>
 <h1 id="task-supplier">task supplier<a class="headerlink" href="#task-supplier" title="Permanent link">&para;</a></h1>
-<p>Note: getting from a supplier</p>
+<p>A task supplier expression creates a <a href="../types#supplier">supplier</a> from a function.
+A task supplier expression does not execute the task yet, but instead defers it until the supplier's <code>get</code> method is called.
+It has the syntax <code>$ModuleList$FUNCID.supplier$TypeArgs($Exps)</code>, for example <code>lang:java:parse.supplier(file)</code>.
+The second element is the <a href="../functions#name">function name</a>.
+This function name can either be qualified or left unqualified by the module list.
+If it is unqualified, the function name must be defined in the current module or be imported with a <a href="../modules#function-imports">function import</a>.
+If it is qualified, <a href="../modules#qualified-calls">the function is looked up in that module</a>.
+The number of type arguments must match the number of <a href="../functions#type-parameters">type parameters on the function declaration</a>, and the type arguments must be within bounds for the type parameters.
+The expressions are the arguments to the function.
+They must match the number of parameters that the function declared and they must be subtypes of the parameters.</p>
+<p>The type of a task supplier expression is <code>supplier&lt;T&gt;</code>, where <code>T</code> is the type of the declared function with the type parameters replaced with their corresponding type arguments.</p>
 <h1 id="requires">requires<a class="headerlink" href="#requires" title="Permanent link">&para;</a></h1>
+<p>A requires expression expresses that the current task depends on the given <a href="../types#path">path</a>.
+It has the syntax <code>requires $Exp $FilterPart? $StamperPart?</code>, for example <code>requires ./metaborg.yaml by hash</code> or <code>requires sampleDir with extension "sdf3"</code>.
+The expression is the path to depend on.
+The filter part is optional and adds a filter to filter out any paths that do not match the filter.
+It is described in <a href="#filter-and-filterpart">the section on common lexical elements</a>.
+The stamper part is also optional and provides a way to determine if a file or path is up-to-date.
+It is also described in <a href="#stamper-stamperpart-and-stamperkind">the section on common lexical elements</a>.</p>
+<p>The type and value of the expression is <a href="../types#unit">unit</a>.</p>
+<div class="admonition todo">
+<p class="admonition-title">Exceptions?</p>
+<p>What happens if there is another task that provides the path? Does it quietly schedule that task before this one, does it throw an error? What if that other task runs after this task?</p>
+</div>
 <h1 id="generates">generates<a class="headerlink" href="#generates" title="Permanent link">&para;</a></h1>
-<p>// with regex, pattern, patterns, extension, extensions
-// by modified, hash</p>
+<p>Marks the given <a href="../types#path">path</a> as provided by the current task.
+It has the syntax <code>generates $Exp $StamperPart?</code>, for example <code>generates file by hash</code>.
+The expression is the path to depend on.
+The stamper part is optional and provides a way to determine if a file or path is up-to-date.
+It is described in <a href="#stamper-stamperpart-and-stamperkind">the section on common lexical elements</a>.</p>
+<p>The type and value of this expression is <a href="../types#unit">unit</a>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Make file modifications before using this expression</p>
+<p>The contents or metadata of the file at the time that this expression is called may be cached and used for incrementality.
+Make all modifications to the file before using this expression.</p>
+</div>
+<div class="admonition todo">
+<p class="admonition-title">Exceptions?</p>
+<p>Can this mark a directory as provided or only a file?
+What happens when two tasks generate a file?
+What happens when this task declares it generates a file after another task has already used it?
+Can a task both require and provide a file?
+What happens if this task calls a task that provides a file and then this task also declares it generated that file?</p>
+</div>
 <h1 id="list">list<a class="headerlink" href="#list" title="Permanent link">&para;</a></h1>
+<p>Lists direct children of the given directory.
+To define a literal list value, see <a href="#list-literal">list literal</a>.
+List expressions have the syntax <code>list $Exp $FilterPart?</code>, for example <code>list getProjectRootDir() + ./examples with extension "pie"</code>.
+The expression must have type <a href="../types#path">path</a> and refer to an existing directory.
+The filter part is optional and adds a filter to filter out any paths that do not match the filter.
+It is described in <a href="#filter-and-filterpart">the section on common lexical elements</a>.</p>
+<p>A list expression returns a <a href="../types#list">list</a> of the direct children of the given directory, and its type is <code>path*</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Declaring a dependency on the directory</p>
+<p>You will likely need to declare a dependency on the directory using <a href="#requires">requires</a>.
+You may also need to declare dependencies on the individual files if you do not call a task which already does that.</p>
+</div>
+<details class="note"><summary>Recursive listing</summary><p>List only gets the direct children of the given directory.
+To recursively get all files and directories in a given directory, use <a href="#walk">walk</a>.</p>
+</details>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>What happens if the starting directory does not exist?
+What happens if it is not a directory?</p>
+</div>
 <h1 id="walk">walk<a class="headerlink" href="#walk" title="Permanent link">&para;</a></h1>
+<p>Recursively gets descendants of the given directory.
+Walk expressions have the syntax <code>walk $Exp $FilterPart?</code>, for example <code>walk getProjectRootDir() + ./src/test/java with extension "java"</code>.
+The expression must have type <a href="../types#path">path</a> and refer to an existing directory.
+The filter part is optional and adds a filter to filter out any files that do not match the filter.
+It is described in <a href="#filter-and-filterpart">the section on common lexical elements</a>.</p>
+<p>A walk expression returns a <a href="../types#list">list</a> of all the files in the given directory and its descendants, and its type is <code>path*</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Declaring a dependency on the directory</p>
+<p>You will likely need to declare a dependency on the directory and all subdirectories using <a href="#requires">requires</a>.
+You may also need to declare dependencies on the individual files if you do not call a task which already does that.</p>
+</div>
+<details class="note"><summary>Getting only the direct descendants</summary><p>Walk recursively gets all files in the given directory.
+To only get direct and directories in a given directory, use <a href="#list">list</a>.</p>
+</details>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>What happens if the starting directory does not exist?
+What happens if it is not a directory?
+Does the filter also filter directories or only files?
+Should recursive directories automatically be declared <a href="#require">required</a>?</p>
+</div>
 <h1 id="exists">exists<a class="headerlink" href="#exists" title="Permanent link">&para;</a></h1>
 <h1 id="read">read<a class="headerlink" href="#read" title="Permanent link">&para;</a></h1>
 <h1 id="return">Return<a class="headerlink" href="#return" title="Permanent link">&para;</a></h1>
@@ -3374,8 +3465,78 @@ else
 <h1 id="null">null<a class="headerlink" href="#null" title="Permanent link">&para;</a></h1>
 <h1 id="tuple-literal">Tuple literal<a class="headerlink" href="#tuple-literal" title="Permanent link">&para;</a></h1>
 <h1 id="list-literal">List literal<a class="headerlink" href="#list-literal" title="Permanent link">&para;</a></h1>
+<p>Define a literal list value.
+To list the children of a directory, see <a href="#list">list expressions</a>.</p>
 <h1 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h1>
 <h1 id="path-literal">path literal<a class="headerlink" href="#path-literal" title="Permanent link">&para;</a></h1>
+<h1 id="common-lexical-elements">Common lexical elements<a class="headerlink" href="#common-lexical-elements" title="Permanent link">&para;</a></h1>
+<p>This section describes common lexical elements that are used by multiple expressions.</p>
+<h2 id="filter-and-filterpart">Filter and FilterPart<a class="headerlink" href="#filter-and-filterpart" title="Permanent link">&para;</a></h2>
+<p>Filters are used expressions that read directories from the filesystem, so <a href="#requires">requires</a>, <a href="#list">list</a> and <a href="#walk">walk</a>.
+They are used to keep certain paths and ignore all other paths based on the name and the extension.
+They have the syntax <code>with $Filter</code>, for example <code>with extension "str"</code> or <code>with patterns ["test-res", "result", "generated"]</code>
+The possible filters are listed in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>expression</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regex</td>
+<td><code>regex $Exp</code></td>
+<td>Keeps files if they match the provided regular expression. The expression must be a <a href="../types#string">string</a> representing a regular expression. Todo: Figure out what exactly it matches on (full path, name, includes extension?), regex flavor (Java, some other kind?)</td>
+</tr>
+<tr>
+<td>Pattern</td>
+<td><code>pattern $Exp</code></td>
+<td>Keeps files if the name contains the provided string. The expression must be a <a href="../types#string">string</a>. TODO: I assume that this only needs to match part of the name and does not include the extension</td>
+</tr>
+<tr>
+<td>Patterns</td>
+<td><code>patterns $Exp</code></td>
+<td>Keeps files if the name contains any of the provided strings. The expression must be a <a href="../types#list">list</a> of <a href="../types#string">strings</a>. TODO: I assume that this only needs to match part of the name and does not include the extension</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>extension $Exp</code></td>
+<td>Keeps files if the file extension matches the provided string. The extension must match the string exactly, so <code>pie</code> is different from <code>PIE</code> and <code>PIE-simple</code>. The string should not include the period (<code>.</code>) separating the filename and the file extension. The expression must be a <a href="../types#string">string</a>. TODO: I assume that it needs to be an exact match. Can it match <code>pp.pie</code>?</td>
+</tr>
+<tr>
+<td>Extensions</td>
+<td><code>extensions $Exp</code></td>
+<td>Keeps files if the file extension matches any of the provided strings. The extension must match one of the strings exactly, so <code>pie</code> is different from <code>PIE</code> and <code>PIE-simple</code>. The strings should not include the period (<code>.</code>) separating the filename and the file extension. The expression must be a <a href="../types#list">list</a> of <a href="../types#string">strings</a>. TODO: I assume that it needs to be an exact match. Can it match <code>pp.pie</code>?</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Find exact semantics for the filters.
+Can they handle directories or do they only work on files?
+See also todos in the table.</p>
+</div>
+<details class="note"><summary>Multiple filters</summary><p>It is not allowed to use multiple filters.
+If you need multiple filters, encode your requirements in a regex filter instead.</p>
+</details>
+<h2 id="stamper-stamperpart-and-stamperkind">Stamper, StamperPart and StamperKind<a class="headerlink" href="#stamper-stamperpart-and-stamperkind" title="Permanent link">&para;</a></h2>
+<p>A Stamper specifies how it is determined whether a path is up-to-date when executing incrementally.
+They are used by <a href="#requires">requires</a> and <a href="#generates">generates</a>.
+They use the syntax <code>by $StamperKind</code>, where the stamper kind can be <code>hash</code> or <code>modified</code>.</p>
+<p>Stamping <code>by hash</code> will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
+Stamping <code>by modified</code> will check the modification time, and assumes it is up-to-date when that time is after the cached time.</p>
+<details class="note"><summary>Checking the full file contents</summary><p>There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
+If you need this, write the task in Java or use <a href="#read"><code>read file</code></a>.</p>
+</details>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>Does it work for directories or only files?
+Does the hash calculate md5 hash or another hash?
+What happens when a file is generated <code>by modified</code> but required <code>by hash</code>?
+What is the default modifier?</p>
+</div>
                 
                   
                     
@@ -3384,7 +3545,7 @@ else
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-25
+      Last update: 2021-07-27
     
   </small>
 </div>
