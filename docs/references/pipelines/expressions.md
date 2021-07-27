@@ -435,12 +435,12 @@ The type and value of this expression is [unit](../types#unit).
 
 Lists direct children of the given directory.
 To define a literal list value, see [list literal](#list-literal).
-List expression have the syntax `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
+List expressions have the syntax `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
 The expression must have type [path](../types#path) and refer to an existing directory.
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
 It is described in [the section on common lexical elements](#filter-and-filterpart).
 
-A list expression returns a [list](../types#list) of the children of the given directory, and its type is `path*`.
+A list expression returns a [list](../types#list) of the direct children of the given directory, and its type is `path*`.
 
 !!! tip "Declaring a dependency on the directory"
     You will likely need to declare a dependency on the directory using [requires](#requires).
@@ -456,6 +456,29 @@ A list expression returns a [list](../types#list) of the children of the given d
 
 
 # walk
+
+Recursively gets descendants of the given directory.
+Walk expressions have the syntax `walk $Exp $FilterPart?`, for example `walk getProjectRootDir() + ./src/test/java with extension "java"`.
+The expression must have type [path](../types#path) and refer to an existing directory.
+The filter part is optional and adds a filter to filter out any files that do not match the filter.
+It is described in [the section on common lexical elements](#filter-and-filterpart).
+
+A walk expression returns a [list](../types#list) of all the files in the given directory and its descendants, and its type is `path*`.
+
+!!! tip "Declaring a dependency on the directory"
+    You will likely need to declare a dependency on the directory and all subdirectories using [requires](#requires).
+    You may also need to declare dependencies on the individual files if you do not call a task which already does that.
+
+??? note "Getting only the direct descendants"
+    Walk recursively gets all files in the given directory.
+    To only get direct and directories in a given directory, use [list](#list).
+
+!!! todo
+    What happens if the starting directory does not exist?
+    What happens if it is not a directory?
+    Does the filter also filter directories or only files?
+    Should recursive directories automatically be declared [required](#require)?
+
 
 # exists
 # read
