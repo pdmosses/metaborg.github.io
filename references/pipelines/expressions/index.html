@@ -3362,7 +3362,7 @@ There should be only one argument, the value that the supplier will supply.
 The type <code>T</code> for the supplier is the type argument if it was provided, or the type of the argument otherwise.
 In case a type argument is provided, the argument should be a subtype of that type argument.
 The type of a supplier creation expression is <code>supplier&lt;T&gt;</code>.</p>
-<details class="note"><summary>Note</summary><p>Creating a supplier is like a normal <a href="#function calls">function call</a>, but built into the language grammar for implementation reasons.
+<details class="note"><summary>Supplier can be treated as a normal function</summary><p>Creating a supplier is like a normal <a href="#function calls">function call</a>, but built into the language grammar for implementation reasons.
 This is the only function call where the type argument is derived at the moment.</p>
 </details>
 <h1 id="task-supplier">task supplier<a class="headerlink" href="#task-supplier" title="Permanent link">&para;</a></h1>
@@ -3454,8 +3454,21 @@ Does the filter also filter directories or only files?
 Should recursive directories automatically be declared <a href="#require">required</a>?</p>
 </div>
 <h1 id="exists">exists<a class="headerlink" href="#exists" title="Permanent link">&para;</a></h1>
+<p>Checks if a file or folder exists.
+The syntax is <code>exists $Exp</code>, for example <code>exists ./config.json</code>.
+The expression is the <a href="../types#path">path</a> for which it should be checked if it exists.
+It returns a <a href="../types#bool">boolean</a> indicating whether the file or path exists.</p>
 <h1 id="read">read<a class="headerlink" href="#read" title="Permanent link">&para;</a></h1>
+<p>Reads the contents of the given file into a <a href="../types#string">string</a>.
+The syntax is <code>read $Exp</code>, for example <code>read pie.sdf3</code>.
+The expression is the file to be read, with type <a href="../types#path">path</a>.
+The file is read with the system default file encoding.
+It returns a string with the contents of the file.</p>
 <h1 id="return">Return<a class="headerlink" href="#return" title="Permanent link">&para;</a></h1>
+<p>Returns from the current function with the provided value.
+Its syntax is <code>return $Exp</code>, for example <code>return true</code> or <code>return errResult(createFileNotFoundException(file))</code>.
+The expression is evaluated and its value returned.
+The type of the expression should be a subtype of the declared <a href="../functions#return-type">return type of the current function</a>.</p>
 <h1 id="fail">fail<a class="headerlink" href="#fail" title="Permanent link">&para;</a></h1>
 <p>// not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library</p>
 <h1 id="unit-literal">Unit literal<a class="headerlink" href="#unit-literal" title="Permanent link">&para;</a></h1>
