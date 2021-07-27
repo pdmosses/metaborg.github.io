@@ -498,6 +498,13 @@ It returns a string with the contents of the file.
 
 
 # Return
+
+Returns from the current function with the provided value.
+Its syntax is `return $Exp`, for example `return true` or `return errResult(createFileNotFoundException(file))`.
+The expression is evaluated and its value returned.
+The type of the expression should be a subtype of the declared [return type of the current function](../functions#return-type).
+
+
 # fail
 // not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library
 

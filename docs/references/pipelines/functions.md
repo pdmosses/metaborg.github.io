@@ -25,6 +25,12 @@ This section describes functions in the PIE DSL.
 !!! todo
     describe how values and parameters behave
 
+# Return type
+
+!!! todo
+    describe the return value
+
+
 # Function invocations
 
 !!! todo
