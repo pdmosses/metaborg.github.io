@@ -434,7 +434,8 @@ The type and value of this expression is [unit](../types#unit).
 # list
 
 Lists direct children of the given directory.
-The syntax is `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
+To define a literal list value, see [list literal](#list-literal).
+List expression have the syntax `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
 The expression must have type [path](../types#path) and refer to an existing directory.
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
 It is described in [the section on common lexical elements](#filter-and-filterpart).
@@ -470,6 +471,11 @@ A list expression returns a [list](../types#list) of the children of the given d
 # null
 # Tuple literal
 # List literal
+
+Define a literal list value.
+To list the children of a directory, see [list expressions](#list).
+
+
 # String
 # path literal
 
