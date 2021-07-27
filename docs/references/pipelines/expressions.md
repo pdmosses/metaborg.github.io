@@ -432,6 +432,28 @@ The type and value of this expression is [unit](../types#unit).
 
 
 # list
+
+Lists direct children of the given directory.
+The syntax is `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
+The expression must have type [path](../types#path) and refer to an existing directory.
+The filter part is optional and adds a filter to filter out any paths that do not match the filter.
+It is described in [the section on common lexical elements](#filter-and-filterpart).
+
+A list expression returns a [list](../types#list) of the children of the given directory, and its type is `path*`.
+
+!!! tip "Declaring a dependency on the directory"
+    You will likely need to declare a dependency on the directory using [requires](#requires).
+    You may also need to declare dependencies on the individual files if you do not call a task which already does that.
+
+??? note "Recursive listing"
+    List only gets the direct children of the given directory.
+    To recursively get all files and directories in a given directory, use [walk](#walk).
+
+!!! todo
+    What happens if the starting directory does not exist?
+    What happens if it is not a directory?
+
+
 # walk
 
 # exists
