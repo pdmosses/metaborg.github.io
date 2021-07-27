@@ -410,8 +410,26 @@ The type and value of the expression is [unit](../types#unit).
 
 
 # generates
-// with regex, pattern, patterns, extension, extensions
-// by modified, hash
+
+Marks the given [path](../types#path) as provided by the current task.
+It has the syntax `generates $Exp $StamperPart?`, for example `generates file by hash`.
+The expression is the path to depend on.
+The stamper part is optional and provides a way to determine if a file or path is up-to-date.
+It is described in [the section on common lexical elements](#stamper-stamperpart-and-stamperkind).
+
+The type and value of this expression is [unit](../types#unit).
+
+!!! attention "Make file modifications before using this expression"
+    The contents or metadata of the file at the time that this expression is called may be cached and used for incrementality.
+    Make all modifications to the file before using this expression.
+
+!!! todo "Exceptions?"
+    Can this mark a directory as provided or only a file?
+    What happens when two tasks generate a file?
+    What happens when this task declares it generates a file after another task has already used it?
+    Can a task both require and provide a file?
+    What happens if this task calls a task that provides a file and then this task also declares it generated that file?
+
 
 # list
 # walk
