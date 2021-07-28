@@ -500,9 +500,15 @@ It returns a string with the contents of the file.
 # Return
 
 Returns from the current function with the provided value.
-Its syntax is `return $Exp`, for example `return true` or `return errResult(createFileNotFoundException(file))`.
+Its syntax is `return $Exp`, for example `return true` or `return errResult<FileNotFoundException>(createFileNotFoundException("could not find $file"))`.
 The expression is evaluated and its value returned.
 The type of the expression should be a subtype of the declared [return type of the current function](../functions#return-type).
+
+The type of a return expression is [unit](../types#unit).
+
+??? attention "Type may get changed to bottom type"
+    The type of a return expression may be changed to [the bottom type](../types#bottom) in the future.
+    This would allow using a return expression as a branch in an if-else expression.
 
 
 # fail
