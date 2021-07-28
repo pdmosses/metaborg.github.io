@@ -512,7 +512,22 @@ The type of a return expression is [unit](../types#unit).
 
 
 # fail
-// not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library
+
+Throws an `ExecException` with the provided `string` as message.
+This exits the function, any code after this expression is not evaluated.
+Its syntax is `fail $Exp`, for example `fail "Could not open $file, it does not exist"`
+The expression is the message for the exception and must be of type [string](../types#string).
+
+The type of a fail expression is [unit](../types#unit).
+
+??? attention "Type may get changed to bottom type"
+    The type of a fail expression may be changed to [the bottom type](../types#bottom) in the future.
+    This would allow using a fail expression as a branch in an if-else expression.
+
+??? tip "consider using `Result<T, E>`"
+    Fail throws an exception, which cannot be handled in the PIE DSL.
+    We recommend using `Result<T, E>` from the PIE standard library instead.
+
 
 # Unit literal
 # True
