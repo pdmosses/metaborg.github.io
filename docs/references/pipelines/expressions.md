@@ -319,6 +319,23 @@ They must match the number of parameters that the method declared and they must 
 
 The type of a method call is the type of the declared method, where type parameters are replaced with their corresponding type arguments.
 
+??? note "No methods on nullable types"
+    There are no methods defined on [nullable types](../types#nullable-types).
+    To access the methods of the inner type, [cast the expression to non-nullable](#make-non-nullable) first:
+    ```
+    val maybe: Result<string, _ : Exception> = null;
+    maybe.unwrap(); // error: Cannot call method on nullable type
+    maybe!.unwrap(); // type checks, but will throw a run time exception
+    
+    // Better: handle null value before casting
+    if (maybe == null) {
+        // handle null value here
+        "Cannot get value, result is null"
+    } else {
+        maybe!.unwrap()
+    }
+    ```
+
 ??? example "Return type is a generic parameter"
     ```PIE
     data Box<T> = foreign java org.example.methodCall.Box {
