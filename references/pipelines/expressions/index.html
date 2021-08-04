@@ -3316,6 +3316,21 @@ The number of type arguments must match the number of <a href="../functions#type
 The expressions are the arguments to the method.
 They must match the number of parameters that the method declared and they must be subtypes of the parameters.</p>
 <p>The type of a method call is the type of the declared method, where type parameters are replaced with their corresponding type arguments.</p>
+<details class="note"><summary>No methods on nullable types</summary><p>There are no methods defined on <a href="../types#nullable-types">nullable types</a>.
+To access the methods of the inner type, <a href="#make-non-nullable">cast the expression to non-nullable</a> first:
+<div class="highlight"><pre><span></span><code>val maybe: Result&lt;string, _ : Exception&gt; = null;
+maybe.unwrap(); // error: Cannot call method on nullable type
+maybe!.unwrap(); // type checks, but will throw a run time exception
+
+// Better: handle null value before casting
+if (maybe == null) {
+    // handle null value here
+    &quot;Cannot get value, result is null&quot;
+} else {
+    maybe!.unwrap()
+}
+</code></pre></div></p>
+</details>
 <details class="example"><summary>Return type is a generic parameter</summary><div class="highlight"><pre><span></span><code>data Box&lt;T&gt; = foreign java org.example.methodCall.Box {
     func get() -&gt; T
 }
@@ -3466,11 +3481,25 @@ The file is read with the system default file encoding.
 It returns a string with the contents of the file.</p>
 <h1 id="return">Return<a class="headerlink" href="#return" title="Permanent link">&para;</a></h1>
 <p>Returns from the current function with the provided value.
-Its syntax is <code>return $Exp</code>, for example <code>return true</code> or <code>return errResult(createFileNotFoundException(file))</code>.
+Its syntax is <code>return $Exp</code>, for example <code>return true</code> or <code>return errResult&lt;FileNotFoundException&gt;(createFileNotFoundException("could not find $file"))</code>.
 The expression is evaluated and its value returned.
 The type of the expression should be a subtype of the declared <a href="../functions#return-type">return type of the current function</a>.</p>
+<p>The type of a return expression is <a href="../types#unit">unit</a>.</p>
+<details class="attention"><summary>Type may get changed to bottom type</summary><p>The type of a return expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
+This would allow using a return expression as a branch in an if-else expression.</p>
+</details>
 <h1 id="fail">fail<a class="headerlink" href="#fail" title="Permanent link">&para;</a></h1>
-<p>// not recommended as it quits the entire pipeline, recommend to use Result<T, E> from the standard library</p>
+<p>Throws an <code>ExecException</code> with the provided <code>string</code> as message.
+This exits the function, any code after this expression is not evaluated.
+Its syntax is <code>fail $Exp</code>, for example <code>fail "Could not open $file, it does not exist"</code>
+The expression is the message for the exception and must be of type <a href="../types#string">string</a>.</p>
+<p>The type of a fail expression is <a href="../types#unit">unit</a>.</p>
+<details class="attention"><summary>Type may get changed to bottom type</summary><p>The type of a fail expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
+This would allow using a fail expression as a branch in an if-else expression.</p>
+</details>
+<details class="tip"><summary>consider using <code>Result&lt;T, E&gt;</code></summary><p>Fail throws an exception, which cannot be handled in the PIE DSL.
+We recommend using <code>Result&lt;T, E&gt;</code> from the PIE standard library instead.</p>
+</details>
 <h1 id="unit-literal">Unit literal<a class="headerlink" href="#unit-literal" title="Permanent link">&para;</a></h1>
 <h1 id="true">True<a class="headerlink" href="#true" title="Permanent link">&para;</a></h1>
 <h1 id="false">False<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
@@ -3558,7 +3587,7 @@ What is the default modifier?</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-07-27
+      Last update: 2021-08-04
     
   </small>
 </div>
