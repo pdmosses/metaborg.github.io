@@ -730,6 +730,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing-predicates" class="md-nav__link">
+    Testing Predicates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-minimal-examples" class="md-nav__link">
     Creating Minimal Examples
   </a>
@@ -737,8 +744,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-predicates" class="md-nav__link">
-    Testing Predicates
+  <a href="#creating-self-containted-tests-from-examples" class="md-nav__link">
+    Creating Self-Containted Tests from Examples
   </a>
   
 </li>
@@ -3194,6 +3201,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing-predicates" class="md-nav__link">
+    Testing Predicates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-minimal-examples" class="md-nav__link">
     Creating Minimal Examples
   </a>
@@ -3201,8 +3215,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-predicates" class="md-nav__link">
-    Testing Predicates
+  <a href="#creating-self-containted-tests-from-examples" class="md-nav__link">
+    Creating Self-Containted Tests from Examples
   </a>
   
 </li>
@@ -3481,22 +3495,6 @@ in figuring out the structure of the graph.</p>
 <a href="#inspecting-variables">Inspecting Variables</a> to verify the scope a query is
 executed in, or to show the scope that is created for a definition, and match
 those with what you see in the scope graph.</p>
-<h2 id="creating-minimal-examples">Creating Minimal Examples<a class="headerlink" href="#creating-minimal-examples" title="Permanent link">&para;</a></h2>
-<p>Creating a minimal example is one of the most useful things you can do when
-debugging. It helps you to get to the core of the problem, but it also benefits
-all of the other techniques we have discussed so far. Having a smaller example
-makes it easier to inspect the scope graph, makes it easier to inspect variables
-as there are fewer, and reduced the number of error messages to review.</p>
-<p>An example is a file, or set of files, in your langauge, where Statix does not
-behave as you expect. A minimal example is usually created by starting from a
-big example that exhibits the problem. Try to eliminate files and simplify the
-example program while keeping the unexpected behavior. The smaller the program
-and the fewer rules in your specification are used for this program, the easier
-it is to debug.</p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Step-by-step guide to isolate issues in an <code>stxtest</code>.</p>
-</div>
 <h2 id="testing-predicates">Testing Predicates<a class="headerlink" href="#testing-predicates" title="Permanent link">&para;</a></h2>
 <p>Sometimes creating a minimal example program in your language is not enough to
 fix a problem. In such cases writing Statix tests is a great way to test your
@@ -3547,6 +3545,75 @@ test (in a <code>rules</code> section), and try to create the smallest set of ru
 predicate arguments that still exhibit the problem you are debugging. A
 self-contained test is also very helpful when asking others for help, as it is much
 easier to review and run than having to setup and build a complete language project.</p>
+<h2 id="creating-minimal-examples">Creating Minimal Examples<a class="headerlink" href="#creating-minimal-examples" title="Permanent link">&para;</a></h2>
+<p>Creating a minimal example is one of the most useful things you can do when
+debugging. It helps you to get to the core of the problem, but it also benefits
+all of the other techniques we have discussed so far. Having a smaller example
+makes it easier to inspect the scope graph, makes it easier to inspect variables
+as there are fewer, and reduced the number of error messages to review.</p>
+<p>An example is a file, or a set of files, in your language, where Statix does not
+behave as you expect. A minimal example is usually created by starting from a
+big example that exhibits the problem. Try to eliminate files and simplify the
+example program while keeping the unexpected behavior. The smaller the program
+and the fewer rules in your specification are used for this program, the easier
+it is to debug.</p>
+<h2 id="creating-self-containted-tests-from-examples">Creating Self-Containted Tests from Examples<a class="headerlink" href="#creating-self-containted-tests-from-examples" title="Permanent link">&para;</a></h2>
+<p>While a small example in an example language is already helpful to debug Statix
+issues, a self-contained Statix test file is even more useful. The recommended
+approach to create a self-contained Statix test from an example is as follows:</p>
+<ol>
+<li>Create a test with all ASTs from the example</li>
+<li>Manually unfold user-defined constraints in the test.</li>
+<li>Copy imported definitions in the test file.</li>
+</ol>
+<p>These steps will now be discussed in more detail below</p>
+<p>First, create a Statix test file that mimics the example literally. Assuming
+that <code>AST ?</code> are placeholders for real ASTs (which can be obtained using the
+<code>Spoofax &gt; Analysis &gt; Show Pre-Analysis AST</code> menu option), such test files
+roughly look as follows:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s</span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nv">projectOk</span><span class="p">(</span><span class="nv">s</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="nv">N</span>&gt;<span class="p">)</span><span class="w"></span>
+
+<span class="k">imports</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">mylang</span>/<span class="nv">base</span><span class="w"></span>
+</code></pre></div>
+Before going on, first check whether this test still exhibits the issue at hand.</p>
+<p>Second, simplify this test by manually reducing its size. This step consists of
+repeated application of the following substeps:</p>
+<ol>
+<li>Discard irrelevant constraints</li>
+<li>Inline constraints</li>
+<li>Manually apply rules</li>
+</ol>
+<p>Constraints that do not have to do with the issue can sometimes be removed
+completely. A common example is the <code>projectOk</code> constraint, but also declaration
+name uniqueness checks and such can often just be omitted.</p>
+<p>In the second substep we try to reduce the number of constraint by simplification.
+Examples of simplification include inlining unification with variables (e.g.
+replacing <code class="highlight"><span class="p">{</span><span class="nv">T</span><span class="p">}</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"></span></code> with <code class="highlight"><span class="nv">subtype</span><span class="p">(</span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">INT</span><span class="p">())</span><span class="w"></span></code>),
+or solving deterministic queries (e.g. replacing <code class="highlight">!<span class="nv">var</span>[<span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span><span class="w"> </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="w"></span></code> with <code class="highlight"><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span><span class="w"></span></code>).</p>
+<p>The third substep entails choosing the correct rule for a user-defined constraint,
+and replacing the user-defined constraint with the properly applied body. For
+example, when the specification constains a rule <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">File</span><span class="p">(</span><span class="nv">imp</span><span class="p">,</span><span class="w"> </span><span class="nv">decls</span><span class="p">))</span><span class="w"></span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">imp</span><span class="p">),</span><span class="w"> </span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">decls</span><span class="p">)</span><span class="w"></span></code>, the <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span><span class="w"></span></code>
+constraint in the test above can be replaced with <code class="highlight"><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">IMPs</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span><span class="w"></span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">DECLS</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span><span class="w"></span></code>. Be aware to properly introduce new names for variables
+from the rule head. Additionally, it is required to update the imported modules
+when new user-defined constraints are introduced by application.</p>
+<div class="admonition warning important">
+<p class="admonition-title">Warning</p>
+<p>At each step, execute your test to verify whether it still exposes the issue.
+When it does not, you have either discarded a relevant constraint, or made a
+mistake when simplifying.</p>
+</div>
+<p>Try to apply these steps exhaustively, until only built-in constraints remain.</p>
+<p>Now that we have a minimal test case, the third step is to make it self-contained
+by removing imports. This just involved copying the relevant constraint declarations
+and rules in a <code>rules</code> section in the test, and removing the import.</p>
 <h2 id="some-common-problems">Some Common Problems<a class="headerlink" href="#some-common-problems" title="Permanent link">&para;</a></h2>
 <p><strong>1.</strong> Predicates fail with <code>amb(...)</code> terms as arguments. These terms indicate
 parsing ambiguities, which should be fixed in the grammar (SDF3) files.</p>
@@ -3869,7 +3936,7 @@ other shows a very similar variant that does not exhibit the problem.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-08-04
+      Last update: 2021-08-09
     
   </small>
 </div>
