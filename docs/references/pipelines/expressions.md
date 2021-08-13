@@ -547,9 +547,58 @@ The type of a fail expression is [unit](../types#unit).
 
 
 # Unit literal
+
+`unit` is a literal expression of the only value of the [unit type](../types#unit).
+
+
 # True
+
+`true` is the literal expression for one of the two values of the [boolean type](../types#boolean).
+
 # False
+
+`false` is the literal expression for one of the two values of the [boolean type](../types#boolean).
+
+
 # int literal
+
+Int literals are a literal value of the [int type](../types#int).
+Their syntax is `"-"? [0-9]+`, for example `0`, `1`, `2`, `-1`, `47` and `-30774`.
+That is an optional dash (unary minus, `-`), followed by some digits.
+This syntax is lexical, meaning that there cannot be any layout between the sign or digits.
+
+???+ attention "valid int values"
+    Int literals represent literal values of the int type.
+    As such, they must be valid values of the int type, i.e. in the range $-2^{31}$ to $2^{31}-1$, inclusive.
+    This is currently not enforced, and breaking this constraint will lead to Java compile errors after compiling the PIE code.
+
+    `-0` is allowed and equal to `0`.
+
+??? example "Examples"
+    ```
+    // Valid integer literals:
+    0
+    1
+    234
+    2349273
+    -4
+    -237894
+    -0 // same as 0
+    0010 // same as 10
+
+    // invalid integer literals
+    - 12 // not allowed to have a space between the minus and the digits. Unary minus is not supported.
+    1 024 // spaces between digits are not allowed
+    2,048 // commas between digits are not allowed
+    324.346 // periods between digits are not allowed. Floats do not exist in PIE, separators are not supported.
+    DEADBEEF // letters are not allowed
+    0b0101011110010 // binary notation is not supported
+    0x234e9617ab7 // hexadecimal notation is not supported
+    abd547 // this is not a hexadecimal value  but a value reference
+    ten // this is not an int literal but a value reference
+    ```
+
+
 # null
 # Tuple literal
 # List literal
