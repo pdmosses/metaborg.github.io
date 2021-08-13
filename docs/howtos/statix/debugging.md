@@ -286,25 +286,6 @@ executed in, or to show the scope that is created for a definition, and match
 those with what you see in the scope graph.
 
 
-## Creating Minimal Examples
-
-Creating a minimal example is one of the most useful things you can do when
-debugging. It helps you to get to the core of the problem, but it also benefits
-all of the other techniques we have discussed so far. Having a smaller example
-makes it easier to inspect the scope graph, makes it easier to inspect variables
-as there are fewer, and reduced the number of error messages to review.
-
-An example is a file, or set of files, in your langauge, where Statix does not
-behave as you expect. A minimal example is usually created by starting from a
-big example that exhibits the problem. Try to eliminate files and simplify the
-example program while keeping the unexpected behavior. The smaller the program
-and the fewer rules in your specification are used for this program, the easier
-it is to debug.
-
-!!! todo
-    Step-by-step guide to isolate issues in an `stxtest`.
-
-
 ## Testing Predicates
 
 Sometimes creating a minimal example program in your language is not enough to
@@ -364,6 +345,92 @@ test (in a `rules` section), and try to create the smallest set of rules and
 predicate arguments that still exhibit the problem you are debugging. A
 self-contained test is also very helpful when asking others for help, as it is much
 easier to review and run than having to setup and build a complete language project.
+
+
+## Creating Minimal Examples
+
+Creating a minimal example is one of the most useful things you can do when
+debugging. It helps you to get to the core of the problem, but it also benefits
+all of the other techniques we have discussed so far. Having a smaller example
+makes it easier to inspect the scope graph, makes it easier to inspect variables
+as there are fewer, and reduced the number of error messages to review.
+
+An example is a file, or a set of files, in your language, where Statix does not
+behave as you expect. A minimal example is usually created by starting from a
+big example that exhibits the problem. Try to eliminate files and simplify the
+example program while keeping the unexpected behavior. The smaller the program
+and the fewer rules in your specification are used for this program, the easier
+it is to debug.
+
+
+## Creating Self-Containted Tests from Examples
+
+While a small example in an example language is already helpful to debug Statix
+issues, a self-contained Statix test file is even more useful. The recommended
+approach to create a self-contained Statix test from an example is as follows:
+
+1. Create a test with all ASTs from the example
+2. Manually unfold user-defined constraints in the test.
+3. Copy imported definitions in the test file.
+
+These steps will now be discussed in more detail below
+
+First, create a Statix test file that mimics the example literally. Assuming
+that `AST ?` are placeholders for real ASTs (which can be obtained using the
+`Spoofax > Analysis > Show Pre-Analysis AST` menu option), such test files
+roughly look as follows:
+
+```statix
+resolve {s}
+  new s,
+  projectOk(s),
+  fileOk(s, <AST 1>),
+  fileOk(s, <AST 2>),
+  ...
+  fileOk(s, <AST N>)
+
+imports
+
+  mylang/base
+```
+Before going on, first check whether this test still exhibits the issue at hand.
+
+Second, simplify this test by manually reducing its size. This step consists of
+repeated application of the following substeps:
+
+1. Discard irrelevant constraints
+2. Inline constraints
+3. Manually apply rules
+
+Constraints that do not have to do with the issue can sometimes be removed
+completely. A common example is the `projectOk` constraint, but also declaration
+name uniqueness checks and such can often just be omitted.
+
+In the second substep we try to reduce the number of constraint by simplification.
+Examples of simplification include inlining unification with variables (e.g.
+replacing `#!statix {T} T == INT(), subtype(T, T)` with `#!statix subtype(INT(), INT())`),
+or solving deterministic queries (e.g. replacing `#!statix !var["x", INT()] in s,
+ query var ... in s |-> [(_, (_, T))]` with `#!statix T == INT()`).
+
+The third substep entails choosing the correct rule for a user-defined constraint,
+and replacing the user-defined constraint with the properly applied body. For
+example, when the specification constains a rule `#!statix fileOk(s, File(imp, decls))
+:- importsOk(s, imp), declsOk(decls)`, the `#!statix fileOk(s, <AST 1>)`
+constraint in the test above can be replaced with `#!statix importsOk(s, <IMPs 1>),
+declsOk(s, <DECLS 1>)`. Be aware to properly introduce new names for variables
+from the rule head. Additionally, it is required to update the imported modules
+when new user-defined constraints are introduced by application.
+
+!!! warning Important
+    At each step, execute your test to verify whether it still exposes the issue.
+    When it does not, you have either discarded a relevant constraint, or made a
+    mistake when simplifying.
+
+Try to apply these steps exhaustively, until only built-in constraints remain.
+
+Now that we have a minimal test case, the third step is to make it self-contained
+by removing imports. This just involved copying the relevant constraint declarations
+and rules in a `rules` section in the test, and removing the import.
 
 
 ## Some Common Problems
