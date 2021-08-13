@@ -3501,9 +3501,43 @@ This would allow using a fail expression as a branch in an if-else expression.</
 We recommend using <code>Result&lt;T, E&gt;</code> from the PIE standard library instead.</p>
 </details>
 <h1 id="unit-literal">Unit literal<a class="headerlink" href="#unit-literal" title="Permanent link">&para;</a></h1>
+<p><code>unit</code> is a literal expression of the only value of the <a href="../types#unit">unit type</a>.</p>
 <h1 id="true">True<a class="headerlink" href="#true" title="Permanent link">&para;</a></h1>
+<p><code>true</code> is the literal expression for one of the two values of the <a href="../types#boolean">boolean type</a>.</p>
 <h1 id="false">False<a class="headerlink" href="#false" title="Permanent link">&para;</a></h1>
+<p><code>false</code> is the literal expression for one of the two values of the <a href="../types#boolean">boolean type</a>.</p>
 <h1 id="int-literal">int literal<a class="headerlink" href="#int-literal" title="Permanent link">&para;</a></h1>
+<p>Int literals are a literal value of the <a href="../types#int">int type</a>.
+Their syntax is <code>"-"? [0-9]+</code>, for example <code>0</code>, <code>1</code>, <code>2</code>, <code>-1</code>, <code>47</code> and <code>-30774</code>.
+That is an optional dash (unary minus, <code>-</code>), followed by some digits.
+This syntax is lexical, meaning that there cannot be any layout between the sign or digits.</p>
+<details class="attention" open="open"><summary>valid int values</summary><p>Int literals represent literal values of the int type.
+As such, they must be valid values of the int type, i.e. in the range <span class="arithmatex">\(-2^{31}\)</span> to <span class="arithmatex">\(2^{31}-1\)</span>, inclusive.
+This is currently not enforced, and breaking this constraint will lead to Java compile errors after compiling the PIE code.</p>
+<p><code>-0</code> is allowed and equal to <code>0</code>.</p>
+</details>
+<details class="example"><summary>Examples</summary><div class="highlight"><pre><span></span><code>// Valid integer literals:
+0
+1
+234
+2349273
+-4
+-237894
+-0 // same as 0
+0010 // same as 10
+
+// invalid integer literals
+- 12 // not allowed to have a space between the minus and the digits. Unary minus is not supported.
+1 024 // spaces between digits are not allowed
+2,048 // commas between digits are not allowed
+324.346 // periods between digits are not allowed. Floats do not exist in PIE, separators are not supported.
+DEADBEEF // letters are not allowed
+0b0101011110010 // binary notation is not supported
+0x234e9617ab7 // hexadecimal notation is not supported
+abd547 // this is not a hexadecimal value  but a value reference
+ten // this is not an int literal but a value reference
+</code></pre></div>
+</details>
 <h1 id="null">null<a class="headerlink" href="#null" title="Permanent link">&para;</a></h1>
 <h1 id="tuple-literal">Tuple literal<a class="headerlink" href="#tuple-literal" title="Permanent link">&para;</a></h1>
 <h1 id="list-literal">List literal<a class="headerlink" href="#list-literal" title="Permanent link">&para;</a></h1>
@@ -3587,7 +3621,7 @@ What is the default modifier?</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-08-09
+      Last update: 2021-08-13
     
   </small>
 </div>
