@@ -600,7 +600,49 @@ This syntax is lexical, meaning that there cannot be any layout between the sign
 
 
 # null
+
+`null` is the value that is added by making a type [nullable](../types#nullable-types).
+It is also a value of the [top type](../types#top).
+
+
 # Tuple literal
+
+Tuple literals express literal values of the [tuple type](../types#tuples).
+Their syntax is `($Exps)`, for example `("scala", "VF_SCALA", walk (subjectScalaSrcDir + ./lib/scala.jar))`.
+The expressions are the elements of the tuple.
+There must be at least two elements.
+The type of a tuple literal is the tuple type of the types of the elements, so the literal `(1?, "a string", true)` has type `(int?, string, bool)`.
+
+??? note "Tuples with less than two elements"
+    It is not possible to express tuples with zero or a single element.
+    Zero element tuples cannot be expressed by design.
+    Their common use case as a [unit type](../types#unit) is covered by the [unit literal](#unit-literal) instead.
+    Single element tuples will be parsed as a [bracketed expression](#expressions) instead.
+
+??? tip "Tuple literals from subtype elements"
+    Tuple types cannot be assigned to each other in most cases, so the following is not possible:
+    ```
+    data Fruit = $DataImpl
+    data Apple : Fruit = $DataImpl
+    data Pear : Fruit = $DataImpl
+
+    func getApple() -> Apple = $FuncImpl
+    func getPear() -> Pear = $FuncImpl
+
+    // type (Apple, Pear) cannot be assigned to (Fruit, Fruit)
+    func example() -> (Fruit, Fruit) = (getApple(), getPear())
+    ```
+    
+    To create such a tuple, assign the elements explicitly to the correct types first:
+    ```
+    func example() -> (Fruit, Fruit) = {
+        val apple: Fruit = getApple();
+        val pear: Fruit = getPear();
+        (apple, pear)
+    }
+    ```
+
+
 # List literal
 
 Define a literal list value.
