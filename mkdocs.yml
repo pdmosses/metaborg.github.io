@@ -91,6 +91,9 @@ nav:
       - references/stratego/dynamic-rules.md
     - Testing:
       - references/testing/index.md
+      - references/testing/test-suites.md
+      - references/testing/test-expectations.md
+      - references/testing/running-tests.md
     - Editor Services:
       - references/editor-services/index.md
       - references/editor-services/esv.md
