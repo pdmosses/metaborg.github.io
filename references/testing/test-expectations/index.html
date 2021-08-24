@@ -1,0 +1,3518 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Spoofax language workbench">
+      
+      
+      
+        <meta name="author" content="Spoofax Team">
+      
+      
+        <link rel="canonical" href="https://www.spoofax.dev/references/testing/test-expectations/">
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Test Expectations - Spoofax</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=:300,400,400i,700%7CJetBrains+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"";--md-code-font-family:"JetBrains Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../assets/styles.css">
+    
+    
+      
+    
+    
+
+<!-- Determine title -->
+
+<!-- prettier-ignore -->
+
+
+
+
+
+
+<!-- Open graph meta tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Spoofax - Test Expectations" />
+<meta property="og:description" content="Spoofax language workbench" />
+<meta property="og:url" content="https://www.spoofax.dev/references/testing/test-expectations/" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1080" />
+<meta property="og:image:height" content="568" />
+
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="spoofax" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#test-expectations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../../.."
+      title="Spoofax"
+      class="md-header__button md-logo"
+      aria-label="Spoofax"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <a 
+            href="../../.."
+            title="Spoofax"
+            class="md-ellipsis"
+            aria-label="Spoofax"
+          >
+            Spoofax
+          </a>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Test Expectations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette -->
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input
+            class="md-option"
+            data-md-color-media="(prefers-color-scheme: light)"
+            data-md-color-scheme="spoofax"
+            data-md-color-primary=""
+            data-md-color-accent=""
+            
+              aria-label="Switch to dark mode"
+            
+            type="radio"
+            name="__palette"
+            id="__palette_1"
+          />
+          
+            <label
+              class="md-header__button md-icon"
+              title="Switch to dark mode"
+              for="__palette_2"
+              hidden
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input
+            class="md-option"
+            data-md-color-media="(prefers-color-scheme: dark)"
+            data-md-color-scheme="slate"
+            data-md-color-primary=""
+            data-md-color-accent=""
+            
+              aria-label="Switch to light mode"
+            
+            type="radio"
+            name="__palette"
+            id="__palette_2"
+          />
+          
+            <label
+              class="md-header__button md-icon"
+              title="Switch to light mode"
+              for="__palette_1"
+              hidden
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/metaborg/spoofax/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spoofax
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../howtos/" class="md-tabs__link">
+        How-Tos
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        References
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../background/" class="md-tabs__link">
+        Background
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../support/" class="md-tabs__link">
+        Support
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../release/stable/" class="md-tabs__link">
+        Releases
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Spoofax" class="md-nav__button md-logo" aria-label="Spoofax" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Spoofax
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/metaborg/spoofax/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spoofax
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Spoofax: The Language Designer's Workbench
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        How-Tos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="How-Tos" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How-Tos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/" class="md-nav__link">
+        How-To's
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Installation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/installation/install-eclipse-bundle/" class="md-nav__link">
+        Install the Eclipse with Spoofax Plugin Bundle
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/installation/install-eclipse-plugin-manually/" class="md-nav__link">
+        Install the Spoofax Eclipse Plugin Manually
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/installation/install-from-source/" class="md-nav__link">
+        Install Spoofax from Source
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Static Semantics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Static Semantics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Static Semantics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/statix/debugging/" class="md-nav__link">
+        Debugging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/statix/migrating-from-nabl2/" class="md-nav__link">
+        Migrating from NaBL2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/statix/migrating-to-concurrent-solver/" class="md-nav__link">
+        Migrating to the Concurrent Solver
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/generate-signature/" class="md-nav__link">
+        How to Generate a Stratego Signature
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/run-stratego-programs/" class="md-nav__link">
+        How to Run Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/generate-pretty-printer/" class="md-nav__link">
+        How to Generate a Pretty-Printer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/debug-stratego/" class="md-nav__link">
+        Debug Stratego Programs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/concrete-syntax/" class="md-nav__link">
+        Concrete Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/exchange-terms/" class="md-nav__link">
+        Exchange Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/stratego/inspect-terms/" class="md-nav__link">
+        Inspect Terms
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      <label class="md-nav__link" for="__nav_3_5">
+        Editor Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Editor Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/editor-services/rename-refactoring/" class="md-nav__link">
+        Add Rename Refactoring to an Existing Project
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      <label class="md-nav__link" for="__nav_3_6">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/" class="md-nav__link">
+        Spoofax Development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/requirements/" class="md-nav__link">
+        Requirements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/building/" class="md-nav__link">
+        Building
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/developing/" class="md-nav__link">
+        Developing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/releasing/" class="md-nav__link">
+        Releasing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howtos/development/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        References
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="References" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          References
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Configuration" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        Language Configuration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      <label class="md-nav__link" for="__nav_4_3">
+        Syntax
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Syntax" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Syntax
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/" class="md-nav__link">
+        SDF3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/symbols/" class="md-nav__link">
+        Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/productions/" class="md-nav__link">
+        Productions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/lexical-syntax/" class="md-nav__link">
+        Lexical Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/context-free-syntax/" class="md-nav__link">
+        Context-Free Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/kernel-syntax/" class="md-nav__link">
+        Kernel Syntax
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/start-symbols/" class="md-nav__link">
+        Start Symbols
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/templates/" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/disambiguation/" class="md-nav__link">
+        Disambiguation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/layout-sensitivity/" class="md-nav__link">
+        Layout Sensitivity
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/recovery/" class="md-nav__link">
+        Recovery
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syntax/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      <label class="md-nav__link" for="__nav_4_4">
+        Static Semantics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Static Semantics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Static Semantics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/" class="md-nav__link">
+        Statix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/concepts/" class="md-nav__link">
+        Language Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/basic-constraints/" class="md-nav__link">
+        Basic Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/rules/" class="md-nav__link">
+        Rules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/scope-graphs/" class="md-nav__link">
+        Scope Graph Constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/queries/" class="md-nav__link">
+        Queries
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/tests/" class="md-nav__link">
+        Tests
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statix/stratego-api/" class="md-nav__link">
+        Stratego API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      <label class="md-nav__link" for="__nav_4_5">
+        Data Flow Analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data Flow Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Data Flow Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/structure/" class="md-nav__link">
+        Structure
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/Stratego_API/" class="md-nav__link">
+        Stratego API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flowspec/references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      <label class="md-nav__link" for="__nav_4_6">
+        Transformation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/" class="md-nav__link">
+        Stratego
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/lexical/" class="md-nav__link">
+        Lexical
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/types/" class="md-nav__link">
+        Types
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/rewrite-rules/" class="md-nav__link">
+        Rewrite Rules
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/strategy-definitions/" class="md-nav__link">
+        Strategy Definitions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/strategy-combinators/" class="md-nav__link">
+        Strategy Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stratego/dynamic-rules/" class="md-nav__link">
+        Dynamic Rules
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" checked>
+      
+      <label class="md-nav__link" for="__nav_4_7">
+        Testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Testing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        SPT: Spoofax Testing Language
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-suites/" class="md-nav__link">
+        Test suites
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Test Expectations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Test Expectations
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parse-expectations" class="md-nav__link">
+    Parse Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-expectations" class="md-nav__link">
+    Analysis Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-message-expectations" class="md-nav__link">
+    Analysis Message Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-analysis-expectations" class="md-nav__link">
+    Name Analysis Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformation-expectations" class="md-nav__link">
+    Transformation Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-stratego-expectations" class="md-nav__link">
+    Run Stratego Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#origin-location-expectations" class="md-nav__link">
+    Origin Location Expectations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-tests/" class="md-nav__link">
+        Running SPT Tests
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      <label class="md-nav__link" for="__nav_4_8">
+        Editor Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Editor Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Editor Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/" class="md-nav__link">
+        Editor Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/esv/" class="md-nav__link">
+        ESV
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/analysis/" class="md-nav__link">
+        Analysis
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/file-extensions/" class="md-nav__link">
+        Language File Extensions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/hover/" class="md-nav__link">
+        Hover Tooltips
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/menus/" class="md-nav__link">
+        Action Menus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/on-save/" class="md-nav__link">
+        On-Save Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/outline/" class="md-nav__link">
+        Outline View
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/parsing/" class="md-nav__link">
+        Parsing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/reference-resolution/" class="md-nav__link">
+        Reference Resolution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/renaming/" class="md-nav__link">
+        Rename Refactoring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/stratego/" class="md-nav__link">
+        Stratego
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editor-services/syntax-highlighting/" class="md-nav__link">
+        Syntax Highlighting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      <label class="md-nav__link" for="__nav_4_9">
+        Pipelines
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pipelines" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/" class="md-nav__link">
+        Pipelines for Interactive Environments
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/modules/" class="md-nav__link">
+        Module system
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/types/" class="md-nav__link">
+        Types
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/generics/" class="md-nav__link">
+        Generics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/expressions/" class="md-nav__link">
+        Expressions
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Background
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Background" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Background
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/" class="md-nav__link">
+        Background
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Bibliography
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Bibliography" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Bibliography
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/bibliography/" class="md-nav__link">
+        Spoofax Bibliography
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/bibliography/sdf3/" class="md-nav__link">
+        An SDF3 Bibliography
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/bibliography/statix/" class="md-nav__link">
+        A Statix Bibliography
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/bibliography/stratego/" class="md-nav__link">
+        A Stratego Bibliography
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      <label class="md-nav__link" for="__nav_5_3">
+        Static Semantics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Static Semantics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Static Semantics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/statix/" class="md-nav__link">
+        Statix Background
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      <label class="md-nav__link" for="__nav_5_4">
+        Transformations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Transformations" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Transformations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/" class="md-nav__link">
+        Stratego
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_2" type="checkbox" id="__nav_5_4_2" >
+      
+      <label class="md-nav__link" for="__nav_5_4_2">
+        Strategic Rewriting
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Strategic Rewriting" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Strategic Rewriting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategic-rewriting/term-rewriting/" class="md-nav__link">
+        Term Rewriting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategic-rewriting/limitations-of-rewriting/" class="md-nav__link">
+        Limitations of Rewriting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategic-rewriting/traversal-with-rules/" class="md-nav__link">
+        Factoring out Traversal
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategic-rewriting/strategic-rewriting/" class="md-nav__link">
+        Strategic Rewriting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_3" type="checkbox" id="__nav_5_4_3" >
+      
+      <label class="md-nav__link" for="__nav_5_4_3">
+        Strategy Combinators
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Strategy Combinators" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Strategy Combinators
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategy-combinators/sequential/" class="md-nav__link">
+        Sequential Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategy-combinators/term/" class="md-nav__link">
+        Term Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategy-combinators/traversal/" class="md-nav__link">
+        Traversal Combinators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/stratego/strategy-combinators/type-unifying/" class="md-nav__link">
+        Type Unifying Traversal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      <label class="md-nav__link" for="__nav_5_5">
+        Documentation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Documentation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/pages/" class="md-nav__link">
+        Adding Pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/links/" class="md-nav__link">
+        Links
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/citations/" class="md-nav__link">
+        Citations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/structure/" class="md-nav__link">
+        Structure
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background/documentation/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Support" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../support/" class="md-nav__link">
+        Support
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../support/contributions/" class="md-nav__link">
+        Contributions
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Releases
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Releases" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Releases
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/stable/" class="md-nav__link">
+        Stable Releases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/develop/" class="md-nav__link">
+        Development Releases
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      <label class="md-nav__link" for="__nav_7_3">
+        Release Notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release Notes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Release Notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.16/" class="md-nav__link">
+        Spoofax 2.5.16 (04-06-2021)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.15/" class="md-nav__link">
+        Spoofax 2.5.15 (11-05-2021)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.14/" class="md-nav__link">
+        Spoofax 2.5.14 (16-12-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.13/" class="md-nav__link">
+        Spoofax 2.5.13 (20-11-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.12/" class="md-nav__link">
+        Spoofax 2.5.12 (08-10-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.11/" class="md-nav__link">
+        Spoofax 2.5.11 (17-07-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.10/" class="md-nav__link">
+        Spoofax 2.5.10 (07-07-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.9/" class="md-nav__link">
+        Spoofax 2.5.9 (08-05-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.8/" class="md-nav__link">
+        Spoofax 2.5.8 (28-04-2020)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.7/" class="md-nav__link">
+        Spoofax 2.5.7 (26-06-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.6/" class="md-nav__link">
+        Spoofax 2.5.6 (24-05-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.5/" class="md-nav__link">
+        Spoofax 2.5.5 (23-05-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.4/" class="md-nav__link">
+        Spoofax 2.5.4 (08-05-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.3/" class="md-nav__link">
+        Spoofax 2.5.3 (02-05-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.2/" class="md-nav__link">
+        Spoofax 2.5.2 (12-03-2019)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.1/" class="md-nav__link">
+        Spoofax 2.5.1 (02-10-2018)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.5.0/" class="md-nav__link">
+        Spoofax 2.5.0 (11-09-2018)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.4.1/" class="md-nav__link">
+        Spoofax 2.4.1 (29-01-2018)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.4.0/" class="md-nav__link">
+        Spoofax 2.4.0 (09-01-2018)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.3.0/" class="md-nav__link">
+        Spoofax 2.3.0 (29-09-2017)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.2.1/" class="md-nav__link">
+        Spoofax 2.2.1 (04-05-2017)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.2.0/" class="md-nav__link">
+        Spoofax 2.2.0 (18-04-2017)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.1.0/" class="md-nav__link">
+        Spoofax 2.1.0 (10-01-2017)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.0.0/" class="md-nav__link">
+        Spoofax 2.0.0 (08-07-2016)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/2.0.0-beta1/" class="md-nav__link">
+        Spoofax 2.0.0-beta1 (07-04-2016)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.5.0/" class="md-nav__link">
+        Spoofax 1.5.0 (18-12-2015)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.4.0/" class="md-nav__link">
+        Spoofax 1.4.0 (06-03-2015)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.3.1/" class="md-nav__link">
+        Spoofax 1.3.1 (09-12-2014)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.3.0/" class="md-nav__link">
+        Spoofax 1.3.0 (12-11-2014)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.2.0/" class="md-nav__link">
+        Spoofax 1.2.0 (13-08-2014)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.1.0/" class="md-nav__link">
+        Spoofax 1.1.0 (25-03-2013)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.0.2/" class="md-nav__link">
+        Spoofax 1.0.2 (15-02-2012)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/1.0.0/" class="md-nav__link">
+        Spoofax 1.0.0 (28-12-2011)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/note/vnext/" class="md-nav__link">
+        Spoofax vNext
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
+      
+      <label class="md-nav__link" for="__nav_7_4">
+        Migration Guides
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Migration Guides" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          Migration Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/2.5.15/" class="md-nav__link">
+        Spoofax 2.5.15 Migration Guide
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/2.5.10/" class="md-nav__link">
+        Spoofax 2.5.10 Migration Guide
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/2.5.5/" class="md-nav__link">
+        Spoofax 2.5.5 Migration Guide
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/2.1.0/" class="md-nav__link">
+        Spoofax 2.1.0 Migration Guide
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/2.0.0/" class="md-nav__link">
+        Spoofax 2.0.0 Migration Guide
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/march2016_project_structure/" class="md-nav__link">
+        Directory structure migration (March 2016)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../release/migrate/vnext/" class="md-nav__link">
+        Spoofax vNext Migration Guide
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parse-expectations" class="md-nav__link">
+    Parse Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-expectations" class="md-nav__link">
+    Analysis Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-message-expectations" class="md-nav__link">
+    Analysis Message Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-analysis-expectations" class="md-nav__link">
+    Name Analysis Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformation-expectations" class="md-nav__link">
+    Transformation Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-stratego-expectations" class="md-nav__link">
+    Run Stratego Expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#origin-location-expectations" class="md-nav__link">
+    Origin Location Expectations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/metaborg/metaborg.github.io/edit/main/docs/references/testing/test-expectations.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="test-expectations">Test Expectations<a class="headerlink" href="#test-expectations" title="Permanent link">&para;</a></h1>
+<p>Test expectations allow you to specify which component of the language under test should be tested, and what the expected output of the test will be.</p>
+<p>We have already seen the <code>parse succeeds</code> expectation in action, and briefly mentioned that a test case without any test expectations is the same as a test case with a <code>parse succeeds</code> expectation.
+We will now list the syntax and semantics of all the currently supported test expectations:</p>
+<h2 id="parse-expectations">Parse Expectations<a class="headerlink" href="#parse-expectations" title="Permanent link">&para;</a></h2>
+<p>Parse expectations can be used to test the syntax of your language.
+They indicate that the input fragment of the test case should be parsed and allow you to specify what you expect the result to be.
+As parsing is the preliminary step to all other language components (e.g., analysis and transformations) they are treated differently from other expectations.
+If no parse expectation is present on a test case, even if another expectation (e.g. an analysis expectation) is present, a <code>parse succeeds</code> expectation will be added to the test case.</p>
+<dl>
+<dt><code>Expectation.ParseSucceeds = &lt;parse succeeds&gt;</code></dt>
+<dd>Parse the fragment and expect the parsing to succeed, with no parse errors and no ambiguities.</dd>
+<dt><code>Expectation.ParseFails = &lt;parse fails&gt;</code></dt>
+<dd>Parse the fragment and expect the parsing to fail, with at least one parse error.</dd>
+<dt><code>Expectation.ParseAmbiguous = &lt;parse ambiguous&gt;</code></dt>
+<dd>Parse the fragment and expect the parsing to succeed with one or more ambiguities.</dd>
+<dt><code>Expectation.ParseToAterm = &lt;parse to &lt;ATerm&gt;&gt;</code></dt>
+<dd>
+<p>Parse the fragment, expect parsing to succeed, and compare it to the given ATerm AST. When using test fixtures, the ATerm should only be the AST of the <em>fragment</em> of the test, not of the entire test fixture. Please note that if you want to specify a List in the <code>ATerm</code>, the square brackets of the list may interfere with the markers of a fragment. Therefore, to specify a list as the expected output, prepend it with the keyword <code>!ATerm</code>. For example:</p>
+<div class="highlight"><pre><span></span><code>parse to !ATerm [&quot;5&quot;]
+</code></pre></div>
+</dd>
+<dt><code>Expectation.ParseToFragment = &lt;parse to &lt;Language?&gt; &lt;OpenMarker&gt; &lt;Fragment&gt; &lt;CloseMarker&gt;]]&gt;</code></dt>
+<dd>
+<p>Parse the fragment, expect parsing to succeed, and compare it to the result of parsing the given <code>Fragment</code> with the given <code>Language</code>. When the <code>Language</code> is omitted the language under test will be used to parse the given fragment. When using test fixtures, only the test's input fragment will be combined with the test fixture. The fragment in this expectation (i.e., the output fragment) will <strong>not</strong> be combined with it, even if the language under test is used to parse it. To counteract this, the entire AST (including the nodes from the fixture) will be compared to the expectation's fragment's AST.</p>
+<p>This expectation can be useful to test disambiguations, or to test your language against a reference implementation. An example test case for disambiguation in MiniJava would be:
+<div class="highlight"><pre><span></span><code>module disambiguation
+language MiniJava
+start symbol Exp
+
+test plus is left associative [[
+  1 + 2 + 3
+]] parse to [[
+  (1 + 2) + 3
+]]
+</code></pre></div></p>
+</dd>
+</dl>
+<h2 id="analysis-expectations">Analysis Expectations<a class="headerlink" href="#analysis-expectations" title="Permanent link">&para;</a></h2>
+<p>Analysis expectations specify that the analyzer should be tested.
+We will first discuss the most generic analysis expectations: the message expectations.
+These expectations can be used to test the entire static semantic analysis process.
+Then we will look at test expectations that are more specific: the name analysis expectations.</p>
+<h2 id="analysis-message-expectations">Analysis Message Expectations<a class="headerlink" href="#analysis-message-expectations" title="Permanent link">&para;</a></h2>
+<p>Analysis message expectations will cause the input fragment to be parsed and analyzed (e.g., name and type analysis and static error checking).
+Finally, the resulting messages (i.e. errors, warnings, or notes) will be compared to the expectation.
+Note that messages of the expected type are <strong>not</strong> allowed to appear in the test <em>fixture</em>, if one is present.
+This is to prevent test from succeeding, when a message that would make it fail appears in an unexpected location.
+Only the messages within the test's <em>fragment</em> will be compared to the expectation.</p>
+<dl>
+<dt><code>Expectation.MessageExpectation = &lt;&lt;Operator?&gt; &lt;INT&gt; &lt;Severity&gt;&gt;</code></dt>
+<dd>These expectations will check if the number of messages of the given severity generated by the analysis matches the given number. Any other messages (of different severity or located in the test fixture) will be ignored by this expectation.</dd>
+</dl>
+<p>The optional operator can be used to losen the strictness of the check. For example the expectation <code>&gt; 2 errors</code> allows any number of errors bigger than 2. If no operator is specified, it will default to <code>=</code>. The allowed operators are <code>=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>.</p>
+<p>The allowed message severities are: <code>error</code> or <code>errors</code> for error messages, <code>warning</code> or <code>warnings</code> for warning messages, and <code>note</code> or <code>notes</code> for note messages.
+Please note that error messages in this expectation refer only to analysis errors (not parse errors).
+Also when you are testing for warnings, for example, any analysis messages of different severity (including errors) will not cause the test to fail.
+For example, the following test will succeed, regardless of the blatant type error, because we only test for warnings:</p>
+<div class="highlight"><pre><span></span><code>module test-for-warnings
+language MiniJava
+
+fixture [[
+  class Main {
+    public static void main(String[] args) {
+      System.out.println([[...]]);
+    }
+  }
+]]
+
+test no warnings [[1 + new A()]] 0 warnings
+</code></pre></div>
+<p>These analysis message expectations may be followed by the <code>at</code> keyword and a list of one or more comma separated references to selections of the test's fragment: <code>#&lt;INT&gt;, #&lt;INT&gt;, #&lt;INT&gt;, ...</code>.
+As this is the first time we encounter references to selections, let's look at an example:</p>
+<div class="highlight"><pre><span></span><code>module error-locations
+language MiniJava
+
+test duplicate classes [[
+  class Main {
+    public static void main(String[] args) {
+      System.out.println(42);
+    }
+  }
+  class [[A]]{}
+  class [[A]]{}
+]] 2 errors at #1, #2
+</code></pre></div>
+<p>This test will cause SPT to check if the specified messages appeared at the location of the given selection references.
+The selections are the classnames <code>A</code> that are selected by wrapping them in an open and close marker.
+Selections are referenced by the order in which they appear, starting at 1, from left to right and top to bottom.</p>
+<p>It is allowed to give less selection references than the number of expected messages.
+In this case SPT assumes you don't care about the location of the other messages. If the same selection is referenced more than once, multiple messages will be expected at that location. mFor example <code>3 errors at #1,#1</code> expects 3 errors, 2 of which should be at the location of selection number 1. The other error may be anywhere within the test fragment.</p>
+<dl>
+<dt><code>Expectation.MessageContent = &lt;&lt;Severity&gt; like &lt;STRING&gt;&gt;</code></dt>
+<dd>
+<p>This expectation specifies that there should be at least 1 message of the given severity that contains the given String. For example <code>error like "duplicate class name"</code> expects there to be at least 1 error in the fragment whose message contains <code>duplicate class name</code>.</p>
+<p>This expectation can also be followed by the <code>at</code> keyword, and a single selection reference, to indicate where you expect the message with the given content.</p>
+</dd>
+<dt><code>Expectation.AnalysisSucceeds = &lt;analysis succeeds&gt;</code></dt>
+<dd>This expectation is syntactic sugar for <code>0 errors</code>.</dd>
+<dt><code>Expectation.AnalysisFails = &lt;analysis fails&gt;</code></dt>
+<dd>This expectation is syntactic sugar for <code>&gt; 0 errors</code>.</dd>
+</dl>
+<h2 id="name-analysis-expectations">Name Analysis Expectations<a class="headerlink" href="#name-analysis-expectations" title="Permanent link">&para;</a></h2>
+<p>Name analysis expectations will check if use sites can be resolved and, if required, if they resolve to the correct definition.
+The fragment will be parsed and analyzed, but any number and severity of analysis messages are allowed.</p>
+<dl>
+<dt><code>Expectation.Resolve = &lt;resolve #&lt;INT&gt;&gt;</code></dt>
+<dd>Try to resolve the AST node at the given selection. Expect it to successfully resolve to any definition site.</dd>
+<dt><code>Expectation.ResolveTo = &lt;resolve #&lt;INT&gt; to #&lt;INT&gt;&gt;</code></dt>
+<dd>Try to resolve the AST node at the first given selection. Expect it to successfully resolve to the location marked by the second given selection.</dd>
+</dl>
+<p>Note that selections can only occur in the test's <em>fragment</em>, not in the test <em>fixture</em>.
+So name analysis can only be tested within a test's fragment.</p>
+<h2 id="transformation-expectations">Transformation Expectations<a class="headerlink" href="#transformation-expectations" title="Permanent link">&para;</a></h2>
+<p>A transformation transforms an AST to another AST.
+The idea within Spoofax is that a transformation has a name, and can be nested within a structure of menu's.
+Furthermore, it can have additional information about whether it transforms the raw AST (i.e. the parse result) or the analyzed AST (i.e. the result of desugaring and analysis).
+In languages created with Spoofax, transformations are Stratego strategies that are registered in the <code>Menus.esv</code> file.</p>
+<p>Transformation expectations will first look up a given transformation using the name under which it was registered.
+Note that, for Spoofax languages, this is <em>not</em> necessarily the name of the Stratego strategy, but the name under which it is registered in the <code>Menus.esv</code> file.
+If this name is not unique, the menu structure can be used to look up the proper transformation.</p>
+<p>Once the transformation is found, SPT will determine if it requires the raw AST, or the analyzed AST.
+If the raw AST is required, it will only parse the fragment.
+If the analyzed AST is required, it will also analyze the parse result.
+However, analysis is allowed to produce any number and severity of messages.
+Then, SPT will run the transformation on the entire AST, <strong>including</strong> the nodes from the test fixture, if there was one.</p>
+<dl>
+<dt><code>Expectation.Transform = &lt;transform &lt;STRING&gt;&gt;</code></dt>
+<dd>The <code>STRING</code> should be delimited by double quotes and contain the name of the transformation.
+If the name is not unique, the menu structure can be included as well, seperated by <code>-&gt;</code>.
+For example: <code>transform "Menu name -&gt; transformation name" to Some(Result())</code>.
+As long as the transformation returns a result, this expectation passes.</dd>
+<dt><code>Expectation.TransformToAterm = &lt;transform &lt;STRING&gt; to &lt;ATerm&gt;&gt;</code></dt>
+<dd>Same as <code>Transform</code>, but the result of the transformation is compared to the given AST.</dd>
+<dt><code>Expectation.TransformToFragment = &lt;transform &lt;STRING&gt; to &lt;Language?&gt; &lt;OpenMarker&gt; &lt;Fragment&gt; &lt;CloseMarker&gt;&gt;</code></dt>
+<dd>Does the same as <code>TransformToAterm</code>, but compares the result of the transformation to the AST of the given fragment. If the applied transformation required the raw AST, the given fragment will only be parsed with the given language. If no language is given, the language under test will be used. If the applied transformation required an analyzed AST, the given fragment will be parsed and analyzed.</dd>
+</dl>
+<h2 id="run-stratego-expectations">Run Stratego Expectations<a class="headerlink" href="#run-stratego-expectations" title="Permanent link">&para;</a></h2>
+<p>These test expectations are really only applicable to languages that use Stratego strategies in their implementation.
+They will parse and analyze the fragment and run a given Stratego strategy (with no arguments) and compare its output to the expectation.</p>
+<dl>
+<dt><code>Expectation.Run = &lt;run &lt;STRATEGY&gt;&gt;</code></dt>
+<dd>This expectation will lookup the given strategy name and run it on the AST node in the test's fragment. If the fragment contains multiple nodes (e.g., it's a list of Statements but some Statements were in the test fixture) the strategy will be run on each of these nodes. Either until it completes successfully, or until it failed on all these nodes. Note that it wil <strong>not</strong> be executed on the nodes in the test fixture, if there was one.</dd>
+<dt><code>Expectation.RunWithArgs = &lt;run &lt;STRATEGY&gt;(|&lt;TermArgs&gt;)&gt;</code></dt>
+<dd>
+<p>This expectation will run a strategy that expects term arguments. String literals, integer literals and selection references are permitted as term arguments.:</p>
+<div class="highlight"><pre><span></span><code>test rename variable without type [[
+  let
+    var msg := &quot;Hello World&quot;
+  in
+    print([[msg]])
+  end
+]] run rename(|#1, &quot;message&quot;, 0) to [[
+  let
+    var message := &quot;Hello World&quot;
+  in
+    print(message)
+  end
+]]
+</code></pre></div>
+</dd>
+<dt><code>Expectation.RunFails = &lt;run &lt;STRATEGY&gt; fails&gt;</code></dt>
+<dd>This expectation checks if the given strategy fails.</dd>
+<dt><code>Expectation.RunOn = &lt;run &lt;STRATEGY&gt; on #&lt;INT&gt;&gt;</code></dt>
+<dd>This expectation does the same as <code>Run</code>, except it runs the strategy on the nodes at the given selection instead of the nodes of the test's fragment.</dd>
+<dt><code>Expectation.RunToAterm = &lt;run &lt;STRATEGY&gt; to &lt;ATerm&gt;&gt;</code></dt>
+<dt><code>shorty</code></dt>
+<dt><code>Expectation.RunToAtermOn = &lt;run &lt;STRATEGY&gt; on #&lt;INT&gt; to &lt;ATerm&gt;&gt;</code></dt>
+<dd>These expectations are similar to the first two, but they require the result of running the strategy to match the given AST.</dd>
+<dt><code>Expectation.RunToFragment = &lt;run &lt;STRATEGY&gt; to &lt;Language?&gt; &lt;OpenMarker&gt; &lt;Fragment&gt; &lt;CloseMarker&gt;&gt;</code></dt>
+<dt><code>Expectation.RunToFragmentOn = &lt;run &lt;STRATEGY&gt; on #&lt;INT&gt; to &lt;Language?&gt; &lt;OpenMarker&gt; &lt;Fragment&gt; &lt;CloseMarker&gt;&gt;</code></dt>
+<dd>These expectations are similar to the first two, but they require the result of running the strategy to match the result of analyzing the given fragment with the given language. If no language is given, the language under test is used.</dd>
+</dl>
+<h2 id="origin-location-expectations">Origin Location Expectations<a class="headerlink" href="#origin-location-expectations" title="Permanent link">&para;</a></h2>
+<dl>
+<dt><code>Expectation.HasOrigins = &lt;has origin locations&gt;</code></dt>
+<dd>This expectation parses and analyzes the fragment. It then checks if all AST nodes in the test's fragment (except for Lists in Spoofax) have a source region (an origin) associated with them. It does <strong>not</strong> check the AST nodes in the test fixture.</dd>
+</dl>
+<p>When using Spoofax, there are some strategies that will break the origin information when used.
+This can lead to desugarings that create AST nodes without origin information, which can cause problems when trying to create messages at their location and with other services.
+This expectation can be used to check that your analysis is origin preserving.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: 2021-08-24
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../test-suites/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Test suites
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../running-tests/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Running SPT Tests
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2010-2021 Spoofax Team
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+        <script src="../../../assets/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
