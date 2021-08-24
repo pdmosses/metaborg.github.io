@@ -3462,8 +3462,12 @@ Can a task both require and provide a file?
 What happens if this task calls a task that provides a file and then this task also declares it generated that file?</p>
 </div>
 <h1 id="list">list<a class="headerlink" href="#list" title="Permanent link">&para;</a></h1>
+<div class="admonition info inline end">
+<p class="admonition-title">Defining list literals</p>
+<p>This section is about listing children of a directory with the <code>list</code> keyword.
+To define a literal list value, see <a href="#list-literal">list literal</a>.</p>
+</div>
 <p>Lists direct children of the given directory.
-To define a literal list value, see <a href="#list-literal">list literal</a>.
 List expressions have the syntax <code>list $Exp $FilterPart?</code>, for example <code>list getProjectRootDir() + ./examples with extension "pie"</code>.
 The expression must have type <a href="../types#path">path</a> and refer to an existing directory.
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
@@ -3608,8 +3612,21 @@ func example() -&gt; (Fruit, Fruit) = (getApple(), getPear())
 </code></pre></div></p>
 </details>
 <h1 id="list-literal">List literal<a class="headerlink" href="#list-literal" title="Permanent link">&para;</a></h1>
-<p>Define a literal list value.
-To list the children of a directory, see <a href="#list">list expressions</a>.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">List keyword</p>
+<p>This section is about defining list literals.
+For information on the <code>list</code> keyword, see <a href="#list">list expressions</a>, which list the children of a directory.</p>
+</div>
+<p>Define a literal <a href="../types#lists">list</a> value.
+The syntax is <code>[$Exps]</code>, for example <code>[1, 2, 3]</code>, or <code>[apple, banana, pear]</code>.
+The expressions are the elements of the list.
+The least upper bound of the types of the expressions is the list element type <code>T</code>.
+The type of the list literal is a list of <code>T</code>, i.e. <code>T*</code>.
+The list element type must not be the top type.</p>
+<details class="attention"><summary>Empty list literals may lead to Java errors</summary><p>The empty list literal <code>[]</code> has a special type for implementation reasons.
+It compiles to a list with the <a href="../types#bottom">bottom type</a>.
+As such, the generated Java code may have compile errors.</p>
+</details>
 <h1 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h1>
 <h1 id="path-literal">path literal<a class="headerlink" href="#path-literal" title="Permanent link">&para;</a></h1>
 <h1 id="common-lexical-elements">Common lexical elements<a class="headerlink" href="#common-lexical-elements" title="Permanent link">&para;</a></h1>
