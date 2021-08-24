@@ -665,7 +665,30 @@ The list element type must not be the top type.
     As such, the generated Java code may have compile errors.
 
 
-# String
+# String literal
+
+Define a literal value of type [string](../types#string).
+The syntax is `"StrParts"`, where `StrParts` are parts of the string.
+String parts are lexical, which means that there cannot be any layout between them (layout between string parts will be part of the string).
+The possible string parts are:
+
+
+- A sequence of characters excluding `$`, `"`, `\` and newlines, for example `A sequence of characters = 123!?`.
+This expresses that exact sequence of characters.
+- `$` followed by the name of a value or parameter, for example `$dir`.
+This converts the value to a string.
+It is an error to use an undefined name.
+- `${$Exp}`, for example `${1 + 2}`.
+This evaluates the expression and converts the resulting value into a string.
+- `\$`.
+This represents the literal character `$`.
+- `\` followed by another character.
+This represents a character according to [Java semantics](https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6).
+For example, `\n` is a newline character, `\\` is a single backslash, and `\r` is a carriage return character.
+
+All of the string parts are concatenated into a single string value without separating characters between them.
+
+
 # path literal
 
 # Common lexical elements
