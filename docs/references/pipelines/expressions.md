@@ -13,11 +13,51 @@ These are described [in this section of the functions documentation](../function
 !!! todo
     Give overview of priorities
 
-!!! todo
-    Add overview table: name, syntax, example, description, type
+
+# Quick overview
+
+The following table gives a quick overview of all expressions in the PIE DSL.
+
+| name | syntax | example | description | type |
+| ---- | ------ | ------- | ----------- | ---- |
+| [Block](#block) | `{$Exps}` | `{val x = 4; x+7}` | A sequence of expressions | The type of the last expression |
+| [Make nullable](#make-nullable) | `$Exp?` | `"nullable string"?` | Makes the type `T` of an expression [nullable](../types#nullable-types) (`T?`) | When applied to an expression of type `T`, `T?` |
+| [Make non-nullable](#make-non-nullable) | `$Exp!` | `input!` | Makes the type `T?` of an expression non-[nullable](../types#nullable-types) (`T`). Throws an exception if the value is [null](#null) | When applied to an expression of type `T?`, `T` |
+| [Not](#not) | `!$Exp` | `!flag` | Turns `false` to `true` and vice versa | [bool](../types#bool) |
+| [Compare for (in)equality](#compare-for-inequality) | `$Exp == $Exp` and `Exp != $Exp` | `result == null`, `errors != []` | Compares two values for (in)equality | [bool](../types#bool) |
+| [Logical or](#logical-or) | `$Exp || $Exp` | `dryRun || input == null` | Is `true` unless both the values are `false` | [bool](../types#bool) |
+| [Logical and](#logical-and) | `$Exp && $Exp` | `!dryRun && input != null` | Is `true` iff both values are `true` | [bool](../types#bool) |
+| [Addition](#addition) | `$Exp + $Exp` | `x + y` | Adds or concatenates two values | Depends on the types of the expressions |
+| [Value declaration](#value-declaration) | `val $VALID TypeHint? = $Exp` | `val num: int = 47` | Declare a value by name | The type of the declared value |
+| [Value reference](#value-reference) | `$VALID` | `x` | Reference a value or parameter | The type of the referenced value |
+| [if](#if) | `if ($Exp) $Exp` | `if (input == null) fail "Input is null"` | Evaluates the body if the condition evaluates to `true` | [unit](../types#unit) |
+| [if-else](#if-else) | `if ($Exp) $Exp else $Exp` | `if (name != null) name else default` | Evaluates the first branch if the condition is `true`, and the second branch otherwise | The least upper bound of the types of the branches |
+| [List comprehension](#list-comprehension) | `[$Exp | $Binder <- $Exp]` | `["Key: $key; value: $value" | (key, value) <- pairs]` | Evaluate the expression for each element in a list | A [list](../types#lists) of the type of the expression |
+| [Function calls](#function-calls) | `$ModuleList$FUNCID$TypeArgs($Exps)` | `stdLib:okResult<string>("Hello world!")` | Call [a function](../functions#function-invocations) | The [return type of the function](../functions#return-type) |
+| [Method calls](#method-calls) | `$Exp.$FUNCID$TypeArgs($Exps)` | `file.replaceExtension("pp.pie")` | Call [a method](../functions#function-invocations) | The [return type of the method](../functions#return-type) |
+| [Create supplier](#create-supplier) | `supplier$TypeArgs($Exps)` | `supplier(47)` | Create a supplier | [A supplier](../types#supplier) of the provided type |
+| [Task supplier](#task-supplier) | `$ModuleList$FUNCID.supplier$TypeArgs($Exps)` | `lang:java:parse.supplier(file)` | Create a supplier from a function | [A supplier](../types#supplier) of the return type of the function |
+| [requires](#requires) | `requires $Exp $FilterPart? $StamperPart?` | `requires ./metaborg.yaml by hash` | Declare that the current task depends on the provided [path](../types#path) | [unit](../types#unit) |
+| [generates](#generates) | `generates $Exp $StamperPart?` | `generates file by hash` | Declare that the current task generates on the provided [path](../types#path) | [unit](../types#unit) |
+| [list](#list) | `list $Exp $FilterPart?` | `list ./examples with extension "pie"` | Lists the direct children of the given [directory](../types#path). Note: for list literals, see further down this table. | A [list](../types#lists) of [paths](../types#path), i.e. `path*` |
+| [walk](#walk) | `walk $Exp $FilterPart?` | `walk ./examples with extension "pie"` | Recursively get all descendants of the given [directory](../types#path) | A [list](../types#lists) of [paths](../types#path), i.e. `path*` |
+| [exists](#exists) | `exists $Exp` | `exists ./config.json` | Check if a [file](../types#path) exists | [bool](../types#bool) |
+| [read](#read) | `read $Exp` | `read ./config.json` | Returns the [file](../types#path) contents as a string, or null if the file does not exist | A [nullable](../types#nullable-types) [string](../types#string), i.e. `string?` |
+| [return](#return) | `return $Exp` | `return false` | Returns the provided value from the current function | [unit](../types#unit). Note: may get changed to [bottom type](../types#bottom) |
+| [fail](#fail) | `fail $Exp` | `fail "input cannot be null"` | Throws an ExecException with the provided [string](../types#string) as message | [unit](../types#unit). Note: may get changed to [bottom type](../types#bottom) |
+| [Unit literal](#unit-literal) | `unit` | `unit` | Literal expression of the only value of the [unit type](../types#unit) | [unit](../types#unit) |
+| [true](#true) | `true` | `true` | Literal expression for the [boolean](../types#bool) value `true`. | [bool](../types#bool) |
+| [false](#false) | `false` | `false` | Literal expression for the [boolean](../types#bool) value `false`. | [bool](../types#bool) |
+| [int literal](#int-literal) | `"-"? [0-9]+` | `0`, `23`, `-4` | A literal value of the [int type](../types#int) | [int](../types#int) |
+| [null](#null) | `null` | `null` | Literal expression for the null value of [nullable types](../types#nullable-types). | [null type](../types#null-type) |
+| [Tuple literal](#tuple-literal) | `($Exps)` | `(1, "one", "une")` | A literal value of a [tuple type](../types#tuples) | A [tuple type](../types#tuples) of the types of the elements |
+| [List literal](#list-literal) | `[$Exps]` | `(1, 2, 3)` | A literal value of a [list type](../types#lists). For the keyword `list`, see earlier in this table. | A [list](../types#lists) of the least upper bound of the types of the elements |
+| [String literal](#string-literal) | `"$StrParts"` | `"Hello $name!"` | A literal value of the [string type](../types#string) | [string](../types#string) |
+| [Path literal](#path-literal) | `$PathStart$PathParts` | `./src/test/resources` | A literal value of the [path type](../types#path) | [path](../types#path) |
 
 
-
+There is also a section on [common lexical elements](#common-lexical-elements).
+This covers [filters](#filter-and-filterpart) and [stampers](#stamper-stamperpart-and-stamperkind).
 
 
 # Block
@@ -168,7 +208,6 @@ Value declarations have the following syntax: `val $Binder = $Exp`, where the bi
 The type of a value declaration is the type of the variable(s) that it declares.
 It uses the type hint if available and the expression type otherwise.
 Single declarations have that single type, tuple declarations return a tuple of all the types that they declare.
-The value of a value declaration is simply the value of the expression.
 
 # Value reference
 
@@ -246,7 +285,7 @@ The condition and branches are evaluated in their own scope, so value declaratio
     ```
 
 
-# ListComprehension
+# List comprehension
 
 List comprehensions apply an expression to every element of a list and return a new list with the new elements.
 They are special syntax for mapping a list, which would not ordinarily be possible in the PIE DSL because there are no higher-order functions.
@@ -460,7 +499,7 @@ The expression must have type [path](../types#path) and refer to an existing dir
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
 It is described in [the section on common lexical elements](#filter-and-filterpart).
 
-A list expression returns a [list](../types#list) of the direct children of the given directory, and its type is `path*`.
+A list expression returns a [list](../types#lists) of the direct children of the given directory, and its type is `path*`.
 
 !!! tip "Declaring a dependency on the directory"
     You will likely need to declare a dependency on the directory using [requires](#requires).
@@ -757,7 +796,7 @@ They are used by [requires](#requires) and [generates](#generates).
 They use the syntax `by $StamperKind`, where the stamper kind can be `hash` or `modified`.
 
 Stamping `by hash` will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
-Stamping `by modified` will check the modification time, and assumes it is up-to-date when that time is after the cached time.
+Stamping `by modified` will check the modification time, and assumes it is up-to-date when that time is at or before the cached time.
 
 ??? note "Checking the full file contents"
     There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
