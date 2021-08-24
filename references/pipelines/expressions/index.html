@@ -3627,8 +3627,52 @@ The list element type must not be the top type.</p>
 It compiles to a list with the <a href="../types#bottom">bottom type</a>.
 As such, the generated Java code may have compile errors.</p>
 </details>
-<h1 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h1>
+<h1 id="string-literal">String literal<a class="headerlink" href="#string-literal" title="Permanent link">&para;</a></h1>
+<p>Define a literal value of type <a href="../types#string">string</a>.
+The syntax is <code>"$StrParts"</code>, where <code>$StrParts</code> are parts of the string.
+String parts are lexical, which means that there cannot be any layout between them (layout between string parts will be part of the string).
+The possible string parts are:</p>
+<ul>
+<li>A sequence of characters excluding <code>$</code>, <code>"</code>, <code>\</code> and newlines, for example <code>A sequence of characters = 123!?</code>.
+This expresses that exact sequence of characters.</li>
+<li><code>$</code> followed by the name of a value or parameter, for example <code>$dir</code>.
+This converts the value to a string.
+It is an error to use an undefined name.</li>
+<li><code>${$Exp}</code>, for example <code>${1 + 2}</code>.
+This evaluates the expression and converts the resulting value into a string.</li>
+<li><code>\$</code>.
+This represents the literal character <code>$</code>.</li>
+<li><code>\</code> followed by another character.
+This represents a character according to <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6">Java semantics</a>.
+For example, <code>\n</code> is a newline character, <code>\\</code> is a single backslash, and <code>\r</code> is a carriage return character.</li>
+</ul>
+<p>All of the string parts are concatenated into a single string value without separating characters between them.</p>
 <h1 id="path-literal">path literal<a class="headerlink" href="#path-literal" title="Permanent link">&para;</a></h1>
+<p>Define a literal value of type <a href="../types#path">path</a>.
+The syntax is <code>$PathStart$PathParts</code>, for example <code>/home/alice/very-important-documents</code> or <code>./src/test/resources/</code>.
+<code>$PathStart</code> is either <code>/</code> for absolute paths or <code>./</code> for relative paths.<code>$PathParts</code> are parts of the path.
+Path start and path parts are lexical, which means that there cannot be any layout between them (layout between path parts will result in parse errors).
+The possible path parts are:</p>
+<ul>
+<li>A sequence of characters excluding <code>$</code>, <code>"</code>, <code>\</code> and layout, for example <code>path/to/the/goods</code>.
+This expresses that exact sequence of characters.</li>
+<li><code>$</code> followed by the name of a value or parameter, for example <code>$rootDir</code>.
+The value must be of type path.
+It is an error to use an undefined name.</li>
+<li><code>${$Exp}</code>, for example <code>${getProjectDir()}</code>.
+This evaluates the expression.
+The resulting value must be of type path.</li>
+<li><code>\$</code>.
+This represents the literal character <code>$</code>.</li>
+<li><code>\</code> followed by another character.
+This represents a character according to <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6">Java semantics</a>.
+For example, <code>\\</code> is a single backslash.</li>
+</ul>
+<p>The path start and all of the path parts are concatenated into a single path value without separating characters between them.</p>
+<details class="note"><summary>Path validity and existence (is not checked)</summary><p>The validity or existence of paths literals is not checked.
+This means that a path literal like <code>.////.</code> is allowed, even though it would be invalid for most file systems.
+To check if a path exists, use <a href="#exists">exists</a>.</p>
+</details>
 <h1 id="common-lexical-elements">Common lexical elements<a class="headerlink" href="#common-lexical-elements" title="Permanent link">&para;</a></h1>
 <p>This section describes common lexical elements that are used by multiple expressions.</p>
 <h2 id="filter-and-filterpart">Filter and FilterPart<a class="headerlink" href="#filter-and-filterpart" title="Permanent link">&para;</a></h2>
