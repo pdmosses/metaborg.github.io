@@ -450,8 +450,11 @@ The type and value of this expression is [unit](../types#unit).
 
 # list
 
+!!! info inline end "Defining list literals"
+    This section is about listing children of a directory with the `list` keyword.
+    To define a literal list value, see [list literal](#list-literal).
+
 Lists direct children of the given directory.
-To define a literal list value, see [list literal](#list-literal).
 List expressions have the syntax `list $Exp $FilterPart?`, for example `list getProjectRootDir() + ./examples with extension "pie"`.
 The expression must have type [path](../types#path) and refer to an existing directory.
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
@@ -645,8 +648,11 @@ The type of a tuple literal is the tuple type of the types of the elements, so t
 
 # List literal
 
+!!! info inline end "List keyword"
+    This section is about defining list literals.
+    For information on the `list` keyword, see [list expressions](#list), which list the children of a directory.
+
 Define a literal [list](../types#lists) value.
-To list the children of a directory, see [list expressions](#list).
 The syntax is `[$Exps]`, for example `[1, 2, 3]`, or `[apple, banana, pear]`.
 The expressions are the elements of the list.
 The least upper bound of the types of the expressions is the list element type `T`.
