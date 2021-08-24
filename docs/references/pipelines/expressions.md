@@ -668,7 +668,7 @@ The list element type must not be the top type.
 # String literal
 
 Define a literal value of type [string](../types#string).
-The syntax is `"StrParts"`, where `StrParts` are parts of the string.
+The syntax is `"$StrParts"`, where `$StrParts` are parts of the string.
 String parts are lexical, which means that there cannot be any layout between them (layout between string parts will be part of the string).
 The possible string parts are:
 
@@ -690,6 +690,35 @@ All of the string parts are concatenated into a single string value without sepa
 
 
 # path literal
+
+Define a literal value of type [path](../types#path).
+The syntax is `$PathStart$PathParts`, for example `/home/alice/very-important-documents` or `./src/test/resources/`.
+`$PathStart` is either `/` for absolute paths or `./` for relative paths.`$PathParts` are parts of the path.
+Path start and path parts are lexical, which means that there cannot be any layout between them (layout between path parts will result in parse errors).
+The possible path parts are:
+
+
+- A sequence of characters excluding `$`, `"`, `\` and layout, for example `path/to/the/goods`.
+This expresses that exact sequence of characters.
+- `$` followed by the name of a value or parameter, for example `$rootDir`.
+The value must be of type path.
+It is an error to use an undefined name.
+- `${$Exp}`, for example `${getProjectDir()}`.
+This evaluates the expression.
+The resulting value must be of type path.
+- `\$`.
+This represents the literal character `$`.
+- `\` followed by another character.
+This represents a character according to [Java semantics](https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6).
+For example, `\\` is a single backslash.
+
+The path start and all of the path parts are concatenated into a single path value without separating characters between them.
+
+??? note "Path validity and existence (is not checked)"
+    The validity or existence of paths literals is not checked.
+    This means that a path literal like `.////.` is allowed, even though it would be invalid for most file systems.
+    To check if a path exists, use [exists](#exists).
+
 
 # Common lexical elements
 
