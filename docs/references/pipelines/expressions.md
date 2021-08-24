@@ -645,8 +645,18 @@ The type of a tuple literal is the tuple type of the types of the elements, so t
 
 # List literal
 
-Define a literal list value.
+Define a literal [list](../types#lists) value.
 To list the children of a directory, see [list expressions](#list).
+The syntax is `[$Exps]`, for example `[1, 2, 3]`, or `[apple, banana, pear]`.
+The expressions are the elements of the list.
+The least upper bound of the types of the expressions is the list element type `T`.
+The type of the list literal is a list of `T`, i.e. `T*`.
+The list element type must not be the top type.
+
+??? attention "Empty list literals may lead to Java errors"
+    The empty list literal `[]` has a special type for implementation reasons.
+    It compiles to a list with the [bottom type](../types#bottom).
+    As such, the generated Java code may have compile errors.
 
 
 # String
