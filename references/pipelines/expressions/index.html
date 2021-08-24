@@ -3115,10 +3115,261 @@ These are described <a href="../functions#parameters-and-values">in this section
 <p class="admonition-title">Todo</p>
 <p>Give overview of priorities</p>
 </div>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Add overview table: name, syntax, example, description, type</p>
-</div>
+<h1 id="quick-overview">Quick overview<a class="headerlink" href="#quick-overview" title="Permanent link">&para;</a></h1>
+<p>The following table gives a quick overview of all expressions in the PIE DSL.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>syntax</th>
+<th>example</th>
+<th>description</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#block">Block</a></td>
+<td><code>{$Exps}</code></td>
+<td><code>{val x = 4; x+7}</code></td>
+<td>A sequence of expressions</td>
+<td>The type of the last expression</td>
+</tr>
+<tr>
+<td><a href="#make-nullable">Make nullable</a></td>
+<td><code>$Exp?</code></td>
+<td><code>"nullable string"?</code></td>
+<td>Makes the type <code>T</code> of an expression <a href="../types#nullable-types">nullable</a> (<code>T?</code>)</td>
+<td>When applied to an expression of type <code>T</code>, <code>T?</code></td>
+</tr>
+<tr>
+<td><a href="#make-non-nullable">Make non-nullable</a></td>
+<td><code>$Exp!</code></td>
+<td><code>input!</code></td>
+<td>Makes the type <code>T?</code> of an expression non-<a href="../types#nullable-types">nullable</a> (<code>T</code>). Throws an exception if the value is <a href="#null">null</a></td>
+<td>When applied to an expression of type <code>T?</code>, <code>T</code></td>
+</tr>
+<tr>
+<td><a href="#not">Not</a></td>
+<td><code>!$Exp</code></td>
+<td><code>!flag</code></td>
+<td>Turns <code>false</code> to <code>true</code> and vice versa</td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#compare-for-inequality">Compare for (in)equality</a></td>
+<td><code>$Exp == $Exp</code> and <code>Exp != $Exp</code></td>
+<td><code>result == null</code>, <code>errors != []</code></td>
+<td>Compares two values for (in)equality</td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#logical-or">Logical or</a></td>
+<td><code>$Exp || $Exp</code></td>
+<td><code>dryRun || input == null</code></td>
+<td>Is <code>true</code> unless both the values are <code>false</code></td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#logical-and">Logical and</a></td>
+<td><code>$Exp &amp;&amp; $Exp</code></td>
+<td><code>!dryRun &amp;&amp; input != null</code></td>
+<td>Is <code>true</code> iff both values are <code>true</code></td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#addition">Addition</a></td>
+<td><code>$Exp + $Exp</code></td>
+<td><code>x + y</code></td>
+<td>Adds or concatenates two values</td>
+<td>Depends on the types of the expressions</td>
+</tr>
+<tr>
+<td><a href="#value-declaration">Value declaration</a></td>
+<td><code>val $VALID TypeHint? = $Exp</code></td>
+<td><code>val num: int = 47</code></td>
+<td>Declare a value by name</td>
+<td>The type of the declared value</td>
+</tr>
+<tr>
+<td><a href="#value-reference">Value reference</a></td>
+<td><code>$VALID</code></td>
+<td><code>x</code></td>
+<td>Reference a value or parameter</td>
+<td>The type of the referenced value</td>
+</tr>
+<tr>
+<td><a href="#if">if</a></td>
+<td><code>if ($Exp) $Exp</code></td>
+<td><code>if (input == null) fail "Input is null"</code></td>
+<td>Evaluates the body if the condition evaluates to <code>true</code></td>
+<td><a href="../types#unit">unit</a></td>
+</tr>
+<tr>
+<td><a href="#if-else">if-else</a></td>
+<td><code>if ($Exp) $Exp else $Exp</code></td>
+<td><code>if (name != null) name else default</code></td>
+<td>Evaluates the first branch if the condition is <code>true</code>, and the second branch otherwise</td>
+<td>The least upper bound of the types of the branches</td>
+</tr>
+<tr>
+<td><a href="#list-comprehension">List comprehension</a></td>
+<td><code>[$Exp | $Binder &lt;- $Exp]</code></td>
+<td><code>["Key: $key; value: $value" | (key, value) &lt;- pairs]</code></td>
+<td>Evaluate the expression for each element in a list</td>
+<td>A <a href="../types#lists">list</a> of the type of the expression</td>
+</tr>
+<tr>
+<td><a href="#function-calls">Function calls</a></td>
+<td><code>$ModuleList$FUNCID$TypeArgs($Exps)</code></td>
+<td><code>stdLib:okResult&lt;string&gt;("Hello world!")</code></td>
+<td>Call <a href="../functions#function-invocations">a function</a></td>
+<td>The <a href="../functions#return-type">return type of the function</a></td>
+</tr>
+<tr>
+<td><a href="#method-calls">Method calls</a></td>
+<td><code>$Exp.$FUNCID$TypeArgs($Exps)</code></td>
+<td><code>file.replaceExtension("pp.pie")</code></td>
+<td>Call <a href="../functions#function-invocations">a method</a></td>
+<td>The <a href="../functions#return-type">return type of the method</a></td>
+</tr>
+<tr>
+<td><a href="#create-supplier">Create supplier</a></td>
+<td><code>supplier$TypeArgs($Exps)</code></td>
+<td><code>supplier(47)</code></td>
+<td>Create a supplier</td>
+<td><a href="../types#supplier">A supplier</a> of the provided type</td>
+</tr>
+<tr>
+<td><a href="#task-supplier">Task supplier</a></td>
+<td><code>$ModuleList$FUNCID.supplier$TypeArgs($Exps)</code></td>
+<td><code>lang:java:parse.supplier(file)</code></td>
+<td>Create a supplier from a function</td>
+<td><a href="../types#supplier">A supplier</a> of the return type of the function</td>
+</tr>
+<tr>
+<td><a href="#requires">requires</a></td>
+<td><code>requires $Exp $FilterPart? $StamperPart?</code></td>
+<td><code>requires ./metaborg.yaml by hash</code></td>
+<td>Declare that the current task depends on the provided <a href="../types#path">path</a></td>
+<td><a href="../types#unit">unit</a></td>
+</tr>
+<tr>
+<td><a href="#generates">generates</a></td>
+<td><code>generates $Exp $StamperPart?</code></td>
+<td><code>generates file by hash</code></td>
+<td>Declare that the current task generates on the provided <a href="../types#path">path</a></td>
+<td><a href="../types#unit">unit</a></td>
+</tr>
+<tr>
+<td><a href="#list">list</a></td>
+<td><code>list $Exp $FilterPart?</code></td>
+<td><code>list ./examples with extension "pie"</code></td>
+<td>Lists the direct children of the given <a href="../types#path">directory</a>. Note: for list literals, see further down this table.</td>
+<td>A <a href="../types#lists">list</a> of <a href="../types#path">paths</a>, i.e. <code>path*</code></td>
+</tr>
+<tr>
+<td><a href="#walk">walk</a></td>
+<td><code>walk $Exp $FilterPart?</code></td>
+<td><code>walk ./examples with extension "pie"</code></td>
+<td>Recursively get all descendants of the given <a href="../types#path">directory</a></td>
+<td>A <a href="../types#lists">list</a> of <a href="../types#path">paths</a>, i.e. <code>path*</code></td>
+</tr>
+<tr>
+<td><a href="#exists">exists</a></td>
+<td><code>exists $Exp</code></td>
+<td><code>exists ./config.json</code></td>
+<td>Check if a <a href="../types#path">file</a> exists</td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#read">read</a></td>
+<td><code>read $Exp</code></td>
+<td><code>read ./config.json</code></td>
+<td>Returns the <a href="../types#path">file</a> contents as a string, or null if the file does not exist</td>
+<td>A <a href="../types#nullable-types">nullable</a> <a href="../types#string">string</a>, i.e. <code>string?</code></td>
+</tr>
+<tr>
+<td><a href="#return">return</a></td>
+<td><code>return $Exp</code></td>
+<td><code>return false</code></td>
+<td>Returns the provided value from the current function</td>
+<td><a href="../types#unit">unit</a>. Note: may get changed to <a href="../types#bottom">bottom type</a></td>
+</tr>
+<tr>
+<td><a href="#fail">fail</a></td>
+<td><code>fail $Exp</code></td>
+<td><code>fail "input cannot be null"</code></td>
+<td>Throws an ExecException with the provided <a href="../types#string">string</a> as message</td>
+<td><a href="../types#unit">unit</a>. Note: may get changed to <a href="../types#bottom">bottom type</a></td>
+</tr>
+<tr>
+<td><a href="#unit-literal">Unit literal</a></td>
+<td><code>unit</code></td>
+<td><code>unit</code></td>
+<td>Literal expression of the only value of the <a href="../types#unit">unit type</a></td>
+<td><a href="../types#unit">unit</a></td>
+</tr>
+<tr>
+<td><a href="#true">true</a></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td>Literal expression for the <a href="../types#bool">boolean</a> value <code>true</code>.</td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#false">false</a></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td>Literal expression for the <a href="../types#bool">boolean</a> value <code>false</code>.</td>
+<td><a href="../types#bool">bool</a></td>
+</tr>
+<tr>
+<td><a href="#int-literal">int literal</a></td>
+<td><code>"-"? [0-9]+</code></td>
+<td><code>0</code>, <code>23</code>, <code>-4</code></td>
+<td>A literal value of the <a href="../types#int">int type</a></td>
+<td><a href="../types#int">int</a></td>
+</tr>
+<tr>
+<td><a href="#null">null</a></td>
+<td><code>null</code></td>
+<td><code>null</code></td>
+<td>Literal expression for the null value of <a href="../types#nullable-types">nullable types</a>.</td>
+<td><a href="../types#null-type">null type</a></td>
+</tr>
+<tr>
+<td><a href="#tuple-literal">Tuple literal</a></td>
+<td><code>($Exps)</code></td>
+<td><code>(1, "one", "une")</code></td>
+<td>A literal value of a <a href="../types#tuples">tuple type</a></td>
+<td>A <a href="../types#tuples">tuple type</a> of the types of the elements</td>
+</tr>
+<tr>
+<td><a href="#list-literal">List literal</a></td>
+<td><code>[$Exps]</code></td>
+<td><code>(1, 2, 3)</code></td>
+<td>A literal value of a <a href="../types#lists">list type</a>. For the keyword <code>list</code>, see earlier in this table.</td>
+<td>A <a href="../types#lists">list</a> of the least upper bound of the types of the elements</td>
+</tr>
+<tr>
+<td><a href="#string-literal">String literal</a></td>
+<td><code>"$StrParts"</code></td>
+<td><code>"Hello $name!"</code></td>
+<td>A literal value of the <a href="../types#string">string type</a></td>
+<td><a href="../types#string">string</a></td>
+</tr>
+<tr>
+<td><a href="#path-literal">Path literal</a></td>
+<td><code>$PathStart$PathParts</code></td>
+<td><code>./src/test/resources</code></td>
+<td>A literal value of the <a href="../types#path">path type</a></td>
+<td><a href="../types#path">path</a></td>
+</tr>
+</tbody>
+</table>
+<p>There is also a section on <a href="#common-lexical-elements">common lexical elements</a>.
+This covers <a href="#filter-and-filterpart">filters</a> and <a href="#stamper-stamperpart-and-stamperkind">stampers</a>.</p>
 <h1 id="block">Block<a class="headerlink" href="#block" title="Permanent link">&para;</a></h1>
 <p>Blocks are expressed as <code>{$Exps}</code>, where <code>$Exps</code> is a list of semi-colon separated expressions.
 Its type and value are those of the final expressions in the block.
@@ -3227,8 +3478,7 @@ val (year, values: (string, bool)*) = (2020, []);
 <p>Value declarations have the following syntax: <code>val $Binder = $Exp</code>, where the binder can be either a single binder <code>$Bind</code> or tuple binder <code>($Binds)</code>, and binds can be only a name <code>$VALID</code> or a name with a type hint <code>$VALID: Type</code>.</p>
 <p>The type of a value declaration is the type of the variable(s) that it declares.
 It uses the type hint if available and the expression type otherwise.
-Single declarations have that single type, tuple declarations return a tuple of all the types that they declare.
-The value of a value declaration is simply the value of the expression.</p>
+Single declarations have that single type, tuple declarations return a tuple of all the types that they declare.</p>
 <h1 id="value-reference">Value reference<a class="headerlink" href="#value-reference" title="Permanent link">&para;</a></h1>
 <p>Value references reference a declared value or parameter by name.
 The name must be declared beforehand in the current scope or an outer scope.
@@ -3294,7 +3544,7 @@ if (flag) cat2 else fish        // type: Animal
 if (flag) &quot;hello&quot; else 2        // type: top type, error
 </code></pre></div>
 </details>
-<h1 id="listcomprehension">ListComprehension<a class="headerlink" href="#listcomprehension" title="Permanent link">&para;</a></h1>
+<h1 id="list-comprehension">List comprehension<a class="headerlink" href="#list-comprehension" title="Permanent link">&para;</a></h1>
 <p>List comprehensions apply an expression to every element of a list and return a new list with the new elements.
 They are special syntax for mapping a list, which would not ordinarily be possible in the PIE DSL because there are no higher-order functions.
 They have the syntax <code>[$Exp | $Binder &lt;- $Exp]</code>, for example <code>["Key: $key; value: $value" | (key, value) &lt;- pairs]</code>
@@ -3472,7 +3722,7 @@ List expressions have the syntax <code>list $Exp $FilterPart?</code>, for exampl
 The expression must have type <a href="../types#path">path</a> and refer to an existing directory.
 The filter part is optional and adds a filter to filter out any paths that do not match the filter.
 It is described in <a href="#filter-and-filterpart">the section on common lexical elements</a>.</p>
-<p>A list expression returns a <a href="../types#list">list</a> of the direct children of the given directory, and its type is <code>path*</code>.</p>
+<p>A list expression returns a <a href="../types#lists">list</a> of the direct children of the given directory, and its type is <code>path*</code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Declaring a dependency on the directory</p>
 <p>You will likely need to declare a dependency on the directory using <a href="#requires">requires</a>.
@@ -3730,7 +3980,7 @@ If you need multiple filters, encode your requirements in a regex filter instead
 They are used by <a href="#requires">requires</a> and <a href="#generates">generates</a>.
 They use the syntax <code>by $StamperKind</code>, where the stamper kind can be <code>hash</code> or <code>modified</code>.</p>
 <p>Stamping <code>by hash</code> will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
-Stamping <code>by modified</code> will check the modification time, and assumes it is up-to-date when that time is after the cached time.</p>
+Stamping <code>by modified</code> will check the modification time, and assumes it is up-to-date when that time is at or before the cached time.</p>
 <details class="note"><summary>Checking the full file contents</summary><p>There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
 If you need this, write the task in Java or use <a href="#read"><code>read file</code></a>.</p>
 </details>
@@ -3749,7 +3999,7 @@ What is the default modifier?</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-08-24
+      Last update: 2021-08-25
     
   </small>
 </div>
