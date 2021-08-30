@@ -106,7 +106,7 @@ rules
   reverse(|List(a)) :: List(a) -> List(a)s  
   reverse      : xs -> <reverse(|[])> xs
   reverse(|xs) : [] -> xs
-  reverse(|xs) : [y | ys] -> <reverse-acc(|[y | xs])> ys
+  reverse(|xs) : [y | ys] -> <reverse(|[y | xs])> ys
 ```
 
 When leaving out the term parameters, the bar can be left out
