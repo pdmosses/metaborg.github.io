@@ -1,6 +1,6 @@
 # Modules
 
-A Stratego program is organised as a collection of modules, which are imported from a main module.
+A Stratego program is organized as a collection of modules, which are imported from a main module.
 
 
 ## Module Structure
