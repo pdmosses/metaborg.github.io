@@ -29,7 +29,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install Python packages
-        run: python3 -m pip install -r mkdocs_requirements.txt
+        run: |
+         python3 -m pip install -r mkdocs_requirements.txt
+         python3 -m pip install -e ./
 
       - name: Build documentation
         run: mkdocs build
