@@ -47,6 +47,8 @@ Please open an issue _first_, so we can discuss the change.
 #### :fontawesome-solid-book-medical:&nbsp; I want to contribute to the documentation or test suite
 Thank you! Please open a GitHub pull request with the patch.
 
+Documentation repo: https://github.com/metaborg/metaborg.github.io/
+
 ---
 
 Thank you for your contributions!
