@@ -141,6 +141,7 @@ nav:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md
       - Links: background/documentation/links.md
+      - GUIs and Menus: background/documentation/guis-and-menus.md
       - Citations: background/documentation/citations.md
       - Structure: background/documentation/structure.md
       - Troubleshooting: background/documentation/troubleshooting.md
@@ -251,7 +252,11 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight:
       guess_lang: false
-  - pymdownx.inlinehilite
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: gui
+          class: guilabel
+          format: !!python/name:tools.formatters.inline_span_format
   - pymdownx.keys:
       key_map:
         click: "Click"
@@ -272,7 +277,7 @@ plugins:
   - git-revision-date:
       enabled_if_env: CI
   - macros:
-      module_name: docs/macro
+      module_name: tools/macro
       include_dir: include
   - bibtex:
       bib_dir: "bibliographies"
