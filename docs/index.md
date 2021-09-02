@@ -36,3 +36,5 @@ The platform provides the following ingredients:
 With Spoofax you can focus on the essence of language definition and ignore irrelevant implementation details.
 
 [Get started](getting-started.md) by downloading and installing Spoofax or build it [from source](https://github.com/metaborg/spoofax-releng).
+
+Looking for Spoofax 3? Visit the [Spoofax 3 documentation website](https://www.spoofax.dev/spoofax-pie/develop/).
