@@ -256,7 +256,7 @@ markdown_extensions:
       custom_inline:
         - name: gui
           class: guilabel
-          format: !!python/name:tools.formatters.inline_span_format
+          format: !!python/name:formatters.inline_span_format
   - pymdownx.keys:
       key_map:
         click: "Click"

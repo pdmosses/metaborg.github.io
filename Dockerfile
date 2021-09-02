@@ -8,10 +8,8 @@ RUN apk upgrade --update-cache -a \
  && apk add --no-cache --virtual .build gcc musl-dev
 
 COPY mkdocs_requirements.txt requirements.txt
-COPY setup.py setup.py
 COPY tools/ tools/
 RUN pip install --no-cache-dir -r requirements.txt \
- && pip install -e ./ \
  && apk del .build gcc musl-dev \
  && rm -rf /tmp/* /root/.cache \
  && find ${PACKAGES} \
