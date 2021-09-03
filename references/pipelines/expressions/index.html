@@ -1957,9 +1957,39 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Expressions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Expressions
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntactic-priorities-disambiguation" class="md-nav__link">
+    Syntactic priorities (disambiguation)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3106,6 +3136,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntactic-priorities-disambiguation" class="md-nav__link">
+    Syntactic priorities (disambiguation)
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3129,10 +3174,36 @@ Brackets have the following form: <code>($Exp)</code></p>
 <p>This section describes expressions in the PIE DSL.
 Expressions can use declared values.
 These are described <a href="../functions#parameters-and-values">in this section of the functions documentation</a>.</p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Give overview of priorities</p>
-</div>
+<h2 id="syntactic-priorities-disambiguation">Syntactic priorities (disambiguation)<a class="headerlink" href="#syntactic-priorities-disambiguation" title="Permanent link">&para;</a></h2>
+<p>Nested expressions can be ambiguous, for example <code>! true &amp;&amp; false</code> could either <code>! (true &amp;&amp; false) // = true</code> or <code>(!true) &amp;&amp; false // = false</code>.
+To solve these ambiguities, each expression has a priority.
+Expressions with higher priories will be nested in expressions with lower priority.
+The example above is parsed as <code>(!true) &amp;&amp; false</code> because <a href="#not">not</a> has a higher priority than <a href="#logical-and">logical and</a>.
+All expressions are left-associative, which means that if two expressions with the same priority are ambiguous, the leftmost expression will be nested in the rightmost expression.
+For example, <code>3 - 2 + 1</code> is equivalent to <code>(3 - 2) + 1</code>.</p>
+<p>The following list lists expressions in order of descending priority.
+Expressions on the same number have the same priority.
+If an expression is not listed, it cannot be ambiguous (e.g. Blocks and list literals)</p>
+<ol reversed>
+    <li><a href="#not">Not</a></li>
+    <li><a href="#make-nullable">Make nullable</a>, <a href="#make-non-nullable">Make non-nullable</a></li>
+    <li><a href="#addition">Addition</a></li>
+    <li><a href="#compare-for-inequality">Compare for (in)equality</a></li>
+    <li><a href="#logical-and">Logical and</a></li>
+    <li><a href="#logical-or">Logical or</a></li>
+    <li><a href="#list">list</a>, <a href="#walk">walk</a></li>
+    <li><a href="#requires">requires</a>, <a href="#generates">generates</a></li>
+    <li><a href="#read">read</a>, <a href="#exists">exists</a></li>
+    <li><a href="#function-calls">Function calls</a>, <a href="#method-calls">Method calls</a>, <a href="#create-supplier">Create supplier</a>, <a href="#task-supplier">Task supplier</a></li>
+    <li><a href="#filter-and-filterpart">Filters</a></li>
+    <li><a href="#tuple-literal">Tuple literal</a>, <a href="#list-literal">List literal</a></li>
+    <li><a href="#list-comprehension">List comprehension</a></li>
+    <li><a href="#value-declaration">Value declaration</a></li>
+    <li><a href="#return">return</a>, <a href="#fail">fail</a></li>
+    <li><a href="#if-else">if-else</a></li>
+    <li><a href="#if">if</a></li>
+</ol>
+
 <h1 id="quick-overview">Quick overview<a class="headerlink" href="#quick-overview" title="Permanent link">&para;</a></h1>
 <p>The following table gives a quick overview of all expressions in the PIE DSL.</p>
 <table>
@@ -4017,7 +4088,7 @@ What is the default modifier?</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-09-03
+      Last update: 2021-09-04
     
   </small>
 </div>
