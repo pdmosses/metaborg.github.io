@@ -202,3 +202,4 @@ def define_macros(vars):
     latest_rel_version, latest_rel_date = next(iter(release_versions.items()))
     fill_vars_with_release(vars, 'rel', latest_rel_version, latest_rel_version, latest_rel_date)
     fill_vars_with_release(vars, 'dev', development_version, "LATEST", None)
+

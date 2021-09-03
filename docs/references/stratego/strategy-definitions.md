@@ -10,7 +10,7 @@ A strategy definition gives a name to a strategy expression, has zero or more st
 
 ## Simple Definitions
 
-A simple strategy definition gaves a name to a [strategy expression](strategy-combinators.md).
+A simple strategy definition gave a name to a [strategy expression](strategy-combinators.md).
 
 ```stratego
 $Id = s

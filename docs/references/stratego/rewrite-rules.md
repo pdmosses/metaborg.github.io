@@ -6,7 +6,7 @@ $Id($StrategyArg, ... | $TermArg, ...) :
   $Condition*
 ```
 
-A rewrite rule has a name, zero or more strategy argumuents, zero or more term arguments, a left-hand side term pattern, a right-hand side term pattern, and zero or more conditions.
+A rewrite rule has a name, zero or more strategy arguments, zero or more term arguments, a left-hand side term pattern, a right-hand side term pattern, and zero or more conditions.
 
 A rewrite rule application `$Id($StrategExp, ... | $Term)` to a subject term binds the strategy and term arguments and matches the term pattern in the left-hand side to the term.
 If the pattern match succeeds, the conditions are applied in turn to the subject term, accumulating bindings to term variables.
@@ -25,7 +25,7 @@ A `where` condition performs a strategy expression in the context of the rule ar
 
 If the strategy expression fails, the enclosing rule fails.
 Failure of a `where` clause is expected.
-The strategy expression is expected to be discrimating and only succeed in those cases that the rule should be applied.
+The strategy expression is expected to be discriminating and only succeed in those cases that the rule should be applied.
 
 
 ## With Condition
@@ -102,11 +102,12 @@ The following rules define reversal of a list with an accumulator:
 
 ```stratego
 rules
-  reverse           :: List(a) -> List(a)
-  reverse(|List(a)) :: List(a) -> List(a)s  
-  reverse      : xs -> <reverse(|[])> xs
-  reverse(|xs) : [] -> xs
-  reverse(|xs) : [y | ys] -> <reverse-acc(|[y | xs])> ys
+  reverse :: List(a) -> List(a)
+  reverse : xs -> <reverse-acc(|[])> xs
+
+  reverse-acc(|List(a)) :: List(a) -> List(a)
+  reverse-acc(|xs) : [] -> xs
+  reverse-acc(|xs) : [y | ys] -> <reverse-acc(|[y | xs])> ys
 ```
 
 When leaving out the term parameters, the bar can be left out
@@ -128,7 +129,7 @@ map(s) : [hd | tl] -> [<s>hd | <map(s)> tl]
 
 !!! note
     In the absence of a type system, the distinction between strategy arguments and term arguments was made based on the syntactic distinction.
-    In a future version of the language, this syntactic distiction may no longer be necessary based on types.
+    In a future version of the language, this syntactic distinction may no longer be necessary based on types.
 
 
 ### Desugaring

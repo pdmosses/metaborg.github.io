@@ -213,7 +213,7 @@ Example. The type declaration
 topdown(s : TP) :: TP
 ```
 
-declares that the topdown strategy is type preserving if its argument strategy is.
+declares that the `topdown` strategy is type preserving if its argument strategy is.
 
 The type-checking for a type preserving transformation is very strict.
 It should be in terms of other type preserving transformations, or match the input term to a specific type and return a term from that specific type.

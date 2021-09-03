@@ -45,7 +45,7 @@ Please open an issue _first_, so we can discuss the change.
 
 
 #### :fontawesome-solid-book-medical:&nbsp; I want to contribute to the documentation or test suite
-Thank you! Please open a GitHub pull request with the patch.
+Thank you! Please open a [GitHub pull request][2] with the patch.
 
 ---
 
@@ -56,3 +56,4 @@ Thank you for your contributions!
 
 
 [1]: https://pl.ewi.tudelft.nl/
+[2]: https://github.com/metaborg/metaborg.github.io/

@@ -146,7 +146,7 @@ A term pattern without variables (aka term) is _ground_.
 
 ### Substitution
 
-_Substitution_ is the process of applying a map from variables to terms to a term pattern, replacing occurrence of variables in the domain of the map with the corresponding terms in the codomain of the map.
+_Substitution_ is the process of applying a map from variables to terms to a term pattern, replacing occurrence of variables in the domain of the map with the corresponding terms in the co-domain of the map.
 
 _Substitution_ is also the name for the mapping of variables to terms.
 
@@ -155,7 +155,7 @@ _Substitution_ is also the name for the mapping of variables to terms.
 
 _Pattern matching_ is the process of matching a ground term against a term pattern.
 
-A term `t` matches a term pattern `p` iff there is a substition `S` such that applying the substitution to the pattern `S(p)` yields the term `t`.
+A term `t` matches a term pattern `p` iff there is a substitution `S` such that applying the substitution to the pattern `S(p)` yields the term `t`.
 
 
 ## Persistent Representation

@@ -83,3 +83,13 @@ code.no-ligatures {
 .md-header__topic a:hover {
     opacity: 0.7;
 }
+
+.guilabel {
+    border: 1px solid var(--md-accent-fg-color);
+    background: var(--md-code-bg-color);
+    font-size: 80%;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 3px;
+    margin: auto 1px;
+}
