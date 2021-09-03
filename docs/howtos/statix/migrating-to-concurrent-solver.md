@@ -116,7 +116,7 @@ a library. These libraries can be linked with other projects, potentially
 decreasing analysis times significantly. Statix libraries can be generated and
 linked by following three steps.
 
-As a first step, use the `#gui Spoofax ‣ Statix ‣ Make project library` menu on 
+As a first step, use the `#!gui Spoofax ‣ Statix ‣ Make project library` menu on 
 a file in your library project to export its scope graph. A `project.stxlib`
 file will now appear in the root directory of that project.
 
