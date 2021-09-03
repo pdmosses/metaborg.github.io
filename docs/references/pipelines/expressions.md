@@ -10,8 +10,38 @@ This section describes expressions in the PIE DSL.
 Expressions can use declared values.
 These are described [in this section of the functions documentation](../functions#parameters-and-values).
 
-!!! todo
-    Give overview of priorities
+## Syntactic priorities (disambiguation)
+Nested expressions can be ambiguous, for example `! true && false` could either `! (true && false) // = true` or `(!true) && false // = false`.
+To solve these ambiguities, each expression has a priority.
+Expressions with higher priories will be nested in expressions with lower priority.
+The example above is parsed as `(!true) && false` because [not](#not) has a higher priority than [logical and](#logical-and).
+All expressions are left-associative, which means that if two expressions with the same priority are ambiguous, the leftmost expression will be nested in the rightmost expression.
+For example, `3 - 2 + 1` is equivalent to `(3 - 2) + 1`.
+
+The following list lists expressions in order of descending priority.
+Expressions on the same number have the same priority.
+If an expression is not listed, it cannot be ambiguous (e.g. Blocks and list literals)
+
+
+<ol reversed>
+    <li><a href="#not">Not</a></li>
+    <li><a href="#make-nullable">Make nullable</a>, <a href="#make-non-nullable">Make non-nullable</a></li>
+    <li><a href="#addition">Addition</a></li>
+    <li><a href="#compare-for-inequality">Compare for (in)equality</a></li>
+    <li><a href="#logical-and">Logical and</a></li>
+    <li><a href="#logical-or">Logical or</a></li>
+    <li><a href="#list">list</a>, <a href="#walk">walk</a></li>
+    <li><a href="#requires">requires</a>, <a href="#generates">generates</a></li>
+    <li><a href="#read">read</a>, <a href="#exists">exists</a></li>
+    <li><a href="#function-calls">Function calls</a>, <a href="#method-calls">Method calls</a>, <a href="#create-supplier">Create supplier</a>, <a href="#task-supplier">Task supplier</a></li>
+    <li><a href="#filter-and-filterpart">Filters</a></li>
+    <li><a href="#tuple-literal">Tuple literal</a>, <a href="#list-literal">List literal</a></li>
+    <li><a href="#list-comprehension">List comprehension</a></li>
+    <li><a href="#value-declaration">Value declaration</a></li>
+    <li><a href="#return">return</a>, <a href="#fail">fail</a></li>
+    <li><a href="#if-else">if-else</a></li>
+    <li><a href="#if">if</a></li>
+</ol>
 
 
 # Quick overview
