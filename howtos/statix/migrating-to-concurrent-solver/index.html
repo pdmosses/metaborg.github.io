@@ -3320,16 +3320,67 @@ specifications. Because the signatures of the rules in the original specificatio
 did not change, and the new specification should have identical semantics,
 the remainder of the specification should not be affected.</p>
 <h2 id="using-grouping">Using Grouping<a class="headerlink" href="#using-grouping" title="Permanent link">&para;</a></h2>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Explain grouping</p>
-</div>
+<p>The traditional solver uses two special constraints as entry points: the
+<em>project constraint</em> (usually named <code>projectOk</code>) was solved once for each
+project, while the <em>file constraint</em> (usually called <code>fileOk</code>) was solved for
+each file in that project. The concurrent solver adds the concepts of <em>groups</em>
+in between these concepts. Files can be organized in groups, while groups can
+in addition contain subgroups. This gives rise to a tree-shaped hierarchy, where
+the project is the root node, the files are the leaf nodes, and all nodes in
+between are groups. Most often, this hierarchy follows the directory structure
+of a project. In order to use grouping, two steps need to be performed.</p>
+<p>First, a <em>group constraint</em> must be defined. The group constraint must have the
+signature <code class="highlight"><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span></code>. For each group, this constraint
+will be instantiated with the parent group scope, group name and own group scope
+as arguments (in that order).</p>
+<p>A simple example of a group constraint can look as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">MODULE</span><span class="w"> </span><span class="k">constructors</span><span class="w"></span>
+<span class="w">    </span><span class="nv">MODULE</span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">MODULE</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">relations</span><span class="w"></span>
+<span class="w">    </span><span class="k">mod</span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="nv">MODULE</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">groupOk</span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span>
+<span class="w">  </span><span class="nv">groupOk</span><span class="p">(</span><span class="nv">s_prnt</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">s_grp</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
+<span class="w">    </span>!<span class="k">mod</span>[<span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">MODULE</span><span class="p">(</span><span class="nv">s_grp</span><span class="p">)</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s_prnt</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+<p>In this fragment, we define the <code>groupOk</code> constraint, which has the appropriate
+signature. The body of the rule for this constraint simply declares that a module
+with the appropriate name exists in the parent scope.</p>
+<p>Second, the builder needs to be adapted in two ways: the name of the group
+constraint must be passed to the solver, and a strategy that determines the group
+of a file must be provided to the solver. Such a strategy should have type
+<code class="highlight"><span class=" -Punctuation">(</span><span class="nv">String</span><span class="w"> </span>*<span class="w"> </span><span class="nv">AST</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">String</span><span class=" -Punctuation">)</span><span class="w"></span></code>. The input arguments represent the
+file path and its AST, respectively. The output list should contain all group
+identifiers from project root to the respective file. For example, a Java
+specification should return <code>["java", "lang", "Object"]</code> for the <code>Object</code> class
+in the <code>java.lang</code> package. Note that the file must be assigned a name, and that
+that name should be included in the output list.</p>
+<p>A project that uses the directory structure as its grouping structure could
+call the <code>stx-editor-analyze</code> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">editor-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre-analyze</span><span class=" -Punctuation">,</span><span class="nv">group-key</span><span class=" -Punctuation">,</span><span class="nv">post-analyze</span><span class=" -Punctuation">|</span><span class="s">&quot;statics&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;projectOk&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;groupOk&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;fileOk&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">group-key</span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">resource</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">key</span><span class="w"></span>
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="nv">rel-path</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">current-language-relative-source-or-include-path</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">resource</span><span class="w"></span>
+<span class="w">       </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">string-tokenize</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">([</span>&#39;/&#39;<span class=" -Punctuation">,</span>&#39;\&#39;<span class=" -Punctuation">],</span><span class="w"> </span><span class="nv">rel-path</span><span class=" -Punctuation">)</span><span class="w"></span>
+</code></pre></div>
+<p>In this snippet, the <code class="highlight"><span class="s">&quot;groupOk&quot;</span><span class="w"></span></code> argument between the file and project
+constraint names points to our newly defined group constraint. The <code class="highlight"><span class="nv">group-key</span><span class="w"></span></code>
+strategy, passed between the pre and post transformation strategies, is the
+strategy that performs the grouping. It first makes the path relative to the
+project root, and then splits it on each <code>'/'</code> or <code>'\'</code> character.</p>
 <h2 id="using-libraries">Using Libraries<a class="headerlink" href="#using-libraries" title="Permanent link">&para;</a></h2>
 <p>Secondly, the concurrent solver allows to export the scope graph of a project in
 a library. These libraries can be linked with other projects, potentially
 decreasing analysis times significantly. Statix libraries can be generated and
 linked by following three steps.</p>
-<p>As a first step, use the <span class="guilabel">Spoofax ‣ Statix ‣ Make project library</span> menu on 
+<p>As a first step, use the <span class="guilabel">Spoofax ‣ Statix ‣ Make project library</span> menu on
 a file in your library project to export its scope graph. A <code>project.stxlib</code>
 file will now appear in the root directory of that project.</p>
 <div class="admonition warning">
@@ -3354,6 +3405,8 @@ scope, datum associated to that scope, and the list of outgoing edges for that s
    and <code>Scope("", "s_1-1")</code> for project scopes generated by the traditional solver.</li>
 <li>Add the project scope to the list of shared scopes in the exported library.
    Instead of <code>Library([], ...)</code>, this term should now look like <code>Library([Scope("/.", "s_prj-0")], ...)</code>.</li>
+<li>If it is present, <em>remove</em> the project root scope from the <em>second</em> list
+   in the <code>Library</code> term.</li>
 <li>Remove the datum on the project scope. To do this, find the project scope
    entry in the scope graph, and change its second argument from <code>Some(...)</code>
    to <code>None()</code>. The entry should now roughly look like <code>(Scope("/.", "s_prj-0"), None(), [...])</code>.</li>
@@ -3365,6 +3418,14 @@ more descriptive (e.g. <code>stdlib</code>), but ensure that the <code>.stxlib</
 <p>Thirdly, the library must be enabled. To enable the library, create a <code>lib/stxlibs</code>
 file (no extension) that contains a list of enabled library names. Continuing our
 previous example, the content of that file would be <code>["stdlib"]</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Project-level Declarations</p>
+<p>When the <em>project constraint</em> asserts declarations, these will be duplicated,
+because the project constraint is solved both when analyzing the library and
+when analyzing the project using the library. As a general principle,
+project constraints <em>should not</em> make declarations. Instead, libraries are
+meant as a replacement for the project constraint to declare built-in types.</p>
+</div>
 <details class="note"><summary>Multiple Libraries</summary><p>Using multiple libraries is supported by adding multple <code>*.stxlib</code> files in
 the <code>lib/</code> directory, and having multiple entries in the <code>stxlibs</code> file. An
 example of such a file could look like <code>["lib1", "lib2"]</code>. Note however that
@@ -3386,7 +3447,7 @@ the following options for the <code>mode</code>/<code>modes</code> settings are 
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-09-04
+      Last update: 2021-09-06
     
   </small>
 </div>
