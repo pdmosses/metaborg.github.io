@@ -106,8 +106,72 @@ the remainder of the specification should not be affected.
 
 ## Using Grouping
 
-!!! todo
-    Explain grouping
+The traditional solver uses two special constraints as entry points: the
+*project constraint* (usually named `projectOk`) was solved once for each
+project, while the *file constraint* (usually called `fileOk`) was solved for
+each file in that project. The concurrent solver adds the concepts of *groups*
+in between these concepts. Files can be organized in groups, while groups can
+in addition contain subgroups. This gives rise to a tree-shaped hierarchy, where
+the project is the root node, the files are the leaf nodes, and all nodes in
+between are groups. Most often, this hierarchy follows the directory structure
+of a project. In order to use grouping, two steps need to be performed.
+
+First, a *group constraint* must be defined. The group constraint must have the
+signature `#!statix scope * string * scope`. For each group, this constraint
+will be instantiated with the parent group scope, group name and own group scope
+as arguments (in that order).
+
+A simple example of a group constraint can look as follows:
+
+```statix
+signature
+
+  sorts MODULE constructors
+    MODULE: scope -> MODULE
+
+  relations
+    mod: string * MODULE
+
+rules
+
+  groupOk: scope * string * scope
+  groupOk(s_prnt, name, s_grp) :-
+    !mod[name, MODULE(s_grp)] in s_prnt.
+
+```
+
+In this fragment, we define the `groupOk` constraint, which has the appropriate
+signature. The body of the rule for this constraint simply declares that a module
+with the appropriate name exists in the parent scope.
+
+Second, the builder needs to be adapted in two ways: the name of the group
+constraint must be passed to the solver, and a strategy that determines the group
+of a file must be provided to the solver. Such a strategy should have type
+`#!stratego (String * AST) -> List(String)`. The input arguments represent the
+file path and its AST, respectively. The output list should contain all group
+identifiers from project root to the respective file. For example, a Java
+specification should return `["java", "lang", "Object"]` for the `Object` class
+in the `java.lang` package. Note that the file must be assigned a name, and that
+that name should be included in the output list.
+
+A project that uses the directory structure as its grouping structure could
+call the `stx-editor-analyze` as follows:
+
+```stratego
+rules
+
+  editor-analyze = stx-editor-analyze(pre-analyze,group-key,post-analyze|"statics", "projectOk", "groupOk", "fileOk")
+
+  group-key: (resource, ast) -> key
+    with rel-path := <current-language-relative-source-or-include-path> resource
+       ; key := <string-tokenize> (['/','\'], rel-path)
+```
+
+In this snippet, the `#!stratego "groupOk"` argument between the file and project
+constraint names points to our newly defined group constraint. The `#!stratego group-key`
+strategy, passed between the pre and post transformation strategies, is the
+strategy that performs the grouping. It first makes the path relative to the
+project root, and then splits it on each `'/'` or `'\'` character.
 
 ## Using Libraries
 
@@ -164,8 +228,7 @@ previous example, the content of that file would be `["stdlib"]`.
     because the project constraint is solved both when analyzing the library and
     when analyzing the project using the library. As a general principle,
     project constraints *should not* make declarations. Instead, libraries are
-    meant as a replacement for using the project constraint to declare built-in
-    types.
+    meant as a replacement for the project constraint to declare built-in types.
 
 ??? note "Multiple Libraries"
     Using multiple libraries is supported by adding multple `*.stxlib` files in
