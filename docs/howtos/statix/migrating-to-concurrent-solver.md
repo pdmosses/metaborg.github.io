@@ -159,6 +159,14 @@ Thirdly, the library must be enabled. To enable the library, create a `lib/stxli
 file (no extension) that contains a list of enabled library names. Continuing our
 previous example, the content of that file would be `["stdlib"]`.
 
+!!! warning "Project-level Declarations"
+    When the *project constraint* asserts declarations, these will be duplicated,
+    because the project constraint is solved both when analyzing the library and
+    when analyzing the project using the library. As a general principle,
+    project constraints *should not* make declarations. Instead, libraries are
+    meant as a replacement for using the project constraint to declare built-in
+    types.
+
 ??? note "Multiple Libraries"
     Using multiple libraries is supported by adding multple `*.stxlib` files in
     the `lib/` directory, and having multiple entries in the `stxlibs` file. An
