@@ -1897,9 +1897,80 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Pipelines for Interactive Environments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Pipelines for Interactive Environments
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-pie-dsl" class="md-nav__link">
+    The PIE DSL
+  </a>
+  
+    <nav class="md-nav" aria-label="The PIE DSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    File structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure-and-module-system" class="md-nav__link">
+    Directory structure and module system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-and-data-definitions" class="md-nav__link">
+    Types and data definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-definitions" class="md-nav__link">
+    Function definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-information" class="md-nav__link">
+    Misc information.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3106,6 +3177,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-pie-dsl" class="md-nav__link">
+    The PIE DSL
+  </a>
+  
+    <nav class="md-nav" aria-label="The PIE DSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    File structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure-and-module-system" class="md-nav__link">
+    Directory structure and module system
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-and-data-definitions" class="md-nav__link">
+    Types and data definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-definitions" class="md-nav__link">
+    Function definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-information" class="md-nav__link">
+    Misc information.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3134,11 +3261,11 @@ The PIE runtime executes tasks incrementally, which means that it only executes 
 Tasks can also be written in the PIE DSL.
 The PIE DSL is specifically made for PIE, so it has little boilerplate.
 Tasks written in the PIE DSL are compiled to Java.</p>
-<h1 id="the-pie-dsl">The PIE DSL<a class="headerlink" href="#the-pie-dsl" title="Permanent link">&para;</a></h1>
+<h2 id="the-pie-dsl">The PIE DSL<a class="headerlink" href="#the-pie-dsl" title="Permanent link">&para;</a></h2>
 <p>PIE models a pipeline as tasks that call each other.
 The PIE DSL calls these tasks "functions", because each task has inputs and an output.
 A PIE DSL program consists of one or more files.</p>
-<h2 id="file-structure">File structure<a class="headerlink" href="#file-structure" title="Permanent link">&para;</a></h2>
+<h3 id="file-structure">File structure<a class="headerlink" href="#file-structure" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>module fully:qualified:moduleName
 
 import fully:qualified:name:of:another:module
@@ -3156,14 +3283,14 @@ The module statement declares the fully qualified name of the module.
 Imports are optional and import datatypes and function from other modules.
 They can import multiple functions or datatypes at the same time, and they can rename elements.
 Data and function definitions define functions and datatypes.</p>
-<h2 id="directory-structure-and-module-system">Directory structure and module system<a class="headerlink" href="#directory-structure-and-module-system" title="Permanent link">&para;</a></h2>
+<h3 id="directory-structure-and-module-system">Directory structure and module system<a class="headerlink" href="#directory-structure-and-module-system" title="Permanent link">&para;</a></h3>
 <p>PIE files have the extension <code>.pie</code>.
 Each PIE file forms a module.
 Modules can define functions and datatypes, and can import functions and datatypes from other modules.
 It is recommended to use the same name for the module as the path and filename, but this is not required.
 As such, the PIE DSL does not place any restrictions on paths and file names besides the standard restrictions for Spoofax languages. 
 The module system is described in <a href="modules/">Modules</a>.</p>
-<h2 id="types-and-data-definitions">Types and data definitions<a class="headerlink" href="#types-and-data-definitions" title="Permanent link">&para;</a></h2>
+<h3 id="types-and-data-definitions">Types and data definitions<a class="headerlink" href="#types-and-data-definitions" title="Permanent link">&para;</a></h3>
 <p>The PIE DSL is a statically typed language.
 There are a few built-in types, such as <code>int</code> and <code>path</code>.
 Built-in types use lowercase characters.
@@ -3172,7 +3299,7 @@ The types in the PIE DSL are described in <a href="types/">Types</a>.
 The PIE DSL also supports generic datatypes.
 These follow Java semantics.
 The semantics of generics can be found in <a href="generics/">Generics</a>.</p>
-<h2 id="function-definitions">Function definitions<a class="headerlink" href="#function-definitions" title="Permanent link">&para;</a></h2>
+<h3 id="function-definitions">Function definitions<a class="headerlink" href="#function-definitions" title="Permanent link">&para;</a></h3>
 <p>Functions express task definitions.
 Functions consist of a head and an implementation.</p>
 <div class="highlight"><pre><span></span><code>func $FuncHead = $FuncImpl
@@ -3192,7 +3319,7 @@ Expressions are described in <a href="expressions/">Expressions</a>.
 A function can also be implemented in Java.
 The three ways this can be done are shown in the example as well.
 A complete overview of functions is given in <a href="functions/">Functions</a>.</p>
-<h2 id="misc-information">Misc information.<a class="headerlink" href="#misc-information" title="Permanent link">&para;</a></h2>
+<h3 id="misc-information">Misc information.<a class="headerlink" href="#misc-information" title="Permanent link">&para;</a></h3>
 <p>Java and C use the function called <code>main</code> with a certain signature as the entry point to the program.
 A PIE program does not have a set entry point.
 The entry point is whatever function is called from the PIE runtime.</p>
@@ -3204,7 +3331,7 @@ The entry point is whatever function is called from the PIE runtime.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-09-06
+      Last update: 2021-09-07
     
   </small>
 </div>
