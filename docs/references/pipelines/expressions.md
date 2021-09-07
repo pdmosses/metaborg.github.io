@@ -10,7 +10,9 @@ This section describes expressions in the PIE DSL.
 Expressions can use declared values.
 These are described [in this section of the functions documentation](../functions#parameters-and-values).
 
+
 ## Syntactic priorities (disambiguation)
+
 Nested expressions can be ambiguous, for example `! true && false` could either `! (true && false) // = true` or `(!true) && false // = false`.
 To solve these ambiguities, each expression has a priority.
 Expressions with higher priories will be nested in expressions with lower priority.
@@ -44,7 +46,7 @@ If an expression is not listed, it cannot be ambiguous (e.g. Blocks and list lit
 </ol>
 
 
-# Quick overview
+## Quick overview
 
 The following table gives a quick overview of all expressions in the PIE DSL.
 
@@ -90,7 +92,7 @@ There is also a section on [common lexical elements](#common-lexical-elements).
 This covers [filters](#filter-and-filterpart) and [stampers](#stamper-stamperpart-and-stamperkind).
 
 
-# Block
+## Block
 
 Blocks are expressed as `{$Exps}`, where `$Exps` is a list of semi-colon separated expressions.
 Its type and value are those of the final expressions in the block.
@@ -114,7 +116,7 @@ Values declared before the block are still visible inside the block.
 Values declared inside the block are not visible after the block.
 
 
-# Make nullable
+## Make nullable
 
 Make nullable is expressed as a question mark after an expression.
 As its name suggests, it makes a non-nullable expression nullable.
@@ -124,7 +126,7 @@ Its syntax is `$Exp?`, for example `read ./name.txt == "Bob"?`.
 It is an error to use this expression on an expression that was nullable already.
 
 
-# Make non-nullable
+## Make non-nullable
 
 Make non-nullable is expressed as an exclamation mark after an expression.
 As its name suggests, it makes a nullable expression non-nullable.
@@ -134,14 +136,14 @@ Its syntax is `$Exp!`, for example `read file!`.
 It is an error to use this expression on an expression that was non-nullable already.
 
 
-# Not
+## Not
 
 Logical negation.
 It takes a [boolean](../types#bool) expression and returns the opposite boolean value.
 Its syntax is `!$Exp`, for example `if (!exists file) fail "$file should exist`.
 
 
-# Compare for (in)equality
+## Compare for (in)equality
 
 Compare two expressions for equality or inequality.
 Two values are considered equal if they are both `null` or if the `equals` method in the backing Java class for the first value returns `true` when applied to the second value.
@@ -158,7 +160,7 @@ This provides protection against accidentally comparing two expressions that can
     In these cases, check for these specific values: `x == null && y == null`.
 
 
-# Logical or
+## Logical or
 
 Logical or.
 Takes two boolean expressions and returns `true` if either of them is `true` and `false` if both are `false`.
@@ -166,7 +168,7 @@ This operator short-circuits if the first expression is `true`, in which case th
 Its syntax is `$Exp || $Exp`, for example `exists file || default != null`.
 
 
-# logical and
+## logical and
 
 Logical and.
 Takes two boolean expressions and returns `true` if both of them are `true` and `false` if either of them is `false`.
@@ -174,7 +176,7 @@ This operator short-circuits if the first expression is `false`, in which case t
 Its syntax is `$Exp && $Exp`, for example `configFile != null && exists configFile`.
 
 
-# Addition
+## Addition
 
 The add operator is an overloaded in the PIE DSL.
 Its syntax is `$Exp + $Exp`.
@@ -207,7 +209,7 @@ Finally, adding a type `T2` to a list with type `T1*` has two cases
   In that case, the element type of the resulting list is nullable as well.
 
 
-# Value declaration
+## Value declaration
 
 Value declarations declare one or more named values.
 Expressions that are evaluated afterwards in the same scope or an inner scope can use the declared values by [referencing them](#value-reference).
@@ -239,7 +241,7 @@ The type of a value declaration is the type of the variable(s) that it declares.
 It uses the type hint if available and the expression type otherwise.
 Single declarations have that single type, tuple declarations return a tuple of all the types that they declare.
 
-# Value reference
+## Value reference
 
 Value references reference a declared value or parameter by name.
 The name must be declared beforehand in the current scope or an outer scope.
@@ -254,7 +256,7 @@ func incrementInefficiently(x: int) -> int = {
 ```
 
 
-# if
+## if
 
 An if expression conditionally evaluates an expression.
 It takes two expressions.
@@ -266,7 +268,7 @@ The type of an `if` expression is [the `unit` type](../types#unit).
 The condition and body are evaluated in their own scope, so value declarations in an `if` expression are not visible after the `if`.
 Because an if expression is evaluated in its own scope and always returns the same value, the only use for an `if` expression is if the body has side-effects.
 
-# if-else
+## if-else
 
 Conditionally evaluates one of two expressions.
 It takes three expressions.
@@ -315,7 +317,7 @@ The condition and branches are evaluated in their own scope, so value declaratio
     ```
 
 
-# List comprehension
+## List comprehension
 
 List comprehensions apply an expression to every element of a list and return a new list with the new elements.
 They are special syntax for mapping a list, which would not ordinarily be possible in the PIE DSL because there are no higher-order functions.
@@ -333,7 +335,7 @@ The type of the full list comprehension is a list of the type that was mapped to
     List comprehensions over empty lists are compiled to an immediate empty list of the declared type because it is not known what the element type of the empty list is.
 
 
-# Function calls
+## Function calls
 
 Function calls [invoke a declared function](../functions#function-invocations).
 They have the syntax `$ModuleList$FUNCID$TypeArgs($Exps)`, for example `stdLib:okResult<string>("Hello world!")`.
@@ -375,7 +377,7 @@ The type of a call is the type of the declared function, where type parameters a
     x
     ```
 
-# Method calls
+## Method calls
 
 Method calls [invoke](../functions#function-invocations) a [declared method](../types#methods-and-overriding).
 They have the syntax `$Exp.$FUNCID$TypeArgs($Exps)`, for example `file.replaceExtension("pp.pie")`.
@@ -448,7 +450,7 @@ The type of a method call is the type of the declared method, where type paramet
     ```
 
 
-# create supplier
+## create supplier
 
 [A supplier](../types#supplier) for a value can be created with the `supplier` keyword.
 It has the syntax `supplier$TypeArgs($Exps)`, for example `supplier(47)` or `supplier<string>("Hello world!")`.
@@ -464,7 +466,7 @@ The type of a supplier creation expression is `supplier<T>`.
     This is the only function call where the type argument is derived at the moment.
 
 
-# task supplier
+## task supplier
 
 A task supplier expression creates a [supplier](../types#supplier) from a function.
 A task supplier expression does not execute the task yet, but instead defers it until the supplier's `get` method is called.
@@ -479,7 +481,7 @@ They must match the number of parameters that the function declared and they mus
 
 The type of a task supplier expression is `supplier<T>`, where `T` is the type of the declared function with the type parameters replaced with their corresponding type arguments.
 
-# requires
+## requires
 
 A requires expression expresses that the current task depends on the given [path](../types#path).
 It has the syntax `requires $Exp $FilterPart? $StamperPart?`, for example `requires ./metaborg.yaml by hash` or `requires sampleDir with extension "sdf3"`.
@@ -495,7 +497,7 @@ The type and value of the expression is [unit](../types#unit).
     What happens if there is another task that provides the path? Does it quietly schedule that task before this one, does it throw an error? What if that other task runs after this task?
 
 
-# generates
+## generates
 
 Marks the given [path](../types#path) as provided by the current task.
 It has the syntax `generates $Exp $StamperPart?`, for example `generates file by hash`.
@@ -517,7 +519,7 @@ The type and value of this expression is [unit](../types#unit).
     What happens if this task calls a task that provides a file and then this task also declares it generated that file?
 
 
-# list
+## list
 
 !!! info inline end "Defining list literals"
     This section is about listing children of a directory with the `list` keyword.
@@ -544,7 +546,7 @@ A list expression returns a [list](../types#lists) of the direct children of the
     What happens if it is not a directory?
 
 
-# walk
+## walk
 
 Recursively gets descendants of the given directory.
 Walk expressions have the syntax `walk $Exp $FilterPart?`, for example `walk getProjectRootDir() + ./src/test/java with extension "java"`.
@@ -569,7 +571,7 @@ A walk expression returns a [list](../types#list) of all the files in the given 
     Should recursive directories automatically be declared [required](#require)?
 
 
-# exists
+## exists
 
 Checks if a file or folder exists.
 The syntax is `exists $Exp`, for example `exists ./config.json`.
@@ -577,7 +579,7 @@ The expression is the [path](../types#path) for which it should be checked if it
 It returns a [boolean](../types#bool) indicating whether the file or path exists.
 
 
-# read
+## read
 
 Reads the contents of the given file into a [string](../types#string).
 The syntax is `read $Exp`, for example `read pie.sdf3`.
@@ -586,7 +588,7 @@ The file is read with the system default file encoding.
 It returns a string with the contents of the file.
 
 
-# Return
+## Return
 
 Returns from the current function with the provided value.
 Its syntax is `return $Exp`, for example `return true` or `return errResult<FileNotFoundException>(createFileNotFoundException("could not find $file"))`.
@@ -600,7 +602,7 @@ The type of a return expression is [unit](../types#unit).
     This would allow using a return expression as a branch in an if-else expression.
 
 
-# fail
+## fail
 
 Throws an `ExecException` with the provided `string` as message.
 This exits the function, any code after this expression is not evaluated.
@@ -618,21 +620,21 @@ The type of a fail expression is [unit](../types#unit).
     We recommend using `Result<T, E>` from the PIE standard library instead.
 
 
-# Unit literal
+## Unit literal
 
 `unit` is a literal expression of the only value of the [unit type](../types#unit).
 
 
-# True
+## True
 
 `true` is the literal expression for one of the two values of the [boolean type](../types#boolean).
 
-# False
+## False
 
 `false` is the literal expression for one of the two values of the [boolean type](../types#boolean).
 
 
-# int literal
+## int literal
 
 Int literals are a literal value of the [int type](../types#int).
 Their syntax is `"-"? [0-9]+`, for example `0`, `1`, `2`, `-1`, `47` and `-30774`.
@@ -671,13 +673,13 @@ This syntax is lexical, meaning that there cannot be any layout between the sign
     ```
 
 
-# null
+## null
 
 `null` is the value that is added by making a type [nullable](../types#nullable-types).
 It is also a value of the [top type](../types#top).
 
 
-# Tuple literal
+## Tuple literal
 
 Tuple literals express literal values of the [tuple type](../types#tuples).
 Their syntax is `($Exps)`, for example `("scala", "VF_SCALA", walk (subjectScalaSrcDir + ./lib/scala.jar))`.
@@ -715,7 +717,7 @@ The type of a tuple literal is the tuple type of the types of the elements, so t
     ```
 
 
-# List literal
+## List literal
 
 !!! info inline end "List keyword"
     This section is about defining list literals.
@@ -734,7 +736,7 @@ The list element type must not be the top type.
     As such, the generated Java code may have compile errors.
 
 
-# String literal
+## String literal
 
 Define a literal value of type [string](../types#string).
 The syntax is `"$StrParts"`, where `$StrParts` are parts of the string.
@@ -758,7 +760,7 @@ For example, `\n` is a newline character, `\\` is a single backslash, and `\r` i
 All of the string parts are concatenated into a single string value without separating characters between them.
 
 
-# path literal
+## path literal
 
 Define a literal value of type [path](../types#path).
 The syntax is `$PathStart$PathParts`, for example `/home/alice/very-important-documents` or `./src/test/resources/`.
@@ -789,12 +791,12 @@ The path start and all of the path parts are concatenated into a single path val
     To check if a path exists, use [exists](#exists).
 
 
-# Common lexical elements
+## Common lexical elements
 
 This section describes common lexical elements that are used by multiple expressions.
 
 
-## Filter and FilterPart
+### Filter and FilterPart
 
 Filters are used expressions that read directories from the filesystem, so [requires](#requires), [list](#list) and [walk](#walk).
 They are used to keep certain paths and ignore all other paths based on the name and the extension.
@@ -819,7 +821,7 @@ The possible filters are listed in the table below.
     If you need multiple filters, encode your requirements in a regex filter instead.
 
 
-## Stamper, StamperPart and StamperKind
+### Stamper, StamperPart and StamperKind
 
 A Stamper specifies how it is determined whether a path is up-to-date when executing incrementally.
 They are used by [requires](#requires) and [generates](#generates).

@@ -15,14 +15,14 @@ The PIE DSL is specifically made for PIE, so it has little boilerplate.
 Tasks written in the PIE DSL are compiled to Java.
 
 
-# The PIE DSL
+## The PIE DSL
 
 PIE models a pipeline as tasks that call each other.
 The PIE DSL calls these tasks "functions", because each task has inputs and an output.
 A PIE DSL program consists of one or more files.
 
 
-## File structure
+### File structure
 
 ```
 module fully:qualified:moduleName
@@ -45,7 +45,7 @@ They can import multiple functions or datatypes at the same time, and they can r
 Data and function definitions define functions and datatypes.
 
 
-## Directory structure and module system
+### Directory structure and module system
 
 PIE files have the extension `.pie`.
 Each PIE file forms a module.
@@ -55,7 +55,7 @@ As such, the PIE DSL does not place any restrictions on paths and file names bes
 The module system is described in [Modules](modules/).
 
 
-## Types and data definitions
+### Types and data definitions
 
 The PIE DSL is a statically typed language.
 There are a few built-in types, such as `int` and `path`.
@@ -67,7 +67,7 @@ These follow Java semantics.
 The semantics of generics can be found in [Generics](generics/).
 
 
-## Function definitions
+### Function definitions
 
 Functions express task definitions.
 Functions consist of a head and an implementation.
@@ -93,7 +93,7 @@ The three ways this can be done are shown in the example as well.
 A complete overview of functions is given in [Functions](functions/).
 
 
-## Misc information.
+### Misc information.
 
 Java and C use the function called `main` with a certain signature as the entry point to the program.
 A PIE program does not have a set entry point.

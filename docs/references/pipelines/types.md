@@ -2,20 +2,20 @@
 
 This page explains the type system of the PIE DSL and lists all the built-in types.
 
-# The type system
+## The type system
 
 A type system checks for type errors.
 PIE DSL uses a static type system, so type errors are found before compilation.
 The PIE DSL supports subtypes, generics and methods on types.
 
-## Nullability
+### Nullability
 
 PIE DSL keeps explicit track of nullability, so an expression cannot be null unless [the type of the expression is nullable](#nullable-types).
 
 !!! todo
     Fully document nullability.
 
-## Super types and subtypes
+### Super types and subtypes
 
 When a type `X` is a subtype of type `Y`, you can use an expression with type `X` wherever an expression with type `Y` is expected.
 When `X` is a subtype of `Y`, `Y` is the super type of `X`
@@ -33,7 +33,7 @@ The bottom type is a subtype of everything.
 As such, an expression with the bottom type can be assigned to everything.
 
 
-## Generics
+### Generics
 
 Generics refer to making a type or a function generic over types, that is, add type parameters to the type or function.
 You likely already know about these, lists are an example of parameterized types.
@@ -72,7 +72,7 @@ A function or method can also declare generic parameters to be used in that func
 !!! todo
     Explain generics
 
-## Methods and overriding
+### Methods and overriding
 
 Every type can have methods.
 For now, the only data types are `foreign java` datatypes, so methods follow Java semantics for overriding.
@@ -81,7 +81,7 @@ For now, the only data types are `foreign java` datatypes, so methods follow Jav
     Explain overriding.
 
 
-# Built-in types
+## Built-in types
 
 The PIE DSL has several built-in types.
 This section explains all of them.
@@ -110,30 +110,30 @@ The following table gives a quick overview of the built-in types, click on the n
 | [Custom datatypes](#custom-datatypes) | `$TYPEID` | A type defined in a pie file with. | Instances of the type, ultimately obtained from `foreign java` functions | The methods that are declared on the type itself, and the methods of its super types | The declared backing class |
 
 
-## unit
+### unit
 `unit` is a type with only a single value: `unit`.
 It is meant to be used as return value for functions that have no meaningful return value, for example functions that operate via side effects like writing to a file.
 It is backed by `mb.pie.api.None`.
 
 
-## bool
+### bool
 `bool` represents booleans and as such has two values: `true` and `false`.
 Booleans are used as flags and as conditions for `if` and `if-else`.
 `bool` is backed by `java.lang.Boolean`.
 
 
-## int
+### int
 `int` represents integers.
 It is backed by `java.lang.Integer`, and as such has a range of $-2^{31}$ to $2^{31}-1$, inclusive.
 
 
-## string
+### string
 `string` represents strings.
 Strings have many built-in methods which have yet to be added to the implementation.
 It is backed by java `String`.
 
 
-## path
+### path
 `path` represents a path to a file or directory in the file system.
 The directory or file need not exist.
 Paths can be relative or absolute.
@@ -141,19 +141,19 @@ Paths have many built-in methods which have yet to be added to the implementatio
 Paths are backed by `mb.resource.fs.FSPath`
 
 
-## null type
+### null type
 The null type cannot be expressed in the PIE DSL, meaning that there is no way to specify it as the type of something.
 Its only value is `null`.
 The null type is a subtype of every nullable type.
 
 
-## top
+### top
 The top type is a super type of every other type.
 It cannot be specified as a type.
 It is backed by `java.lang.Object`
 
 
-## bottom
+### bottom
 The bottom type is a subtype of every other type.
 It cannot be specified as a type.
 The bottom type has no values, and as such an expression with bottom type will never return normally to the function it is defined in.
@@ -164,7 +164,7 @@ This type is not backed by any java class.
     Remove the code that has bottom type to resolve this.
 
 
-## Nullable types
+### Nullable types
 Nullable types are represented with a question mark after the type.
 For example, a nullable `int` is `int?`.
 A nullable type `X?` represents a value that could either be a regular value `X` or "missing", represented with the expression `null`.
@@ -173,7 +173,7 @@ It is an error to make a nullable type nullable again, so `X??` is not allowed.
 Java types are always nullable, so the nullable type `X?` is backed by Java type `X`.
 
 
-## Lists
+### Lists
 Lists are represented with an asterisk behind the type.
 For example, a nullable `path` is `path*`.
 Lists of `X` can contain any element that could be assigned to `X`.
@@ -187,7 +187,7 @@ Lists are backed by Java `java.util.ArrayList`.
     Because it is doing this anyway, it gives warnings when doing certain non-sensical things such as appending an empty list to another list or list comprehension over empty lists.
 
 
-## Tuples
+### Tuples
 Tuple types represent a combination of multiple types.
 They are specified as the types between parentheses.
 For example, `(string, int*)` represents a pair of a `string` and a list of `int`s.
@@ -205,7 +205,7 @@ This is because Java is not generic in the amount of generic elements.
     If you run into this limit, use a foreign data type backed by a custom Java class instead.
 
 
-## supplier
+### supplier
 `supplier<T>` represents a supplier of a value of type `T`.
 Suppliers represent a value, either by [being created with a value](../expressions#create-supplier) or by [deferring a task that returns the value](../expressions#task-supplier).
 Suppliers have a single method `get<>() -> T`, which returns the value of the supplier, either by returning the value if it already existed or by calling the task that the supplier supplies.
@@ -236,7 +236,7 @@ The runtime only has to make a few calls to determine that the input for `parse2
 
 Suppliers are backed by `mb.pie.api.Supplier`.
 
-## Function types
+### Function types
 Function types are visible when hovering over a function name.
 They follow the pattern `func($Params) -> $Type`.
 For example, `func(int, string) -> bool` is a function that takes an int and a string and returns a boolean.
@@ -244,7 +244,7 @@ Function types cannot be specified in PIE DSL, and they can also not be the type
 Because function types cannot be the type of a variable, they are not backed by a Java class.
 
 
-## Wildcards
+### Wildcards
 Wildcards represent a set of types by using an upper or lower bound.
 They use the following syntax.
 The wildcard itself is represented by an underscore: `_`
@@ -279,7 +279,7 @@ This `buildZoo` will take `Animal*`, `Mammal*`, `Bird*`, `Insect*` and even `Chi
 Wildcards are translated to Java wildcards.
 
 
-# Custom datatypes
+## Custom datatypes
 Custom datatypes are definitions using the `data` keyword.
 They look like this:
 ```PIE
