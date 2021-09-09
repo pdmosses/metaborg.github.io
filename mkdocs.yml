@@ -89,6 +89,7 @@ nav:
       - references/stratego/strategy-definitions.md
       - references/stratego/strategy-combinators.md
       - references/stratego/dynamic-rules.md
+      - Troubleshooting: references/stratego/troubleshooting.md
     - Testing:
       - references/testing/index.md
       - references/testing/test-suites.md
