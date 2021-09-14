@@ -139,6 +139,7 @@ nav:
         - background/stratego/strategy-combinators/term.md
         - background/stratego/strategy-combinators/traversal.md
         - background/stratego/strategy-combinators/type-unifying.md
+      - background/stratego/origin-tracking.md
     - Documentation:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md

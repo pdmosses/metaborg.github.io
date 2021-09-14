@@ -22,6 +22,12 @@ Here we expand that description with many examples.
 - [Traveral combinators](strategy-combinators/traversal.md)
 - [Type unifying traversals](strategy-combinators/type-unifying.md)
 
+## Origin Tracking
+
+Origin tracking is a term rewriting feature that has been put into Stratego to track connections between terms through a transformation. If you for example parse a file into an abstract syntax tree (AST) and the parser leaves some information about what term refers to what part of the file, you can keep track of that even after transformations.
+
+However, origin tracking in Stratego is rather limited, and people are often confused about how it works. On [the page for Origin Tracking](origin-tracking.md) you can find an explanation of origin tracking, how it works in Stratego, and plans on future improvements. 
+
 ## References
 
 \bibliography
