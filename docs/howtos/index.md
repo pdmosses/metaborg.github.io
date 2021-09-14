@@ -16,6 +16,7 @@ These are some How-To's that help you to get to a specific goal or result with S
 - How to [debug Stratego programs](stratego/debug-stratego.md)
 - [Exchange Terms](stratego/exchange-terms.md)
 - [Inspect Terms](stratego/inspect-terms.md)
+- How to [upgrade from Stratego 1 to Stratego 2](stratego/stratego-1-to-2.md)
 
 ## Editor Services
 - [Add Rename Refactoring to an Existing Project](editor-services/rename-refactoring.md)

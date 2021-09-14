@@ -33,6 +33,7 @@ nav:
       - howtos/stratego/concrete-syntax.md
       - howtos/stratego/exchange-terms.md
       - howtos/stratego/inspect-terms.md
+      - howtos/stratego/stratego-1-to-2.md
     - Editor Services:
       - howtos/editor-services/rename-refactoring.md
     - Development:
