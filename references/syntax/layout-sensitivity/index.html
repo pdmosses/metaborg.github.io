@@ -1280,6 +1280,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#newline-indent" class="md-nav__link">
+    newline-indent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-line" class="md-nav__link">
+    single-line
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3276,6 +3290,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#newline-indent" class="md-nav__link">
+    newline-indent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-line" class="md-nav__link">
+    single-line
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3437,6 +3465,65 @@ The following program is correct according to these two constraints, since the s
 <span class="err">·</span><span class="o">*</span> <span class="mi">4</span>
 <span class="err">·</span><span class="n">y</span> <span class="o">=</span> <span class="mi">3</span>
 </code></pre></div>
+<h3 id="newline-indent"><code>newline-indent</code><a class="headerlink" href="#newline-indent" title="Permanent link">&para;</a></h3>
+<p>The newline-indent constraint indicates that a certain tree should both be located on a new line, as well as further to the right with respect to another tree.</p>
+<p>For example, consider the following production:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+
+    Exp.If = &quot;if&quot; Exp &quot;then&quot; then:Exp &quot;else&quot; Exp  {layout(
+        newline-indent &quot;if&quot; then
+    )}
+</code></pre></div>
+<p>This constraint indicates that the "then" branch of the if-then-else expression needs to be on a new line and indented with respect to the "if" keyword. Thus, according to this constraint the following program is valid:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="n">then</span>
+<span class="err">··</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</code></pre></div>
+<p>The newline-indent constraint does not require that the expression is located on the immediate next line, but rather that it is located <em>below</em> the reference tree. Consequently, the following is also allowed:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="n">then</span>
+
+
+<span class="err">··</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="k">else</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</code></pre></div>
+<p>Note that the newline-indent constraint is relative to the <em>first</em> character in the reference tree. That means that, given the following syntax:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+    Example.Example = a:FooBar b:Baz {layout(newline-indent a b)}
+    FooBar.FooBar = &lt;foo bar&gt;
+    Baz.Baz = &lt;baz&gt;
+</code></pre></div>
+<p>The following syntax is valid, despite <code>bar</code> being indented further than <code>baz</code>:</p>
+<div class="highlight"><pre><span></span><code>foo
+····bar
+··baz
+</code></pre></div>
+<h3 id="single-line"><code>single-line</code><a class="headerlink" href="#single-line" title="Permanent link">&para;</a></h3>
+<p>The single-line constraints indicates that the entirety of the given subtrees must be located on the same line. For example, consider the following production:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+    Exp.If = &quot;if&quot; Exp &quot;:&quot; then:Exp &quot;else&quot; Exp {layout(
+        single-line &quot;if&quot; &quot;:&quot;
+    )}
+</code></pre></div>
+<p>This enforces that both the <code>if</code> and <code>:</code> tokens need to be on the same line. As a result, the condition expression also needs to be contained on the same line. Thus, the following program is valid for the given constraints:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+  <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</code></pre></div>
+<p>Note that the entirety of the referenced tree needs to be on the same line. Consider the following syntax:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+    Example.Example = a:Baz b:FooBar {layout(single-line a b)}
+    FooBar.FooBar = &lt;foo bar&gt;
+    Baz.Baz = &lt;baz&gt;
+</code></pre></div>
+<p>With this definition, the following program is invalid, despite <code>baz</code> and the start of <code>foo bar</code> being on the same line:</p>
+<div class="highlight"><pre><span></span><code>baz foo
+  bar
+</code></pre></div>
+<p>Using the <code>single-line</code> constraint without any parameters will add a constraint that the entire production needs to be on a single line. This can be useful as a shorthand when your grammar requires that the entirety of a production is on the same line:</p>
+<div class="highlight"><pre><span></span><code>context-free syntax
+    Exp.Add = &lt;&lt;Exp&gt; + &lt;Exp&gt;&gt; {layout(single-line)}
+    // is equivalent to
+    Exp.Add = &lt;&lt;a:Exp&gt; + &lt;b:Exp&gt;&gt; {layout(single-line a b)}
+</code></pre></div>
+<hr />
 <p>Finally, all these layout declarations can be ignored by the parser and used only when generating the pretty-printer.
 To do that, prefix the constraint with <code>pp-</code> writing, for example, <code>pp-offside</code> or <code>pp-align</code>.</p>
 <div class="footnote">
@@ -3455,7 +3542,7 @@ To do that, prefix the constraint with <code>pp-</code> writing, for example, <c
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-09-14
+      Last update: 2021-09-21
     
   </small>
 </div>
