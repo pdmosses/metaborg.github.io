@@ -57,12 +57,6 @@
     word-wrap: break-word;
     white-space: normal;
 }
-.warning {
-    color: #ff9100;
-}
-.stop {
-    color: #ff1744;
-}
 .md-typeset a.white-link {
     color: white;
 }
@@ -92,4 +86,21 @@ code.no-ligatures {
     border-radius: 4px;
     padding: 1px 3px;
     margin: auto 1px;
+}
+
+.true {
+    color: #00c853;
+}
+.trace {
+}
+.debug {
+}
+.info {
+    color: #00b8d4;
+}
+.warning {
+    color: #ff9100;
+}
+.error, .stop, .false {
+    color: #ff1744;
 }
