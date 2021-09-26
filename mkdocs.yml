@@ -74,7 +74,7 @@ nav:
       - references/statix/tests.md
       - references/statix/stratego-api.md
     - Data Flow Analysis:
-      - references/flowspec/introduction.md
+      - references/flowspec/index.md
       - references/flowspec/structure.md
       - references/flowspec/Stratego_API.md
       - references/flowspec/configuration.md

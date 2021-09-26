@@ -184,7 +184,7 @@ The `bagof-$Id` strategy is generated automatically and produces all right-hand 
 ## Other Dynamic Rule Extensions
 
 The papers by Olmos and Visser[@OlmosV05] and Bravenboer et. al[@BravenboerDOV06] describe more advanced features of dynamic rules, primarily inspired by data-flow transformations.
-For defining data-flow analyses, Spoofax now provides the [FlowSpec](../flowspec/introduction.md) meta-language.
+For defining data-flow analyses, Spoofax now provides the [FlowSpec](../flowspec/index.md) meta-language.
 
 
 
