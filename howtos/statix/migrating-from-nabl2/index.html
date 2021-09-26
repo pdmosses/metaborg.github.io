@@ -20,7 +20,7 @@
     
     
       
-        <title>Migrating from NaBL2 - Spoofax</title>
+        <title>Migrate from NaBL2 - Spoofax</title>
       
     
     
@@ -62,7 +62,7 @@
 
 <!-- Open graph meta tags -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Spoofax - Migrating from NaBL2" />
+<meta property="og:title" content="Spoofax - Migrate from NaBL2" />
 <meta property="og:description" content="Spoofax language workbench" />
 <meta property="og:url" content="https://www.spoofax.dev/howtos/statix/migrating-from-nabl2/" />
 <meta property="og:image" content="https://repository-images.githubusercontent.com/373448219/bb3bb300-d8ee-11eb-9991-a5080ae2657c" />
@@ -94,7 +94,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#migrating-from-nabl2" class="md-skip">
+        <a href="#migrate-to-statix-from-nabl2" class="md-skip">
           Skip to content
         </a>
       
@@ -144,7 +144,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Migrating from NaBL2
+              Migrate from NaBL2
             
           </span>
         </div>
@@ -752,12 +752,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Migrating from NaBL2
+          Migrate from NaBL2
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Migrating from NaBL2
+        Migrate from NaBL2
       </a>
       
         
@@ -4081,7 +4081,7 @@
                   </a>
                 
                 
-                <h1 id="migrating-from-nabl2">Migrating from NaBL2<a class="headerlink" href="#migrating-from-nabl2" title="Permanent link">&para;</a></h1>
+                <h1 id="migrate-to-statix-from-nabl2">Migrate to Statix from NaBL2<a class="headerlink" href="#migrate-to-statix-from-nabl2" title="Permanent link">&para;</a></h1>
 <h2 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">&para;</a></h2>
 <p>All sorts and constructors must be explicitly defined in Statix in
 <code class="highlight"><span class="k">sorts</span><span class="w"></span></code> and <code class="highlight"><span class="k">constructors</span><span class="w"></span></code> signatures. Sorts in Statix
@@ -4092,11 +4092,7 @@ are mostly similar to terms in NaBL2. Notable differences:</p>
 <li>List sorts in Statix are written as <code class="highlight"><span class="k">list</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span><span class="w"></span></code> for some sort <code>X</code>.</li>
 </ul>
 <p>Statix signatures for language syntax can be generated from SDF3
-definitions with the signature generator.</p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Migrate docs on signature generator</p>
-</div>
+definitions with the <a href="../signature-generator/">signature generator</a>.</p>
 <h2 id="name-resolution">Name-resolution<a class="headerlink" href="#name-resolution" title="Permanent link">&para;</a></h2>
 <p>Name resolution in NaBL2 heavily relies on occurrences and their
 unique identity. In Statix, the notion of a stand-alone reference is
