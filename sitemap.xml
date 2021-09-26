@@ -51,6 +51,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://www.spoofax.dev/background/documentation/code-highlighting/</loc>
+         <lastmod>2021-09-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://www.spoofax.dev/background/documentation/guis-and-menus/</loc>
          <lastmod>2021-09-26</lastmod>
          <changefreq>daily</changefreq>
@@ -206,6 +211,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://www.spoofax.dev/howtos/statix/signature-generator/</loc>
+         <lastmod>2021-09-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://www.spoofax.dev/howtos/stratego/concrete-syntax/</loc>
          <lastmod>2021-09-26</lastmod>
          <changefreq>daily</changefreq>
@@ -321,17 +331,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://www.spoofax.dev/references/flowspec/</loc>
+         <lastmod>2021-09-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://www.spoofax.dev/references/flowspec/Stratego_API/</loc>
          <lastmod>2021-09-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.spoofax.dev/references/flowspec/configuration/</loc>
-         <lastmod>2021-09-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://www.spoofax.dev/references/flowspec/introduction/</loc>
          <lastmod>2021-09-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
