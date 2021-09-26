@@ -144,6 +144,7 @@ nav:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md
       - Links: background/documentation/links.md
+      - background/documentation/code-highlighting.md
       - GUIs and Menus: background/documentation/guis-and-menus.md
       - Citations: background/documentation/citations.md
       - Structure: background/documentation/structure.md
