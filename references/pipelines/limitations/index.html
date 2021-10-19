@@ -4098,15 +4098,15 @@
                 <h1 id="known-bugs-and-limitations">Known bugs and limitations<a class="headerlink" href="#known-bugs-and-limitations" title="Permanent link">&para;</a></h1>
 <p>This page lists the known bugs and limitations of the PIE DSL, and workarounds if they exist.
 If you have an issue that is not listed here, please check if it is listed on our Github page, and if not, open a new issue there: <a href="https://github.com/metaborg/pie/issues">https://github.com/metaborg/pie/issues</a>.</p>
-<div class="admonition todo describe how to troubleshoot">
-<p class="admonition-title">Todo</p>
-<p>Also rename this section / page?</p>
+<div class="admonition todo">
+<p class="admonition-title">Missing section: how to troubleshoot</p>
+<!-- Also rename this section / page? -->
 </div>
 <h2 id="compiler-generates-invalid-code-for-void-return-types">Compiler generates invalid code for void return types<a class="headerlink" href="#compiler-generates-invalid-code-for-void-return-types" title="Permanent link">&para;</a></h2>
 <p>The Java type <code>void</code> does not exist in the PIE DSL.
 Instead, it uses <code>unit</code> to signify that the return type does not hold a useful value.
 Right now, the compiler will generate incorrect code for <code>void</code> functions, which results in Java compile errors in the generated code.
-There is not a specific workaround for this, but the standard workarounds for unsupported Java functions should work.
+There is no specific workaround for this, but <a href="#standard-workarounds-for-unsupported-java-functions">the standard workarounds for unsupported Java functions</a> should work.
 In the future, the compiler will support functions that are declared to have a <code>unit</code> return type but which have <code>void</code> return type.</p>
 <h2 id="standard-workarounds-for-unsupported-java-features">Standard workarounds for unsupported Java features<a class="headerlink" href="#standard-workarounds-for-unsupported-java-features" title="Permanent link">&para;</a></h2>
 <p>The PIE DSL has less features than Java by design.
@@ -4114,16 +4114,17 @@ This sometimes means that Java elements cannot be used as is in the PIE DSL.
 This sections lists some standard workarounds for these issues.</p>
 <h3 id="standard-workarounds-for-unsupported-java-functions">Standard workarounds for unsupported Java functions<a class="headerlink" href="#standard-workarounds-for-unsupported-java-functions" title="Permanent link">&para;</a></h3>
 <p>This section provides workarounds for calling Java functions that are not supported by the PIE DSL.</p>
-<div class="admonition todo write standard workarounds for unsupported java functions">
-<p class="admonition-title">Todo</p>
+<div class="admonition todo">
+<p class="admonition-title">Missing section: standard workarounds for unsupported Java functions</p>
+<p>In summary, the workarounds are:</p>
 <ol>
 <li>Write a wrapper function</li>
 <li>Implement the task in Java. (Do not call the function from the PIE DSL, but call it from Java instead)</li>
 </ol>
 </div>
 <h3 id="standard-workarounds-for-unsupported-java-data-types">Standard workarounds for unsupported Java data types<a class="headerlink" href="#standard-workarounds-for-unsupported-java-data-types" title="Permanent link">&para;</a></h3>
-<div class="admonition todo write standard workarounds for unsupported java data types">
-<p class="admonition-title">Todo</p>
+<div class="admonition todo">
+<p class="admonition-title">Missing section: standard workarounds for unsupported Java data types</p>
 </div>
                 
                   
