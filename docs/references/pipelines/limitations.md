@@ -3,15 +3,15 @@
 This page lists the known bugs and limitations of the PIE DSL, and workarounds if they exist.
 If you have an issue that is not listed here, please check if it is listed on our Github page, and if not, open a new issue there: https://github.com/metaborg/pie/issues.
 
-!!! todo Describe how to troubleshoot
-    Also rename this section / page?
+!!! todo "Missing section: how to troubleshoot"
+    <!-- Also rename this section / page? -->
 
 ## Compiler generates invalid code for void return types
 
 The Java type `void` does not exist in the PIE DSL.
 Instead, it uses `unit` to signify that the return type does not hold a useful value.
 Right now, the compiler will generate incorrect code for `void` functions, which results in Java compile errors in the generated code.
-There is not a specific workaround for this, but the standard workarounds for unsupported Java functions should work.
+There is no specific workaround for this, but [the standard workarounds for unsupported Java functions](#standard-workarounds-for-unsupported-java-functions) should work.
 In the future, the compiler will support functions that are declared to have a `unit` return type but which have `void` return type.
 
 ## Standard workarounds for unsupported Java features
@@ -24,10 +24,12 @@ This sections lists some standard workarounds for these issues.
 
 This section provides workarounds for calling Java functions that are not supported by the PIE DSL.
 
-!!! todo Write standard workarounds for unsupported Java functions
+!!! todo "Missing section: standard workarounds for unsupported Java functions"
+    In summary, the workarounds are:
+
     1. Write a wrapper function
     2. Implement the task in Java. (Do not call the function from the PIE DSL, but call it from Java instead)
 
 ### Standard workarounds for unsupported Java data types
 
-!!! todo Write standard workarounds for unsupported Java data types
+!!! todo "Missing section: standard workarounds for unsupported Java data types"
