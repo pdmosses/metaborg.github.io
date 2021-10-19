@@ -115,6 +115,7 @@ nav:
       - references/pipelines/generics.md
       - references/pipelines/functions.md
       - references/pipelines/expressions.md
+      - references/pipelines/limitations.md
   - Background:
     - background/index.md
     - Bibliography:
