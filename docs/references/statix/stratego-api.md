@@ -34,6 +34,7 @@ arguments are explained in the following table:
 
 The `post` and `pre` arguments may be omitted (in that order).
 
+Note that this strategy will return _no results_ for `Cached` terms in the analysis action.
 
 ## Single-File Elaboration
 

@@ -18,7 +18,7 @@ language
 The extension of the provider should match the format in the `metaborg.yaml` file of your language.
 Multiple files can be set by setting the key multiple times:
 
-``esv
+```esv
 language
 
   provider : target/metaborg/stratego.ctree

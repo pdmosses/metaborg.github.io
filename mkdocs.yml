@@ -25,6 +25,7 @@ nav:
       - howtos/statix/debugging.md
       - howtos/statix/migrating-from-nabl2.md
       - howtos/statix/migrating-to-concurrent-solver.md
+      - howtos/statix/signature-generator.md
     - Transformation:
       - howtos/stratego/generate-signature.md
       - howtos/stratego/run-stratego-programs.md
@@ -33,6 +34,7 @@ nav:
       - howtos/stratego/concrete-syntax.md
       - howtos/stratego/exchange-terms.md
       - howtos/stratego/inspect-terms.md
+      - howtos/stratego/stratego-1-to-2.md
     - Editor Services:
       - howtos/editor-services/rename-refactoring.md
     - Development:
@@ -73,7 +75,7 @@ nav:
       - references/statix/tests.md
       - references/statix/stratego-api.md
     - Data Flow Analysis:
-      - references/flowspec/introduction.md
+      - references/flowspec/index.md
       - references/flowspec/structure.md
       - references/flowspec/Stratego_API.md
       - references/flowspec/configuration.md
@@ -89,6 +91,7 @@ nav:
       - references/stratego/strategy-definitions.md
       - references/stratego/strategy-combinators.md
       - references/stratego/dynamic-rules.md
+      - Troubleshooting: references/stratego/troubleshooting.md
     - Testing:
       - references/testing/index.md
       - references/testing/test-suites.md
@@ -138,10 +141,12 @@ nav:
         - background/stratego/strategy-combinators/term.md
         - background/stratego/strategy-combinators/traversal.md
         - background/stratego/strategy-combinators/type-unifying.md
+      - background/stratego/origin-tracking.md
     - Documentation:
       - background/documentation/index.md
       - Adding Pages: background/documentation/pages.md
       - Links: background/documentation/links.md
+      - background/documentation/code-highlighting.md
       - GUIs and Menus: background/documentation/guis-and-menus.md
       - Citations: background/documentation/citations.md
       - Structure: background/documentation/structure.md
@@ -222,7 +227,7 @@ theme:
     code: JetBrains Mono
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
+    #- navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
 

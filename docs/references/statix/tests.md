@@ -14,7 +14,7 @@ resolve $Constraint
 $Section*
 ```
 
-At the top level, the `!#statix resolve` keyword indicates this is a test file.
+At the top level, the `#!statix resolve` keyword indicates this is a test file.
 After this keyword, the constraint that should be solved when executing the test
 is provided. Finally, any section that can be found in a regular [module](modules.md)
 can be added to a test.

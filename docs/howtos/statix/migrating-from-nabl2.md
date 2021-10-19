@@ -1,4 +1,7 @@
-# Migrating from NaBL2
+---
+title: "Migrate from NaBL2"
+---
+# Migrate to Statix from NaBL2
 
 ## Signature
 
@@ -11,10 +14,7 @@ are mostly similar to terms in NaBL2. Notable differences:
 * List sorts in Statix are written as `#!statix list(X)` for some sort `X`.
 
 Statix signatures for language syntax can be generated from SDF3
-definitions with the signature generator.
-
-!!! todo
-    Migrate docs on signature generator
+definitions with the [signature generator](signature-generator.md).
 
 ## Name-resolution
 

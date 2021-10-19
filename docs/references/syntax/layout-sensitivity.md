@@ -208,6 +208,99 @@ if x < 0 then
 ·y = 3
 ```
 
+### `newline-indent`
+
+The newline-indent constraint indicates that a certain tree should both be located on a new line, as well as further to the right with respect to another tree.
+
+For example, consider the following production:
+
+```
+context-free syntax
+
+    Exp.If = "if" Exp "then" then:Exp "else" Exp  {layout(
+        newline-indent "if" then
+    )}
+```
+
+This constraint indicates that the "then" branch of the if-then-else expression needs to be on a new line and indented with respect to the "if" keyword. Thus, according to this constraint the following program is valid:
+
+```python
+if x < 0 then
+··x + 2 else x * 2
+```
+
+The newline-indent constraint does not require that the expression is located on the immediate next line, but rather that it is located _below_ the reference tree. Consequently, the following is also allowed:
+
+```python
+if x < 0 then
+
+
+··x + 2
+else x * 2
+```
+
+Note that the newline-indent constraint is relative to the _first_ character in the reference tree. That means that, given the following syntax:
+
+```
+context-free syntax
+    Example.Example = a:FooBar b:Baz {layout(newline-indent a b)}
+    FooBar.FooBar = <foo bar>
+    Baz.Baz = <baz>
+```
+
+The following syntax is valid, despite `bar` being indented further than `baz`:
+
+```
+foo
+····bar
+··baz
+```
+
+### `single-line`
+
+The single-line constraints indicates that the entirety of the given subtrees must be located on the same line. For example, consider the following production:
+
+```
+context-free syntax
+    Exp.If = "if" Exp ":" then:Exp "else" Exp {layout(
+        single-line "if" ":"
+    )}
+```
+
+This enforces that both the `if` and `:` tokens need to be on the same line. As a result, the condition expression also needs to be contained on the same line. Thus, the following program is valid for the given constraints:
+
+```python
+if x < 3:
+  x + 2 else x * 2
+```
+
+Note that the entirety of the referenced tree needs to be on the same line. Consider the following syntax:
+
+```
+context-free syntax
+    Example.Example = a:Baz b:FooBar {layout(single-line a b)}
+    FooBar.FooBar = <foo bar>
+    Baz.Baz = <baz>
+```
+
+With this definition, the following program is invalid, despite `baz` and the start of `foo bar` being on the same line:
+
+```
+baz foo
+  bar
+```
+
+Using the `single-line` constraint without any parameters will add a constraint that the entire production needs to be on a single line. This can be useful as a shorthand when your grammar requires that the entirety of a production is on the same line:
+
+```
+context-free syntax
+    Exp.Add = <<Exp> + <Exp>> {layout(single-line)}
+    // is equivalent to
+    Exp.Add = <<a:Exp> + <b:Exp>> {layout(single-line a b)}
+```
+
+---
+
 Finally, all these layout declarations can be ignored by the parser and used only when generating the pretty-printer.
 To do that, prefix the constraint with `pp-` writing, for example, `pp-offside` or `pp-align`.
 
