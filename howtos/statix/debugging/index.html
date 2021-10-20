@@ -4552,8 +4552,9 @@ invalid position anywhere in your specification, but due to the non-deterministi
 order of constraint solving the error appears at the observed position. The best
 approach to solve these issues is to comment away all usages, until the error
 disappears. Then, in the last commented position, the declaration is used incorrectly.</p>
-<p><strong>3.</strong> One or both of the <code>fileOk(...)</code> or <code>projectOk(...)</code> predicates fail
-immediately, for example with the error messages:</p>
+<p><strong>3.</strong> One or both of the <code>programOk(...)</code> (for single-file analysis), <code>fileOk(...)</code> 
+or <code>projectOk(...)</code> (for multi-file analysis) predicates fail immediately, for example 
+with the error messages:</p>
 <div class="highlight"><pre><span></span><code>statics!fileOk(#s_1-1,Test([Prog(&quot;A.mod&quot;,Decls(…)),Prog(&quot;B.mod&quot;,Decls(…)),Prog(&quot;C.mod&quot;,Decls(…))])) (no origin information)
 statics!projectOk(#s_1-1) (no origin information)
 </code></pre></div>
@@ -4865,7 +4866,7 @@ other shows a very similar variant that does not exhibit the problem.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-10-19
+      Last update: 2021-10-20
     
   </small>
 </div>
