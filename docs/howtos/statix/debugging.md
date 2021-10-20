@@ -445,8 +445,9 @@ order of constraint solving the error appears at the observed position. The best
 approach to solve these issues is to comment away all usages, until the error
 disappears. Then, in the last commented position, the declaration is used incorrectly.
 
-**3.** One or both of the `fileOk(...)` or `projectOk(...)` predicates fail
-immediately, for example with the error messages:
+**3.** One or both of the `programOk(...)` (for single-file analysis), `fileOk(...)` 
+or `projectOk(...)` (for multi-file analysis) predicates fail immediately, for example 
+with the error messages:
 
 ```
 statics!fileOk(#s_1-1,Test([Prog("A.mod",Decls(…)),Prog("B.mod",Decls(…)),Prog("C.mod",Decls(…))])) (no origin information)
