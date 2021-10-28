@@ -4117,8 +4117,8 @@ In this section, we describe the definition and usage of user-defined constraint
 and their rules.</p>
 <h2 id="constraint-definitions">Constraint Definitions<a class="headerlink" href="#constraint-definitions" title="Permanent link">&para;</a></h2>
 <p>In order to define a custom constraint, its type must be declared first. A
-constraint can be declared in a <code>rules</code> section, or in a <code>constraints</code> subsection
-of a <code>signature</code> section.</p>
+constraint can be declared in a <code class="highlight"><span class="k">rules</span><span class="w"></span></code> section, or in a <code class="highlight"><span class="nv">constraints</span><span class="w"></span></code> 
+subsection of a <code class="highlight"><span class="k">signature</span><span class="w"></span></code> section.</p>
 <p>A constraint is declared by specifying its name and argument type. For more
 information on types, please refer to the <a href="../terms">Terms</a> section. Note that
 the name of the constraint must be unique within a specification.</p>
@@ -4206,19 +4206,19 @@ declarations' and 'functional constraints', respectively.</p>
 <p class="admonition-title">Normalization</p>
 <p>Every specification with functional predicates is normalized to a form with
 only regular predicates. To show the normal form of a specification in
-Eclipse, use the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
+Eclipse, use the <span class="guilabel">Spoofax ‣ Syntax ‣ Format normalized AST</span> menu action.</p>
 </div>
 <h2 id="mapping-rules">Mapping rules<a class="headerlink" href="#mapping-rules" title="Permanent link">&para;</a></h2>
 <p>Another common pattern in Statix is defining a predicate that instantiates a
 predicate for all elements in a list. Statix allows derive such mapping rules
 using the <code>maps</code> keyword as follows:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">MappingConstraintName</span><span class="w"> </span><span class="k">maps</span><span class="w"> </span>$<span class="nv">MappedConstraintName</span><span class="p">({</span>$<span class="nv">Lift</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">})</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">MappingConstraintName</span><span class="w"> </span><span class="k">maps</span><span class="w"> </span>$<span class="nv">MappedConstraintName</span><span class="p">({</span>$<span class="nv">Lift</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <p>A lift specifier (<code>$Lift</code>) can be one of the following:</p>
 <ul>
 <li><code>*</code>: The <em>identity lift</em>. This lift specifier indicates that this argument is
   passed to the mapped constraint unchanged.</li>
-<li><code>list(*)</code>: The <em>list lift</em>: This lift specifier indicates that the mapped
+<li><code class="highlight"><span class="k">list</span><span class="p">(</span>*<span class="p">)</span><span class="w"></span></code>: The <em>list lift</em>: This lift specifier indicates that the mapped
   constraint will be instantiated for each element in the list at that argument
   position. Each constraint defined with <code>maps</code>, must contain at least one list
   lift. Otherwise, the mapping would be a no-op.</li>
@@ -4246,7 +4246,8 @@ list of declarations. A specification snippet for that could look as follows:</p
 <span class="w">  </span><span class="c c-Singleline">// rules for declOk</span><span class="w"></span>
 </code></pre></div>
 <p>In this snippet, the <code>declsOk</code> constraint instantiates <code>declOk</code> for each
-declaration in a list of declaration. Its inferred type is <code>scope * list(Decl)</code>.</p>
+declaration in a list of declaration. Its inferred type is 
+<code class="highlight"><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="nv">Decl</span><span class="p">)</span><span class="w"></span></code>.</p>
 <p>When mapping functional constraints, a lift specifier for the inferred term
 must be provided as well. This lift specifier indicates how the inferred values
 of the mapped constraint are returned by the mapping constraint.</p>
@@ -4256,9 +4257,10 @@ The creation of a cartesian product can be achieved by repeated application of
 the <code>maps</code> construct for each argument.</p>
 <div class="admonition info">
 <p class="admonition-title">Normalization</p>
-<p>Similar to functional constraints, constraints derived using the <code>maps</code>
+<p>Similar to functional constraints, constraints derived using the <code class="highlight"><span class="k">maps</span><span class="w"></span></code>
 construct are normalized to regular predicative constraints. This normalization
-can be inspected using the <code>Spoofax &gt; Syntax &gt; Format normalized AST</code> menu action.</p>
+can be inspected using the <span class="guilabel">Spoofax ‣ Syntax ‣ Format normalized AST</span> menu 
+action.</p>
 </div>
 <h2 id="injections-of-namespaces-and-relations">Injections of Namespaces and Relations<a class="headerlink" href="#injections-of-namespaces-and-relations" title="Permanent link">&para;</a></h2>
 <p>For convenience, it is possible to declare namespaces, namespace queries (both
@@ -4269,7 +4271,8 @@ deprecated) and relations in a <code>rules</code> section as well.</p>
 <span class="w">  </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span><span class="w"></span>
 <span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"></span>
 
-<span class="w">  </span><span class="nv">relation</span><span class="w"> </span><span class="nv">var</span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+<span class="w">  </span><span class="k">relations</span><span class="w"></span>
+<span class="w">    </span><span class="nv">var</span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
 </code></pre></div>
                 
                   
