@@ -8,8 +8,8 @@ and their rules.
 ## Constraint Definitions
 
 In order to define a custom constraint, its type must be declared first. A
-constraint can be declared in a `rules` section, or in a `constraints` subsection
-of a `signature` section.
+constraint can be declared in a `#!statix rules` section, or in a `#!statix constraints` 
+subsection of a `#!statix signature` section.
 
 A constraint is declared by specifying its name and argument type. For more
 information on types, please refer to the [Terms](../terms) section. Note that
@@ -133,7 +133,7 @@ position of the application of the functional predicate.
 !!! info "Normalization"
     Every specification with functional predicates is normalized to a form with
     only regular predicates. To show the normal form of a specification in
-    Eclipse, use the `Spoofax > Syntax > Format normalized AST` menu action.
+    Eclipse, use the `#!gui Spoofax > Syntax > Format normalized AST` menu action.
 
 
 ## Mapping rules
@@ -143,14 +143,14 @@ predicate for all elements in a list. Statix allows derive such mapping rules
 using the `maps` keyword as follows:
 
 ```statix
-$MappingConstraintName maps $MappedConstraintName({$Lift ","})
+$MappingConstraintName maps $MappedConstraintName({$Lift ","}*)
 ```
 
 A lift specifier (`$Lift`) can be one of the following:
 
 - `*`: The *identity lift*. This lift specifier indicates that this argument is
   passed to the mapped constraint unchanged.
-- `list(*)`: The *list lift*: This lift specifier indicates that the mapped
+- `#!statix list(*)`: The *list lift*: This lift specifier indicates that the mapped
   constraint will be instantiated for each element in the list at that argument
   position. Each constraint defined with `maps`, must contain at least one list
   lift. Otherwise, the mapping would be a no-op.
@@ -186,7 +186,8 @@ rules
 ```
 
 In this snippet, the `declsOk` constraint instantiates `declOk` for each
-declaration in a list of declaration. Its inferred type is `scope * list(Decl)`.
+declaration in a list of declaration. Its inferred type is 
+`#!statix scope * list(Decl)`.
 
 When mapping functional constraints, a lift specifier for the inferred term
 must be provided as well. This lift specifier indicates how the inferred values
@@ -198,9 +199,10 @@ The creation of a cartesian product can be achieved by repeated application of
 the `maps` construct for each argument.
 
 !!! info "Normalization"
-    Similar to functional constraints, constraints derived using the `maps`
+    Similar to functional constraints, constraints derived using the `#!statix maps`
     construct are normalized to regular predicative constraints. This normalization
-    can be inspected using the `Spoofax > Syntax > Format normalized AST` menu action.
+    can be inspected using the `#!gui Spoofax > Syntax > Format normalized AST` menu 
+    action.
 
 
 ## Injections of Namespaces and Relations
@@ -215,6 +217,7 @@ rules
   resolve Var
     filter P* I*
 
-  relation var: string -> TYPE
+  relations
+    var: string -> TYPE
 
 ```
