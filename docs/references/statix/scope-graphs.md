@@ -111,7 +111,7 @@ a `signature` section:
 ```statix
 signature
 
-  relation
+  relations
     $Relation : {$Type "*"}*
 ```
 
