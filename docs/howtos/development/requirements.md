@@ -13,7 +13,7 @@ The following tools are required to build and develop Spoofax:
 ??? summary "Java JDK 8u141 or newer"
     Required to build and run Java components. The latest JDK can be downloaded and installed from: <https://www.oracle.com/technetwork/java/javase/downloads/index.html>. If using Java 8, 8u141 or newer is required because of [issues with Let's Encrypt certificates](https://letsencrypt.org/docs/certificate-compatibility/).
 
-    On macOs, it can be a bit tricky to use the installed JDK, because Apple by default installs JRE 6. To check which version of Java you are running, execute the `java -version` command. If this tells you that the Java version is 1.8 or newer, or Java 9 or newer, everything is fine. If not, you can either install a newer Java version through [Homebrew](https://brew.sh/) (`brew install --cask adoptopenjdk8`), or use a JDK manager such as [SDKMAN!](https://sdkman.io/).
+    On macOS, it can be a bit tricky to use the installed JDK, because Apple by default installs JRE 6. To check which version of Java you are running, execute the `java -version` command. If this tells you that the Java version is 1.8 or newer, or Java 9 or newer, everything is fine. If not, you can either install a newer Java version through [Homebrew](https://brew.sh/) (`brew install --cask adoptopenjdk8`), or use a JDK manager such as [SDKMAN!](https://sdkman.io/).
 
 
 ??? summary "Python 3.4 or newer"
