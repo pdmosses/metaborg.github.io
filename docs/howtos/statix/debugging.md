@@ -499,7 +499,7 @@ in an editor in Eclipse. There are several reasons why this may be hapening:
 ```yaml
   dependencies:
     compile:
-    - org.example:your-language:1.0-SNAPSHOT
+    - org.example:your-language:1.0.0-SNAPSHOT
 ```
 
 - The language is missing. If a language dependency is missing, this is reported
@@ -507,14 +507,14 @@ in an editor in Eclipse. There are several reasons why this may be hapening:
   in Eclipse and that is is successfully built.
 
 - Eclipse is not configured to automatically build files. This can be enabled by
-  selecting `Project > Build automatically` from the Eclipse menu.
+  selecting `#!gui Project > Build automatically` from the Eclipse menu.
 
 - The project in Eclipse did not get the Spoofax nature. Imported Maven projects
   with one of the `spoofax-*` packagings normally get the Spoofax nature
   automatically, but sometimes this doesn't work correctly. Non-Maven projects
   always have to be assigned the Spoofax nature manually. This can be done with
-  `Spoofax > Add Spoofax nature` in the context-menu of the project containing
-  the files.
+  `#!gui Spoofax > Add Spoofax nature` in the context-menu of the project
+  containing the files.
 
 **5.** A lot of errors are reported. It happens that a single problem in the type
 checked program leads to the failure of other constraints (cascading errors).
