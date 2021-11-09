@@ -482,7 +482,7 @@ import the module `statics/mylang`, then you have to change the call to
 `stx-editor-analyze` in `trans/analysis.str` such that the second and third term
 argument (which specify the predicates to apply to projects and files, respectively)
 are qualified by the module name (in this case `"statics/mylang!projectOk"` and
-`""statics/mylang!fileOk`, respectively).
+`"statics/mylang!fileOk"`, respectively).
 
 **4.** Files of your language are only analyzed by Statix after they are opened
 in an editor in Eclipse. There are several reasons why this may be hapening:
