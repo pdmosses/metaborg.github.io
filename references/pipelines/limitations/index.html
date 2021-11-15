@@ -2493,6 +2493,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#java-reserved-words" class="md-nav__link">
+    Java reserved words
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#standard-workarounds-for-unsupported-java-features" class="md-nav__link">
     Standard workarounds for unsupported Java features
   </a>
@@ -4052,6 +4059,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#java-reserved-words" class="md-nav__link">
+    Java reserved words
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#standard-workarounds-for-unsupported-java-features" class="md-nav__link">
     Standard workarounds for unsupported Java features
   </a>
@@ -4107,7 +4121,11 @@ If you have an issue that is not listed here, please check if it is listed on ou
 Instead, it uses <code>unit</code> to signify that the return type does not hold a useful value.
 Right now, the compiler will generate incorrect code for <code>void</code> functions, which results in Java compile errors in the generated code.
 There is no specific workaround for this, but <a href="#standard-workarounds-for-unsupported-java-functions">the standard workarounds for unsupported Java functions</a> should work.
-In the future, the compiler will support functions that are declared to have a <code>unit</code> return type but which have <code>void</code> return type.</p>
+In the future, the compiler will support functions that are declared to have a <code>unit</code> return type in PIE but which have a <code>void</code> return type in Java.</p>
+<h2 id="java-reserved-words">Java reserved words<a class="headerlink" href="#java-reserved-words" title="Permanent link">&para;</a></h2>
+<p>Using Java keywords (and PIE keywords) is allowed in the PIE DSL as long as the use is not ambiguous.
+However, the compiler does not generate correct code for those keywords, which means that the generated Java code does not compile.
+To avoid this issue, do not use Java reserved words.</p>
 <h2 id="standard-workarounds-for-unsupported-java-features">Standard workarounds for unsupported Java features<a class="headerlink" href="#standard-workarounds-for-unsupported-java-features" title="Permanent link">&para;</a></h2>
 <p>The PIE DSL has less features than Java by design.
 This sometimes means that Java elements cannot be used as is in the PIE DSL.
@@ -4134,7 +4152,7 @@ This sections lists some standard workarounds for these issues.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-09
+      Last update: 2021-11-15
     
   </small>
 </div>
