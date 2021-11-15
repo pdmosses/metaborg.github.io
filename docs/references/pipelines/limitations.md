@@ -12,7 +12,13 @@ The Java type `void` does not exist in the PIE DSL.
 Instead, it uses `unit` to signify that the return type does not hold a useful value.
 Right now, the compiler will generate incorrect code for `void` functions, which results in Java compile errors in the generated code.
 There is no specific workaround for this, but [the standard workarounds for unsupported Java functions](#standard-workarounds-for-unsupported-java-functions) should work.
-In the future, the compiler will support functions that are declared to have a `unit` return type but which have `void` return type.
+In the future, the compiler will support functions that are declared to have a `unit` return type in PIE but which have a `void` return type in Java.
+
+## Java reserved words
+
+Using Java keywords (and PIE keywords) is allowed in the PIE DSL as long as the use is not ambiguous.
+However, the compiler does not generate correct code for those keywords, which means that the generated Java code does not compile.
+To avoid this issue, do not use Java reserved words.
 
 ## Standard workarounds for unsupported Java features
 
