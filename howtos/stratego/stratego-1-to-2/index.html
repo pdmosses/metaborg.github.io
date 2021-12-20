@@ -4042,7 +4042,9 @@
                 
                 
                 <h1 id="migrating-from-stratego-1-to-stratego-2">Migrating from Stratego 1 to Stratego 2<a class="headerlink" href="#migrating-from-stratego-1-to-stratego-2" title="Permanent link">&para;</a></h1>
-<details class="tip"><summary>Stratego 2 is somewhat unstable</summary><p>Stratego 2 is quite new and has a lot of exciting new things going for it. But it <em>is</em> therefore also more unstable, with errors popping up somewhat regularly. Your project build may break or your code may behave in unexpected ways. Of course you can <a href="https://github.com/metaborg/stratego/issues">file bug reports</a>.</p>
+<details class="tip">
+<summary>Stratego 2 is somewhat unstable</summary>
+<p>Stratego 2 is quite new and has a lot of exciting new things going for it. But it <em>is</em> therefore also more unstable, with errors popping up somewhat regularly. Your project build may break or your code may behave in unexpected ways. Of course you can <a href="https://github.com/metaborg/stratego/issues">file bug reports</a>.</p>
 </details>
 <p>Stratego 2 is the new version of Stratego that provides access to the incremental compiler and gradual type system that were developed for Stratego. Stratego 2 is accessible separately because it is organised quite differently from Stratego 1 and it provides a clear distinction and documentable upgrade path. This is that documented upgrade path. This How-To will guide you through the changes you need to make in your Spoofax project in order to use Stratego 2.</p>
 <ol>
@@ -4059,7 +4061,9 @@
 <li>Remove any imports to <code>libstratego-lib</code> or <code>libstrategolib</code> in those renamed files.</li>
 <li>Add the <code>strategolib</code> import to all your <code>.str2</code> files outside of <code>src-gen</code>.</li>
 </ol>
-<details class="info"><summary>Stratego versions</summary><p>The version numbers of Stratego are a little strange, Stratego and Stratego/XT used to number up to 0.17, then did not receive any more numbered releases even though small bugfixes and changes were released through Spoofax 1 and 2. In the current documentation we now consider this post-0.17 Stratego in Spoofax to be Stratego 1. This is not necessarily a statement of stability and matureness of the language but more to distinguish it from the new Stratego 2 project.</p>
+<details class="info">
+<summary>Stratego versions</summary>
+<p>The version numbers of Stratego are a little strange, Stratego and Stratego/XT used to number up to 0.17, then did not receive any more numbered releases even though small bugfixes and changes were released through Spoofax 1 and 2. In the current documentation we now consider this post-0.17 Stratego in Spoofax to be Stratego 1. This is not necessarily a statement of stability and matureness of the language but more to distinguish it from the new Stratego 2 project.</p>
 </details>
 <h2 id="imports-in-stratego-2">Imports in Stratego 2<a class="headerlink" href="#imports-in-stratego-2" title="Permanent link">&para;</a></h2>
 <p>At this point your project may be buildable again, but perhaps you are still getting errors about unresolved strategies or constructors. Stratego 2 has a stricter import policy than Stratego 1. If you use a strategy, rule or constructor, you must either define that strategy/rule/constructor in the module or import a module that defines it. Imports are no longer transitive for name resolution. </p>
@@ -4071,7 +4075,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-15
+      Last update: 2021-12-20
     
   </small>
 </div>

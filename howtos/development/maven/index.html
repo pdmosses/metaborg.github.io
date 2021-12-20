@@ -4145,7 +4145,9 @@
 <p>Spoofax’s Maven artifacts are hosted on our artifact server at <a href="https://artifacts.metaborg.org">artifacts.metaborg.org</a>. To use these artifacts, repositories have to be added to your Maven configuration. This configuration is required when building and developing Spoofax. Repositories can be added to your local Maven settings file (which is recommended), or to a project’s POM file.</p>
 <h2 id="simple-local-settings-file">Simple: Local Settings File<a class="headerlink" href="#simple-local-settings-file" title="Permanent link">&para;</a></h2>
 <p>The recommended approach is to add repositories to your local Maven settings file, located at <code>~/.m2/settings.xml</code>. If you have not created this file yet, or want to completely replace it, simply create it with the following content:</p>
-<details class="quote" open="open"><summary><code>~/.m2/settings.xml</code></summary><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<details class="quote" open="open">
+<summary><code>~/.m2/settings.xml</code></summary>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
 <span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profiles&gt;</span>
@@ -4224,7 +4226,9 @@
 <h2 id="advanced-project-pom-file">Advanced: Project POM File<a class="headerlink" href="#advanced-project-pom-file" title="Permanent link">&para;</a></h2>
 <p>Repositories can also be added directly to a project’s POM file, which only set the repositories for that particular project. This is not recommended, because it makes repositories harder to change by users, and duplicates the configuration. But it can be convenient, because it does not require an external settings file.</p>
 <p>To do this, just add the the following content to the POM file:</p>
-<details class="quote" open="open"><summary><code>~/.m2/settings.xml</code></summary><div class="highlight"><pre><span></span><code><span class="nt">&lt;repositories&gt;</span>
+<details class="quote" open="open">
+<summary><code>~/.m2/settings.xml</code></summary>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;repositories&gt;</span>
     <span class="nt">&lt;repository&gt;</span>
         <span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
         <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
@@ -4274,7 +4278,9 @@
 <h2 id="maven-central-repository-mirror">Maven Central Repository Mirror<a class="headerlink" href="#maven-central-repository-mirror" title="Permanent link">&para;</a></h2>
 <p>Artifacts of most open source projects are hosted in the <a href="https://search.maven.org/">Maven Central Repository</a>. If you are building any project using Maven, many artifacts will be downloaded from that server. While it is a fast server, it can still take a while to download all required artifacts for big projects.</p>
 <p>If you are on the TU Delft network, you can use our local mirror of Maven Central to speed things up. Using the mirroring requires a change in your local <code>~/.m2/settings.xml</code> file. If this file does not exist, create it with the following content:</p>
-<details class="quote" open="open"><summary><code>~/.m2/settings.xml</code></summary><div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<details class="quote" open="open">
+<summary><code>~/.m2/settings.xml</code></summary>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
 <span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mirrors&gt;</span>
@@ -4296,7 +4302,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-15
+      Last update: 2021-12-20
     
   </small>
 </div>

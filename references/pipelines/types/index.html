@@ -4379,7 +4379,9 @@ When referring to a type, there is a list of generic parameters:
 These lists can be empty: <code>data Apple&lt;&gt; = $DataImpl</code>.
 This makes the term "generic" a bit meaningless, but <code>Apple</code> is still considered generic for the purposes of the semantics.
 That is to say, <code>Apple</code> is treated as a generic type that just happens to have zero generic parameters, in the same way that <code>Box</code> happens to have one generic parameter and <code>Foo&lt;A, B, C&gt;</code> happens to have three.</p>
-<details class="tip"><summary>Omitting type parameter and argument lists</summary><p>Type parameter/argument list can sometimes be omitted.
+<details class="tip">
+<summary>Omitting type parameter and argument lists</summary>
+<p>Type parameter/argument list can sometimes be omitted.
 Parameter lists can be omitted if they are empty: <code>data Apple = $DataImpl</code>, <code>func notGeneric(string) -&gt; unit = $FuncImpl</code>.
 Type argument lists can be omitted for empty lists and for calls to <a href="../expressions#create-supplier">the built-in <code>supplier</code> function</a>.
 For example, <code>Apple</code>, <code>notGeneric("regular argument")</code>.</p>
@@ -4387,7 +4389,9 @@ For example, <code>Apple</code>, <code>notGeneric("regular argument")</code>.</p
 <p>A type declares zero or more generic parameters.
 These can be used in methods of that type to parameterize the method.</p>
 <p>A function or method can also declare generic parameters to be used in that function or method.</p>
-<details class="note"><summary>PIE does not derive bounds</summary><p>Unlike Java, the PIE DSL does not derive bounds for datatypes based on super types.
+<details class="note">
+<summary>PIE does not derive bounds</summary>
+<p>Unlike Java, the PIE DSL does not derive bounds for datatypes based on super types.
 The following would be possible in Java but will not work in the PIE DSL:
 <div class="highlight"><pre><span></span><code>data CustomAnimalSet&lt;A : Animal&gt; = $DataImpl
 data OrderedAnimalSet&lt;T&gt; : CustomAnimalSet&lt;T&gt; = $DataImpl
@@ -4410,7 +4414,9 @@ For now, the only data types are <code>foreign java</code> datatypes, so methods
 <h2 id="built-in-types">Built-in types<a class="headerlink" href="#built-in-types" title="Permanent link">&para;</a></h2>
 <p>The PIE DSL has several built-in types.
 This section explains all of them.</p>
-<details class="note"><summary>Datatype equality with equal Java class</summary><p>PIE DSL does not consider types equivalent when their backing Java class is equal.
+<details class="note">
+<summary>Datatype equality with equal Java class</summary>
+<p>PIE DSL does not consider types equivalent when their backing Java class is equal.
 This means that a built-in type and a custom datatype backed by the same class cannot be used interchangeably.</p>
 </details>
 <p>The following table gives a quick overview of the built-in types, click on the name to go to the documentation.</p>
@@ -4575,7 +4581,9 @@ It cannot be specified as a type.
 The bottom type has no values, and as such an expression with bottom type will never return normally to the function it is defined in.
 It is the element type of empty lists, and in the future also of <code>return</code> and <code>fail</code> expressions.
 This type is not backed by any java class.</p>
-<details class="failure" open="open"><summary>Compiling bottom type</summary><p>Code that has the bottom type will fail to compile.
+<details class="failure" open="open">
+<summary>Compiling bottom type</summary>
+<p>Code that has the bottom type will fail to compile.
 Remove the code that has bottom type to resolve this.</p>
 </details>
 <h3 id="nullable-types">Nullable types<a class="headerlink" href="#nullable-types" title="Permanent link">&para;</a></h3>
@@ -4593,7 +4601,9 @@ Lists do not have subtypes besides the bottom type.
 This means that <code>Apple*</code> is not a subtype of <code>Fruit*</code>.
 Lists do not have methods yet.
 Lists are backed by Java <code>java.util.ArrayList</code>.</p>
-<details class="info"><summary>Empty lists</summary><p>The PIE DSL type system keeps track of empty lists for implementation reasons.
+<details class="info">
+<summary>Empty lists</summary>
+<p>The PIE DSL type system keeps track of empty lists for implementation reasons.
 Because it is doing this anyway, it gives warnings when doing certain non-sensical things such as appending an empty list to another list or list comprehension over empty lists.</p>
 </details>
 <h3 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h3>
@@ -4607,7 +4617,9 @@ val (name: string, grades: int*) = pair;
 </code></pre></div>
 Tuples are backed by Java classes <code>mb.pie.TupleX</code>, where <code>X</code> is a number representing the amount of elements, e.g. <code>Tuple2</code> for a pair.
 This is because Java is not generic in the amount of generic elements.</p>
-<details class="attention" open="open"><summary>Limits on tuple sizes</summary><p>While the PIE DSL language does not specify a limit on the amount of elements in a tuple, the backing Java <code>TupleX</code> classes only go up to 10.
+<details class="attention" open="open">
+<summary>Limits on tuple sizes</summary>
+<p>While the PIE DSL language does not specify a limit on the amount of elements in a tuple, the backing Java <code>TupleX</code> classes only go up to 10.
 If you run into this limit, use a foreign data type backed by a custom Java class instead.</p>
 </details>
 <h3 id="supplier">supplier<a class="headerlink" href="#supplier" title="Permanent link">&para;</a></h3>
@@ -4708,7 +4720,9 @@ The <code>$QID</code> specifies the qualified name of the backing Java class.
 These are declarations of the non-static methods of the class.
 Not all non-static methods of the class need to be declared here.
 Static methods of the class can be declared as <a href="../functions#foreign-java-functions"><code>foreign java</code> functions</a> outside this data definition.</p>
-<details class="tip" open="open"><summary>Separate your imports</summary><p>Define foreign java datatypes in a separate module and import them into your main module to keep your main module cleaner.</p>
+<details class="tip" open="open">
+<summary>Separate your imports</summary>
+<p>Define foreign java datatypes in a separate module and import them into your main module to keep your main module cleaner.</p>
 </details>
                 
                   
@@ -4718,7 +4732,7 @@ Static methods of the class can be declared as <a href="../functions#foreign-jav
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-15
+      Last update: 2021-12-20
     
   </small>
 </div>

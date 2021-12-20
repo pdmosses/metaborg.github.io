@@ -4920,7 +4920,9 @@ The syntax for equals is <code>$Exp == $Exp</code>, for example <code>x == null<
 The syntax for in-equals is <code>$Exp != $Exp</code>, for example <code>x != null</code>.</p>
 <p>Expressions can only be compared if one is a non-strict subtype of the other.
 This provides protection against accidentally comparing two expressions that can never be equal.</p>
-<details class="hint"><summary>Comparing <code>null</code> and empty lists</summary><p>Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both <code>null</code>.
+<details class="hint">
+<summary>Comparing <code>null</code> and empty lists</summary>
+<p>Expressions with nullable types can have equal values despite not being subtypes of each other, if they are both <code>null</code>.
 The same goes for list types with the empty list <code>[]</code>.
 In these cases, check for these specific values: <code>x == null &amp;&amp; y == null</code>.</p>
 </details>
@@ -4940,20 +4942,28 @@ Its syntax is <code>$Exp + $Exp</code>.</p>
 <p>The type of adding two values depends on their static types.
 Adding two <a href="../types#int"><code>int</code>s</a> uses mathematical plus: <code>1 + 2 // result: 3</code>, and the result is an <code>int</code> as well.</p>
 <p>Adding any value to a <a href="../types#string"><code>string</code></a> converts the value to a <code>string</code> and then concatenates the strings, resulting in a <code>string</code>: <code>"The value is:"  + x</code>.</p>
-<details class="tip"><summary>String interpolation</summary><p>It might be clearer to use <a href="#string">string interpolation.</a></p>
+<details class="tip">
+<summary>String interpolation</summary>
+<p>It might be clearer to use <a href="#string">string interpolation.</a></p>
 </details>
 <p>Adding a <code>string</code> or a <code>path</code> to a relative <code>path</code> concatenates the values and results in a new <code>path</code>: <code>projectDir + ./src/test/resources/</code>
 Adding a <code>string</code> or a <code>path</code> to an absolute path results in a runtime error.</p>
-<details class="tip"><summary>Path interpolation</summary><p>It might be clearer to use <a href="#path">path interpolation.</a></p>
+<details class="tip">
+<summary>Path interpolation</summary>
+<p>It might be clearer to use <a href="#path">path interpolation.</a></p>
 </details>
 <p>Finally, adding a type <code>T2</code> to a list with type <code>T1*</code> has two cases</p>
 <ul>
 <li>If <code>T2</code> is a list as well both lists will be concatenated.
   The element type of <code>T2</code> must be a subtype of <code>T1</code>.</li>
 </ul>
-<details class="tip"><summary>Adding a list as an element</summary><p>To add a list <code>list: T*</code> as an element to a list of lists <code>lists: T**</code>, wrap the list in another list: <code>lists + [list]</code></p>
+<details class="tip">
+<summary>Adding a list as an element</summary>
+<p>To add a list <code>list: T*</code> as an element to a list of lists <code>lists: T**</code>, wrap the list in another list: <code>lists + [list]</code></p>
 </details>
-<details class="info"><summary>Empty lists</summary><p>The PIE DSL keeps track of empty lists statically.
+<details class="info">
+<summary>Empty lists</summary>
+<p>The PIE DSL keeps track of empty lists statically.
 This allows it to give a warning when concatenating an empty list: <code>[1, 2, 3] + []</code> will give a warning.</p>
 </details>
 <ul>
@@ -4973,7 +4983,9 @@ The type of the declared value is the provided type from the type hint, or the t
 A value declaration can also do tuple destructuring and assign its values to multiple variables at once: <code>val (name: string, times: int*) = getPerformance(id)</code>.
 Each name in a tuple destructuring can have a type hint.
 Tuple destructuring cannot be nested, so the following will not parse: <code>val (a, (b, c)) = (1, (2, 3))</code>.</p>
-<details class="example"><summary>Some examples of value declarations</summary><div class="highlight"><pre><span></span><code>val firstName = &quot;Bob&quot;; // simple value declaration
+<details class="example">
+<summary>Some examples of value declarations</summary>
+<div class="highlight"><pre><span></span><code>val firstName = &quot;Bob&quot;; // simple value declaration
 val age: int = 27; // with type hint
 val size: (int, int) = (800, 400); // assign tuple to single value.
 val (width, height) = size; // tuple destructuring
@@ -5019,7 +5031,9 @@ If the condition evaluates to <code>true</code>, the true-branch is evaluated, o
 The type of an if-else expression is the least upper bound of both branches.
 It is an error if the least upper bound of the two branches is <a href="../types#top">the top type</a>.
 The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.</p>
-<details class="example"><summary>Some examples of the least upper bound of different types</summary><div class="highlight"><pre><span></span><code>val cat1: Cat = getCat(1);
+<details class="example">
+<summary>Some examples of the least upper bound of different types</summary>
+<div class="highlight"><pre><span></span><code>val cat1: Cat = getCat(1);
 val cat2: Cat = getCat(2);
 val mammal: Mammal = getMammal();
 val animal: Animal = getAnimal();
@@ -5062,7 +5076,9 @@ It can either be a single binder to bind the complete element, or a tuple binder
 The first expression can use the names defined by the binder.
 The type of that expression is some type <code>Q</code>.
 The type of the full list comprehension is a list of the type that was mapped to, i.e. <code>Q*</code>.</p>
-<details class="info"><summary>Empty lists</summary><p>A list comprehension over an empty list simply returns a new empty list.
+<details class="info">
+<summary>Empty lists</summary>
+<p>A list comprehension over an empty list simply returns a new empty list.
 A list comprehension will give a warning if the input list is statically known to be empty.
 List comprehensions over empty lists are compiled to an immediate empty list of the declared type because it is not known what the element type of the empty list is.</p>
 </details>
@@ -5077,7 +5093,9 @@ The number of type arguments must match the number of <a href="../functions#type
 The expressions are the arguments to the function.
 They must match the number of parameters that the function declared and they must be subtypes of the parameters.</p>
 <p>The type of a call is the type of the declared function, where type parameters are replaced with their corresponding type arguments.</p>
-<details class="example"><summary>Return type is a generic parameter</summary><div class="highlight"><pre><span></span><code>func id&lt;T&gt;(param: T) -&gt; T = param
+<details class="example">
+<summary>Return type is a generic parameter</summary>
+<div class="highlight"><pre><span></span><code>func id&lt;T&gt;(param: T) -&gt; T = param
 func test() -&gt; unit = {
     id&lt;string&gt;(&quot;Hello world!&quot;); // type is string
     id&lt;int&gt;(42);                // type is int
@@ -5085,7 +5103,9 @@ func test() -&gt; unit = {
 }
 </code></pre></div>
 </details>
-<details class="note"><summary>Arguments can declare values</summary><p><a href="#value-declaration">Value declarations</a> in the arguments are legal and are visible after the call.
+<details class="note">
+<summary>Arguments can declare values</summary>
+<p><a href="#value-declaration">Value declarations</a> in the arguments are legal and are visible after the call.
 Doing this is bad practice in almost all cases.
 Declare the value before the call instead.
 For example:
@@ -5110,7 +5130,9 @@ The number of type arguments must match the number of <a href="../functions#type
 The expressions are the arguments to the method.
 They must match the number of parameters that the method declared and they must be subtypes of the parameters.</p>
 <p>The type of a method call is the type of the declared method, where type parameters are replaced with their corresponding type arguments.</p>
-<details class="note"><summary>No methods on nullable types</summary><p>There are no methods defined on <a href="../types#nullable-types">nullable types</a>.
+<details class="note">
+<summary>No methods on nullable types</summary>
+<p>There are no methods defined on <a href="../types#nullable-types">nullable types</a>.
 To access the methods of the inner type, <a href="#make-non-nullable">cast the expression to non-nullable</a> first:
 <div class="highlight"><pre><span></span><code>val maybe: Result&lt;string, _ : Exception&gt; = null;
 maybe.unwrap(); // error: Cannot call method on nullable type
@@ -5125,7 +5147,9 @@ if (maybe == null) {
 }
 </code></pre></div></p>
 </details>
-<details class="example"><summary>Return type is a generic parameter</summary><div class="highlight"><pre><span></span><code>data Box&lt;T&gt; = foreign java org.example.methodCall.Box {
+<details class="example">
+<summary>Return type is a generic parameter</summary>
+<div class="highlight"><pre><span></span><code>data Box&lt;T&gt; = foreign java org.example.methodCall.Box {
     func get() -&gt; T
 }
 func test(box1: Box&lt;int&gt;, box2: Box&lt;bool&gt;) -&gt; unit = {
@@ -5135,7 +5159,9 @@ func test(box1: Box&lt;int&gt;, box2: Box&lt;bool&gt;) -&gt; unit = {
 }
 </code></pre></div>
 </details>
-<details class="note"><summary>Expression and arguments can declare values</summary><p><a href="#value-declaration">Value declarations</a> in the expression or the arguments are legal and are visible after the call.
+<details class="note">
+<summary>Expression and arguments can declare values</summary>
+<p><a href="#value-declaration">Value declarations</a> in the expression or the arguments are legal and are visible after the call.
 Declarations in the expression are also visible to the expressions.
 Doing this is bad practice in almost all cases.
 Declare the value before the call instead.
@@ -5171,7 +5197,9 @@ There should be only one argument, the value that the supplier will supply.
 The type <code>T</code> for the supplier is the type argument if it was provided, or the type of the argument otherwise.
 In case a type argument is provided, the argument should be a subtype of that type argument.
 The type of a supplier creation expression is <code>supplier&lt;T&gt;</code>.</p>
-<details class="note"><summary>Supplier can be treated as a normal function</summary><p>Creating a supplier is like a normal <a href="#function calls">function call</a>, but built into the language grammar for implementation reasons.
+<details class="note">
+<summary>Supplier can be treated as a normal function</summary>
+<p>Creating a supplier is like a normal <a href="#function calls">function call</a>, but built into the language grammar for implementation reasons.
 This is the only function call where the type argument is derived at the moment.</p>
 </details>
 <h2 id="task-supplier">task supplier<a class="headerlink" href="#task-supplier" title="Permanent link">&para;</a></h2>
@@ -5236,7 +5264,9 @@ It is described in <a href="#filter-and-filterpart">the section on common lexica
 <p>You will likely need to declare a dependency on the directory using <a href="#requires">requires</a>.
 You may also need to declare dependencies on the individual files if you do not call a task which already does that.</p>
 </div>
-<details class="note"><summary>Recursive listing</summary><p>List only gets the direct children of the given directory.
+<details class="note">
+<summary>Recursive listing</summary>
+<p>List only gets the direct children of the given directory.
 To recursively get all files and directories in a given directory, use <a href="#walk">walk</a>.</p>
 </details>
 <div class="admonition todo">
@@ -5256,7 +5286,9 @@ It is described in <a href="#filter-and-filterpart">the section on common lexica
 <p>You will likely need to declare a dependency on the directory and all subdirectories using <a href="#requires">requires</a>.
 You may also need to declare dependencies on the individual files if you do not call a task which already does that.</p>
 </div>
-<details class="note"><summary>Getting only the direct descendants</summary><p>Walk recursively gets all files in the given directory.
+<details class="note">
+<summary>Getting only the direct descendants</summary>
+<p>Walk recursively gets all files in the given directory.
 To only get direct and directories in a given directory, use <a href="#list">list</a>.</p>
 </details>
 <div class="admonition todo">
@@ -5283,7 +5315,9 @@ Its syntax is <code>return $Exp</code>, for example <code>return true</code> or 
 The expression is evaluated and its value returned.
 The type of the expression should be a subtype of the declared <a href="../functions#return-type">return type of the current function</a>.</p>
 <p>The type of a return expression is <a href="../types#unit">unit</a>.</p>
-<details class="attention"><summary>Type may get changed to bottom type</summary><p>The type of a return expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
+<details class="attention">
+<summary>Type may get changed to bottom type</summary>
+<p>The type of a return expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
 This would allow using a return expression as a branch in an if-else expression.</p>
 </details>
 <h2 id="fail">fail<a class="headerlink" href="#fail" title="Permanent link">&para;</a></h2>
@@ -5292,10 +5326,14 @@ This exits the function, any code after this expression is not evaluated.
 Its syntax is <code>fail $Exp</code>, for example <code>fail "Could not open $file, it does not exist"</code>
 The expression is the message for the exception and must be of type <a href="../types#string">string</a>.</p>
 <p>The type of a fail expression is <a href="../types#unit">unit</a>.</p>
-<details class="attention"><summary>Type may get changed to bottom type</summary><p>The type of a fail expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
+<details class="attention">
+<summary>Type may get changed to bottom type</summary>
+<p>The type of a fail expression may be changed to <a href="../types#bottom">the bottom type</a> in the future.
 This would allow using a fail expression as a branch in an if-else expression.</p>
 </details>
-<details class="tip"><summary>consider using <code>Result&lt;T, E&gt;</code></summary><p>Fail throws an exception, which cannot be handled in the PIE DSL.
+<details class="tip">
+<summary>consider using <code>Result&lt;T, E&gt;</code></summary>
+<p>Fail throws an exception, which cannot be handled in the PIE DSL.
 We recommend using <code>Result&lt;T, E&gt;</code> from the PIE standard library instead.</p>
 </details>
 <h2 id="unit-literal">Unit literal<a class="headerlink" href="#unit-literal" title="Permanent link">&para;</a></h2>
@@ -5309,12 +5347,16 @@ We recommend using <code>Result&lt;T, E&gt;</code> from the PIE standard library
 Their syntax is <code>"-"? [0-9]+</code>, for example <code>0</code>, <code>1</code>, <code>2</code>, <code>-1</code>, <code>47</code> and <code>-30774</code>.
 That is an optional dash (unary minus, <code>-</code>), followed by some digits.
 This syntax is lexical, meaning that there cannot be any layout between the sign or digits.</p>
-<details class="attention" open="open"><summary>valid int values</summary><p>Int literals represent literal values of the int type.
+<details class="attention" open="open">
+<summary>valid int values</summary>
+<p>Int literals represent literal values of the int type.
 As such, they must be valid values of the int type, i.e. in the range <span class="arithmatex">\(-2^{31}\)</span> to <span class="arithmatex">\(2^{31}-1\)</span>, inclusive.
 This is currently not enforced, and breaking this constraint will lead to Java compile errors after compiling the PIE code.</p>
 <p><code>-0</code> is allowed and equal to <code>0</code>.</p>
 </details>
-<details class="example"><summary>Examples</summary><div class="highlight"><pre><span></span><code>// Valid integer literals:
+<details class="example">
+<summary>Examples</summary>
+<div class="highlight"><pre><span></span><code>// Valid integer literals:
 0
 1
 234
@@ -5345,12 +5387,16 @@ Their syntax is <code>($Exps)</code>, for example <code>("scala", "VF_SCALA", wa
 The expressions are the elements of the tuple.
 There must be at least two elements.
 The type of a tuple literal is the tuple type of the types of the elements, so the literal <code>(1?, "a string", true)</code> has type <code>(int?, string, bool)</code>.</p>
-<details class="note"><summary>Tuples with less than two elements</summary><p>It is not possible to express tuples with zero or a single element.
+<details class="note">
+<summary>Tuples with less than two elements</summary>
+<p>It is not possible to express tuples with zero or a single element.
 Zero element tuples cannot be expressed by design.
 Their common use case as a <a href="../types#unit">unit type</a> is covered by the <a href="#unit-literal">unit literal</a> instead.
 Single element tuples will be parsed as a <a href="#expressions">bracketed expression</a> instead.</p>
 </details>
-<details class="tip"><summary>Tuple literals from subtype elements</summary><p>Tuple types cannot be assigned to each other in most cases, so the following is not possible:
+<details class="tip">
+<summary>Tuple literals from subtype elements</summary>
+<p>Tuple types cannot be assigned to each other in most cases, so the following is not possible:
 <div class="highlight"><pre><span></span><code>data Fruit = $DataImpl
 data Apple : Fruit = $DataImpl
 data Pear : Fruit = $DataImpl
@@ -5381,7 +5427,9 @@ The expressions are the elements of the list.
 The least upper bound of the types of the expressions is the list element type <code>T</code>.
 The type of the list literal is a list of <code>T</code>, i.e. <code>T*</code>.
 The list element type must not be the top type.</p>
-<details class="attention"><summary>Empty list literals may lead to Java errors</summary><p>The empty list literal <code>[]</code> has a special type for implementation reasons.
+<details class="attention">
+<summary>Empty list literals may lead to Java errors</summary>
+<p>The empty list literal <code>[]</code> has a special type for implementation reasons.
 It compiles to a list with the <a href="../types#bottom">bottom type</a>.
 As such, the generated Java code may have compile errors.</p>
 </details>
@@ -5427,7 +5475,9 @@ This represents a character according to <a href="https://docs.oracle.com/javase
 For example, <code>\\</code> is a single backslash.</li>
 </ul>
 <p>The path start and all of the path parts are concatenated into a single path value without separating characters between them.</p>
-<details class="note"><summary>Path validity and existence (is not checked)</summary><p>The validity or existence of paths literals is not checked.
+<details class="note">
+<summary>Path validity and existence (is not checked)</summary>
+<p>The validity or existence of paths literals is not checked.
 This means that a path literal like <code>.////.</code> is allowed, even though it would be invalid for most file systems.
 To check if a path exists, use <a href="#exists">exists</a>.</p>
 </details>
@@ -5480,7 +5530,9 @@ The possible filters are listed in the table below.</p>
 Can they handle directories or do they only work on files?
 See also todos in the table.</p>
 </div>
-<details class="note"><summary>Multiple filters</summary><p>It is not allowed to use multiple filters.
+<details class="note">
+<summary>Multiple filters</summary>
+<p>It is not allowed to use multiple filters.
 If you need multiple filters, encode your requirements in a regex filter instead.</p>
 </details>
 <h3 id="stamper-stamperpart-and-stamperkind">Stamper, StamperPart and StamperKind<a class="headerlink" href="#stamper-stamperpart-and-stamperkind" title="Permanent link">&para;</a></h3>
@@ -5489,7 +5541,9 @@ They are used by <a href="#requires">requires</a> and <a href="#generates">gener
 They use the syntax <code>by $StamperKind</code>, where the stamper kind can be <code>hash</code> or <code>modified</code>.</p>
 <p>Stamping <code>by hash</code> will calculate the md5 hash of a file and assume that the file is up to date if the hash matches the cached hash.
 Stamping <code>by modified</code> will check the modification time, and assumes it is up-to-date when that time is at or before the cached time.</p>
-<details class="note"><summary>Checking the full file contents</summary><p>There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
+<details class="note">
+<summary>Checking the full file contents</summary>
+<p>There is currently no way in the PIE DSL to specify that the full file contents should match for a file to be considered up-to-date.
 If you need this, write the task in Java or use <a href="#read"><code>read file</code></a>.</p>
 </details>
 <div class="admonition todo">
@@ -5507,7 +5561,7 @@ What is the default modifier?</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-15
+      Last update: 2021-12-20
     
   </small>
 </div>

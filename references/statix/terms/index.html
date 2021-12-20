@@ -4273,7 +4273,9 @@ of the variable is derived from its usage. Rule patterns may be non-linear
 (containing multiple occurrences of a variable), variables in an existential
 must be unique. That is, the constraint <code>{x x} ...</code>  will give a type error.
 Shadowing variables is allowed, but discouraged by a warning.</p>
-<details class="info"><summary>Substitution and Unification</summary><p>Although the Statix language does not distinguish between variables in rule
+<details class="info">
+<summary>Substitution and Unification</summary>
+<p>Although the Statix language does not distinguish between variables in rule
 heads and existentials, the solver treats those quite differently.
 On rule application, occurrences of variables from rule heads in the body of
 the rule are <em>substituted</em> by the actual arguments. For example, in a
@@ -4340,7 +4342,9 @@ type of the list expression will be <code>list(T)</code>.</p>
 <a href="../rules#rule-definitions">rule head</a>, where all variables are introduced
 implicitly), but rather requires that a variable with corresponding name and type
 is already introduced.</p>
-<details class="tip"><summary>Ascribe and Equality</summary><p>In terms of <a href="../basic-constraints#equality">equality constraints</a>, the ascribe
+<details class="tip">
+<summary>Ascribe and Equality</summary>
+<p>In terms of <a href="../basic-constraints#equality">equality constraints</a>, the ascribe
 is equal to <code>$Var == $Term</code>. It is used to prevent the duplication of <code>$Term</code>.</p>
 </details>
 <h2 id="type-ascription">Type Ascription<a class="headerlink" href="#type-ascription" title="Permanent link">&para;</a></h2>
@@ -4361,7 +4365,9 @@ these type ascriptions can help tracing the cause of the error.</p>
 </code></pre></div>
 <p>Here, the type of the expression is <code>int</code>. For more information on arithmetic
 expressions, see <a href="../basic-constraints#arithmetic-constraints">Arithmetic Constraints</a></p>
-<details class="tip"><summary>Normalization</summary><p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, inline
+<details class="tip">
+<summary>Normalization</summary>
+<p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, inline
 arithmetic expressions have behavior equal to <code>{v} v #= $ArithExp</code>, where <code>v</code>
 is used at the position of the arithmetic expression. So, for example,
 <code>{T} T == CONS(#(21 * 2))</code> is equal to <code>{T v} v #= 21 * 2, T == CONS(v)</code>.</p>
@@ -4379,7 +4385,9 @@ be <code>astId</code>. AST Identifiers are used to assign <a href="../basic-cons
 </code></pre></div>
 <p>Statically, the <code>new</code> term has type <code>scope</code>. At runtime, this creates a fresh
 scope, and inserts that at the position of the <code>new</code> term.</p>
-<details class="tip"><summary>Normalization</summary><p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, the inline
+<details class="tip">
+<summary>Normalization</summary>
+<p>In terms of <a href="../basic-constraints#exists">existential constraints</a>, the inline
 <code>new</code> operator has behavior equal to <code>{s} new s</code>, where <code>s</code> is used at the
 position of the <code>new</code> term. So, for example, <code>{T} T == CLASS(new)</code> is equal
 to <code>{T s} new s, T == CLASS(s)</code>.</p>
@@ -4427,7 +4435,9 @@ about namespaces, see the <a href="../queries">Queries</a> section.</p>
 The terms arguments must correspond to the argument of the relation, and the
 type of the term is the output type of the relation.</p>
 <p>For more information on querying the scope graph, see the <a href="../queries">Queries</a> section.</p>
-<details class="tip"><summary>Declaration Match as Query</summary><p>In terms of <a href="../queries">regular queries</a>, the declaration match is equal
+<details class="tip">
+<summary>Declaration Match as Query</summary>
+<p>In terms of <a href="../queries">regular queries</a>, the declaration match is equal
 to a query with filter <code>e</code>, expecting a single output. E.g. <code>T == ?var["x"] in s</code>
 is equal to <code>query var filter e and { x' :- x' == "x" } in s |-&gt; [(_, (_, T))]</code>.</p>
 </details>
@@ -4439,7 +4449,7 @@ is equal to <code>query var filter e and { x' :- x' == "x" } in s |-&gt; [(_, (_
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-11-15
+      Last update: 2021-12-20
     
   </small>
 </div>
