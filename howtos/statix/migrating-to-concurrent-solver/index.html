@@ -4118,11 +4118,11 @@ concurrent solver for a Statix project.</p>
 <p>To enable the concurrent solver for a language, set the <code>language.statix.concurrent</code>
 property in the <code>metaborg.yaml</code> file to <code>true</code>. This ensures that the
 concurrent solver is used for all sources in the language.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.example:mylang:0.1.0-SNAPSHOT</span>
-<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mylang</span>
-<span class="nt">language</span><span class="p">:</span>
-  <span class="nt">statix</span><span class="p">:</span>
-    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">concurrent</span>
+<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.example:mylang:0.1.0-SNAPSHOT</span><span class="w"></span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mylang</span><span class="w"></span>
+<span class="nt">language</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">statix</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concurrent</span><span class="w"></span>
 </code></pre></div>
 <h2 id="enabling-the-concurrent-solver-for-an-example-project-only">Enabling the Concurrent solver for an Example Project only<a class="headerlink" href="#enabling-the-concurrent-solver-for-an-example-project-only" title="Permanent link">&para;</a></h2>
 <p>To enable the concurrent solver for a particular project only, set the
@@ -4131,11 +4131,11 @@ that contains all names of the languages for which you want to use the
 concurrent solver, and their corresponding modes. The name of the language
 should correspond to the <code>name</code> property in the <code>metaborg.yaml</code> of the
 language definition project.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.example:mylang.example:0.1.0-SNAPSHOT</span>
-<span class="nt">runtime</span><span class="p">:</span>
-  <span class="nt">statix</span><span class="p">:</span>
-    <span class="nt">modes</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">mylang</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">concurrent</span>
+<div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.example:mylang.example:0.1.0-SNAPSHOT</span><span class="w"></span>
+<span class="nt">runtime</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">statix</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">modes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mylang</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concurrent</span><span class="w"></span>
 </code></pre></div>
 <h2 id="indirect-type-declaration">Indirect Type Declaration<a class="headerlink" href="#indirect-type-declaration" title="Permanent link">&para;</a></h2>
 <p>Type checking with the concurrent solver might result in
@@ -4324,7 +4324,7 @@ the following options for the <code>mode</code>/<code>modes</code> settings are 
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-12-20
+      Last update: 2022-01-19
     
   </small>
 </div>

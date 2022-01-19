@@ -4192,16 +4192,16 @@
 <li>not use any implicitly declared sorts</li>
 <li>not use complex injections, such as <code class="highlight"><span class="nv">Pair</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Expr</span><span class="w"> </span><span class="nv">Expr</span><span class="w"></span></code>. However, list injections without terminal syntax, such as <code class="highlight"><span class="nv">List</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Elem</span><span class="o">*</span><span class="w"></span></code>, are allowed.</li>
 <li>constructors must start with an upper-case letter</li>
-<li>not use <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">c</span></code></li>
+<li>not use <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span><span class="w"></span></code></li>
 </ul>
 <p>The generator generates strategies and signatures for each explicit declaration of a sort in SDF3, which is why each sort must be declared exactly once. SDF3 does not generate Stratego signatures for placeholders for sorts that have no corresponding rules, causing errors in the generated Statix injection explication strategies. Complex injections are not supported across Spoofax. Optional sorts cannot be represented in Statix.</p>
 <h2 id="applying-the-generator-in-spoofax-2">Applying the Generator in Spoofax 2<a class="headerlink" href="#applying-the-generator-in-spoofax-2" title="Permanent link">&para;</a></h2>
 <p>In your language project's <code>metaborg.yaml</code> file, change your compile dependencies to include <code>org.metaborg:sdf3.ext.statix</code>. For example:</p>
-<div class="highlight"><pre><span></span><code>   <span class="nt">dependencies</span><span class="p">:</span>
-     <span class="nt">compile</span><span class="p">:</span>
-     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.esv:${metaborgVersion}</span>
-     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.template:${metaborgVersion}</span>
-     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">org.metaborg:sdf3.ext.statix:${metaborgVersion}</span>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="nt">compile</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.esv:${metaborgVersion}</span><span class="w"></span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.template:${metaborgVersion}</span><span class="w"></span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:sdf3.ext.statix:${metaborgVersion}</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition warning">
 <p>Clean the project and restart Eclipse when changing the <code>metaborg.yaml</code> file.</p>
@@ -4339,8 +4339,8 @@ BUILD FAILED
 - [ identity crisis | error ] Cannot rewrite to box: 
 -         declSortLex(&quot;MySort&quot;)
 </code></pre></div>
-<p>You are using the old <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">c</span></code>. Change this in <code>metaborg.yaml</code> into
-<code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">java</span></code>.</p>
+<p>You are using the old <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span><span class="w"></span></code>. Change this in <code>metaborg.yaml</code> into
+<code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java</span><span class="w"></span></code>.</p>
 <h3 id="spt-analysis-tests-calling-stratego-strategies-fail">SPT analysis tests calling Stratego strategies fail<a class="headerlink" href="#spt-analysis-tests-calling-stratego-strategies-fail" title="Permanent link">&para;</a></h3>
 <p>An SPT test can run an arbitrary Stratego strategy on an analyzed AST
 and compare the results with the expected AST. If the origin of the is not
@@ -4362,7 +4362,7 @@ be missing and the comparison will fail.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-12-20
+      Last update: 2022-01-19
     
   </small>
 </div>

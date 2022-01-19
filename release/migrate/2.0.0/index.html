@@ -4579,9 +4579,9 @@ The <a href="../../../references/config/">manual page on configuration</a> lists
 </ul>
 <h4 id="sdf">SDF<a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h4>
 <p>If you are still using SDF2 instead of SDF3, add the following setting to the <span class='file'>metaborg.yaml</span> file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
-  <span class="nt">sdf</span><span class="p">:</span>
-    <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sdf2</span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdf2</span><span class="w"></span>
 </code></pre></div>
 <h4 id="nabl-and-ts">NaBL and TS<a class="headerlink" href="#nabl-and-ts" title="Permanent link">&para;</a></h4>
 <p>If you’re using a NaBL/TS based analysis, perform the following changes:</p>
@@ -4654,14 +4654,14 @@ with the <code>pre-analysis</code>, <code>post-analysis</code>, and <code>pp-mes
 <h4 id="ant-build-customization">Ant build customization<a class="headerlink" href="#ant-build-customization" title="Permanent link">&para;</a></h4>
 <p>Language specification builds do not use Ant any more, so any customizations to the <span class='file'>build.main.xml</span> are lost.
 To perform an Ant task before and after the build, add the following configuration option to your <span class='file'>metaborg.yaml</span> file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span>
-  <span class="nt">ant</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">phase</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">preCompile</span>
-    <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span>
-    <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generate-xml</span>
-  <span class="p p-Indicator">-</span> <span class="nt">phase</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">postCompile</span>
-    <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span>
-    <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">package-xml</span>
+<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ant</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">preCompile</span><span class="w"></span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span><span class="w"></span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generate-xml</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postCompile</span><span class="w"></span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span><span class="w"></span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-xml</span><span class="w"></span>
 </code></pre></div>
 <p>See the <a href="../../../references/config/">manual page on configuration</a> for more information about configuring Ant build steps.</p>
 <h4 id="eclipse-plugin">Eclipse plugin<a class="headerlink" href="#eclipse-plugin" title="Permanent link">&para;</a></h4>
@@ -4685,7 +4685,7 @@ Also make sure that <span class='menuselection'>Project ‣ Build Automatically<
 <div class="md-source-date">
   <small>
     
-      Last update: 2021-12-20
+      Last update: 2022-01-19
     
   </small>
 </div>
