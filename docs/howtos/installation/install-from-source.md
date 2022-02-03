@@ -7,7 +7,7 @@ Perform a manual build and installation of cutting-edge Spoofax from source, by 
     git clone https://github.com/metaborg/spoofax-releng.git
     ```
 
-=== "HTTPS"
+=== "SSH"
 
     ```{.text .wrap}
     git clone git@github.com:metaborg/spoofax-releng.git
