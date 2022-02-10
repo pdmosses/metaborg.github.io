@@ -175,7 +175,7 @@ Java types are always nullable, so the nullable type `X?` is backed by Java type
 
 ### Lists
 Lists are represented with an asterisk behind the type.
-For example, a nullable `path` is `path*`.
+For example, a list of `path` is `path*`.
 Lists of `X` can contain any element that could be assigned to `X`.
 Lists do not have subtypes besides the bottom type.
 This means that `Apple*` is not a subtype of `Fruit*`.
