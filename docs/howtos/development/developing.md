@@ -17,6 +17,9 @@ The `./b` script in the `spoofax-releng` repository can generate an Eclipse inst
 
 This will download and install Eclipse into `~/eclipse/spoofax-dev` with the right plugins and `eclipse.ini` for Spoofax development. The locally built version of the Spoofax plugin will be installed into that Eclipse. Generating an Eclipse installation can take several minutes. After it’s done generating, open the Eclipse installation and confirm that it works by creating a Spoofax project.
 
+??? info "RuntimeError: Eclipse generation failed"
+    If you get the error _"RuntimeError: Eclipse generation failed"_, then ensure you're building Eclipse using JDK 8.
+
 ??? info "Installation failed. Cannot complete the install because of a conflicting dependency"
     If you get an error _"Installation failed. Cannot complete the install because of a conflicting dependency."_, then make sure there is not an existing Eclipse instance at the destination.
 
