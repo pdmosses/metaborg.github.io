@@ -5482,7 +5482,8 @@ This evaluates the expression and converts the resulting value into a string.</l
 This represents the literal character <code>$</code>.</li>
 <li><code>\</code> followed by another character.
 This represents a character according to <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6">Java semantics</a>.
-For example, <code>\n</code> is a newline character, <code>\\</code> is a single backslash, and <code>\r</code> is a carriage return character.</li>
+For example, <code>\n</code> is a newline character, <code>\\</code> is a single backslash, and <code>\r</code> is a carriage return character.
+In particular, <code>\"</code> represents the literal character <code>"</code>, and does not end the string literal.</li>
 </ul>
 <p>All of the string parts are concatenated into a single string value without separating characters between them.</p>
 <h2 id="path-literal">path literal<a class="headerlink" href="#path-literal" title="Permanent link">&para;</a></h2>
@@ -5509,7 +5510,7 @@ For example, <code>\\</code> is a single backslash.</li>
 <p>The path start and all of the path parts are concatenated into a single path value without separating characters between them.</p>
 <details class="note">
 <summary>Path validity and existence (is not checked)</summary>
-<p>The validity or existence of paths literals is not checked.
+<p>The validity or existence of path literals is not checked.
 This means that a path literal like <code>.////.</code> is allowed, even though it would be invalid for most file systems.
 To check if a path exists, use <a href="#exists">exists</a>.</p>
 </details>
