@@ -787,7 +787,7 @@ For example, `\\` is a single backslash.
 The path start and all of the path parts are concatenated into a single path value without separating characters between them.
 
 ??? note "Path validity and existence (is not checked)"
-    The validity or existence of paths literals is not checked.
+    The validity or existence of path literals is not checked.
     This means that a path literal like `.////.` is allowed, even though it would be invalid for most file systems.
     To check if a path exists, use [exists](#exists).
 
