@@ -756,6 +756,7 @@ This represents the literal character `$`.
 - `\` followed by another character.
 This represents a character according to [Java semantics](https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6).
 For example, `\n` is a newline character, `\\` is a single backslash, and `\r` is a carriage return character.
+In particular, `\"` represents the literal character `"`, and does not end the string literal.
 
 All of the string parts are concatenated into a single string value without separating characters between them.
 
