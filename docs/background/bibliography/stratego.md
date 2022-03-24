@@ -5,7 +5,7 @@ An important aspect of the design of Stratego is the separation of the language 
 This is still the way that the Stratego compiler is organized.
 
 The original also introduced contextual terms.
-These where eventually replaced by [dynamic rewrite rules](/reference/stratego/rules/dynamic-rules.md)[@BravenboerDOV06].
+These where eventually replaced by [dynamic rewrite rules](/references/stratego/dynamic-rules.md)[@BravenboerDOV06].
 The paper about dynamic rules[@BravenboerDOV06] also provides a comprehensive overview of Stratego and its operational semantics.
 
 
