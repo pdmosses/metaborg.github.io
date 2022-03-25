@@ -12,7 +12,7 @@ All options under the `runtime.statix` options configure the behavior of the
 
 | Option                      | Values       | Default | Description                                                                                                                          |
 | :-------------------------- | :----------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `test-log`                  | `true|false` | `false` | When set to `true`, executing an [`stxtest`](../../statix/tests) will emit detailed logging in the Eclipse Console.                  |
+| `test-log`                  | `none|error|warn|info|debug|trace` | `none` | Executing an [`stxtest`](../../statix/tests) will emit logging with the specified level in the Eclipse Console.                  |
 | `suppress-cascading-errors` | `true|false` | `true`  | When set to `true`, the solver will not emit messages for constraints that could not be solved due to other constraints failing.     |
 | `message-trace-length`      | An integer   | `0`     | The number of constraints in the causation trace to print below the error message. `-1` prints the full trace.                       |
 | `message-term-depth`        | An integer   | `3`     | The depth in which terms are printed inside an error message. For deeper terms, and ellipsis is printed. `-1` prints infinite terms. |
