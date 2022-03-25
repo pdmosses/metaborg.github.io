@@ -26,7 +26,7 @@ The Statix segment of an configuration file can look as follows.
 ```yaml
 runtime:
   statix:
-    test-log: true
+    test-log: debug
     suppress-cascading-errors: true
     message-trace-length: 4
     message-term-depth: -1
