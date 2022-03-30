@@ -37,8 +37,8 @@ Modules can only be imported with their fully qualified name. That is, for each
 
 Imports of sorts, constructors and predicates are transitive, while imports of
 labels and relations are non-transitive. Furthermore, overloading by type,
-shadowing of top-level definitions, and duplicate imports of specification
-entities are not allowed.
+shadowing of top-level definitions, and duplicate imports of definitions are
+not allowed.
 
 
 ## Signatures
