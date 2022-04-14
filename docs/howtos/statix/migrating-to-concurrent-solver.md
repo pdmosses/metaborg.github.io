@@ -83,6 +83,16 @@ rules
     query type
       filter P* I* and { x' :- x' == x }
           in s |-> [(_, (_, T))].
+          
+rules
+  withType : TYPE -> scope
+  typeOf   : scope -> TYPE
+
+  withType(T) = s :-
+    new s, !typeOf[T] in s.
+
+  typeOf(s) = T :-
+    query typeOf filter e in s |-> [(_, T)].
 ```
 
 We now discuss the changes one-by-one. First, the signature of relation `type`
