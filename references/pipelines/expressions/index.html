@@ -5071,7 +5071,6 @@ The third one is the false-branch and can also have any type.
 Its syntax is <code>if ($Exp) $Exp else $Exp</code>, for example <code>if (name != null) name else default</code>.
 If the condition evaluates to <code>true</code>, the true-branch is evaluated, otherwise the false-branch is evaluated.
 The type of an if-else expression is the least upper bound of both branches.
-It is an error if the least upper bound of the two branches is <a href="../types#top">the top type</a>.
 The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.</p>
 <details class="example">
 <summary>Some examples of the least upper bound of different types</summary>
@@ -5105,7 +5104,7 @@ if (flag) catBox else anyBox    // type: Box&lt;_&gt;
 if (flag) cat1 else dog         // type: Mammal
 if (flag) dog else cat2         // type: Mammal
 if (flag) cat2 else fish        // type: Animal
-if (flag) &quot;hello&quot; else 2        // type: top type, error
+if (flag) &quot;hello&quot; else 2        // type: top type
 </code></pre></div>
 </details>
 <h2 id="list-comprehension">List comprehension<a class="headerlink" href="#list-comprehension" title="Permanent link">&para;</a></h2>
@@ -5602,7 +5601,7 @@ What is the default modifier?</p>
   <small>
     
       Last update:
-      2022-03-30
+      2022-04-15
     
   </small>
 </div>
