@@ -278,7 +278,6 @@ The third one is the false-branch and can also have any type.
 Its syntax is `if ($Exp) $Exp else $Exp`, for example `if (name != null) name else default`.
 If the condition evaluates to `true`, the true-branch is evaluated, otherwise the false-branch is evaluated.
 The type of an if-else expression is the least upper bound of both branches.
-It is an error if the least upper bound of the two branches is [the top type](../types#top).
 The condition and branches are evaluated in their own scope, so value declarations in an if-else expression are not visible after the expression.
 
 ??? example "Some examples of the least upper bound of different types"
@@ -313,7 +312,7 @@ The condition and branches are evaluated in their own scope, so value declaratio
     if (flag) cat1 else dog         // type: Mammal
     if (flag) dog else cat2         // type: Mammal
     if (flag) cat2 else fish        // type: Animal
-    if (flag) "hello" else 2        // type: top type, error
+    if (flag) "hello" else 2        // type: top type
     ```
 
 
