@@ -4219,6 +4219,16 @@ the <em>type</em>). This pattern is best explained with an example:</p>
 <span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="nv">type</span><span class="w"></span>
 <span class="w">      </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 <span class="w">          </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="p">.</span><span class="w"></span>
+
+<span class="k">rules</span><span class="w"></span>
+<span class="w">  </span><span class="nv">withType</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">scope</span><span class="w"></span>
+<span class="w">  </span><span class="nv">typeOf</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">TYPE</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">withType</span><span class="p">(</span><span class="nv">T</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>!<span class="nv">typeOf</span>[<span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nv">typeOf</span><span class="p">(</span><span class="nv">s</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
+<span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="nv">typeOf</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span>]<span class="p">.</span><span class="w"></span>
 </code></pre></div>
 <p>We now discuss the changes one-by-one. First, the signature of relation <code>type</code>
 is be changed to <code>ID -&gt; scope</code>. In this scope, we store the type using the
@@ -4364,7 +4374,7 @@ the following options for the <code>mode</code>/<code>modes</code> settings are 
   <small>
     
       Last update:
-      2022-04-15
+      2022-04-19
     
   </small>
 </div>
