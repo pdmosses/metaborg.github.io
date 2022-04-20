@@ -4,7 +4,7 @@ As mentioned in the [Language Concepts](../language-concepts) section, the core
 idea of Statix is to see a type-checking problem as a constraint solving problem.
 Therefore, it is crucial to be able to express constraints in a specification.
 
-In this section, we discuss all constraints that are note related to scope graphs.
+In this section, we discuss all constraints that are not related to scope graphs.
 These constraints are explained in-depth in the sections on [Scope Graph
 Construction](../scope-graphs) and [Queries](../queries).
 
@@ -154,7 +154,7 @@ for a property, as long as the terms on which these operators are used are diffe
 Finally, the last `$Term` denotes the value of the property.
 
 !!! warning
-    Failing property constraints are ignored (i.e. no error for them is reported).
+    Failing property constraints are ignored (i.e., no error for them is reported).
 
 
 ## Arithmetic Constraints
