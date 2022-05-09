@@ -5,7 +5,13 @@ These are the release notes for the upcoming version of Spoofax.
 See the corresponding [migration guide](../migrate/vnext.md) for migrating from Spoofax vPrev to Spoofax vNext.
 
 ## Changes
-* Update dependencies
+- Fix issues with the `implodePT` and `sdf2table` Docker substitution scripts for MacOS 64-bit
+- Update Apache Commons Compress dependency to 1.21
+- Update Apache Commons IO dependency to 2.11.0
+- Update Guice dependencies to 4.2.3
+- Update Guava dependency to 30.1
+- Add Guava FailureAccess dependency, required by Guava >= 27.0
+
 
 Statix
 ^^^^^^
