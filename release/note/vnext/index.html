@@ -4085,19 +4085,29 @@
 
 <h1 id="spoofax-vnext">Spoofax vNext<a class="headerlink" href="#spoofax-vnext" title="Permanent link">&para;</a></h1>
 <p>These are the release notes for the upcoming version of Spoofax.</p>
-<div class="admonition error">
-<p class="admonition-title">Update the current documentation <code>vnext.rst</code> file instead</p>
-<p>Until we have migrated to this new documentation, update the <code>vnext.rst</code> in the <a href="https://github.com/metaborg/documentation/blob/master/source/release/note/vnext.rst">current documentation repository</a>.</p>
-</div>
 <p>See the corresponding <a href="../../migrate/vnext/">migration guide</a> for migrating from Spoofax vPrev to Spoofax vNext.</p>
 <h2 id="changes">Changes<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h2>
+<p>Statix
+<sup>^</sup><sup>^</sup></p>
+<ul>
+<li>Make <code>ArithTest</code> Serializable</li>
+<li>Integrate the Incremental Solver in Spoofax.</li>
+<li>Fix issue where edges were closed twice in incremental solver when having debug log enabled.</li>
+<li>Deprecate the <code>concurrent</code> property in favor of the <code>mode</code> (for language projects) or <code>modes</code> (for example projects) properties.</li>
+<li>Allow singleton properties to be set to the same value multiple times.</li>
+<li>Reduce number of cascading messages (can be disabled using <code>runtime.statix.suppress-cascading-errors: false</code>).</li>
+<li>Show delay reasons and prevented completions on messages for unsolved constraints.</li>
+<li>Add <code>eq(term)</code> lambda sugar.</li>
+<li>Add <code>runtime.statix.test-log</code> option to show Statix test logging in the console.</li>
+<li>Fix bug where solver with return-on-first-error enabled would also return if the first failing constraint had a non-error message kind.</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      2022-04-20
+      2022-05-09
     
   </small>
 </div>
