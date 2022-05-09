@@ -3861,6 +3861,26 @@
     Changes
   </a>
   
+    <nav class="md-nav" aria-label="Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statix" class="md-nav__link">
+    Statix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stratego" class="md-nav__link">
+    Stratego
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4063,6 +4083,26 @@
     Changes
   </a>
   
+    <nav class="md-nav" aria-label="Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statix" class="md-nav__link">
+    Statix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stratego" class="md-nav__link">
+    Stratego
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4095,8 +4135,7 @@
 <li>Update Guava dependency to 30.1</li>
 <li>Add Guava FailureAccess dependency, required by Guava &gt;= 27.0</li>
 </ul>
-<p>Statix
-<sup>^</sup><sup>^</sup></p>
+<h3 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Make <code>ArithTest</code> Serializable</li>
 <li>Integrate the Incremental Solver in Spoofax.</li>
@@ -4108,6 +4147,12 @@
 <li>Add <code>eq(term)</code> lambda sugar.</li>
 <li>Add <code>runtime.statix.test-log</code> option to show Statix test logging in the console.</li>
 <li>Fix bug where solver with return-on-first-error enabled would also return if the first failing constraint had a non-error message kind.</li>
+</ul>
+<h3 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Stratego 2 was introduced as a new meta-language based on Stratego 1, the incremental compiler for Stratego, and the gradual type system developed for Stratego, packaged as one project under a single name. There is a migration guide from Stratego (1) to Stratego 2 under the <a href="../../../howtos/stratego/stratego-1-to-2/">How-Tos</a>. This gradually typed version of Stratego comes with a standard library that also has gradual types. The editor will give underline where casts are inserted with notes. </li>
+<li>Stratego 2: Added the <code>&lt;*</code> ("left try-some") strategy combinator that tries to apply the left strategy, then the right, and only fails if both fail. <code>a &lt;* b</code> is sugar for <code>a &lt; b &lt;+ id + b</code>. </li>
+<li>Origin tracking is now documented in a <a href="../../../background/stratego/origin-tracking/">page in the Background section</a> of the website.</li>
 </ul>
 
   <hr>
