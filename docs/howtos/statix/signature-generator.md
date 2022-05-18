@@ -137,6 +137,18 @@ VarDecl(ID2VarName(x))
 In this example, `ID` is a lexical sort, so it is an alias for `string` in the Statix specification.
 
 
+## Excluding Modules
+If an SDF3 module's name ends with `_StrategoMix`, its generated signatures are generated as `.txt` files, effectively rendering them inert. This can be used, as the name suggests, to avoid generating signatures for modules that provide Stratego mix syntax for the current language.
+
+```sdf3
+module test_StrategoMix
+
+// ...
+```
+
+!!! tip "Debug menu"
+    The SDF3 debug menu entries in _Spoofax_, _Statix Integration_ still generate files with the actual language's extension. This is to aid in debugging. However, there will be a comment at the top of the file indicating that (and why) the file was skipped.
+
 
 ## Troubleshooting
 
@@ -238,3 +250,7 @@ rules
   pre-analyze  = origin-track-forced(explicate-injections-MyLang-Start)
   post-analyze = origin-track-forced(implicate-injections-MyLang-Start)
 ```
+
+
+### Signatures are not generated
+Ensure the module name does not end with `_StrategoMix`, as such files are skipped.

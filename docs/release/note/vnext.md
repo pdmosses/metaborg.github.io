@@ -32,3 +32,6 @@ See the corresponding [migration guide](../migrate/vnext.md) for migrating from 
 * Stratego 2: Added the `<*` ("left try-some") strategy combinator that tries to apply the left strategy, then the right, and only fails if both fail. `a <* b` is sugar for `a < b <+ id + b`. 
 * Origin tracking is now documented in a [page in the Background section](../../background/stratego/origin-tracking.md) of the website.
 
+### SDF
+
+* Signature generator does not generate signatures for files whose module name ends with `_StrategoMix`.
