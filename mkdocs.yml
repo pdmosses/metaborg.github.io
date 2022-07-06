@@ -160,6 +160,7 @@ nav:
     - release/stable.md
     - release/develop.md
     - Release Notes:
+      - release/note/2.5.17.md
       - release/note/2.5.16.md
       - release/note/2.5.15.md
       - release/note/2.5.14.md

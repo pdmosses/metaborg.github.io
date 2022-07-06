@@ -5,34 +5,3 @@ These are the release notes for the upcoming version of Spoofax.
 See the corresponding [migration guide](../migrate/vnext.md) for migrating from Spoofax vPrev to Spoofax vNext.
 
 ## Changes
-
-- Fix issues with the `implodePT` and `sdf2table` Docker substitution scripts for MacOS 64-bit
-- Update Apache Commons Compress dependency to 1.21
-- Update Apache Commons IO dependency to 2.11.0
-- Update Guice dependencies to 4.2.3
-- Update Guava dependency to 30.1
-- Add Guava FailureAccess dependency, required by Guava >= 27.0
-
-### Statix
-
-* Integrate the Incremental Solver in Spoofax.
-* Add menu options to inspect Term Properties.
-* Fix issue where edges were closed twice in incremental solver when having debug log enabled.
-* Deprecate the `concurrent` property in favor of the `mode` (for language projects) or `modes` (for example projects) properties.
-* Allow singleton properties to be set to the same value multiple times.
-* Reduce number of cascading messages (can be disabled using `runtime.statix.suppress-cascading-errors: false`).
-* Show delay reasons and prevented completions on messages for unsolved constraints.
-* Add `eq(term)` lambda sugar.
-* Add `runtime.statix.test-log` option to show Statix test logging in the console.
-* Fix bug where solver with return-on-first-error enabled would also return if the first failing constraint had a non-error message kind.
-* Fix several serialization issues.
-
-### Stratego
-
-* Stratego 2 was introduced as a new meta-language based on Stratego 1, the incremental compiler for Stratego, and the gradual type system developed for Stratego, packaged as one project under a single name. There is a migration guide from Stratego (1) to Stratego 2 under the [How-Tos](../../howtos/stratego/stratego-1-to-2.md). This gradually typed version of Stratego comes with a standard library that also has gradual types. The editor will give underline where casts are inserted with notes. 
-* Stratego 2: Added the `<*` ("left try-some") strategy combinator that tries to apply the left strategy, then the right, and only fails if both fail. `a <* b` is sugar for `a < b <+ id + b`. 
-* Origin tracking is now documented in a [page in the Background section](../../background/stratego/origin-tracking.md) of the website.
-
-### SDF
-
-* Signature generator does not generate signatures for files whose module name ends with `_StrategoMix`.
