@@ -3341,6 +3341,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3">
@@ -3354,6 +3356,20 @@
           Release Notes
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.5.17/" class="md-nav__link">
+        Spoofax 2.5.17 (06-07-2022)
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -3861,33 +3877,6 @@
     Changes
   </a>
   
-    <nav class="md-nav" aria-label="Changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#statix" class="md-nav__link">
-    Statix
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stratego" class="md-nav__link">
-    Stratego
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sdf" class="md-nav__link">
-    SDF
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -4090,33 +4079,6 @@
     Changes
   </a>
   
-    <nav class="md-nav" aria-label="Changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#statix" class="md-nav__link">
-    Statix
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stratego" class="md-nav__link">
-    Stratego
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sdf" class="md-nav__link">
-    SDF
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -4141,45 +4103,13 @@
 <p>These are the release notes for the upcoming version of Spoofax.</p>
 <p>See the corresponding <a href="../../migrate/vnext/">migration guide</a> for migrating from Spoofax vPrev to Spoofax vNext.</p>
 <h2 id="changes">Changes<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Fix issues with the <code>implodePT</code> and <code>sdf2table</code> Docker substitution scripts for MacOS 64-bit</li>
-<li>Update Apache Commons Compress dependency to 1.21</li>
-<li>Update Apache Commons IO dependency to 2.11.0</li>
-<li>Update Guice dependencies to 4.2.3</li>
-<li>Update Guava dependency to 30.1</li>
-<li>Add Guava FailureAccess dependency, required by Guava &gt;= 27.0</li>
-</ul>
-<h3 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Integrate the Incremental Solver in Spoofax.</li>
-<li>Add menu options to inspect Term Properties.</li>
-<li>Fix issue where edges were closed twice in incremental solver when having debug log enabled.</li>
-<li>Deprecate the <code>concurrent</code> property in favor of the <code>mode</code> (for language projects) or <code>modes</code> (for example projects) properties.</li>
-<li>Allow singleton properties to be set to the same value multiple times.</li>
-<li>Reduce number of cascading messages (can be disabled using <code>runtime.statix.suppress-cascading-errors: false</code>).</li>
-<li>Show delay reasons and prevented completions on messages for unsolved constraints.</li>
-<li>Add <code>eq(term)</code> lambda sugar.</li>
-<li>Add <code>runtime.statix.test-log</code> option to show Statix test logging in the console.</li>
-<li>Fix bug where solver with return-on-first-error enabled would also return if the first failing constraint had a non-error message kind.</li>
-<li>Fix several serialization issues.</li>
-</ul>
-<h3 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Stratego 2 was introduced as a new meta-language based on Stratego 1, the incremental compiler for Stratego, and the gradual type system developed for Stratego, packaged as one project under a single name. There is a migration guide from Stratego (1) to Stratego 2 under the <a href="../../../howtos/stratego/stratego-1-to-2/">How-Tos</a>. This gradually typed version of Stratego comes with a standard library that also has gradual types. The editor will give underline where casts are inserted with notes. </li>
-<li>Stratego 2: Added the <code>&lt;*</code> ("left try-some") strategy combinator that tries to apply the left strategy, then the right, and only fails if both fail. <code>a &lt;* b</code> is sugar for <code>a &lt; b &lt;+ id + b</code>. </li>
-<li>Origin tracking is now documented in a <a href="../../../background/stratego/origin-tracking/">page in the Background section</a> of the website.</li>
-</ul>
-<h3 id="sdf">SDF<a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Signature generator does not generate signatures for files whose module name ends with <code>_StrategoMix</code>.</li>
-</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      2022-05-27
+      2022-07-06
     
   </small>
 </div>
