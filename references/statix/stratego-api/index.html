@@ -4232,36 +4232,36 @@ arguments are explained in the following table:</p>
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Default</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>pre</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left"><code>id</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+<td style="text-align: left;"><code>pre</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>post</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left"><code>id</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+<td style="text-align: left;"><code>post</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>spec-name</code></td>
-<td align="left"><code>String</code></td>
-<td align="left"></td>
-<td align="left">The full path to the root module of the specification.</td>
+<td style="text-align: left;"><code>spec-name</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The full path to the root module of the specification.</td>
 </tr>
 <tr>
-<td align="left"><code>init-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left"></td>
-<td align="left">The name of the constraint that should be applied to the pre-transformed AST. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code>: Start</code></td>
+<td style="text-align: left;"><code>init-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the pre-transformed AST. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code>: Start</code></td>
 </tr>
 </tbody>
 </table>
@@ -4286,36 +4286,36 @@ The term and strategy arguments are explained in the following table:</p>
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>pre</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+<td style="text-align: left;"><code>pre</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>post</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+<td style="text-align: left;"><code>post</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>spec-name</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The full path to the root module of the specification.</td>
+<td style="text-align: left;"><code>spec-name</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The full path to the root module of the specification.</td>
 </tr>
 <tr>
-<td align="left"><code>project-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td style="text-align: left;"><code>project-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
 </tr>
 <tr>
-<td align="left"><code>file-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+<td style="text-align: left;"><code>file-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
 </tr>
 </tbody>
 </table>
@@ -4333,46 +4333,46 @@ following table:</p>
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>pre</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
+<td style="text-align: left;"><code>pre</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the 'parsed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>group</code></td>
-<td align="left"><code>(Resource * AST) -&gt; List(String)</code></td>
-<td align="left">Strategy that decides in which group a resource is analyzed. Should return a list with the identifiers of the groups in which the resource should be analyzed.</td>
+<td style="text-align: left;"><code>group</code></td>
+<td style="text-align: left;"><code>(Resource * AST) -&gt; List(String)</code></td>
+<td style="text-align: left;">Strategy that decides in which group a resource is analyzed. Should return a list with the identifiers of the groups in which the resource should be analyzed.</td>
 </tr>
 <tr>
-<td align="left"><code>post</code></td>
-<td align="left"><code>AST -&gt; AST</code></td>
-<td align="left">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
+<td style="text-align: left;"><code>post</code></td>
+<td style="text-align: left;"><code>AST -&gt; AST</code></td>
+<td style="text-align: left;">Transformation to apply before analyzing. This transformation receives the result of applying <code>pre</code> to the 'parsed AST', and yields the 'analyzed AST'.</td>
 </tr>
 <tr>
-<td align="left"><code>spec-name</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The full path to the root module of the specification.</td>
+<td style="text-align: left;"><code>spec-name</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The full path to the root module of the specification.</td>
 </tr>
 <tr>
-<td align="left"><code>project-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td style="text-align: left;"><code>project-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
 </tr>
 <tr>
-<td align="left"><code>group-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td style="text-align: left;"><code>group-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
 </tr>
 <tr>
-<td align="left"><code>file-constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+<td style="text-align: left;"><code>file-constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
 </tr>
 </tbody>
 </table>
@@ -4386,21 +4386,21 @@ constraint.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>spec-name</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The full path to the root module of the specification.</td>
+<td style="text-align: left;"><code>spec-name</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The full path to the root module of the specification.</td>
 </tr>
 <tr>
-<td align="left"><code>constraint</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the term arguments.</td>
+<td style="text-align: left;"><code>constraint</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the constraint that should be applied to the term arguments.</td>
 </tr>
 </tbody>
 </table>
@@ -4429,21 +4429,21 @@ contains free variables, those will occur in the property as
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>a</code></td>
-<td align="left"><code>Analysis</code></td>
-<td align="left">Analysis object for the given AST node.</td>
+<td style="text-align: left;"><code>a</code></td>
+<td style="text-align: left;"><code>Analysis</code></td>
+<td style="text-align: left;">Analysis object for the given AST node.</td>
 </tr>
 <tr>
-<td align="left"><code>name</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">The name of the property that is queried.</td>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">The name of the property that is queried.</td>
 </tr>
 </tbody>
 </table>
@@ -4481,26 +4481,26 @@ will fail, even if there was an <code class="highlight">@<span class="nv">t</spa
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>a</code></td>
-<td align="left"><code>Analysis</code></td>
-<td align="left">Analysis object for the given AST node.</td>
+<td style="text-align: left;"><code>a</code></td>
+<td style="text-align: left;"><code>Analysis</code></td>
+<td style="text-align: left;">Analysis object for the given AST node.</td>
 </tr>
 <tr>
-<td align="left"><code>rel</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">Fully qualified name of the relation that is queried.</td>
+<td style="text-align: left;"><code>rel</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">Fully qualified name of the relation that is queried.</td>
 </tr>
 <tr>
-<td align="left"><code>lbl</code></td>
-<td align="left"><code>String</code></td>
-<td align="left">Fully qualified name of the label that is traversed.</td>
+<td style="text-align: left;"><code>lbl</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">Fully qualified name of the label that is traversed.</td>
 </tr>
 </tbody>
 </table>
@@ -4550,7 +4550,7 @@ the <code class="highlight"><span class="k">new</span><span class="w"> </span><s
   <small>
     
       Last update:
-      2022-07-06
+      2022-09-12
     
   </small>
 </div>
