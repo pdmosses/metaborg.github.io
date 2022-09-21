@@ -15,6 +15,7 @@ Stratego 2 is the new version of Stratego that provides access to the incrementa
 3. Rename all `.str` files in your project that are not in `src-gen` to `.str2`. Generated Stratego files in `src-gen` should already have a `.str2` version next to the `.str` version of the file.
 4. Remove any imports to `libstratego-lib` or `libstrategolib` in those renamed files.
 5. Add the `strategolib` import to all your `.str2` files outside of `src-gen`.
+6. Add `target/replicate/str2libs` as a class directory on your Eclipse build path. Do so by right-clicking on the project, then go to `Build Path > Configure Build Path...`, select the Libraries tab, use the `Add Class Folder...` button on the right. 
 
 ??? info "Stratego versions"
     The version numbers of Stratego are a little strange, Stratego and Stratego/XT used to number up to 0.17, then did not receive any more numbered releases even though small bugfixes and changes were released through Spoofax 1 and 2. In the current documentation we now consider this post-0.17 Stratego in Spoofax to be Stratego 1. This is not necessarily a statement of stability and matureness of the language but more to distinguish it from the new Stratego 2 project.
