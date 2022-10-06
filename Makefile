@@ -62,4 +62,4 @@ clean-bib:
 	rm -f $(BIB_FILE)
 
 .PHONY: serve new build deploy help build-image bib download-bib fix-bib clean-bib
-SILENT:
+.SILENT:
