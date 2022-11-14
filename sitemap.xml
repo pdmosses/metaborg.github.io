@@ -766,6 +766,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://www.spoofax.dev/release/note/2.5.18/</loc>
+         <lastmod>2022-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://www.spoofax.dev/release/note/2.5.2/</loc>
          <lastmod>2022-11-14</lastmod>
          <changefreq>daily</changefreq>
