@@ -3,7 +3,7 @@ site_author: Spoofax Team
 site_description: Spoofax language workbench
 site_url: https://www.spoofax.dev/
 
-copyright: "Copyright &copy; 2010-2021 Spoofax Team"
+copyright: "Copyright &copy; 2010-2023 Spoofax Team"
 
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
