@@ -4208,12 +4208,12 @@
 <p>Maven is a project management and build tool for software projects. Most components in Spoofax are built with Maven. This how-to will guide you to setup Maven for Spoofax 2 development.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>Maven can be downloaded and installed from <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>. We require Maven 3.5.4 or newer (except Maven 3.6.1 and 3.6.2). On macOs, Maven can be easily installed with <a href="https://brew.sh/">Homebrew</a> by executing:</p>
-<div class="highlight"><pre><span></span><code>brew install maven
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>maven
 </code></pre></div>
 <p>Confirm the installation was successful and the version is supported by running <code>mvn --version</code>.</p>
 <h2 id="memory-allocation">Memory Allocation<a class="headerlink" href="#memory-allocation" title="Permanent link">&para;</a></h2>
 <p>By default, Maven does not assign a lot of memory to the JVM that it runs in, which may lead to out-of-memory exceptions during builds. To increase the allocated memory, execute before building:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms512m -Xmx1024m -Xss16m&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms512m -Xmx1024m -Xss16m&quot;</span>
 </code></pre></div>
 <div class="admonition note">
 <p>Such an export is not permanent. To make it permanent, add that line to <code>~/.bashrc</code> or equivalent for your OS/shell (create the file if it does not exist), which will execute it whenever a new shell is opened.</p>
@@ -4227,77 +4227,77 @@
 <details class="quote" open="open">
 <summary><code>~/.m2/settings.xml</code></summary>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
-<span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="nt">&lt;settings</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;profiles&gt;</span>
-        <span class="nt">&lt;profile&gt;</span>
-        <span class="nt">&lt;id&gt;</span>add-metaborg-release-repos<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;activation&gt;</span>
-            <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
-        <span class="nt">&lt;/activation&gt;</span>
-        <span class="nt">&lt;repositories&gt;</span>
-            <span class="nt">&lt;repository&gt;</span>
-            <span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
-            <span class="nt">&lt;releases&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/releases&gt;</span>
-            <span class="nt">&lt;snapshots&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/snapshots&gt;</span>
-            <span class="nt">&lt;/repository&gt;</span>
-        <span class="nt">&lt;/repositories&gt;</span>
-        <span class="nt">&lt;pluginRepositories&gt;</span>
-            <span class="nt">&lt;pluginRepository&gt;</span>
-            <span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
-            <span class="nt">&lt;releases&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/releases&gt;</span>
-            <span class="nt">&lt;snapshots&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/snapshots&gt;</span>
-            <span class="nt">&lt;/pluginRepository&gt;</span>
-        <span class="nt">&lt;/pluginRepositories&gt;</span>
-        <span class="nt">&lt;/profile&gt;</span>
-        <span class="nt">&lt;profile&gt;</span>
-        <span class="nt">&lt;id&gt;</span>add-metaborg-snapshot-repos<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;activation&gt;</span>
-            <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
-        <span class="nt">&lt;/activation&gt;</span>
-        <span class="nt">&lt;repositories&gt;</span>
-            <span class="nt">&lt;repository&gt;</span>
-            <span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
-            <span class="nt">&lt;releases&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/releases&gt;</span>
-            <span class="nt">&lt;snapshots&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/snapshots&gt;</span>
-            <span class="nt">&lt;/repository&gt;</span>
-        <span class="nt">&lt;/repositories&gt;</span>
-        <span class="nt">&lt;pluginRepositories&gt;</span>
-            <span class="nt">&lt;pluginRepository&gt;</span>
-            <span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
-            <span class="nt">&lt;releases&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/releases&gt;</span>
-            <span class="nt">&lt;snapshots&gt;</span>
-                <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-            <span class="nt">&lt;/snapshots&gt;</span>
-            <span class="nt">&lt;/pluginRepository&gt;</span>
-        <span class="nt">&lt;/pluginRepositories&gt;</span>
-        <span class="nt">&lt;/profile&gt;</span>
-    <span class="nt">&lt;/profiles&gt;</span>
-    <span class="nt">&lt;mirrors&gt;</span>
-        <span class="nt">&lt;mirror&gt;</span>
-        <span class="nt">&lt;id&gt;</span>metaborg-central-mirror<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/central/<span class="nt">&lt;/url&gt;</span>
-        <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
-        <span class="nt">&lt;/mirror&gt;</span>
-    <span class="nt">&lt;/mirrors&gt;</span>
+<span class="w">    </span><span class="nt">&lt;profiles&gt;</span>
+<span class="w">        </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>add-metaborg-release-repos<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activation&gt;</span>
+<span class="w">            </span><span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/activation&gt;</span>
+<span class="w">        </span><span class="nt">&lt;repositories&gt;</span>
+<span class="w">            </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
+<span class="w">            </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/repositories&gt;</span>
+<span class="w">        </span><span class="nt">&lt;pluginRepositories&gt;</span>
+<span class="w">            </span><span class="nt">&lt;pluginRepository&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
+<span class="w">            </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/pluginRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/pluginRepositories&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;profile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>add-metaborg-snapshot-repos<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activation&gt;</span>
+<span class="w">            </span><span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/activation&gt;</span>
+<span class="w">        </span><span class="nt">&lt;repositories&gt;</span>
+<span class="w">            </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+<span class="w">            </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/repositories&gt;</span>
+<span class="w">        </span><span class="nt">&lt;pluginRepositories&gt;</span>
+<span class="w">            </span><span class="nt">&lt;pluginRepository&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+<span class="w">            </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">                </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/pluginRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/pluginRepositories&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/profile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/profiles&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mirrors&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mirror&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>metaborg-central-mirror<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/central/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mirror&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/mirrors&gt;</span>
 <span class="nt">&lt;/settings&gt;</span>
 </code></pre></div>
 </details>
@@ -4308,49 +4308,49 @@
 <details class="quote" open="open">
 <summary><code>~/.m2/settings.xml</code></summary>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;repositories&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-        <span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
-        <span class="nt">&lt;releases&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/releases&gt;</span>
-        <span class="nt">&lt;snapshots&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/snapshots&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-        <span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
-        <span class="nt">&lt;releases&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/releases&gt;</span>
-        <span class="nt">&lt;snapshots&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/snapshots&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">        </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/repository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;repository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">        </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/repository&gt;</span>
 <span class="nt">&lt;/repositories&gt;</span>
 
 <span class="nt">&lt;pluginRepositories&gt;</span>
-    <span class="nt">&lt;pluginRepository&gt;</span>
-        <span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
-        <span class="nt">&lt;releases&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/releases&gt;</span>
-        <span class="nt">&lt;snapshots&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/snapshots&gt;</span>
-    <span class="nt">&lt;/pluginRepository&gt;</span>
-    <span class="nt">&lt;pluginRepository&gt;</span>
-        <span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
-        <span class="nt">&lt;releases&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/releases&gt;</span>
-        <span class="nt">&lt;snapshots&gt;</span>
-            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
-        <span class="nt">&lt;/snapshots&gt;</span>
-    <span class="nt">&lt;/pluginRepository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pluginRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>metaborg-release-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">        </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/pluginRepository&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pluginRepository&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id&gt;</span>metaborg-snapshot-repo<span class="nt">&lt;/id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;releases&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/releases&gt;</span>
+<span class="w">        </span><span class="nt">&lt;snapshots&gt;</span>
+<span class="w">            </span><span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/snapshots&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/pluginRepository&gt;</span>
 <span class="nt">&lt;/pluginRepositories&gt;</span>
 </code></pre></div>
 </details>
@@ -4360,15 +4360,15 @@
 <details class="quote" open="open">
 <summary><code>~/.m2/settings.xml</code></summary>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
-<span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="nt">&lt;settings</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
 <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;mirrors&gt;</span>
-        <span class="nt">&lt;mirror&gt;</span>
-            <span class="nt">&lt;id&gt;</span>metaborg-central-mirror<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/central/<span class="nt">&lt;/url&gt;</span>
-            <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
-        <span class="nt">&lt;/mirror&gt;</span>
-    <span class="nt">&lt;/mirrors&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mirrors&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mirror&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>metaborg-central-mirror<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>https://artifacts.metaborg.org/content/repositories/central/<span class="nt">&lt;/url&gt;</span>
+<span class="w">            </span><span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mirror&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/mirrors&gt;</span>
 <span class="nt">&lt;/settings&gt;</span>
 </code></pre></div>
 </details>
@@ -4379,7 +4379,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4445,7 +4445,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

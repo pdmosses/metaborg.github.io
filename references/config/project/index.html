@@ -4194,14 +4194,14 @@ this project. This parameter contains subnodes consisting of a language name as
 key, and either <code>traditional</code> (default), <code>concurrent</code> of <code>incremental</code> as value.
 This setting overrides the default solver mode set by the language definition.</p>
 <p>The Statix segment of an configuration file can look as follows.
-<div class="highlight"><pre><span></span><code><span class="nt">runtime</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">statix</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">test-log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span><span class="w"></span>
-<span class="w">    </span><span class="nt">suppress-cascading-errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">    </span><span class="nt">message-trace-length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w"></span>
-<span class="w">    </span><span class="nt">message-term-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">modes</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">MyLang</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concurrent</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">runtime</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">statix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">test-log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="w">    </span><span class="nt">suppress-cascading-errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">message-trace-length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">    </span><span class="nt">message-term-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span>
+<span class="w">    </span><span class="nt">modes</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MyLang</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concurrent</span>
 </code></pre></div></p>
 
   <hr>
@@ -4209,7 +4209,7 @@ This setting overrides the default solver mode set by the language definition.</
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4275,7 +4275,7 @@ This setting overrides the default solver mode set by the language definition.</
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

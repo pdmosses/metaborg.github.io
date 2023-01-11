@@ -4235,9 +4235,9 @@
 <h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h1>
 <p>A Stratego program is organized as a collection of modules, which are imported from a main module.</p>
 <h2 id="module-structure">Module Structure<a class="headerlink" href="#module-structure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="w"></span>
-$<span class="nv">Imports</span>*<span class="w"></span>
-$<span class="nv">Section</span>*<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">ModuleName</span>
+$<span class="nv">Imports</span>*
+$<span class="nv">Section</span>*
 </code></pre></div>
 <p>A module starts with a module header followed by a list of <code>imports</code>.
 The name of a module in the header and imports should correspond to the file name, relative to a 'root' directory.</p>
@@ -4249,8 +4249,8 @@ The name of a module coincides with the file name, which should be fully qualifi
 Modules for the Stratego 1 version of the language have extension <code>.str</code>.
 The file extension does not feature in the module names used in the language.</p>
 <p>The following is example module header:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">compilation</span>/<span class="nv">translation</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">desugaring</span>/<span class="nv">desugar</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">compilation</span>/<span class="nv">translation</span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">desugaring</span>/<span class="nv">desugar</span>
 </code></pre></div>
 <h2 id="module-names">Module Names<a class="headerlink" href="#module-names" title="Permanent link">&para;</a></h2>
 <p>Module names can be hierarchical.
@@ -4269,7 +4269,7 @@ A declaration of or reference to a module uses its fully qualified name, with <c
 - desugaring/desugar
 </code></pre></div>
 <h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="o">+</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="o">+</span>
 </code></pre></div>
 <p>A module should import all other modules from which it uses definitions.
 Imports are non-transitive and may be mutually recursive.</p>
@@ -4279,28 +4279,28 @@ This allows the modular extension of a language.</p>
 There are currently no mechanisms for hiding definitions.</p>
 <p>An <code>imports</code> can list multiple modules.
 The form</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">B</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">B</span>
 </code></pre></div>
 <p>is equivalent to</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">A</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">B</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">A</span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">B</span>
 </code></pre></div>
 <h2 id="signatures">Signatures<a class="headerlink" href="#signatures" title="Permanent link">&para;</a></h2>
 <p>A <a href="../types/">signature</a> section introduces sorts, constructors, and overlays.</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">Sort</span>*<span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">ConstructorDef</span>*<span class="w"></span>
-<span class="w">  </span><span class="nv">overlays</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">OverlayDef</span>*<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">Sort</span>*
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">    </span>$<span class="nv">ConstructorDef</span>*
+<span class="w">  </span><span class="nv">overlays</span>
+<span class="w">    </span>$<span class="nv">OverlayDef</span>*
 </code></pre></div>
 <h2 id="rules-and-strategies">Rules and Strategies<a class="headerlink" href="#rules-and-strategies" title="Permanent link">&para;</a></h2>
 <p><a href="../rewrite-rules/">Rule</a> definitions and <a href="../strategy-definitions/">strategy</a> definitions introduce named transformations.</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
-<span class="w">  </span>$<span class="nv">RuleDef</span>*<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
+<span class="w">  </span>$<span class="nv">RuleDef</span>*
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="k">strategies</span><span class="w">  </span>
-<span class="w">  </span>$<span class="nv">StrategyDef</span>*<span class="w"></span>
+<span class="w">  </span>$<span class="nv">StrategyDef</span>*
 </code></pre></div>
 <p>The <code>rules</code> and <code>strategies</code> section headers are indicative only; rule and strategy definitions can actually be mixed.</p>
 <h2 id="libraries">Libraries<a class="headerlink" href="#libraries" title="Permanent link">&para;</a></h2>
@@ -4320,7 +4320,7 @@ Even if definitions in a library are not included in a libraries external defini
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4386,7 +4386,7 @@ Even if definitions in a library are not included in a libraries external defini
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

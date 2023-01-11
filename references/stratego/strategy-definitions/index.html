@@ -4177,32 +4177,32 @@
 
 
 <h1 id="strategy-definitions">Strategy Definitions<a class="headerlink" href="#strategy-definitions" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"></span>
-<span class="w">  </span>$<span class="nv">StrategyExp</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span>
+<span class="w">  </span>$<span class="nv">StrategyExp</span>
 </code></pre></div>
 <p>A strategy definition gives a name to a strategy expression, has zero or more strategy arguments, and zero or more term arguments.</p>
 <h2 id="simple-definitions">Simple Definitions<a class="headerlink" href="#simple-definitions" title="Permanent link">&para;</a></h2>
 <p>A simple strategy definition gave a name to a <a href="../strategy-combinators/">strategy expression</a>.</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span>
 </code></pre></div>
 <p>For example, the following definition defines <code>desugar</code> as an application of the <code>innermost</code> strategy to the rewrite rule(s) <code>desugar-exp</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">strategies</span><span class="w"></span>
-<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Module</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Module</span><span class="w"></span>
-<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">desugar-exp</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">strategies</span>
+<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Module</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Module</span>
+<span class="w">  </span><span class="nv">desugar</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">innermost</span><span class=" -Punctuation">(</span><span class="nv">desugar-exp</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="parameterized-definitions">Parameterized Definitions<a class="headerlink" href="#parameterized-definitions" title="Permanent link">&para;</a></h2>
 <p>Just like <a href="../rewrite-rules/">rewrite rules</a>, strategy definitions can be parameterized with strategies and terms.</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
-$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span>$<span class="nv">TermArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span>
+$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">|</span><span class="w"> </span><span class="nv">t1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span>
 </code></pre></div>
 <p>When a strategy has no term arguments, the bar can be left out:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
-$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Id</span><span class=" -Punctuation">(</span>$<span class="nv">StrategyArg</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class="w"> </span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>$<span class="nv">Type</span>
+$<span class="nv">Id</span><span class=" -Punctuation">(</span><span class="nv">s1</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span>
 </code></pre></div>
 <p>Simple strategy definitions are the special case in which a strategy does not have strategy and term arguments.</p>
 <p>For example, the following definition defines <code>topdown(s)</code> in terms of sequential composition and generic traversal:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">TP</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">TP</span><span class="w"></span>
-<span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="k">all</span><span class=" -Punctuation">(</span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">TP</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">TP</span>
+<span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">s</span><span class=" -Punctuation">;</span><span class="w"> </span><span class="k">all</span><span class=" -Punctuation">(</span><span class="nv">topdown</span><span class=" -Punctuation">(</span><span class="nv">s</span><span class=" -Punctuation">))</span>
 </code></pre></div>
 <h2 id="extending-definitions">Extending Definitions<a class="headerlink" href="#extending-definitions" title="Permanent link">&para;</a></h2>
 <p>Just like rewrite rules, strategy definitions can have multiple definitions.
@@ -4227,7 +4227,7 @@ When definitions are defined in separate modules, the order is undefined.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4293,7 +4293,7 @@ When definitions are defined in separate modules, the order is undefined.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

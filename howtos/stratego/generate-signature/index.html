@@ -4170,20 +4170,20 @@ Therefore, Spoofax automatically generates a signature from a syntax definition 
 <p>Possibly write additional syntax defininitions modules and import the in <code>lang.sdf3</code>.</p>
 <p>Example.
 Consider the following SDF3 syntax definition:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">lang</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">Base</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">lang</span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">Base</span>
 
-<span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="k">lexical</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
-<span class="w">  </span><span class="nv">IntConst</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="m">0</span><span class="nv">-9</span><span class=" -Punctuation">]</span><span class="o">+</span><span class="w"></span>
-<span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
+<span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span>
+<span class="k">lexical</span><span class="w"> </span><span class="k">syntax</span>
+<span class="w">  </span><span class="nv">IntConst</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="m">0</span><span class="nv">-9</span><span class=" -Punctuation">]</span><span class="o">+</span>
+<span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span>
 <span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Int</span><span class="w">     </span>=<span class="w"> </span><span class="nv">IntConst</span><span class="w">  </span>
-<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class="w">   </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Exp</span><span class="w">         </span>=<span class="w"> </span><span class=" -Punctuation">[([</span><span class="nv">Exp</span><span class=" -Punctuation">])]</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="k">bracket</span><span class=" -Punctuation">}</span><span class="w"></span>
-<span class="k">context-free</span><span class="w"> </span><span class="k">priorities</span><span class="w"></span>
-<span class="w">  </span><span class=" -Punctuation">{</span><span class="k">left</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span>
+<span class="w">  </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class="w">   </span>=<span class="w"> </span><span class=" -Punctuation">[[</span><span class="nv">Exp</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">-</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Exp</span><span class=" -Punctuation">]]</span><span class="w">   </span><span class=" -Punctuation">{</span><span class="k">left</span><span class=" -Punctuation">}</span>
+<span class="w">  </span><span class="nv">Exp</span><span class="w">         </span>=<span class="w"> </span><span class=" -Punctuation">[([</span><span class="nv">Exp</span><span class=" -Punctuation">])]</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="k">bracket</span><span class=" -Punctuation">}</span>
+<span class="k">context-free</span><span class="w"> </span><span class="k">priorities</span>
+<span class="w">  </span><span class=" -Punctuation">{</span><span class="k">left</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Plus</span><span class="w"> </span><span class="nv">Exp</span><span class=" -Punctuation">.</span><span class="nv">Minus</span><span class=" -Punctuation">}</span>
 </code></pre></div>
 <h2 id="generate-signature">Generate Signature<a class="headerlink" href="#generate-signature" title="Permanent link">&para;</a></h2>
 <p>The build for your language project will invoke the SDF3 compiler to generate a signature file for each SDF3 file in your project in directory <code>/src-gen/signatures/</code> with suffix <code>-sig</code> and extension <code>.str</code>.</p>
@@ -4191,21 +4191,21 @@ Consider the following SDF3 syntax definition:</p>
 <p>Thus <code>lang.sdf3</code> generates <code>/src-gen/signatures/lang-sig.str</code>.</p>
 <p>Example.
 For the SDF3 file above, the following signature is automatically generated:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">Base-sig</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">Base-sig</span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">                   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Int</span><span class="w">            </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Plus</span><span class="w">           </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Minus</span><span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<span class="k">signature</span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">IntConst</span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">                   </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span>
+<span class="w">    </span><span class="nv">Int</span><span class="w">            </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">    </span><span class="nv">Plus</span><span class="w">           </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">    </span><span class="nv">Minus</span><span class="w">          </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">IntConst</span>
+<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">    </span><span class="nv">IntConst-Plhdr</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">IntConst</span>
+<span class="w">    </span><span class="nv">Exp-Plhdr</span><span class="w">      </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">COMPLETION-INSERTION</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span>
 </code></pre></div>
 <p>The injection from strings into the lexical <code>IntConst</code> sort reflects the fact that tokens are represented as strings in ASTs.
 The placeholder constructors generated for the sorts are used to represent incomplete programs and syntactic code completion<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
@@ -4213,10 +4213,10 @@ The placeholder constructors generated for the sorts are used to represent incom
 <p>To use the signature, import it into the Stratego module that uses its constructors.</p>
 <p>Example.
 To use the signature for the example import it as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">desugar</span><span class="w"></span>
-<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span><span class="w"></span>
-<span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="c c-Singleline">// ...</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">desugar</span>
+<span class="k">imports</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">lang-sig</span>
+<span class="k">rules</span>
+<span class="w">  </span><span class="c c-Singleline">// ...</span>
 </code></pre></div>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <div class="footnote">
@@ -4233,7 +4233,7 @@ To use the signature for the example import it as follows:</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4299,7 +4299,7 @@ To use the signature for the example import it as follows:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

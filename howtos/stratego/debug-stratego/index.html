@@ -4185,25 +4185,25 @@ A program fails much later then where the error occurs.
 Often during pretty-printing.
 Here we discuss some remedies for finding the problem.</p>
 <h2 id="signatures">Signatures<a class="headerlink" href="#signatures" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Add</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span><span class="nv">Exp</span>
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">    </span><span class="nv">Add</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Exp</span>
 </code></pre></div>
 <p>Define a good signature for your terms.</p>
 <p>Ideally define the syntax of your language in a syntax definition in SDF3, and declare all sorts explicitly, and avoid injections.
 This will ensure that a signature and matching pretty-printer are generated automatically, as well as a signature for Statix.</p>
 <h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Instr</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">::</span><span class="w"> </span><span class="nv">Exp</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">List</span><span class=" -Punctuation">(</span><span class="nv">Instr</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Define type signatures for transformations.</p>
 <p>Starting with Stratego2, the language supports the definition of <a href="../../references/stratego/types.md/#transformation-types">type signatures for transformations</a>.
 This will catch many obvious errors.</p>
 <h2 id="use-with-instead-of-where">Use With instead of Where<a class="headerlink" href="#use-with-instead-of-where" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">concat</span><span class=" -Punctuation">&gt;[</span><span class="nv">instrs1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">instrs2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Add</span><span class=" -Punctuation">()]]</span><span class="w"></span>
-<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e1</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs1</span><span class="w"></span>
-<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e2</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">translate</span><span class="w"> </span><span class=" -Punctuation">:</span>
+<span class="w">  </span><span class="nv">Add</span><span class=" -Punctuation">(</span><span class="nv">e1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e2</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">concat</span><span class=" -Punctuation">&gt;[</span><span class="nv">instrs1</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">instrs2</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">Add</span><span class=" -Punctuation">()]]</span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e1</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs1</span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">translate</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">e2</span><span class="w"> </span><span class=" -Punctuation">=&gt;</span><span class="w"> </span><span class="nv">instrs2</span>
 </code></pre></div>
 <p>The <a href="/references/stratego/rewrite-rules.md/#with-condition">with</a> clause expresses that you expect a premisse of a rewrite rule to succeed in all cases.
 When this expectation is violated, the rule will throw an exception and display a stack trace, instead of silently failing.</p>
@@ -4214,7 +4214,7 @@ When this expectation is violated, the rule will throw an exception and display 
 </code></pre></div>
 <p>Define unit tests in the SPT testing language.</p>
 <h2 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">dbg</span><span class=" -Punctuation">(|</span><span class="s">&quot;translate/Add: &quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">dbg</span><span class=" -Punctuation">(|</span><span class="s">&quot;translate/Add: &quot;</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>In case the measures above fail, use <code>dbg</code> to figure out where the error is in your program.</p>
 
@@ -4223,7 +4223,7 @@ When this expectation is violated, the rule will throw an exception and display 
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4289,7 +4289,7 @@ When this expectation is violated, the rule will throw an exception and display 
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

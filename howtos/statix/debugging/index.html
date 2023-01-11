@@ -4314,10 +4314,10 @@ problem:</p>
 to apply a predicate to a subterm, especially for bigger languages. If you are
 not sure if the rules are applied to a certain AST node, add a forced note (e.g.
 <code>try { false } | note "text"</code>) to that AST node as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">extendsOk</span><span class="p">(</span><span class="nv">s_lex</span><span class="p">,</span><span class="w"> </span><span class="nv">Extends</span><span class="p">(</span><span class="nv">m</span><span class="p">),</span><span class="w"> </span><span class="nv">s_mod</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">s_mod&#39;</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>|<span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="s">&quot;extendsOK applied&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">resolveMod</span><span class="p">(</span><span class="nv">s_lex</span><span class="p">,</span><span class="w"> </span><span class="nv">m</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s_mod&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">s_mod</span><span class="w"> </span><span class="o">-EXT-&gt;</span><span class="w"> </span><span class="nv">s_mod&#39;</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">extendsOk</span><span class="p">(</span><span class="nv">s_lex</span><span class="p">,</span><span class="w"> </span><span class="nv">Extends</span><span class="p">(</span><span class="nv">m</span><span class="p">),</span><span class="w"> </span><span class="nv">s_mod</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">s_mod&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>|<span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="s">&quot;extendsOK applied&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">resolveMod</span><span class="p">(</span><span class="nv">s_lex</span><span class="p">,</span><span class="w"> </span><span class="nv">m</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s_mod&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">s_mod</span><span class="w"> </span><span class="o">-EXT-&gt;</span><span class="w"> </span><span class="nv">s_mod&#39;</span><span class="p">.</span>
 </code></pre></div>
 <p>Build your project and check if the note appears where you expect it. If it does
 not appear, find the places where those AST nodes may appear and ensure the
@@ -4326,12 +4326,12 @@ predicate is applied.</p>
 <p>Setting ref attributes on references allows you to check reference resolution
 interactively in example programs of your language. The following rule shows how
 to do that using <code>@x.ref := x'</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">x&#39;</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">typeOfDecl</span><span class="w"></span>
-<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">    </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">x&#39;</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="p">,</span><span class="w"></span>
-<span class="w">  </span>@<span class="nv">x</span><span class="p">.</span><span class="k">ref</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">x&#39;</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">x&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">typeOfDecl</span>
+<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">    </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">x&#39;</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="p">,</span>
+<span class="w">  </span>@<span class="nv">x</span><span class="p">.</span><span class="k">ref</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">x&#39;</span><span class="p">.</span>
 </code></pre></div>
 <p>This requires that <code>x</code> and <code>x'</code> are both names from the AST. Now write some
 example programs and check if references resolve to the definitions you expect,
@@ -4355,10 +4355,10 @@ contain the full AST.</p>
 <p>The configuration settings are part of the <code>metaborg.yaml</code> file of the project
 containing the language files (not the project containing the specification!),
 and look as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">runtime</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">statix</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">message-trace-length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w"> </span><span class="c1"># default: 0, full trace: -1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">message-term-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"> </span><span class="c1"># -1 = max</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">runtime</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">statix</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">message-trace-length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w"> </span><span class="c1"># default: 0, full trace: -1</span>
+<span class="w">    </span><span class="nt">message-term-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"> </span><span class="c1"># -1 = max</span>
 </code></pre></div>
 <p>A typical error message including a trace may look as follows:</p>
 <div class="highlight"><pre><span></span><code>  [(?q.unit-wld61-10,(?q.unit-x&#39;-11,?q.unit-T-5))] == []
@@ -4436,11 +4436,11 @@ to deal with many error messages.</p>
 specification. Variables cannot be automatically inspected, but we can show their
 values by forcing a note in the rule where the variable appears. The following
 rule shows how to do this for the intermediate type <code>T</code> of the assigned variable:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stmtOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">Assign</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">))</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">T</span><span class="w"> </span><span class="nv">U</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>|<span class="w"> </span><span class="nv">note</span><span class="w"> </span>$[<span class="nv">assignee</span><span class="w"> </span><span class="nv">has</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span>[<span class="nv">T</span><span class="p">]],</span><span class="w"></span>
-<span class="w">  </span><span class="nv">U</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">U</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stmtOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">Assign</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">))</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">T</span><span class="w"> </span><span class="nv">U</span><span class="p">}</span>
+<span class="w">  </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">),</span>
+<span class="w">  </span><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>|<span class="w"> </span><span class="nv">note</span><span class="w"> </span>$[<span class="nv">assignee</span><span class="w"> </span><span class="nv">has</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span>[<span class="nv">T</span><span class="p">]],</span>
+<span class="w">  </span><span class="nv">U</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">),</span>
+<span class="w">  </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">U</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">).</span>
 </code></pre></div>
 <h2 id="inspecting-the-scope-graph">Inspecting the Scope Graph<a class="headerlink" href="#inspecting-the-scope-graph" title="Permanent link">&para;</a></h2>
 <p>Inspecting the scope graph that is constructed by Statix can be very helpful in
@@ -4509,12 +4509,12 @@ fix a problem. In such cases writing Statix tests is a great way to test your
 definitions in even more detail. In a Statix test you can specify a constraint
 and evaluate it to see how it behaves. For example, if you suspect a bug in the
 definition of the <code>subtype</code> predicate, you could test it as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// file: debug.stxtest</span><span class="w"></span>
-<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">T</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Int</span><span class="p">(</span><span class="s">&quot;42&quot;</span><span class="p">)),</span><span class="w"></span>
-<span class="w">  </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="w"> </span><span class="nv">LONG</span><span class="p">())</span><span class="w"></span>
-<span class="k">imports</span><span class="w"></span>
-<span class="w">  </span><span class="nv">statics</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// file: debug.stxtest</span>
+<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">T</span><span class="p">}</span>
+<span class="w">  </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">typeOfExp</span><span class="p">(</span><span class="nv">Int</span><span class="p">(</span><span class="s">&quot;42&quot;</span><span class="p">)),</span>
+<span class="w">  </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="w"> </span><span class="nv">LONG</span><span class="p">())</span>
+<span class="k">imports</span>
+<span class="w">  </span><span class="nv">statics</span>
 </code></pre></div>
 <p>The <code>.stxtest</code> file starts with <code>resolve</code> and a constraint, which can be anything
 that can appear in a rule body. After that, the test may specify <code>imports</code>,
@@ -4579,17 +4579,17 @@ approach to create a self-contained Statix test from an example is as follows:</
 that <code>AST ?</code> are placeholders for real ASTs (which can be obtained using the
 <code>Spoofax &gt; Analysis &gt; Show Pre-Analysis AST</code> menu option), such test files
 roughly look as follows:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">projectOk</span><span class="p">(</span><span class="nv">s</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="nv">N</span>&gt;<span class="p">)</span><span class="w"></span>
+<p><div class="highlight"><pre><span></span><code><span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s</span><span class="p">}</span>
+<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">projectOk</span><span class="p">(</span><span class="nv">s</span><span class="p">),</span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">),</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="nv">N</span>&gt;<span class="p">)</span>
 
-<span class="k">imports</span><span class="w"></span>
+<span class="k">imports</span>
 
-<span class="w">  </span><span class="nv">mylang</span>/<span class="nv">base</span><span class="w"></span>
+<span class="w">  </span><span class="nv">mylang</span>/<span class="nv">base</span>
 </code></pre></div>
 Before going on, first check whether this test still exhibits the issue at hand.</p>
 <p>Second, simplify this test by manually reducing its size. This step consists of
@@ -4604,12 +4604,12 @@ completely. A common example is the <code>projectOk</code> constraint, but also 
 name uniqueness checks and such can often just be omitted.</p>
 <p>In the second substep we try to reduce the number of constraint by simplification.
 Examples of simplification include inlining unification with variables (e.g.
-replacing <code class="highlight"><span class="p">{</span><span class="nv">T</span><span class="p">}</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"></span></code> with <code class="highlight"><span class="nv">subtype</span><span class="p">(</span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">INT</span><span class="p">())</span><span class="w"></span></code>),
-or solving deterministic queries (e.g. replacing <code class="highlight">!<span class="nv">var</span>[<span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span><span class="w"> </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]<span class="w"></span></code> with <code class="highlight"><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span><span class="w"></span></code>).</p>
+replacing <code class="highlight"><span class="p">{</span><span class="nv">T</span><span class="p">}</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">subtype</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span></code> with <code class="highlight"><span class="nv">subtype</span><span class="p">(</span><span class="nv">INT</span><span class="p">(),</span><span class="w"> </span><span class="nv">INT</span><span class="p">())</span></code>),
+or solving deterministic queries (e.g. replacing <code class="highlight">!<span class="nv">var</span>[<span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">))</span>]</code> with <code class="highlight"><span class="nv">T</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span></code>).</p>
 <p>The third substep entails choosing the correct rule for a user-defined constraint,
 and replacing the user-defined constraint with the properly applied body. For
-example, when the specification constains a rule <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">File</span><span class="p">(</span><span class="nv">imp</span><span class="p">,</span><span class="w"> </span><span class="nv">decls</span><span class="p">))</span><span class="w"></span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">imp</span><span class="p">),</span><span class="w"> </span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">decls</span><span class="p">)</span><span class="w"></span></code>, the <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span><span class="w"></span></code>
-constraint in the test above can be replaced with <code class="highlight"><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">IMPs</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span><span class="w"></span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">DECLS</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span><span class="w"></span></code>. Be aware to properly introduce new names for variables
+example, when the specification constains a rule <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">File</span><span class="p">(</span><span class="nv">imp</span><span class="p">,</span><span class="w"> </span><span class="nv">decls</span><span class="p">))</span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">imp</span><span class="p">),</span><span class="w"> </span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">decls</span><span class="p">)</span></code>, the <code class="highlight"><span class="nv">fileOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">AST</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span></code>
+constraint in the test above can be replaced with <code class="highlight"><span class="nv">importsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">IMPs</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">),</span><span class="nv">declsOk</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>&lt;<span class="nv">DECLS</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">)</span></code>. Be aware to properly introduce new names for variables
 from the rule head. Additionally, it is required to update the imported modules
 when new user-defined constraints are introduced by application.</p>
 <div class="admonition warning important">
@@ -4677,9 +4677,9 @@ in an editor in Eclipse. There are several reasons why this may be hapening:</p>
   similar to the following:</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">compile</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.example:your-language:1.0.0-SNAPSHOT</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">compile</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.example:your-language:1.0.0-SNAPSHOT</span>
 </code></pre></div>
 <ul>
 <li>
@@ -4773,10 +4773,10 @@ solver will simplify <code>rule(x, T)</code> infinitely many times.</p>
 and then calls itself on the query result. If the result contains the declaration
 made by the rule, it will instantiate itself infinitely. An example of such a
 specification is:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">declareTVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">Tvs</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span>!<span class="nv">tvar</span>[<span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">tvar</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">declareTVars</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">declareTVar</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">Tvs</span><span class="p">}</span>
+<span class="w">  </span>!<span class="nv">tvar</span>[<span class="nv">x</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">tvar</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">declareTVars</span><span class="p">(</span><span class="nv">s</span><span class="p">,</span><span class="w"> </span><span class="nv">Tvs</span><span class="p">).</span>
 </code></pre></div>
 <p>Often, this pattern is not easily observable, since the recursion may be indirect,
 and the declarations, queries and recursive calls are specified in different rules.</p>
@@ -4788,14 +4788,14 @@ with lazy substitution.</p>
 <p>Third, for a user-defined constraint on a existential variable, optimistic rule
 selection can cause infinite generation and refinement of new, unconstrained
 variables. Consider for example the following specification:</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span>
 </code></pre></div>
 <p>Although the recursive call <em>seems to be</em> on a strictly smaller term (namely,
 the tail of the list), infinite recursion can still happen when this rule is
 instantiated with a free variable, such as in this constraint:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nv">x</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">x</span><span class="p">),</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nv">x</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">x</span><span class="p">),</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>[]<span class="p">.</span>
 </code></pre></div>
 <p>While this constraint should fail, it can be that the solver decides to simplify
 <code>ruleWithoutBaseCase(x)</code> first. Due to optimistic rule selection, it will
@@ -4806,27 +4806,27 @@ indefinitely.</p>
 <p>The Statix normalization often introduces new existential variables. Therefore
 it might not be completely obvious that a specification is susceptible to this
 behavior. Consider for example the following specification:</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span>
 
-<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nil</span><span class="p">()</span><span class="w"> </span>=<span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">()</span><span class="w"> </span>=<span class="w"> </span>[]<span class="p">.</span>
 
-<span class="w">  </span><span class="nv">test</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil</span><span class="p">()).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">test</span><span class="p">:</span>
+<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil</span><span class="p">()).</span>
 </code></pre></div>
 <p>Although this specification does not seem to have existential variables, its
 normalized equivalent (see below), actually does.</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span>
+<span class="w">  </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span>[<span class="nv">x</span>|<span class="nv">xs</span>]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">xs</span><span class="p">).</span>
 
-<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nil</span><span class="p">(</span>[]<span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">(</span><span class="k">int</span><span class="p">)</span>
+<span class="w">  </span><span class="nv">nil</span><span class="p">(</span>[]<span class="p">).</span>
 
-<span class="w">  </span><span class="nv">test</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">nil1</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil1</span><span class="p">),</span><span class="w"> </span><span class="nv">nil</span><span class="p">(</span><span class="nv">nil1</span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">test</span><span class="p">:</span>
+<span class="w">  </span><span class="nv">test</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">nil1</span><span class="p">}</span><span class="w"> </span><span class="nv">ruleWithoutBaseCase</span><span class="p">(</span><span class="nv">nil1</span><span class="p">),</span><span class="w"> </span><span class="nv">nil</span><span class="p">(</span><span class="nv">nil1</span><span class="p">).</span>
 </code></pre></div>
 <p>Now, it can be seen that the normalized <code>test</code> rule is again susceptile to this
 type of infinite recursion.</p>
@@ -4890,52 +4890,52 @@ do on the empty list. However, this example never gives the unexpected error.
 </code></pre></div>
 <p>The bug report is accompanied by two self-contained tests. One illustrates the problem, while the
 other shows a very similar variant that does not exhibit the problem.</p>
-<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// example1.stxtest</span><span class="w"></span>
-<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">-I-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// example1.stxtest</span>
+<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">}</span>
+<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">-I-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">name-resolution</span><span class="w"></span>
-<span class="w">    </span><span class="k">labels</span><span class="w"></span>
-<span class="w">      </span><span class="nv">I</span><span class="w"></span>
+<span class="k">signature</span>
+<span class="w">  </span><span class="k">name-resolution</span>
+<span class="w">    </span><span class="k">labels</span>
+<span class="w">      </span><span class="nv">I</span>
 
-<span class="k">rules</span><span class="w"></span>
+<span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">reachable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span>
-<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">ps</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">I</span>*<span class="w"></span>
-<span class="w">             </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">             </span><span class="k">min</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">             </span><span class="k">in</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">ps</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reachable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span>
+<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">ps</span><span class="p">}</span>
+<span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">I</span>*
+<span class="w">             </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">             </span><span class="k">min</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">             </span><span class="k">in</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">ps</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">).</span>
 
-<span class="w">  </span><span class="nv">nonempty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">((</span><span class="k">path</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ps</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nonempty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">((</span><span class="k">path</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="p">))</span>
+<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ps</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>[]<span class="p">.</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// example2.stxtest</span><span class="w"></span>
-<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">-I-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="c c-Singleline">// example2.stxtest</span>
+<span class="k">resolve</span><span class="w"> </span><span class="p">{</span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">}</span>
+<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">-I-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">name-resolution</span><span class="w"></span>
-<span class="w">    </span><span class="k">labels</span><span class="w"></span>
-<span class="w">      </span><span class="nv">I</span><span class="w"></span>
+<span class="k">signature</span>
+<span class="w">  </span><span class="k">name-resolution</span>
+<span class="w">    </span><span class="k">labels</span>
+<span class="w">      </span><span class="nv">I</span>
 
-<span class="k">rules</span><span class="w"></span>
+<span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">reachable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span>
-<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">ps</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">I</span>*<span class="w"></span>
-<span class="w">             </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">             </span><span class="k">min</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">             </span><span class="k">in</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">ps</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">).</span><span class="w"></span>
+<span class="w">  </span><span class="nv">reachable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span>
+<span class="w">  </span><span class="nv">reachable</span><span class="p">(</span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="p">{</span><span class="nv">ps</span><span class="p">}</span>
+<span class="w">    </span><span class="k">query</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">I</span>*
+<span class="w">             </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">s1&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">             </span><span class="k">min</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">             </span><span class="k">in</span><span class="w"> </span><span class="nv">s2</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">ps</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">).</span>
 
-<span class="w">  </span><span class="nv">nonempty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">((</span><span class="k">path</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ps</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>[]<span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span>[]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="k">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nv">nonempty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">list</span><span class="p">((</span><span class="k">path</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="p">))</span>
+<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span><span class="nv">ps</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">ps</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>[]<span class="p">.</span>
+<span class="w">  </span><span class="nv">nonempty</span><span class="p">(</span>[]<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="k">false</span><span class="p">.</span>
 </code></pre></div>
 
   <hr>
@@ -4943,7 +4943,7 @@ other shows a very similar variant that does not exhibit the problem.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -5009,7 +5009,7 @@ other shows a very similar variant that does not exhibit the problem.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

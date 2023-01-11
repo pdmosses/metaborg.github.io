@@ -4268,42 +4268,42 @@ Therefore, it is crucial to be able to express constraints in a specification.</
 These constraints are explained in-depth in the sections on <a href="../scope-graphs">Scope Graph
 Construction</a> and <a href="../queries">Queries</a>.</p>
 <h2 id="true">True<a class="headerlink" href="#true" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">true</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">true</span>
 </code></pre></div>
 <p>The <code>true</code> constraint is the constraint that is trivially satisfied.</p>
 <h2 id="false">False<a class="headerlink" href="#false" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">false</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">false</span><span class="w"> </span>$<span class="nv">Message</span>?
 </code></pre></div>
 <p>The <code>false</code> constraint is the constraint that will always fail. Just as all other
 constraints that can fail, it is possible to add a <a href="#messages">message</a>.</p>
 <h2 id="conjunction">Conjunction<a class="headerlink" href="#conjunction" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Constraint</span><span class="p">,</span><span class="w"></span>
-$<span class="nv">Constraint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Constraint</span><span class="p">,</span>
+$<span class="nv">Constraint</span>
 </code></pre></div>
 <p>A conjunction of constraints is satisfied when both conjuncts are satisfied.
 Note that the solving order of the conjuncts is undefined.</p>
 <h2 id="equality">Equality<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?
 </code></pre></div>
 <p>Asserts that two terms are equal. When necessary, this constraint infers values
 for free variables in the terms. Statically, both terms should have the same type.</p>
 <h2 id="disequality">Disequality<a class="headerlink" href="#disequality" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Message</span>?
 </code></pre></div>
 <p>Asserts that two terms are not equal. Statically, both terms should have the same type.</p>
 <p>Statix treats free variables as different from each other, and as different from
 concrete terms. Therefore, when any of both terms is not ground (i.e. contains
 free variables), the constraint will <em>not</em> fail.</p>
 <h2 id="exists">Exists<a class="headerlink" href="#exists" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Var</span>*<span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span>$<span class="nv">Constraint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Var</span>*<span class="w"> </span><span class="p">}</span>
+<span class="w">  </span>$<span class="nv">Constraint</span>
 </code></pre></div>
 <p>An exists constraint introduces new existentially quantified variables in the
 scope of its subconstraint. The names of the variables in an exists constraint
 should be unique (i.e. <code>{x x} true</code> is not allowed), but are allowed to shadow
 outer variables.</p>
 <h2 id="try">Try<a class="headerlink" href="#try" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>$<span class="nv">Message</span>?
 </code></pre></div>
 <p>The <code>try</code> constraint validates whether the outer context implies that the inner
 constraint holds. That is: any model for the outer context (all other constraints
@@ -4325,7 +4325,7 @@ than regular constraints in two ways.</p>
 <p>Explain the design choices for <code>try</code> in a background section.</p>
 </div>
 <h2 id="ast-identifiers">AST Identifiers<a class="headerlink" href="#ast-identifiers" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Term</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Term</span><span class="p">)</span>
 </code></pre></div>
 <p>The <code>astId</code> constraint asserts that its second argument is the term index of the
 first argument. The type of the first argument may be anything, but the type of
@@ -4335,7 +4335,7 @@ the second argument is <code>astId</code>.</p>
 <p>Often, using an <a href="../terms#ast-identifier"><code>astId</code> <em>term</em></a> will read more natural.</p>
 </div>
 <h2 id="ast-property">AST Property<a class="headerlink" href="#ast-property" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>@$<span class="nv">Term</span><span class="p">.</span>$<span class="nv">Prop</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">Term</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>@$<span class="nv">Term</span><span class="p">.</span>$<span class="nv">Prop</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">Term</span>
 </code></pre></div>
 <p>Statix allows to set properties on AST nodes. These properties can be used to
 communicate typing results to the outside world, for example to be used in
@@ -4367,7 +4367,7 @@ for a property, as long as the terms on which these operators are used are diffe
 <p>Failing property constraints are ignored (i.e., no error for them is reported).</p>
 </div>
 <h2 id="arithmetic-constraints">Arithmetic Constraints<a class="headerlink" href="#arithmetic-constraints" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span>$<span class="nv">Message</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span>$<span class="nv">Op</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span>$<span class="nv">Message</span>?
 </code></pre></div>
 <p>Statix supports several arithmetic constraints. These constraints consist of a
 term, an operator and an arithmetic expression. The <code>$Term</code> should have type <code>int</code>,
@@ -4411,7 +4411,7 @@ Instead, arithmetic expressions can be embedded in terms using the
 have the same size limitations.</p>
 </details>
 <h2 id="messages">Messages<a class="headerlink" href="#messages" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>|<span class="w"> </span>$<span class="nv">Severity</span><span class="w"> </span>$<span class="nv">MessageBody</span><span class="w"> </span>$<span class="nv">Position</span>?<span class="w"></span>
+<div class="highlight"><pre><span></span><code>|<span class="w"> </span>$<span class="nv">Severity</span><span class="w"> </span>$<span class="nv">MessageBody</span><span class="w"> </span>$<span class="nv">Position</span>?
 </code></pre></div>
 <p>Constraints that might possibly fail can be provided with a customized message.
 Such message carry three parameters.</p>
@@ -4421,7 +4421,7 @@ issued for failing <a href="#try"><code>try</code></a> constraints.</p>
 <p>Second, the error message string is provided. This message string may be a regular
 <a href="../terms#strings">string literal</a> or a template literal. Template literals
 look as follows:</p>
-<div class="highlight"><pre><span></span><code>$[$<span class="nv">ContentPart</span>*]<span class="w"></span>
+<div class="highlight"><pre><span></span><code>$[$<span class="nv">ContentPart</span>*]
 </code></pre></div>
 <p>Content parts are either message string literals or interpolated terms. The
 escaping rules for string literals in templates are slightly different than for
@@ -4438,7 +4438,7 @@ well-formed according to the regular typing rules for terms.</p>
 when loading the specification.</p>
 </div>
 <p>Thirdly, a position can be assigned to the message:</p>
-<div class="highlight"><pre><span></span><code>@<span class="w"> </span>$<span class="nv">Var</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>@<span class="w"> </span>$<span class="nv">Var</span>
 </code></pre></div>
 <p>Here, the <code>$Var</code> is assumed to be an AST node. When the constraint on which this
 message is placed fails, the message will be shown inline at the AST node pointed
@@ -4464,7 +4464,7 @@ as a message.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4530,7 +4530,7 @@ as a message.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

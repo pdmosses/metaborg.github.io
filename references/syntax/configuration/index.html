@@ -4139,40 +4139,40 @@
 They allow using the new parser generator, specifying the shape of completion placeholders, or disable SDF altogether.
 These options should be specified in the <code>metaborg.yaml</code> file.</p>
 <p>For example, to disable SDF for the current project, use:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 <p>SDF3 allows generating placeholders for code completion. The default "shape" of placeholders is <code>$Symbol</code>.
 However, it is possible to tweak this shape using the configuration below (the configuration for suffix is optional):</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">placeholder</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">suffix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">placeholder</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$&quot;</span>
+<span class="w">      </span><span class="nt">suffix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$&quot;</span>
 </code></pre></div>
 <p>Currently, the path to the parse table is specified in the <code>Syntax.esv</code> file, commonly as <code>table: target/metaborg/sdf.tbl</code>.
 When the ESV file does not contain this entry, it is also possible to specify the path to the parse table in the <code>metaborg.yaml</code> file.
 This is useful when testing an external parse table, or using a parse table different from the one being generated in the project.
 In the example below, the table is loaded from the path <code>tables/sdf.tbl</code>.
 The same can be applied to the parse table used for code completion.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parse-table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tables/sdf.tbl&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">completion-parse-table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tables/sdf-completions.tbl&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">parse-table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tables/sdf.tbl&quot;</span>
+<span class="w">    </span><span class="nt">completion-parse-table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tables/sdf-completions.tbl&quot;</span>
 </code></pre></div>
 <p>In a Spoofax project, it is also possible to use SDF2 instead of SDF3.
 This enables SDF2 tools such as the SDF2 parenthesizer, signature generator, etc.
 For example:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdf2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdf2</span>
 </code></pre></div>
 <p>By default SDF3 compilation works by generating SDF2 files, and depending on the SDF2 toolchain.
 However, a new (and experimental) parse table generator can be selected by writing:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java</span>
 </code></pre></div>
 <p>This configuration disables the SDF2 generation, and may cause problems when defining grammars to use concrete syntax, since this feature is not supported yet by SDF3.
 However, the <code>java</code> parse table generator supports Unicode, whereas SDF2 generation does not.
@@ -4181,18 +4181,18 @@ Furthermore, <code>dynamic</code> can be used instead of <code>java</code>, to e
 This namespacing is done by adding the language name to all module names and sort names.
 The generated grammar is put in <code>src-gen/syntax</code>.</p>
 <p>The configuration to enable this is:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">generate-namespaced</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">generate-namespaced</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <p>Note that namespacing doesn't not handle imports of grammar files from other projects very well. </p>
 <h2 id="jsglr-version">JSGLR version<a class="headerlink" href="#jsglr-version" title="Permanent link">&para;</a></h2>
 <p>An experimental new version of the SGLR parser implementation is available: JSGLR2.
 It supports parsing, imploding and syntax highlighting.</p>
 <p>Error reporting, recovery and completions are currently not supported. It can be enabled with:</p>
-<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">     </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">       </span><span class="nt">jsglr-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">language</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">       </span><span class="nt">jsglr-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2</span>
 </code></pre></div>
 <p>There are some extensions of JSGLR2 available. To use them, change the <code>jsglr-version</code> by replacing <code>v2</code> with
 one of the following:</p>
@@ -4205,9 +4205,9 @@ one of the following:</p>
 </ul>
 <h2 id="jsglr2-logging">JSGLR2 logging<a class="headerlink" href="#jsglr2-logging" title="Permanent link">&para;</a></h2>
 <p>Logging is available for JSGLR2. It can be enabled with:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">jsglr2-logging</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">jsglr2-logging</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 </code></pre></div>
 <p>Since logging all parsing events is quite verbose, several other scopes are available in addition to the <code>all</code> option:</p>
 <ul>
@@ -4222,7 +4222,7 @@ one of the following:</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4288,7 +4288,7 @@ one of the following:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

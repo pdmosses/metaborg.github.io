@@ -4166,40 +4166,40 @@
 <p><a href="../../../references/editor-services/renaming/">Rename Refactoring</a> is the ability for the user to select a reference or declaration and rename it to across the whole program while not introducing errors and not touching syntactically equal names.</p>
 <h2 id="renaming-in-statix">Renaming in Statix<a class="headerlink" href="#renaming-in-statix" title="Permanent link">&para;</a></h2>
 <p>To enable the Rename Refactoring for an existing Spoofax Language project that uses Statix, create an action that calls the <code>rename-action</code> strategy from the <code>statixruntime</code> library. The parameters are explained in <a href="../../../references/editor-services/renaming/">the reference</a>. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">renaming</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">renaming</span>
 
-<span class="k">imports</span><span class="w"></span>
-<span class="w">  </span><span class="nv">statixruntime</span><span class="w"></span>
-<span class="w">  </span><span class="nv">statix</span>/<span class="nv">runtime</span>/<span class="nv">renaming</span><span class="w"></span>
+<span class="k">imports</span>
+<span class="w">  </span><span class="nv">statixruntime</span>
+<span class="w">  </span><span class="nv">statix</span>/<span class="nv">runtime</span>/<span class="nv">renaming</span>
 
-<span class="w">  </span><span class="nv">pp</span><span class="w"></span>
-<span class="w">  </span><span class="nv">analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nv">pp</span>
+<span class="w">  </span><span class="nv">analysis</span>
 
-<span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="k">rules</span>
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="renaming-in-nabl2">Renaming in NaBL2<a class="headerlink" href="#renaming-in-nabl2" title="Permanent link">&para;</a></h2>
 <p>There also exists a version of the Rename refactoring that works with languages using NaBL2. It can be added with a Stratego module like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">renaming</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">renaming</span>
 
-<span class="k">imports</span><span class="w"></span>
-<span class="w">  </span><span class="nv">nabl2</span>/<span class="nv">runtime</span><span class="w"></span>
+<span class="k">imports</span>
+<span class="w">  </span><span class="nv">nabl2</span>/<span class="nv">runtime</span>
 
-<span class="w">  </span><span class="nv">pp</span><span class="w"></span>
-<span class="w">  </span><span class="nv">analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nv">pp</span>
+<span class="w">  </span><span class="nv">analysis</span>
 
-<span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">nabl2-rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="k">rules</span>
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">nabl2-rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="menu-action">Menu Action<a class="headerlink" href="#menu-action" title="Permanent link">&para;</a></h2>
 <p>The rename refactoring is triggered from an entry in the Spoofax menu. To add it to an existing project a menu like the following can be implemented in an <a href="../../../references/editor-services/esv/">ESV file</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>Refactoring<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>Refactoring
 
-<span class="k">menus</span><span class="w"></span>
-<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Refactoring&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Rename&quot;</span><span class="w"> </span>=<span class="w"> </span>re<span class="k">name</span>-<span class="k">menu</span>-<span class="k">action</span><span class="w"></span>
+<span class="k">menus</span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Refactoring&quot;</span>
+<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Rename&quot;</span><span class="w"> </span>=<span class="w"> </span>re<span class="k">name</span>-<span class="k">menu</span>-<span class="k">action</span>
 </code></pre></div>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4211,7 +4211,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4277,7 +4277,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

@@ -4167,9 +4167,9 @@
 corresponds to a file with a <code>.stx</code> extension.</p>
 <h2 id="module-structure">Module Structure<a class="headerlink" href="#module-structure" title="Permanent link">&para;</a></h2>
 <p>The structure of a Statix module looks as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">ModuleName</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$<span class="nv">ModuleName</span>
 
-$<span class="nv">Section</span>*<span class="w"></span>
+$<span class="nv">Section</span>*
 </code></pre></div>
 <p>Each module declares its name, and subsequently contains a number of sections.
 The module name should coincide with the relative path of the module with respect
@@ -4180,9 +4180,9 @@ to the closest source root.</p>
 </div>
 <h2 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h2>
 <p>In an <code>imports</code> section, definitions from other modules can be brought in scope.</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span>
 
-<span class="w">  </span>$<span class="nv">ModuleName</span>*<span class="w"></span>
+<span class="w">  </span>$<span class="nv">ModuleName</span>*
 </code></pre></div>
 <p>Modules can only be imported with their fully qualified name. That is, for each
 <code>$ModuleName</code> in an <code>imports</code> section, a module with exactly the same name must exist.</p>
@@ -4192,18 +4192,18 @@ shadowing of top-level definitions, and duplicate imports of definitions are
 not allowed.</p>
 <h2 id="signatures">Signatures<a class="headerlink" href="#signatures" title="Permanent link">&para;</a></h2>
 <p>In a <code>signature</code> section, type definitions are located.</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
 
-<span class="w">  </span>$<span class="nv">Signature</span>*<span class="w"></span>
+<span class="w">  </span>$<span class="nv">Signature</span>*
 </code></pre></div>
 <p>Examples of signatures are: sort and constructor declarations or label and relation
 declarations. Each of these will be explained in the appropriate subsection.</p>
 <h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
 <p>In a <code>rules</code> section, the rules of a specification are defined. For more
 information on rules, see the <a href="../rules">Rules</a> section.</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
 
-<span class="w">  </span>$<span class="nv">RuleDeclaration</span>*<span class="w"></span>
+<span class="w">  </span>$<span class="nv">RuleDeclaration</span>*
 </code></pre></div>
 
   <hr>
@@ -4211,7 +4211,7 @@ information on rules, see the <a href="../rules">Rules</a> section.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4277,7 +4277,7 @@ information on rules, see the <a href="../rules">Rules</a> section.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

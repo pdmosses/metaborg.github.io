@@ -4167,23 +4167,23 @@
 <h2 id="strategy">Strategy<a class="headerlink" href="#strategy" title="Permanent link">&para;</a></h2>
 <p>Rename refactoring is enabled by default for new Spoofax language projects. This works by registering the <code>rename-action</code> strategy from the <code>statixruntime</code> library as an action in a menu. This strategy takes three parameters: a layout-preserving pretty-printing strategy (<code>construct-textual-change</code> by default), the editor analyze strategy (<code>editor-analyze</code> by default), and a strategy that should succeed when renaming in multi-file mode.</p>
 <p>The default rename refactoring strategy looks like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">fail</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">fail</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>To enable multi-file mode, change the last argument to <code>id</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">rules</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span><span class="w"></span>
-<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">rename-menu-action</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">rename-action</span><span class=" -Punctuation">(</span><span class="nv">construct-textual-change</span><span class=" -Punctuation">,</span>
+<span class="w">    </span><span class="nv">editor-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">id</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h2>
 <p>For the renaming to work correctly in all cases when using Statix, terms that represent a declaration of a program entity, such as a function or a variable, need to set the <code>@decl</code> property on the name of the entity. For example, when declaring a type:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">declareType</span><span class="p">(</span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
-<span class="w">  </span>!<span class="nv">type</span>[<span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span>@<span class="nv">name</span><span class="p">.</span><span class="k">decl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="nv">_</span>]<span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">declareType</span><span class="p">(</span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span>
+<span class="w">  </span>!<span class="nv">type</span>[<span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="nv">T</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span>
+<span class="w">  </span>@<span class="nv">name</span><span class="p">.</span><span class="k">decl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>[<span class="nv">_</span>]<span class="p">.</span>
 </code></pre></div>
 <h2 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>When a parse tree of a name is preceded by a term which is parsed from an empty
@@ -4203,7 +4203,7 @@ by selecting the complete surrounding term. This issue is known to occur for:</p
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4269,7 +4269,7 @@ by selecting the complete surrounding term. This issue is known to occur for:</p
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

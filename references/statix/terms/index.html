@@ -4358,7 +4358,7 @@ Shadowing variables is allowed, but discouraged by a warning.</p>
 heads and existentials, the solver treats those quite differently.
 On rule application, occurrences of variables from rule heads in the body of
 the rule are <em>substituted</em> by the actual arguments. For example, in a
-specification containing the rule <code class="highlight"><span class="nv">rule</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">().</span><span class="w"></span></code>, simplifying
+specification containing the rule <code class="highlight"><span class="nv">rule</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">().</span></code>, simplifying
 the constraint <code>rule(())</code> will result in the residual constraint <code>() == ()</code>,
 which trivially holds. However, when simplifying the constraint <code>{x} x == ()</code>,
 simplifying will generate a fresh unification variable (say <code>?x-1</code>), and
@@ -4373,17 +4373,17 @@ wildcards cannot reference each other, it is not required that the types of
 multiple wildcard occurrences coincide.</p>
 <h2 id="composite-terms">Composite terms<a class="headerlink" href="#composite-terms" title="Permanent link">&para;</a></h2>
 <p>Composite terms can be build using <em>constructor applications</em>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">ConsId</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ConsId</span><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span>
 </code></pre></div>
 <p>Here a term with constructor <code>$ConsId</code> and some term arguments is built.</p>
 <p>Composite terms must adhere to a signature. A signature describes which term
 compositions are valid, and must be declared in a <code>signature</code> section:</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">SortID</span>*<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">sorts</span><span class="w"> </span>$<span class="nv">SortID</span>*
 
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>+<span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>$<span class="nv">SortID</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">SortID</span><span class="w"></span>
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>$<span class="nv">Type</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">}</span>+<span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>$<span class="nv">SortID</span>
+<span class="w">    </span>$<span class="nv">ConsId</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">SortID</span>
 </code></pre></div>
 <p>First, the syntactic categories (which closely correspond to type identifiers in
 other languages) must be declared in a <code>sorts</code> subsection. Then, the constructor
@@ -4395,7 +4395,7 @@ declaration from the signature. The type of the whole composite term is equal to
 the sort of the constructor.</p>
 <h2 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h2>
 <p>A built-in composite data construction is <em>tuples</em>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">({</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="p">)</span>
 </code></pre></div>
 <p>Tuples have a statically fixed length, but the types of the arguments may differ.
 The type of the tuple expression is just the product of its arguments.</p>
@@ -4403,19 +4403,19 @@ The type of the tuple expression is just the product of its arguments.</p>
 syntactic ambiguities with bracketed expressions.</p>
 <h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
 <p>Another built-in composite data construction is <em>lists</em>:</p>
-<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*]<span class="w"></span>
+<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*]
 </code></pre></div>
 <p>Lists are created by comma-separating terms, enclosing them in square brackets.
 All terms should have the same type. Given that the type of the terms is <code>T</code>, the
 type of the list expression will be <code>list(T)</code>.</p>
 <p>Alternatively, lists can have a variable tail:</p>
-<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="w"> </span>|<span class="w"> </span>$<span class="nv">Term</span>]<span class="w"></span>
+<div class="highlight"><pre><span></span><code>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>*<span class="w"> </span>|<span class="w"> </span>$<span class="nv">Term</span>]
 </code></pre></div>
 <p>In this syntax, the tail of the list is another term. This term should have type
 <code>list(T)</code>, where <code>T</code> is again the type of the first terms.</p>
 <h2 id="name-ascription">Name Ascription<a class="headerlink" href="#name-ascription" title="Permanent link">&para;</a></h2>
 <p>It is possible to assign names to terms by prefixing the term with a variable name:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Var</span>@$<span class="nv">Term</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Var</span>@$<span class="nv">Term</span>
 </code></pre></div>
 <p>Note that this does <em>not</em> introduce a new variable with name <code>$Var</code> (except in a
 <a href="../rules#rule-definitions">rule head</a>, where all variables are introduced
@@ -4428,7 +4428,7 @@ is equal to <code>$Var == $Term</code>. It is used to prevent the duplication of
 </details>
 <h2 id="type-ascription">Type Ascription<a class="headerlink" href="#type-ascription" title="Permanent link">&para;</a></h2>
 <p>Statix allows to add inline type annotations to terms as follows:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">Type</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Term</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">Type</span>
 </code></pre></div>
 <p>The type-checker will validate that the term actually has the specified type,
 but the runtime behavior in not influenced by these ascriptions.</p>
@@ -4440,7 +4440,7 @@ these type ascriptions can help tracing the cause of the error.</p>
 </div>
 <h2 id="arithmetic-operations">Arithmetic operations<a class="headerlink" href="#arithmetic-operations" title="Permanent link">&para;</a></h2>
 <p>Arithmetic expressions can be inserted in terms as follows:</p>
-<div class="no-ligatures highlight"><pre><span></span><code>#<span class="p">(</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="no-ligatures highlight"><pre><span></span><code>#<span class="p">(</span><span class="w"> </span>$<span class="nv">ArithExp</span><span class="w"> </span><span class="p">)</span>
 </code></pre></div>
 <p>Here, the type of the expression is <code>int</code>. For more information on arithmetic
 expressions, see <a href="../basic-constraints#arithmetic-constraints">Arithmetic Constraints</a></p>
@@ -4454,13 +4454,13 @@ is used at the position of the arithmetic expression. So, for example,
 <h2 id="ast-identifier">AST Identifier<a class="headerlink" href="#ast-identifier" title="Permanent link">&para;</a></h2>
 <p>In Spoofax, all terms in an AST are assigned a unique identifier (the term index)
 before analysis. This term identifier can be isolated as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">astId</span><span class="p">(</span>$<span class="nv">Term</span><span class="p">)</span>
 </code></pre></div>
 <p>Here, the type of <code>$Term</code> can be anything, and the type of the whole term will
 be <code>astId</code>. AST Identifiers are used to assign <a href="../basic-constraints#ast-property">properties</a>.</p>
 <h2 id="new">New<a class="headerlink" href="#new" title="Permanent link">&para;</a></h2>
 <p>Statix allows inline creation of <a href="../scope-graphs#scopes">scopes</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">new</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">new</span>
 </code></pre></div>
 <p>Statically, the <code>new</code> term has type <code>scope</code>. At runtime, this creates a fresh
 scope, and inserts that at the position of the <code>new</code> term.</p>
@@ -4494,21 +4494,21 @@ comparison with label definitions is supported.</p>
 </div>
 <p>Statix has built-in support for namespaces. A term embedded in a particular
 namespace is called an <code>occurrence</code>. Occurrences can be written as follows:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span>@$<span class="nv">OccurrenceId</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span>
+$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span>@$<span class="nv">OccurrenceId</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>In this structure template, <code>$SpaceTerms</code> means a list of terms, separated by
 spaces. The occurrence identifier can be any term. In case the term has an AST
 identifier, that value will be used as the identity of the occurrence.</p>
 <p>Alternatively, the occurrence identifier can be left out:</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">NamespaceId</span><span class="p">{</span><span class="w"> </span>$<span class="nv">SpaceTerms</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>The default occurrence identifier is <code>-</code>, which means that the occurrence has no
 identifier. The type of an occurrence literal is <code>occurrence</code>. For more information
 about namespaces, see the <a href="../queries">Queries</a> section.</p>
 <h2 id="declaration-match">Declaration Match<a class="headerlink" href="#declaration-match" title="Permanent link">&para;</a></h2>
 <p>Statix allows to query the current scope for declarations of a particular form:</p>
-<div class="highlight"><pre><span></span><code>?$<span class="nv">RelationId</span>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>?$<span class="nv">RelationId</span>[<span class="p">{</span>$<span class="nv">Term</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">}</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span>
 </code></pre></div>
 <p>When using this expression, a <em>functional</em> relation <code>$RelationId</code> must be declared.
 The terms arguments must correspond to the argument of the relation, and the
@@ -4526,7 +4526,7 @@ is equal to <code>query var filter e and { x' :- x' == "x" } in s |-&gt; [(_, (_
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4592,7 +4592,7 @@ is equal to <code>query var filter e and { x' :- x' == "x" } in s |-&gt; [(_, (_
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

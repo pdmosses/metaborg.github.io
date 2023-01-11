@@ -4658,9 +4658,9 @@ The <a href="../../../references/config/">manual page on configuration</a> lists
 </ul>
 <h4 id="sdf">SDF<a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h4>
 <p>If you are still using SDF2 instead of SDF3, add the following setting to the <span class='file'>metaborg.yaml</span> file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdf2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">language</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sdf</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdf2</span>
 </code></pre></div>
 <h4 id="nabl-and-ts">NaBL and TS<a class="headerlink" href="#nabl-and-ts" title="Permanent link">&para;</a></h4>
 <p>If you’re using a NaBL/TS based analysis, perform the following changes:</p>
@@ -4668,7 +4668,7 @@ The <a href="../../../references/config/">manual page on configuration</a> lists
 <li>NaBL files are now generated into <span class='file'>src-gen/names</span>, fix imports to NaBL files, delete old generated NaBL files.</li>
 <li>TS files are now generated into <span class='file'>src-gen/types</span>, fix imports to TS files, delete old generated TS files.</li>
 <li>The <code>editor-analyze</code> calls have been changed. Remove <code>analysis-single-default-interface</code>, <code>analysis-multiple-default-interface</code>, and <code>editor-analyze</code>. Replace it with:
-<div class="highlight"><pre><span></span><code><span class="nv">editor-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">analyze-all</span><span class=" -Punctuation">(</span><span class="nv">pre-analysis</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post-analysis</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">pp-message</span><span class=" -Punctuation">|&lt;</span><span class="nv">language</span><span class=" -Punctuation">&gt;)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">editor-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">analyze-all</span><span class=" -Punctuation">(</span><span class="nv">pre-analysis</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post-analysis</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">pp-message</span><span class=" -Punctuation">|&lt;</span><span class="nv">language</span><span class=" -Punctuation">&gt;)</span>
 </code></pre></div>
 with the <code>pre-analysis</code>, <code>post-analysis</code>, and <code>pp-message</code> arguments that you were using before. Also make sure the observer (in your esv) has the <code>(multifile)</code> property.</li>
 <li>The editor-save call to <code>analysis-save-default(|&lt;language&gt;)</code> has been removed, remove that call. You can remove <code>editor-save</code> entirely if you don’t do any generation, also remove the <code>on save</code> strategy from ESV if you do. If you do generation but do not return a <code>(file, text)</code> tuple from editor-save, be sure to return a <code>!None()</code> to tell Spoofax that you’re returning nothing.</li>
@@ -4688,28 +4688,28 @@ with the <code>pre-analysis</code>, <code>post-analysis</code>, and <code>pp-mes
 <li>Previously generated ESV files in the <span class='file'>editor</span> directory are not generated any more. Delete the generated files and remove the imports to generated files.</li>
 <li>The colorer ESV file is now generated to <span class='file'>src-gen/editor/Colorer.generated.esv</span>, import it with <code>imports editor/Colorer.generated</code> in an ESV file.</li>
 <li>The generated syntax ESV file is no longer generated. If you were using the defaults from the generated file, add them to an ESV file:
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">line comment</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;//&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="k">block comment</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class=" -Punctuation">*</span><span class="w"> </span><span class="s">&quot;*/&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="k">fences</span><span class="w">        </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="w"> </span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="w"> </span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"> </span><span class=" -Punctuation">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">line comment</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;//&quot;</span>
+<span class="w">  </span><span class="k">block comment</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class=" -Punctuation">*</span><span class="w"> </span><span class="s">&quot;*/&quot;</span>
+<span class="w">  </span><span class="k">fences</span><span class="w">        </span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="w"> </span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="w"> </span><span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">{</span><span class="w"> </span><span class=" -Punctuation">}</span>
 </code></pre></div></li>
 <li>The outliner (<span class='file'>editor/langname-Outliner.str</span>) must be moved to the <span class='file'>trans</span> directory. Rename it to <span class='file'>trans/outline.str</file>, change its module to <code>outline</code>, and fix imports of the outliner.</li>
 <li>Change the file name of the main ESV file to <span class='file'>Main.esv</span>, and change its module to <code>Main</code>.</li>
 <li>In the main ESV file:<ul>
 <li>Change the parse table:
-<div class="highlight"><pre><span></span><code><span class="k">table</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/sdf<span class=" -Punctuation">.</span>tbl<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">table</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/sdf<span class=" -Punctuation">.</span>tbl
 </code></pre></div></li>
 <li>Change the Stratego providers<ul>
 <li>For ctree projects:
-  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree<span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree
 </code></pre></div></li>
 <li>For jar projects:
-  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>jar<span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>jar
 </code></pre></div></li>
 <li>For projects with Java strategies:
-  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>jar<span class="w"></span>
-<span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego-javastrat<span class=" -Punctuation">.</span>jar<span class="w"></span>
+  <div class="highlight"><pre><span></span><code><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>jar
+<span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego-javastrat<span class=" -Punctuation">.</span>jar
 </code></pre></div></li>
 </ul>
 </li>
@@ -4733,14 +4733,14 @@ with the <code>pre-analysis</code>, <code>post-analysis</code>, and <code>pp-mes
 <h4 id="ant-build-customization">Ant build customization<a class="headerlink" href="#ant-build-customization" title="Permanent link">&para;</a></h4>
 <p>Language specification builds do not use Ant any more, so any customizations to the <span class='file'>build.main.xml</span> are lost.
 To perform an Ant task before and after the build, add the following configuration option to your <span class='file'>metaborg.yaml</span> file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">ant</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">preCompile</span><span class="w"></span>
-<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span><span class="w"></span>
-<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generate-xml</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postCompile</span><span class="w"></span>
-<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span><span class="w"></span>
-<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-xml</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ant</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">preCompile</span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generate-xml</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">phase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postCompile</span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${path:root}/ant.xml</span>
+<span class="w">    </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-xml</span>
 </code></pre></div>
 <p>See the <a href="../../../references/config/">manual page on configuration</a> for more information about configuring Ant build steps.</p>
 <h4 id="eclipse-plugin">Eclipse plugin<a class="headerlink" href="#eclipse-plugin" title="Permanent link">&para;</a></h4>
@@ -4748,9 +4748,9 @@ To perform an Ant task before and after the build, add the following configurati
 <h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
 <p>If you're using Git, the <span class='file'>.gitignore</span> file is replaced with a new one, add entries that you need again.
 All generated files that were previously not ignored, are ignored now. To delete all ignored files from the Git index (the files will remain on the filesystem but Git will forget about them), make sure all your useful changes are committed and pushed, then run the following commands:</p>
-<div class="highlight"><pre><span></span><code>git rm -r --cached .
-git add .
-git commit -am <span class="s2">&quot;Remove ignored files&quot;</span>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--cached<span class="w"> </span>.
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;Remove ignored files&quot;</span>
 </code></pre></div>
 <h4 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h4>
 <p>When you are done with converting the project, build it with <kbd>Cmd+Shift+B</kbd> or <span class='menuselection'>Project ‣ Build</span>.
@@ -4762,7 +4762,7 @@ Also make sure that <span class='menuselection'>Project ‣ Build Automatically<
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4828,7 +4828,7 @@ Also make sure that <span class='menuselection'>Project ‣ Build Automatically<
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

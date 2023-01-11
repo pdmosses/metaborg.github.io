@@ -4292,23 +4292,23 @@
 <p>For the generator to work correctly, your SDF3 must be well formed. In particular, you must:</p>
 <ul>
 <li>explicitly declare each sort <em>exactly once</em> in your project</li>
-<li>declare lexical sorts in a <code class="highlight"><span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span></code> block</li>
-<li>declare context-free sorts in a <code class="highlight"><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span></code> block</li>
+<li>declare lexical sorts in a <code class="highlight"><span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span></code> block</li>
+<li>declare context-free sorts in a <code class="highlight"><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span></code> block</li>
 <li>for every use of a sort: either have a local declaration of a sort, or an import of a file that declares the sort</li>
 <li>not declare sorts that are not used in any rules</li>
 <li>not use any implicitly declared sorts</li>
-<li>not use complex injections, such as <code class="highlight"><span class="nv">Pair</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Expr</span><span class="w"> </span><span class="nv">Expr</span><span class="w"></span></code>. However, list injections without terminal syntax, such as <code class="highlight"><span class="nv">List</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Elem</span><span class="o">*</span><span class="w"></span></code>, are allowed.</li>
+<li>not use complex injections, such as <code class="highlight"><span class="nv">Pair</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Expr</span><span class="w"> </span><span class="nv">Expr</span></code>. However, list injections without terminal syntax, such as <code class="highlight"><span class="nv">List</span><span class="w"> </span>=<span class="w"> </span><span class="nv">Elem</span><span class="o">*</span></code>, are allowed.</li>
 <li>constructors must start with an upper-case letter</li>
-<li>not use <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span><span class="w"></span></code></li>
+<li>not use <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span></code></li>
 </ul>
 <p>The generator generates strategies and signatures for each explicit declaration of a sort in SDF3, which is why each sort must be declared exactly once. SDF3 does not generate Stratego signatures for placeholders for sorts that have no corresponding rules, causing errors in the generated Statix injection explication strategies. Complex injections are not supported across Spoofax. Optional sorts cannot be represented in Statix.</p>
 <h2 id="applying-the-generator-in-spoofax-2">Applying the Generator in Spoofax 2<a class="headerlink" href="#applying-the-generator-in-spoofax-2" title="Permanent link">&para;</a></h2>
 <p>In your language project's <code>metaborg.yaml</code> file, change your compile dependencies to include <code>org.metaborg:sdf3.ext.statix</code>. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">     </span><span class="nt">compile</span><span class="p">:</span><span class="w"></span>
-<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.esv:${metaborgVersion}</span><span class="w"></span>
-<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.template:${metaborgVersion}</span><span class="w"></span>
-<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:sdf3.ext.statix:${metaborgVersion}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">compile</span><span class="p">:</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.esv:${metaborgVersion}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:org.metaborg.meta.lang.template:${metaborgVersion}</span>
+<span class="w">     </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.metaborg:sdf3.ext.statix:${metaborgVersion}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p>Clean the project and restart Eclipse when changing the <code>metaborg.yaml</code> file.</p>
@@ -4320,82 +4320,82 @@
 </ul>
 <h2 id="using-the-generated-injection-strategies">Using the Generated Injection strategies<a class="headerlink" href="#using-the-generated-injection-strategies" title="Permanent link">&para;</a></h2>
 <p>The generator generates strategies for explicating and removing injections. This is unfortunately needed since Statix does not support injections directly. To use these strategies, import <code>injections/-</code> and call the <code>explicate-injections-MyLang-Start</code> and <code>implicate-injections-MyLang-Start</code> strategies for the analysis pre-processing and post-processing respectively, where <code>MyLang</code> is the name of your language and <code>Start</code> is your language's start symbol (as specified in <code>Syntax.esv</code>). For example, in <code>trans/analysis.str</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">analysis</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">analysis</span>
 
-<span class="k">imports</span><span class="w"></span>
+<span class="k">imports</span>
 
-<span class="w">  </span><span class="nv">libspoofax</span>/<span class="nv">sdf</span>/<span class="nv">pp</span><span class="w"></span>
+<span class="w">  </span><span class="nv">libspoofax</span>/<span class="nv">sdf</span>/<span class="nv">pp</span>
 
-<span class="w">  </span><span class="nv">statixruntime</span><span class="w"></span>
-<span class="w">  </span><span class="nv">statix</span>/<span class="nv">api</span><span class="w"></span>
+<span class="w">  </span><span class="nv">statixruntime</span>
+<span class="w">  </span><span class="nv">statix</span>/<span class="nv">api</span>
 
-<span class="w">  </span><span class="nv">injections</span>/<span class="nv">-</span><span class="w"></span>
-<span class="w">  </span><span class="nv">libspoofax</span>/<span class="nv">term</span>/<span class="nv">origin</span><span class="w"></span>
+<span class="w">  </span><span class="nv">injections</span>/<span class="nv">-</span>
+<span class="w">  </span><span class="nv">libspoofax</span>/<span class="nv">term</span>/<span class="nv">origin</span>
 
-<span class="k">rules</span><span class="w"></span>
+<span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">editor-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post-analyze</span><span class=" -Punctuation">|</span><span class="s">&quot;static-semantics&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;programOk&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">pre-analyze</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">explicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">post-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">implicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="nv">editor-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre-analyze</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post-analyze</span><span class=" -Punctuation">|</span><span class="s">&quot;static-semantics&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;programOk&quot;</span><span class=" -Punctuation">)</span>
+<span class="w">  </span><span class="nv">pre-analyze</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">explicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span>
+<span class="w">  </span><span class="nv">post-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">implicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="using-the-generated-signatures">Using the Generated Signatures<a class="headerlink" href="#using-the-generated-signatures" title="Permanent link">&para;</a></h2>
 <p>Using the generated Statix signatures is quite simple: just import them into your Statix specification.
 Each SDF3 file gets an associated Statix file with the signatures. For example, if your syntax is defined across two files named <code>MyLang.sdf3</code> and <code>Common.sdf3</code>, then in Statix you should add the following imports:</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
-<span class="w">  </span><span class="nv">signatures</span>/<span class="nv">MyLang-sig</span><span class="w"></span>
-<span class="w">  </span><span class="nv">signatures</span>/<span class="nv">Common-sig</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span>
+<span class="w">  </span><span class="nv">signatures</span>/<span class="nv">MyLang-sig</span>
+<span class="w">  </span><span class="nv">signatures</span>/<span class="nv">Common-sig</span>
 </code></pre></div>
 <p>Because Statix does not support injections, you have to use explicit constructor names for injections. For example, the following SDF3 syntax:</p>
-<div class="highlight"><pre><span></span><code><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">VarName</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span>
+<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">VarName</span>
 
-<span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ID</span><span class="w"></span>
+<span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span>
+<span class="w">  </span><span class="nv">ID</span>
 
-<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">var</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">VarName</span><span class=" -Punctuation">&gt;;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">VarName</span><span class=" -Punctuation">.</span><span class="nv">Wildcard</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">_</span><span class=" -Punctuation">&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">VarName</span><span class="w"> </span>=<span class="w"> </span><span class="nv">ID</span><span class="w"></span>
+<span class="k">context-free</span><span class="w"> </span><span class="k">syntax</span>
+<span class="w">  </span><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">var</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">VarName</span><span class=" -Punctuation">&gt;;&gt;</span>
+<span class="w">  </span><span class="nv">VarName</span><span class=" -Punctuation">.</span><span class="nv">Wildcard</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">_</span><span class=" -Punctuation">&gt;</span>
+<span class="w">  </span><span class="nv">VarName</span><span class="w"> </span>=<span class="w"> </span><span class="nv">ID</span>
 
-<span class="k">lexical</span><span class="w"> </span><span class="k">syntax</span><span class="w"></span>
+<span class="k">lexical</span><span class="w"> </span><span class="k">syntax</span>
 <span class="w">  </span><span class="nv">ID</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">a-zA-Z</span><span class=" -Punctuation">]</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">a-zA-Z0-9</span>\<span class="nv">_</span><span class=" -Punctuation">]</span><span class="o">*</span><span class="w"> </span>
 
-<span class="k">lexical</span><span class="w"> </span><span class="nv">restrictions</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ID</span><span class="w"> </span><span class="nv">-</span>/<span class="nv">-</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">a-zA-Z0-9</span>\<span class="nv">_</span><span class=" -Punctuation">]</span><span class="w"></span>
+<span class="k">lexical</span><span class="w"> </span><span class="nv">restrictions</span>
+<span class="w">  </span><span class="nv">ID</span><span class="w"> </span><span class="nv">-</span>/<span class="nv">-</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">a-zA-Z0-9</span>\<span class="nv">_</span><span class=" -Punctuation">]</span>
 </code></pre></div>
 <p>would approximately produce the following signatures:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">Test-sig</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">signatures</span>/<span class="nv">Test-sig</span>
 
-<span class="k">imports</span><span class="w"></span>
+<span class="k">imports</span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">sorts</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Stmt</span><span class="w"></span>
-<span class="w">    </span><span class="nv">VarName</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ID</span><span class="w"> </span>=<span class="w"> </span><span class="k">string</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Stmt-Plhdr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">Stmt</span><span class="w"></span>
-<span class="w">    </span><span class="nv">VarName-Plhdr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span><span class="w"></span>
+<span class="k">signature</span>
+<span class="w">  </span><span class="k">sorts</span>
+<span class="w">    </span><span class="nv">Stmt</span>
+<span class="w">    </span><span class="nv">VarName</span>
+<span class="w">    </span><span class="nv">ID</span><span class="w"> </span>=<span class="w"> </span><span class="k">string</span>
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">    </span><span class="nv">Stmt-Plhdr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">Stmt</span>
+<span class="w">    </span><span class="nv">VarName-Plhdr</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span>
 
-<span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
-<span class="w">    </span><span class="nv">VarDecl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">Stmt</span><span class="w"></span>
-<span class="w">    </span><span class="nv">Wildcard</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ID2VarName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">ID</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">VarName</span><span class="w"></span>
+<span class="k">signature</span>
+<span class="w">  </span><span class="k">constructors</span>
+<span class="w">    </span><span class="nv">VarDecl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">Stmt</span>
+<span class="w">    </span><span class="nv">Wildcard</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">VarName</span>
+<span class="w">    </span><span class="nv">ID2VarName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">ID</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">VarName</span>
 </code></pre></div>
 <p>Now, in Statix if you just want to capture the term of sort <code>VarName</code> in the
 <code>VarDecl</code> constructor, this would suffice:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">VarDecl</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">VarDecl</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span>
 </code></pre></div>
 <p>But if you want to match the term only if it has the sort <code>ID</code>, then you have to use the explicit injection constructor name <code>ID2VarName</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">VarDecl</span><span class="p">(</span><span class="nv">ID2VarName</span><span class="p">(</span><span class="nv">x</span><span class="p">))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">VarDecl</span><span class="p">(</span><span class="nv">ID2VarName</span><span class="p">(</span><span class="nv">x</span><span class="p">))</span>
 </code></pre></div>
 <p>In this example, <code>ID</code> is a lexical sort, so it is an alias for <code>string</code> in the Statix specification.</p>
 <h2 id="excluding-modules">Excluding Modules<a class="headerlink" href="#excluding-modules" title="Permanent link">&para;</a></h2>
 <p>If an SDF3 module's name ends with <code>_StrategoMix</code>, its generated signatures are generated as <code>.txt</code> files, effectively rendering them inert. This can be used, as the name suggests, to avoid generating signatures for modules that provide Stratego mix syntax for the current language.</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">test_StrategoMix</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span><span class="nv">test_StrategoMix</span>
 
-<span class="c c-Singleline">// ...</span><span class="w"></span>
+<span class="c c-Singleline">// ...</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Debug menu</p>
@@ -4433,12 +4433,12 @@ Internal error: &#39;with&#39; clause failed unexpectedly in &#39;geninj-sig-to-
 </code></pre></div>
 <p>Note the first line with <code>ERROR</code>, it tells you that something is not supported. In this case, the use of optional sorts such as <code>MySort?</code> is not supported by Statix and the Statix signature generator.</p>
 <p>To solve this, rewrite a syntax rule with an optional sort such as:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&lt;</span><span class="nv">Type</span><span class="o">?</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">ID</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">Exp</span><span class=" -Punctuation">&gt;&gt;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&lt;</span><span class="nv">Type</span><span class="o">?</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">ID</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">Exp</span><span class=" -Punctuation">&gt;&gt;</span>
 </code></pre></div>
 <p>Into a rule with an explicit sort:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&lt;</span><span class="nv">Type-OPT</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">ID</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">Exp</span><span class=" -Punctuation">&gt;&gt;</span><span class="w"></span>
-<span class="nv">Type-OPT</span><span class=" -Punctuation">.</span><span class="nv">NoType</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&gt;</span><span class="w"></span>
-<span class="nv">Type-OPT</span><span class="w">        </span>=<span class="w"> </span><span class="nv">Type</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Stmt</span><span class=" -Punctuation">.</span><span class="nv">VarDecl</span><span class="w">    </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&lt;</span><span class="nv">Type-OPT</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">ID</span><span class=" -Punctuation">&gt;</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">Exp</span><span class=" -Punctuation">&gt;&gt;</span>
+<span class="nv">Type-OPT</span><span class=" -Punctuation">.</span><span class="nv">NoType</span><span class="w"> </span>=<span class="w"> </span><span class=" -Punctuation">&lt;&gt;</span>
+<span class="nv">Type-OPT</span><span class="w">        </span>=<span class="w"> </span><span class="nv">Type</span>
 </code></pre></div>
 <p>Note that the <code>-OPT</code> suffix has no special meaning. You can name
 the sort differently, such as <code>OptionalType</code>.</p>
@@ -4456,8 +4456,8 @@ BUILD FAILED
 - [ identity crisis | error ] Cannot rewrite to box: 
 -         declSortLex(&quot;MySort&quot;)
 </code></pre></div>
-<p>You are using the old <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span><span class="w"></span></code>. Change this in <code>metaborg.yaml</code> into
-<code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java</span><span class="w"></span></code>.</p>
+<p>You are using the old <code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span></code>. Change this in <code>metaborg.yaml</code> into
+<code class="highlight"><span class="nt">sdf2table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java</span></code>.</p>
 <h3 id="spt-analysis-tests-calling-stratego-strategies-fail">SPT analysis tests calling Stratego strategies fail<a class="headerlink" href="#spt-analysis-tests-calling-stratego-strategies-fail" title="Permanent link">&para;</a></h3>
 <p>An SPT test can run an arbitrary Stratego strategy on an analyzed AST
 and compare the results with the expected AST. If the origin of the is not
@@ -4465,11 +4465,11 @@ tracked properly, the root constructor of the resulting analyzed AST will
 be missing and the comparison will fail.</p>
 <p>To fix this, ensure the <code>pre-analyze</code> and <code>post-analyze</code> strategies in
 <code>analysis.str</code> call <code>origin-track-forced</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">libspoofax</span>/<span class="nv">term</span>/<span class="nv">origin</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"> </span><span class="nv">libspoofax</span>/<span class="nv">term</span>/<span class="nv">origin</span>
 
-<span class="k">rules</span><span class="w"></span>
-<span class="w">  </span><span class="nv">pre-analyze</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">explicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">  </span><span class="nv">post-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">implicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="k">rules</span>
+<span class="w">  </span><span class="nv">pre-analyze</span><span class="w">  </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">explicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span>
+<span class="w">  </span><span class="nv">post-analyze</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">origin-track-forced</span><span class=" -Punctuation">(</span><span class="nv">implicate-injections-MyLang-Start</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h3 id="signatures-are-not-generated">Signatures are not generated<a class="headerlink" href="#signatures-are-not-generated" title="Permanent link">&para;</a></h3>
 <p>Ensure the module name does not end with <code>_StrategoMix</code>, as such files are skipped.</p>
@@ -4479,7 +4479,7 @@ be missing and the comparison will fail.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4545,7 +4545,7 @@ be missing and the comparison will fail.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

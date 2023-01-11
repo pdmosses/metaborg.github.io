@@ -4343,37 +4343,37 @@
 <h1 id="terms">Terms<a class="headerlink" href="#terms" title="Permanent link">&para;</a></h1>
 <p>Stratego programs transform terms.</p>
 <p>For example, the code <code>4 + f(5 * x)</code> might be represented in a term as:</p>
-<div class="highlight"><pre><span></span><code>Plus<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;4&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Call<span class=" -Punctuation">(</span><span class="s">&quot;f&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>Mul<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;5&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Var<span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">))]))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>Plus<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;4&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Call<span class=" -Punctuation">(</span><span class="s">&quot;f&quot;</span><span class=" -Punctuation">,</span><span class="w"> </span><span class=" -Punctuation">[</span>Mul<span class=" -Punctuation">(</span>Int<span class=" -Punctuation">(</span><span class="s">&quot;5&quot;</span><span class=" -Punctuation">),</span><span class="w"> </span>Var<span class=" -Punctuation">(</span><span class="s">&quot;x&quot;</span><span class=" -Punctuation">))]))</span>
 </code></pre></div>
 <h2 id="term-forms">Term Forms<a class="headerlink" href="#term-forms" title="Permanent link">&para;</a></h2>
 <p>Terms are constructed from the following forms.</p>
 <h3 id="integer">Integer<a class="headerlink" href="#integer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Digit</span><span class="o">+</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Digit</span><span class="o">+</span>
 </code></pre></div>
 <p>An integer constant, that is a list of decimal digits, is an ATerm.</p>
 <p>Examples: <code>1</code>, <code>12343</code>.</p>
 <h3 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="s">&quot;$Char*&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="s">&quot;$Char*&quot;</span>
 </code></pre></div>
 <p>A string constant, that is a list of characters between double quotes is an ATerm.
 Special characters such as double quotes and newlines should be escaped using a backslash.
 The backslash character itself should be escaped as well.</p>
 <p>Examples: <code>"foobar"</code>, <code>"string with quotes\""</code>, <code>"escaped escape character\\ and a newline\n"</code>.</p>
 <h3 id="string-templates">String Templates<a class="headerlink" href="#string-templates" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span>$<span class="nv">TemplateChar</span>*<span class=" -Punctuation">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span>$<span class="nv">TemplateChar</span>*<span class=" -Punctuation">]</span>
 </code></pre></div>
 <p>Multiline strings can be <em>constructed</em> using string templates.</p>
-<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span><span class="k">if</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">code1</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
-<span class="w">   </span><span class=" -Punctuation">[</span><span class="nv">code2</span><span class=" -Punctuation">]]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span><span class="k">if</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">code1</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class=" -Punctuation">[</span><span class="nv">code2</span><span class=" -Punctuation">]]</span>
 </code></pre></div>
 <p>The indentation will be computed relative to the start of the template.</p>
 <p>String templates can also include <em>escapes</em> to term expressions producing strings or integers.</p>
 <p>For example, the string above includes escapes to include <code>code1</code> and <code>code2</code> and the following error message</p>
-<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span><span class="nv">error</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">variable</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">x</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nv">defined</span><span class=" -Punctuation">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class=" -Punctuation">[</span><span class="nv">error</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">variable</span><span class="w"> </span><span class=" -Punctuation">[</span><span class="nv">x</span><span class=" -Punctuation">]</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nv">defined</span><span class=" -Punctuation">]</span>
 </code></pre></div>
 <p>includes the name of the variable <code>x</code>.</p>
 <h3 id="constructor-application">Constructor application<a class="headerlink" href="#constructor-application" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Constructor</span><span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span>...<span class=" -Punctuation">,</span>$<span class="nv">Term</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Constructor</span><span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span>...<span class=" -Punctuation">,</span>$<span class="nv">Term</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>A constructor is an identifier, that is an alphanumeric string starting with a letter, or a double quoted string.</p>
 <p>A constructor application <code>c(t1,...,tn)</code> creates a term by applying a constructor to a sequence of zero or more terms.</p>
@@ -4381,19 +4381,19 @@ The backslash character itself should be escaped as well.</p>
 <p>The parentheses are needed even when a constructor has no subterms, in order to avoid ambiguity with <a href="#term-patterns">variables</a>.
 Thus, <code>True()</code> is a constructor application, but <code>True</code> is a variable.</p>
 <h3 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class=" -Punctuation">[</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">[</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">]</span>
 </code></pre></div>
 <p>A list is a term of the form <code>[t1,...,tn]</code>, that is a list of zero or more terms between square brackets.
 While all applications of a specific constructor typically have the same number of subterms, lists can have a variable number of subterms.
 The elements of a list are typically of the same type, while the subterms of a constructor application can vary in type.</p>
 <p>Example: The second argument of the call to <code>"f"</code> in the term <code>Call("f",[Int("5"),Var("x")])</code> is a list of expressions.</p>
 <h3 id="tuple">Tuple<a class="headerlink" href="#tuple" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class=" -Punctuation">(</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>A tuple <code>(t1,...,tn)</code> is a constructor application without a constructor.</p>
 <p>Example: <code>(Var("x"), Type("int"))</code></p>
 <h3 id="annotation">Annotation<a class="headerlink" href="#annotation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$<span class="nv">PreTerm</span><span class=" -Punctuation">{</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">PreTerm</span><span class=" -Punctuation">{</span>$<span class="nv">Term</span><span class=" -Punctuation">,</span><span class="w"> </span>...<span class=" -Punctuation">,</span><span class="w"> </span>$<span class="nv">Term</span><span class=" -Punctuation">}</span>
 </code></pre></div>
 <p>Any of the term forms above can be annotated with a list of terms.  </p>
 <p>Example: <code>Lt(Var("n"),Int("1")){Type("bool")}</code>.</p>
@@ -4402,13 +4402,13 @@ The form <code>Var("a"){Type("bool")}{Value(3)}</code> is syntactically incorrec
 <h2 id="term-patterns">Term Patterns<a class="headerlink" href="#term-patterns" title="Permanent link">&para;</a></h2>
 <p>A term <em>pattern</em>, is a term extended with <em>variables</em>.</p>
 <p>In the term pattern</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;0&quot;</span><span class=" -Punctuation">))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">Int</span><span class=" -Punctuation">(</span><span class="s">&quot;0&quot;</span><span class=" -Punctuation">))</span>
 </code></pre></div>
 <p>the identifier <code>e</code> is a variable that stands for any term.</p>
 <h3 id="linear-vs-non-linear">Linear vs Non-Linear<a class="headerlink" href="#linear-vs-non-linear" title="Permanent link">&para;</a></h3>
 <p>A pattern is <em>linear</em> if each variable occurs at most once, <em>non-linear</em> otherwise.
 The <em>non-linear</em> pattern</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Plus</span><span class=" -Punctuation">(</span><span class="nv">e</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">e</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>stands for a <code>Plus</code> term with identical arguments.</p>
 <p>A term pattern without variables (aka term) is <em>ground</em>.</p>
@@ -4449,7 +4449,7 @@ The ATerm format provides a set of constructs for representing trees, comparable
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4515,7 +4515,7 @@ The ATerm format provides a set of constructs for representing trees, comparable
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

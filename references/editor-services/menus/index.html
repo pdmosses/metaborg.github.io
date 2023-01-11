@@ -4204,24 +4204,24 @@
 
 <h1 id="action-menus">Action Menus<a class="headerlink" href="#action-menus" title="Permanent link">&para;</a></h1>
 <p>Menus are used to bind actions of your language, such as transformations, to a menu in the IDE. Menus are defined using the <code>menu</code> keyword under a <code>menus</code> section in an <a href="../esv/">ESV file</a>, and can themselves contain submenus, actions, and separators.</p>
-<div class="highlight"><pre><span></span><code><span class="k">menu</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>$MenuOptions<span class="w"></span>
-<span class="w">  </span>$MenuContribs<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">menu</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>$MenuOptions
+<span class="w">  </span>$MenuContribs
 </code></pre></div>
 <h2 id="menu-contributions">Menu Contributions<a class="headerlink" href="#menu-contributions" title="Permanent link">&para;</a></h2>
 <p>A menu has zero or more <code>$MenuContrib</code>, which are: <code>action</code>, <code>submenu</code>, or <code>separator</code>.</p>
 <h3 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h3>
 <p><em>Actions</em> (sometimes called <em>builders</em>) are defined under a menu or submenu with syntax:</p>
-<div class="highlight"><pre><span></span><code><span class="k">action</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>=<span class="w"> </span>$StrategoCall<span class="w"> </span>$MenuOptions<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">action</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>=<span class="w"> </span>$StrategoCall<span class="w"> </span>$MenuOptions
 </code></pre></div>
 <h3 id="submenus">Submenus<a class="headerlink" href="#submenus" title="Permanent link">&para;</a></h3>
 <p><em>Submenus</em> allow grouping of actions in nested menus. Their syntax is:</p>
-<div class="highlight"><pre><span></span><code>sub<span class="k">menu</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>$MenuOptions<span class="w"></span>
-<span class="w">  </span>$MenuContribs<span class="w"></span>
-end<span class="w"></span>
+<div class="highlight"><pre><span></span><code>sub<span class="k">menu</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$String<span class="w"> </span>$MenuOptions
+<span class="w">  </span>$MenuContribs
+end
 </code></pre></div>
 <h3 id="separators">Separators<a class="headerlink" href="#separators" title="Permanent link">&para;</a></h3>
 <p><em>Separators</em> allow inserting a separator in a menu list using the syntax:
-<div class="highlight"><pre><span></span><code>separator<span class="w"></span>
+<div class="highlight"><pre><span></span><code>separator
 </code></pre></div></p>
 <h2 id="menu-options">Menu Options<a class="headerlink" href="#menu-options" title="Permanent link">&para;</a></h2>
 <p>The menu options specify the behavior of the menu item. The following modifiers are supported:</p>
@@ -4253,14 +4253,14 @@ end<span class="w"></span>
 </table>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>An example menu:</p>
-<div class="highlight"><pre><span></span><code><span class="k">menus</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">menus</span>
 
-<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Generate&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;To normal form&quot;</span><span class="w"> </span>=<span class="w"> </span>to-normal-form<span class="w"> </span><span class=" -Punctuation">(</span><span class="k">source</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">    </span>sub<span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;To Java&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Abstract&quot;</span><span class="w"> </span>=<span class="w"> </span>to-java-abstract<span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Concrete&quot;</span><span class="w"> </span>=<span class="w"> </span>to-java-concrete<span class="w"></span>
-<span class="w">    </span>end<span class="w"></span>
+<span class="w">  </span><span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Generate&quot;</span>
+<span class="w">    </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;To normal form&quot;</span><span class="w"> </span>=<span class="w"> </span>to-normal-form<span class="w"> </span><span class=" -Punctuation">(</span><span class="k">source</span><span class=" -Punctuation">)</span>
+<span class="w">    </span>sub<span class="k">menu</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;To Java&quot;</span>
+<span class="w">      </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Abstract&quot;</span><span class="w"> </span>=<span class="w"> </span>to-java-abstract<span class="w"> </span><span class=" -Punctuation">(</span><span class="k">openeditor</span><span class=" -Punctuation">)</span>
+<span class="w">      </span><span class="k">action</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;Concrete&quot;</span><span class="w"> </span>=<span class="w"> </span>to-java-concrete
+<span class="w">    </span>end
 </code></pre></div>
 
   <hr>
@@ -4268,7 +4268,7 @@ end<span class="w"></span>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4334,7 +4334,7 @@ end<span class="w"></span>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

@@ -4076,31 +4076,31 @@
 
 <h1 id="outline-view">Outline View<a class="headerlink" href="#outline-view" title="Permanent link">&para;</a></h1>
 <p>An outline is a summary of the structure of a file, shown in a separate view next to a textual editor. An outline is created by a Stratego strategy, but is configured in an <a href="../esv/">ESV file</a> under the <code>views</code> section:</p>
-<div class="highlight"><pre><span></span><code>views<span class="w"></span>
+<div class="highlight"><pre><span></span><code>views
 
-<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>$Strategy<span class="w"></span>
-<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>$Int<span class="w"></span>
+<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>$Strategy
+<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>$Int
 </code></pre></div>
 <p>The Stratego strategy specified as <code>$Strategy</code> must have the following signature:</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">constructors</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">constructors</span>
 
-<span class="w">    </span><span class="nv">Node</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Label</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Children</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Node</span><span class="w"></span>
+<span class="w">    </span><span class="nv">Node</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span><span class="nv">Label</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Children</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">Node</span>
 
-<span class="k">rules</span><span class="w"></span>
+<span class="k">rules</span>
 
-<span class="w">  </span><span class="nv">editor-outline</span><span class=" -Punctuation">:</span><span class="w"></span>
-<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">position</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">outline</span><span class="w"></span>
+<span class="w">  </span><span class="nv">editor-outline</span><span class=" -Punctuation">:</span>
+<span class="w">    </span><span class=" -Punctuation">(</span><span class="nv">node</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">position</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-path</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">outline</span>
 </code></pre></div>
 <p>Where the input is the default tuple used for <a href="../menus/"><em>builders</em></a>, and the result is a list of <code>Node</code> terms, each carrying a label and a (possibly empty) list of child nodes.</p>
 <div class="admonition note">
 <p>Preserve origins on the node's label to allow navigating to the corresponding code from the outline.</p>
 </div>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code>views<span class="w"></span>
+<div class="highlight"><pre><span></span><code>views
 
-<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>editor-outline<span class="w"></span>
-<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>3<span class="w"></span>
+<span class="w">  </span>outline<span class="w"> </span>view<span class=" -Punctuation">:</span><span class="w"> </span>editor-outline
+<span class="w">    </span>expand<span class="w"> </span>to<span class="w"> </span>level<span class=" -Punctuation">:</span><span class="w"> </span>3
 </code></pre></div>
 <p>This configures the <code>editor-outline</code> Stratego strategy to be used to create outlines, and that outline nodes should be expanded 3 levels deep by default.</p>
 
@@ -4109,7 +4109,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4175,7 +4175,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

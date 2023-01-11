@@ -4181,10 +4181,10 @@
 queried. Scope graph queries always start in a particular scope, and traverse
 the scope graph in order to find declarations under a particular relation. The
 syntax for queries is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span>$<span class="nv">QueryTarget</span><span class="w"></span>
-<span class="w">   </span><span class="k">filter</span><span class="w"> </span>$<span class="nv">LabelRE</span><span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataWF</span><span class="w"></span>
-<span class="w">      </span><span class="k">min</span><span class="w"> </span>$<span class="nv">LabelOrder</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataLeq</span><span class="w"></span>
-<span class="w">       </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>$<span class="nv">Result</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span>$<span class="nv">QueryTarget</span>
+<span class="w">   </span><span class="k">filter</span><span class="w"> </span>$<span class="nv">LabelRE</span><span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataWF</span>
+<span class="w">      </span><span class="k">min</span><span class="w"> </span>$<span class="nv">LabelOrder</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span>$<span class="nv">DataLeq</span>
+<span class="w">       </span><span class="k">in</span><span class="w"> </span>$<span class="nv">Scope</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span>$<span class="nv">Result</span>
 </code></pre></div>
 <p>The <code>$Scope</code> parameter is a term with type <code>scope</code>. In this scope, the query starts.
 All other query arguments are explained in the following subsections.</p>
@@ -4234,7 +4234,7 @@ the following components:</p>
 <p>Second, <em>data well-formedness</em> filters (<code>$DataWF</code>) can be applied. These filters
 restrict which datums are included in the query result. They are expressed as
 anonymous lambda rules:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>This rule is instantiated for every <a href="../scope-graphs#declarations">declaration</a>
 that is reachable according to the path well-formedness expression. When the
@@ -4269,11 +4269,11 @@ expects a single scope as argument.</p>
 <code>var</code> is in scope with type <code>string -&gt; TYPE</code>. Then a rule (with
 <a href="../terms#type-ascription">type ascriptions</a>) that looks up a
 variable definition can be defined as follows.
-<div class="highlight"><pre><span></span><code><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">R</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"></span>
-<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span><span class="w"></span>
-<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>?<span class="w"></span>
-<span class="w">       </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">R</span><span class="p">.</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">resolveVar</span><span class="p">(</span><span class="nv">s</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="p">,</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="p">)</span><span class="w"> </span>=<span class="w"> </span><span class="nv">R</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span>
+<span class="w">  </span><span class="k">query</span><span class="w"> </span><span class="nv">var</span>
+<span class="w">    </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="nv">I</span>?
+<span class="w">       </span><span class="k">and</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">name&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">R</span><span class="p">.</span>
 </code></pre></div>
 In this example, the path well-formedness expression <code>P* I?</code> indicates that
 any number of <code>P</code> edges may be traversed, and then, optionally, a single <code>I</code>
@@ -4311,7 +4311,7 @@ its path is 'smaller than' the other path by a prefix order defined over a label
 comparison relation, and when the declaration data is smaller than or equal to
 the data of the other declaration according to a data comparison predicate.</p>
 <p>Label orders (<code>$LabelOrder</code>) are expressed as less-than relations on labels.</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span>&lt;<span class="w"> </span>$<span class="nv">Label</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">Label</span><span class="w"> </span>&lt;<span class="w"> </span>$<span class="nv">Label</span>
 </code></pre></div>
 <p>Here, a label is either a <a href="../scope-graphs#edges">declared label symbol</a>, or <code>$</code>,
 which denotes the 'end-of-path' label. This label can be used to express orders
@@ -4332,7 +4332,7 @@ with the same label are not ordered by this relation.</p>
 </details>
 <p>In addition to a label ordering relation, a data comparison predicate (<code>$DataLeq</code>)
 can be provided. This predicate can be written as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="p">,</span><span class="w"> </span>$<span class="nv">Pattern</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>This constraint indicates that the left argument is smaller than the right
 argument, given that the constraint can be satisfied.</p>
@@ -4420,7 +4420,7 @@ order of their appearence in the list.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4486,7 +4486,7 @@ order of their appearence in the list.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

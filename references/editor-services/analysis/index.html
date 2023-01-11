@@ -4150,41 +4150,41 @@
 
 <h1 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h1>
 <p>The analyzer strategy is used to perform static analyses such as name and type analysis, on the AST that a parser produces. An analysis context provides a project-wide store to facilitate multi-file analysis and incrementality. There are four ways to configure the analysis, which set the analyzer strategy with the <code>observer</code> and <code>context</code> keys in an <a href="../esv/">ESV file</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">context</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span>$Context<span class="w"></span>
-<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Strategy<span class="w"></span>
+<span class="w">  </span><span class="k">context</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span>$Context
+<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Strategy
 </code></pre></div>
 <h2 id="no-analysis">No Analysis<a class="headerlink" href="#no-analysis" title="Permanent link">&para;</a></h2>
 <p>To completely disable analysis, do not set an observer and set the context to none:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">context</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>none<span class="w"></span>
+<span class="w">  </span><span class="k">context</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>none
 </code></pre></div>
 <h2 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h2>
 <p>Stratego-based analysis allows you to implement your analysis in Stratego:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">context</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span>legacy<span class="w"></span>
-<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze<span class="w"></span>
+<span class="w">  </span><span class="k">context</span><span class="w">  </span><span class=" -Punctuation">:</span><span class="w"> </span>legacy
+<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze
 </code></pre></div>
 <p>The identifier after the colon refers to the Stratego strategy that performs the analysis. It must take as input a 3-tuple <code>(ast, path, projectPath)</code>. As output it must produce a 4-tuple <code>(ast, error*, warning*, note*)</code>. The following Stratego code is an example of a strategy that implements this signature:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">editor-analyze</span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">projectPath</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">ast</span>&#39;<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">errors</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">warnings</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">notes</span><span class=" -Punctuation">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">ast</span>&#39;<span class="w">     </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">analyze</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">ast</span><span class="w"></span>
-<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">errors</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-error</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;<span class="w"></span>
-<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">warnings</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-warning</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;<span class="w"></span>
-<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">notes</span><span class="w">    </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-note</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">editor-analyze</span><span class=" -Punctuation">:</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">ast</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">path</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">projectPath</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">-</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class=" -Punctuation">(</span><span class="nv">ast</span>&#39;<span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">errors</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">warnings</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">notes</span><span class=" -Punctuation">)</span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="nv">ast</span>&#39;<span class="w">     </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">analyze</span><span class=" -Punctuation">&gt;</span><span class="w"> </span><span class="nv">ast</span>
+<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">errors</span><span class="w">   </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-error</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;
+<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">warnings</span><span class="w"> </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-warning</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;
+<span class="w">     </span><span class=" -Punctuation">;</span><span class="w"> </span><span class="nv">notes</span><span class="w">    </span><span class=" -Punctuation">:=</span><span class="w"> </span><span class=" -Punctuation">&lt;</span><span class="nv">collect-all</span><span class=" -Punctuation">(</span><span class="nv">check-note</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">ast</span>&#39;
 </code></pre></div>
 <h2 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h2>
 <p>To use Statix as the meta-language for name and type analysis, use the <code>editor-analyze</code> strategy defined in <code>trans/analysis.str</code>, annotate it with the <code>(constraint)</code> modifier, and set no context:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze<span class="w"> </span><span class=" -Punctuation">(</span>constraint<span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze<span class="w"> </span><span class=" -Punctuation">(</span>constraint<span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>By default, the Statix analyzer works in single-file mode and does not consider multi-file name resolution. To enable that, add the <code>(multifile)</code> modifier:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze<span class="w"> </span><span class=" -Punctuation">(</span>constraint<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">(</span>multifile<span class=" -Punctuation">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">observer</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-analyze<span class="w"> </span><span class=" -Punctuation">(</span>constraint<span class=" -Punctuation">)</span><span class="w"> </span><span class=" -Punctuation">(</span>multifile<span class=" -Punctuation">)</span>
 </code></pre></div>
 
   <hr>
@@ -4192,7 +4192,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4258,7 +4258,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

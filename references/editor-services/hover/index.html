@@ -4076,14 +4076,14 @@
 
 <h1 id="hover-tooltips">Hover Tooltips<a class="headerlink" href="#hover-tooltips" title="Permanent link">&para;</a></h1>
 <p>Hover tooltips show a textual tooltip with extra information, when hovering part of the text. Hover tooltips are created by a Stratego strategy, but are configured in an <a href="../esv/">ESV file</a> under the <code>references</code> section:</p>
-<div class="highlight"><pre><span></span><code>references<span class="w"></span>
+<div class="highlight"><pre><span></span><code>references
 
-<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Strategy<span class="w"></span>
+<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Strategy
 </code></pre></div>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code>references<span class="w"></span>
+<div class="highlight"><pre><span></span><code>references
 
-<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-hover<span class="w"></span>
+<span class="w">  </span>hover<span class="w"> </span>_<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>editor-hover
 </code></pre></div>
 <p>The identifier after the colon refers to the Stratego strategy that creates the hover tooltip. The Stratego strategy takes an AST node, and either fails if no tooltip should be produced, or returns a tooltip string.</p>
 <p>The string may contain a few simple HTML tag to style the output. The following tags are supported:</p>
@@ -4102,7 +4102,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4168,7 +4168,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

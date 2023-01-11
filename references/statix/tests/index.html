@@ -4140,11 +4140,11 @@ and isolate issues. In this section, we explain the format and the output of
 such tests.</p>
 <h2 id="test-format">Test Format<a class="headerlink" href="#test-format" title="Permanent link">&para;</a></h2>
 <p>Statix tests should reside in <code>*.stxtest</code> files, and look as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">resolve</span><span class="w"> </span>$<span class="nv">Constraint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">resolve</span><span class="w"> </span>$<span class="nv">Constraint</span>
 
-$<span class="nv">Section</span>*<span class="w"></span>
+$<span class="nv">Section</span>*
 </code></pre></div>
-<p>At the top level, the <code class="highlight"><span class="k">resolve</span><span class="w"></span></code> keyword indicates this is a test file.
+<p>At the top level, the <code class="highlight"><span class="k">resolve</span></code> keyword indicates this is a test file.
 After this keyword, the constraint that should be solved when executing the test
 is provided. Finally, any section that can be found in a regular <a href="../modules/">module</a>
 can be added to a test.</p>
@@ -4161,14 +4161,14 @@ of functional predicates.</p>
 <p>Secondly, under <code>analysis</code> and <code>scope graph</code>, the scope graph that models the
 test constraint is shown. A scope graph consists of a list of scope terms, which
 look as follows</p>
-<div class="highlight"><pre><span></span><code>$<span class="nv">ScopeName</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">relations</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">RelationID</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">Term</span>+<span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="nv">edges</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span>$<span class="nv">LabelID</span><span class="p">:</span><span class="w"> </span>$<span class="nv">Scope</span>+<span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>$<span class="nv">ScopeName</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">relations</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>$<span class="nv">RelationID</span><span class="w"> </span><span class="p">:</span><span class="w"> </span>$<span class="nv">Term</span>+
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nv">edges</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>$<span class="nv">LabelID</span><span class="p">:</span><span class="w"> </span>$<span class="nv">Scope</span>+
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>That is, for each label and relation for which entries exists in a scope, a list
 of associated scopes/data is shown.</p>
@@ -4186,7 +4186,7 @@ formatted three levels deep.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4252,7 +4252,7 @@ formatted three levels deep.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

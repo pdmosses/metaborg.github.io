@@ -4076,22 +4076,22 @@
 
 <h1 id="stratego">Stratego<a class="headerlink" href="#stratego" title="Permanent link">&para;</a></h1>
 <p>The Java JAR and CTree files that will be loaded into the Stratego runtime for your language can be configured with the <code>provider</code> key in an <a href="../esv/">ESV file</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Path<span class="w"></span>
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>$Path
 </code></pre></div>
 <p>The path is a path to a <code>.jar</code> or <code>.ctree</code> file, relative to the root of the project. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree<span class="w"></span>
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree
 </code></pre></div>
 <p>The extension of the provider should match the format in the <code>metaborg.yaml</code> file of your language.
 Multiple files can be set by setting the key multiple times:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
 
-<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree<span class="w"></span>
-<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/custom1<span class=" -Punctuation">.</span>jar<span class="w"></span>
-<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/custom2<span class=" -Punctuation">.</span>ctree<span class="w"></span>
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/metaborg/stratego<span class=" -Punctuation">.</span>ctree
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/custom1<span class=" -Punctuation">.</span>jar
+<span class="w">  </span><span class="k">provider</span><span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>target/custom2<span class=" -Punctuation">.</span>ctree
 </code></pre></div>
 
   <hr>
@@ -4099,7 +4099,7 @@ Multiple files can be set by setting the key multiple times:</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4165,7 +4165,7 @@ Multiple files can be set by setting the key multiple times:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

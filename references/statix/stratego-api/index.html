@@ -4243,7 +4243,7 @@ strategies.</p>
 This API strongly depends on the Spoofax constraint analysis library, which is
 available in the <a href="https://github.com/metaborg/spoofax/blob/master/meta.lib.spoofax/trans/libspoofax/analysis/constraint.str">Spoofax Meta Library</a>.</p>
 <h2 id="single-file-analysis">Single-File Analysis<a class="headerlink" href="#single-file-analysis" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
 <p>Applies single-file analysis with the specification provided in the arguments.
@@ -4289,14 +4289,14 @@ arguments are explained in the following table:</p>
 <p>The <code>post</code> and <code>pre</code> arguments may be omitted (in that order).</p>
 <p>Note that this strategy will return <em>no results</em> for <code>Cached</code> terms in the analysis action.</p>
 <h2 id="single-file-elaboration">Single-File Elaboration<a class="headerlink" href="#single-file-elaboration" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-elaborate</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-elaborate</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">init-constraint</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <div class="admonition todo">
 <p class="admonition-title">Todo</p>
 <p>Find out what this is?</p>
 </div>
 <h2 id="multi-file-analysis">Multi-File Analysis<a class="headerlink" href="#multi-file-analysis" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
 <p>Applies multi-file analysis with the specification provided in the arguments.
@@ -4331,17 +4331,17 @@ The term and strategy arguments are explained in the following table:</p>
 <tr>
 <td align="left"><code>project-constraint</code></td>
 <td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span></code></td>
 </tr>
 <tr>
 <td align="left"><code>file-constraint</code></td>
 <td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span></code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="concurrent-analysis">Concurrent Analysis<a class="headerlink" href="#concurrent-analysis" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-editor-analyze</span><span class=" -Punctuation">(</span><span class="nv">pre</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">post</span><span class=" -Punctuation">|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">project-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">group-constraint</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">file-constraint</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Type: <code>AnalysisAction -&gt; AnalysisResult</code>.</p>
 <p>Applies concurrent multi-file analysis with the specification provided in the
@@ -4383,22 +4383,22 @@ following table:</p>
 <tr>
 <td align="left"><code>project-constraint</code></td>
 <td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td align="left">The name of the constraint that should be applied to the global scope once. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span></code></td>
 </tr>
 <tr>
 <td align="left"><code>group-constraint</code></td>
 <td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span><span class="w"></span></code></td>
+<td align="left">The name of the constraint that should be applied to the each group. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="k">string</span><span class="w"> </span>*<span class="w"> </span><span class="k">scope</span></code></td>
 </tr>
 <tr>
 <td align="left"><code>file-constraint</code></td>
 <td align="left"><code>String</code></td>
-<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span><span class="w"></span></code></td>
+<td align="left">The name of the constraint that should be applied to the pre-transformed AST of each file in the project. This may be a fully qualified name in the form <code>$Module!$ConstraintName</code>, or just a <code>$ConstraintName</code>. In the latter case, the name will be qualified with the <code>spec-name</code> argument. This constraint should have the (Statix) type <code class="highlight"><span class="p">:</span><span class="w"> </span><span class="k">scope</span><span class="w"> </span>*<span class="w"> </span><span class="nv">Start</span></code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="constraint-evaluation">Constraint Evaluation<a class="headerlink" href="#constraint-evaluation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-evaluate</span><span class=" -Punctuation">(|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">constraint</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-evaluate</span><span class=" -Punctuation">(|</span><span class="nv">spec-name</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">constraint</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Type: <code>List(Term) -&gt; Term</code></p>
 <p>Evaluates a <em>functional constraint</em>. The terms in the current term are passed
@@ -4429,7 +4429,7 @@ constraint.</p>
 <p>The Statix API provides several strategies to query properties from the analysis.
 These strategies are dicussed in the following sections.</p>
 <p>First of all, the analysis result can be obtained by the following strategy:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-analysis</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-analysis</span>
 </code></pre></div>
 <p>Type: <code>Term -&gt; Analysis</code></p>
 <p>The <code>stx-get-ast-analysis</code> returns the Analysis object for an AST. This object
@@ -4437,14 +4437,14 @@ can later be used to query the scope graph and AST properties set by the
 Statix specification.</p>
 <p>Note that the passed AST should be an analyzed AST. For Spoofax 2 use cases,
 this means that this strategy can only be used in builders without the
-<code class="highlight"><span class=" -Punctuation">(</span><span class="k">source</span><span class=" -Punctuation">)</span><span class="w"></span></code> annotation.</p>
+<code class="highlight"><span class=" -Punctuation">(</span><span class="k">source</span><span class=" -Punctuation">)</span></code> annotation.</p>
 <p>The returned values will be interpreted relative to the unifier of the analysis.
 That is, it will be instantiated as much as possible. When a property value
 contains free variables, those will occur in the property as
 <code>nabl2.Var: String * String -&gt; Term</code> terms.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <p>AST properties can be extracted from the analysis result using the following strategy:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">name</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">name</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>Type: <code>Term -&gt; Term or list(Term)</code>.</p>
 <table>
@@ -4469,35 +4469,35 @@ contains free variables, those will occur in the property as
 </tbody>
 </table>
 <p>Given an AST node, this strategy will return the property value. For singleton
-properties (<code class="highlight"><span class="o">:=</span><span class="w"></span></code> operator), the property value is returned. For bag
-properties (<code class="highlight">+=<span class="w"></span></code> operator), a list with all assigned values is returned.
+properties (<code class="highlight"><span class="o">:=</span></code> operator), the property value is returned. For bag
+properties (<code class="highlight">+=</code> operator), a list with all assigned values is returned.
 It fails if no property with the given name is set. Therefore, for bag properties
 the resulting list will never be empty.</p>
-<p><em>Example 1.</em> Consider a Statix specification that contains a <code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">val</span><span class="w"></span></code>
-constraint. Using <code class="highlight">&lt;<span class="nv">stx-get-ast-property</span><span class="p">(</span>|<span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p">)</span>&gt;<span class="w"> </span><span class="nv">t</span><span class="w"></span></code> will then
+<p><em>Example 1.</em> Consider a Statix specification that contains a <code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">val</span></code>
+constraint. Using <code class="highlight">&lt;<span class="nv">stx-get-ast-property</span><span class="p">(</span>|<span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p">)</span>&gt;<span class="w"> </span><span class="nv">t</span></code> will then
 return <code>val</code></p>
 <p><em>Example 2.</em> Consider a Statix specification that contains
-<code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span>+=<span class="w"> </span><span class="nv">val1</span><span class="p">,</span><span class="w"> </span>@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span>+=<span class="w"> </span><span class="nv">val2</span><span class="w"></span></code> constraints. Using
-<code class="highlight">&lt;<span class="nv">stx-get-ast-property</span><span class="p">(</span>|<span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p">)</span>&gt;<span class="w"> </span><span class="nv">t</span><span class="w"></span></code> will then
+<code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span>+=<span class="w"> </span><span class="nv">val1</span><span class="p">,</span><span class="w"> </span>@<span class="nv">t</span><span class="p">.</span><span class="nv">prop</span><span class="w"> </span>+=<span class="w"> </span><span class="nv">val2</span></code> constraints. Using
+<code class="highlight">&lt;<span class="nv">stx-get-ast-property</span><span class="p">(</span>|<span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p">)</span>&gt;<span class="w"> </span><span class="nv">t</span></code> will then
 return <code>[val1, val2]</code>.</p>
 <p>As the <code>type</code> and <code>ref</code> properties have special meanings in the Spoofax context,
 there are special strategies to retrieve those:
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-type</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-type</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span>
 
-<span class="nv">stx-get-ast-ref</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">stx-get-ast-ref</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span>
 </code></pre></div>
-which both have the same type constraints as <code class="highlight"><span class="nv">stx-get-ast-property</span><span class="w"></span></code></p>
+which both have the same type constraints as <code class="highlight"><span class="nv">stx-get-ast-property</span></code></p>
 <div class="admonition warning">
 <p class="admonition-title"><code>type</code> and <code>ref</code> properties</p>
-<p>Using the generic <code class="highlight"><span class="nv">stx-get-ast-property</span><span class="w"></span></code> to retrieve <code>type</code> or
-<code>ref</code> properties will not work. I.e., <code class="highlight"><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;type&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">t</span><span class="w"></span></code>
-will fail, even if there was an <code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">type</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">T</span><span class="w"></span></code> constraint.</p>
+<p>Using the generic <code class="highlight"><span class="nv">stx-get-ast-property</span></code> to retrieve <code>type</code> or
+<code>ref</code> properties will not work. I.e., <code class="highlight"><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;type&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">t</span></code>
+will fail, even if there was an <code class="highlight">@<span class="nv">t</span><span class="p">.</span><span class="nv">type</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">T</span></code> constraint.</p>
 </div>
 <h2 id="scope-graph">Scope Graph<a class="headerlink" href="#scope-graph" title="Permanent link">&para;</a></h2>
 <p>Declarations in a scope graph can be retrieved using the following strategies:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-scopegraph-data</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">rel</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-scopegraph-data</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">rel</span><span class=" -Punctuation">)</span>
 
-<span class="nv">stx-get-scopegraph-edges</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">lbl</span><span class=" -Punctuation">)</span><span class="w"></span>
+<span class="nv">stx-get-scopegraph-edges</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="nv">lbl</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <table>
 <thead>
@@ -4525,43 +4525,43 @@ will fail, even if there was an <code class="highlight">@<span class="nv">t</spa
 </tr>
 </tbody>
 </table>
-<p>The <code class="highlight"><span class="nv">stx-get-scopegraph-data</span><span class="w"></span></code> strategy, which has type <code>Scope -&gt; [Term]</code>
+<p>The <code class="highlight"><span class="nv">stx-get-scopegraph-data</span></code> strategy, which has type <code>Scope -&gt; [Term]</code>
 retrieves all data declared under relation <code>rel</code> in the input term scope. The
 data is returned in a (possible empty) list that contains tuples holding the
 data of each relevant declaration.</p>
 <p><em>Example.</em> Consider a Statix specification that gives rise to a
-<code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>!<span class="nv">var</span>[<span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>!<span class="nv">var</span>[<span class="s">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">BOOL</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"></span></code> constraint. Now,
-applying <code class="highlight"><span class=" -Punctuation">&lt;</span><span class="nv">stx-get-scopegraph-data</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;statics/Main!var&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">s</span><span class="w"></span></code> will
+<code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>!<span class="nv">var</span>[<span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">INT</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>!<span class="nv">var</span>[<span class="s">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nv">BOOL</span><span class="p">()</span>]<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span></code> constraint. Now,
+applying <code class="highlight"><span class=" -Punctuation">&lt;</span><span class="nv">stx-get-scopegraph-data</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;statics/Main!var&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">s</span></code> will
 return <code>[("x", INT()), ("y", BOOL())]</code>.</p>
 <p>Note that a fully qualified name should be passed to the <code>rel</code> argument. Fully
 qualified names are created by prefixing a relation name with the module in
-which it is declared, separated by a <code>!</code>. For example, <code class="highlight"><span class="s">&quot;statics/Main!var&quot;</span><span class="w"></span></code> is
-the fully qualified name of the relation <code>var</code> declared in module <code class="highlight"><span class="nv">statix</span>/<span class="nv">Main</span><span class="w"></span></code>.
+which it is declared, separated by a <code>!</code>. For example, <code class="highlight"><span class="s">&quot;statics/Main!var&quot;</span></code> is
+the fully qualified name of the relation <code>var</code> declared in module <code class="highlight"><span class="nv">statix</span>/<span class="nv">Main</span></code>.
 The Spoofax 2 Console will emit warnings when an invalid label is used, and
 suggest available names.</p>
 <p>The returned values will be interpreted relative to the unifier of the analysis.
 That is, it will be instantiated as much as possible. When a property value
 contains free variables, those will occur in the property as
 <code>nabl2.Var: String * String -&gt; Term</code> terms.</p>
-<p>The <code class="highlight"><span class="nv">stx-get-scopegraph-edges</span><span class="w"></span></code> strategy, which has type <code>Scope -&gt; [Scope]</code>
+<p>The <code class="highlight"><span class="nv">stx-get-scopegraph-edges</span></code> strategy, which has type <code>Scope -&gt; [Scope]</code>
 traverses all edges with the <code>lbl</code> label. All target scopes are returned in the
 output list.</p>
 <p><em>Example.</em> Consider a Statix specification that gives rise to a
-<code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">-L-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">-L-&gt;</span><span class="w"> </span><span class="nv">s2</span><span class="w"></span></code> constraint. Now, applying
-<code class="highlight"><span class=" -Punctuation">&lt;</span><span class="nv">stx-get-scopegraph-edges</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;statics/Main!L&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">s</span><span class="w"></span></code> will return
+<code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="nv">s1</span><span class="w"> </span><span class="nv">s2</span><span class="p">,</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">-L-&gt;</span><span class="w"> </span><span class="nv">s1</span><span class="p">,</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">-L-&gt;</span><span class="w"> </span><span class="nv">s2</span></code> constraint. Now, applying
+<code class="highlight"><span class=" -Punctuation">&lt;</span><span class="nv">stx-get-scopegraph-edges</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;statics/Main!L&quot;</span><span class=" -Punctuation">)&gt;</span><span class="w"> </span><span class="nv">s</span></code> will return
 <code>[s1, s2]</code>.</p>
-<p>Similar to the <code class="highlight"><span class="nv">stx-get-scopegraph-edges</span><span class="w"></span></code> strategy, the label should
+<p>Similar to the <code class="highlight"><span class="nv">stx-get-scopegraph-edges</span></code> strategy, the label should
 be fully qualified, and the result may contain free variables.</p>
 <details class="tip">
 <summary>Retrieving a scope</summary>
 <p>Both strategies discussed in this section take a scope as input. However, it
 seemed that no way to obtain a reference to a scope was introduced. In fact,
 scope references should be made available using AST properties. For example,
-the <code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>@<span class="nv">t</span><span class="p">.</span><span class="k">scope</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">x</span><span class="w"></span></code> makes scope <code>s</code> available using the
-<code class="highlight"><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;scope&quot;</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">t</span><span class="w"></span></code> transformation.</p>
+the <code class="highlight"><span class="k">new</span><span class="w"> </span><span class="nv">s</span><span class="p">,</span><span class="w"> </span>@<span class="nv">t</span><span class="p">.</span><span class="k">scope</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">x</span></code> makes scope <code>s</code> available using the
+<code class="highlight"><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;scope&quot;</span><span class=" -Punctuation">)</span><span class="w"> </span><span class="nv">t</span></code> transformation.</p>
 </details>
 <h2 id="analysis-results">Analysis Results<a class="headerlink" href="#analysis-results" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-analysis-has-errors</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx--analysis-has-errors</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-analysis-has-errors</span><span class="w"> </span><span class=" -Punctuation">=</span><span class="w"> </span><span class="nv">stx--analysis-has-errors</span>
 </code></pre></div>
 <p>Type: <code>Analysis -&gt; Analysis</code></p>
 <p>Fails if the current term has <em>no</em> errors, succeeds otherwise.</p>
@@ -4571,7 +4571,7 @@ the <code class="highlight"><span class="k">new</span><span class="w"> </span><s
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4637,7 +4637,7 @@ the <code class="highlight"><span class="k">new</span><span class="w"> </span><s
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

@@ -4181,9 +4181,9 @@
 <li>
 <p>Add a server to the <code>servers</code> section with id <code>metaborg-nexus</code> that contains your username and password to our artifact server:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;server&gt;</span>
-    <span class="nt">&lt;id&gt;</span>metaborg-nexus<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;username&gt;</span>myusername<span class="nt">&lt;/username&gt;</span>
-    <span class="nt">&lt;password&gt;</span>mypassword<span class="nt">&lt;/password&gt;</span>
+<span class="w">    </span><span class="nt">&lt;id&gt;</span>metaborg-nexus<span class="nt">&lt;/id&gt;</span>
+<span class="w">    </span><span class="nt">&lt;username&gt;</span>myusername<span class="nt">&lt;/username&gt;</span>
+<span class="w">    </span><span class="nt">&lt;password&gt;</span>mypassword<span class="nt">&lt;/password&gt;</span>
 <span class="nt">&lt;/server&gt;</span>
 </code></pre></div>
 </li>
@@ -4200,12 +4200,12 @@
 </li>
 <li>
 <p>Update it to the latest commit with:</p>
-<div class="highlight"><pre><span></span><code>git pull --rebase <span class="o">&amp;&amp;</span> ./b checkout -y <span class="o">&amp;&amp;</span> ./b update
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span>checkout<span class="w"> </span>-y<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>To enable Git pushing without having to supply a username and password via Git over HTTPS, run the following command to set the submodule remotes to SSH URLs:</p>
-<div class="highlight"><pre><span></span><code>./b set-remote -s
+<div class="highlight"><pre><span></span><code>./b<span class="w"> </span>set-remote<span class="w"> </span>-s
 </code></pre></div>
 </li>
 </ol>
@@ -4222,10 +4222,10 @@
 <ol>
 <li>
 <p>If reusing an existing clone, ensure that it is checked out to <code>spoofax-release</code> with:
-    <div class="highlight"><pre><span></span><code>git checkout spoofax-release
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>spoofax-release
 </code></pre></div>
     ...and update it to the latest commit with:
-    <div class="highlight"><pre><span></span><code>git pull --rebase <span class="o">&amp;&amp;</span> ./b checkout -y <span class="o">&amp;&amp;</span> ./b update
+    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span>checkout<span class="w"> </span>-y<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./b<span class="w"> </span>update
 </code></pre></div></p>
 </li>
 <li>
@@ -4233,7 +4233,7 @@
 </li>
 <li>
 <p>To enable Git pushing without having to supply a username and password via Git over HTTPS, run the following command to set the submodule remotes to SSH URLs:</p>
-<div class="highlight"><pre><span></span><code>./b set-remote -s
+<div class="highlight"><pre><span></span><code>./b<span class="w"> </span>set-remote<span class="w"> </span>-s
 </code></pre></div>
 </li>
 </ol>
@@ -4243,7 +4243,7 @@
 <ol>
 <li>
 <p>Change directory into the repository cloned in step 2. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /Users/gohla/spoofax/master/spoofax-releng
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/Users/gohla/spoofax/master/spoofax-releng
 </code></pre></div>
 </li>
 <li>
@@ -4259,46 +4259,46 @@
 </li>
 <li>
 <p>Execute the release script with the parameters you gathered:</p>
-<div class="highlight"><pre><span></span><code>./b --repo &lt;release-repository&gt; release <span class="se">\</span>
-  spoofax-release &lt;release-version&gt; <span class="se">\</span>
-  master &lt;current-development-version&gt; <span class="se">\</span>
-  --non-interactive <span class="se">\</span>
-  --maven-deploy <span class="se">\</span>
-  --maven-deploy-identifier metaborg-nexus <span class="se">\</span>
-  --maven-deploy-url http://artifacts.metaborg.org/content/repositories/releases/ <span class="se">\</span>
-  --nexus-deploy <span class="se">\</span>
-  --nexus-username &lt;artifact-server-username&gt; <span class="se">\</span>
-  --nexus-password &lt;artifact-server-password&gt; <span class="se">\</span>
-  --nexus-repo releases
+<div class="highlight"><pre><span></span><code>./b<span class="w"> </span>--repo<span class="w"> </span>&lt;release-repository&gt;<span class="w"> </span>release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>spoofax-release<span class="w"> </span>&lt;release-version&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>master<span class="w"> </span>&lt;current-development-version&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--non-interactive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-identifier<span class="w"> </span>metaborg-nexus<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-url<span class="w"> </span>http://artifacts.metaborg.org/content/repositories/releases/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-username<span class="w"> </span>&lt;artifact-server-username&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-password<span class="w"> </span>&lt;artifact-server-password&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-repo<span class="w"> </span>releases
 </code></pre></div>
 <p>...or for a major version, with <code>--next-develop-version</code>:</p>
-<div class="highlight"><pre><span></span><code>./b --repo &lt;release-repository&gt; release <span class="se">\</span>
-  spoofax-release &lt;release-version&gt; <span class="se">\</span>
-  master &lt;current-development-version&gt; <span class="se">\</span>
-  --next-develop-version &lt;next-development-version&gt; <span class="se">\</span>
-  --non-interactive <span class="se">\</span>
-  --maven-deploy <span class="se">\</span>
-  --maven-deploy-identifier metaborg-nexus <span class="se">\</span>
-  --maven-deploy-url http://artifacts.metaborg.org/content/repositories/releases/ <span class="se">\</span>
-  --nexus-deploy <span class="se">\</span>
-  --nexus-username &lt;artifact-server-username&gt; <span class="se">\</span>
-  --nexus-password &lt;artifact-server-password&gt; <span class="se">\</span>
-  --nexus-repo releases
+<div class="highlight"><pre><span></span><code>./b<span class="w"> </span>--repo<span class="w"> </span>&lt;release-repository&gt;<span class="w"> </span>release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>spoofax-release<span class="w"> </span>&lt;release-version&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>master<span class="w"> </span>&lt;current-development-version&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--next-develop-version<span class="w"> </span>&lt;next-development-version&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--non-interactive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-identifier<span class="w"> </span>metaborg-nexus<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-url<span class="w"> </span>http://artifacts.metaborg.org/content/repositories/releases/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-username<span class="w"> </span>&lt;artifact-server-username&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-password<span class="w"> </span>&lt;artifact-server-password&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-repo<span class="w"> </span>releases
 </code></pre></div>
 <p>For example, if we currently are at development version <code>2.6.0-SNAPSHOT</code>, and would like to release minor version <code>2.6.0</code>, and update the development version to <code>2.7.0-SNAPSHOT</code>, we would execute the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /Users/gohla/spoofax/master/spoofax-releng
-./b --repo /Users/gohla/spoofax/release/spoofax-releng release <span class="se">\</span>
-  spoofax-release <span class="m">2</span>.6.0 <span class="se">\</span>
-  master <span class="m">2</span>.6.0-SNAPSHOT <span class="se">\</span>
-  --next-develop-version <span class="m">2</span>.7.0-SNAPSHOT <span class="se">\</span>
-  --non-interactive <span class="se">\</span>
-  --maven-deploy <span class="se">\</span>
-  --maven-deploy-identifier metaborg-nexus <span class="se">\</span>
-  --maven-deploy-url http://artifacts.metaborg.org/content/repositories/releases/ <span class="se">\</span>
-  --nexus-deploy <span class="se">\</span>
-  --nexus-username myusername <span class="se">\</span>
-  --nexus-password mypassword <span class="se">\</span>
-  --nexus-repo releases
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/Users/gohla/spoofax/master/spoofax-releng
+./b<span class="w"> </span>--repo<span class="w"> </span>/Users/gohla/spoofax/release/spoofax-releng<span class="w"> </span>release<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>spoofax-release<span class="w"> </span><span class="m">2</span>.6.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>master<span class="w"> </span><span class="m">2</span>.6.0-SNAPSHOT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--next-develop-version<span class="w"> </span><span class="m">2</span>.7.0-SNAPSHOT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--non-interactive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-identifier<span class="w"> </span>metaborg-nexus<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--maven-deploy-url<span class="w"> </span>http://artifacts.metaborg.org/content/repositories/releases/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-deploy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-username<span class="w"> </span>myusername<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-password<span class="w"> </span>mypassword<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--nexus-repo<span class="w"> </span>releases
 </code></pre></div>
 <p>Unfortunately, it is currently not possible to encrypt the artifact server password passed to the build script.</p>
 </li>
@@ -4360,7 +4360,7 @@
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4426,7 +4426,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

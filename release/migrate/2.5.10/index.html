@@ -4182,20 +4182,20 @@
 <p>In an upcoming version of Spoofax 2 it will be required to properly declare sorts
 in SDF3 syntax definitions. Sorts for which context-free rules are defined
 should be declared in a <code>context-free sorts</code> block:</p>
-<div class="highlight"><pre><span></span><code><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">Expr</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">context-free</span><span class="w"> </span><span class="k">sorts</span>
+<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">Expr</span>
 </code></pre></div>
 <blockquote>
 <p><em>Note</em>: For backward compatibility, sorts declared in a plain <code>sorts</code> block
 are treated as context-free sorts. So this is equivalent and also fine:</p>
-<div class="highlight"><pre><span></span><code><span class="k">sorts</span><span class="w"></span>
-<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">Expr</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">sorts</span>
+<span class="w">  </span><span class="nv">Stmt</span><span class="w"> </span><span class="nv">Expr</span>
 </code></pre></div>
 </blockquote>
 <p>Sorts for which lexical rules are defined should be declared in a
 <code>lexical sorts</code> block:</p>
-<div class="highlight"><pre><span></span><code><span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span><span class="w"></span>
-<span class="w">  </span><span class="nv">ID</span><span class="w"> </span><span class="nv">INT</span><span class="w"> </span><span class="nv">STRING</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">lexical</span><span class="w"> </span><span class="k">sorts</span>
+<span class="w">  </span><span class="nv">ID</span><span class="w"> </span><span class="nv">INT</span><span class="w"> </span><span class="nv">STRING</span>
 </code></pre></div>
 <blockquote>
 <p><em>Note</em>: Lexical sorts are not supported in combination with <code>sdf2table: c</code>.</p>
@@ -4208,10 +4208,10 @@ are treated as context-free sorts. So this is equivalent and also fine:</p>
 <h2 id="statix">Statix<a class="headerlink" href="#statix" title="Permanent link">&para;</a></h2>
 <p>The AST property type is now a built-in property. Users of the Stratego API to
 get this property should change their API calls. Instead of</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;type&quot;</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-property</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">,</span><span class="w"> </span><span class="s">&quot;type&quot;</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <p>one should now use:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-type</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">stx-get-ast-type</span><span class=" -Punctuation">(|</span><span class="nv">a</span><span class=" -Punctuation">)</span>
 </code></pre></div>
 <h2 id="spt">SPT<a class="headerlink" href="#spt" title="Permanent link">&para;</a></h2>
 <p>In SPT, <code>parse succeeds</code> tests will now fail when the input parses ambiguously.
@@ -4222,7 +4222,7 @@ If this is intended, use <code>parse ambiguous</code> instead.</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4288,7 +4288,7 @@ If this is intended, use <code>parse ambiguous</code> instead.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

@@ -4176,16 +4176,16 @@
 
 <h1 id="esv">ESV<a class="headerlink" href="#esv" title="Permanent link">&para;</a></h1>
 <p>The <em>Editor Service (ESV)</em> language is a declarative meta-language for configuring the editor services of a language. For example, the following ESV code fragment configures the syntax highlighting for a language, based on the types of tokens:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>color<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>color
 
-colorer<span class="w"></span>
+colorer
 
-<span class="w">  </span>keyword<span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>153<span class="w"></span>
-<span class="w">  </span>identifier<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
-<span class="w">  </span>string<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>177<span class="w"> </span>47<span class="w"> </span>2<span class="w"></span>
-<span class="w">  </span>number<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>17<span class="w"> </span>131<span class="w"> </span>22<span class="w"></span>
-<span class="w">  </span>operator<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>black<span class="w"></span>
-<span class="w">  </span>layout<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>63<span class="w"> </span>127<span class="w"> </span>95<span class="w"> </span>italic<span class="w"></span>
+<span class="w">  </span>keyword<span class="w">    </span><span class=" -Punctuation">:</span><span class="w"> </span>153<span class="w"> </span>51<span class="w"> </span>153
+<span class="w">  </span>identifier<span class="w"> </span><span class=" -Punctuation">:</span><span class="w"> </span>black
+<span class="w">  </span>string<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>177<span class="w"> </span>47<span class="w"> </span>2
+<span class="w">  </span>number<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>17<span class="w"> </span>131<span class="w"> </span>22
+<span class="w">  </span>operator<span class="w">   </span><span class=" -Punctuation">:</span><span class="w"> </span>black
+<span class="w">  </span>layout<span class="w">     </span><span class=" -Punctuation">:</span><span class="w"> </span>63<span class="w"> </span>127<span class="w"> </span>95<span class="w"> </span>italic
 </code></pre></div>
 <h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h2>
 <p>ESV files end with the <code>.esv</code> extension, and are by convention placed in the <code>editor/</code> folder of a language project. Each ESV file defines a module for the file, followed by import statements and then the main configuration sections. Each section consists of a number of keys and values.</p>
@@ -4195,10 +4195,10 @@ colorer<span class="w"></span>
 </div>
 <h3 id="module-definition">Module Definition<a class="headerlink" href="#module-definition" title="Permanent link">&para;</a></h3>
 <p>An ESV file starts with a <em>module definition</em> at the top of the file:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$ModuleName<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>$ModuleName
 </code></pre></div>
 <p>The module name is the filename of the ESV file without the exttension, and relative to the <code>editor/</code> directory. For example, the module <code>editor/mylang/Syntax.esv</code> would have the following module name:</p>
-<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>mylang/Syntax<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">module</span><span class="w"> </span>mylang/Syntax
 </code></pre></div>
 <div class="admonition note">
 <p>Module names can only contains the alphanumeric characters  and dash, underscore, and period, and use the forward slash (<code>/</code>) as the path separator.</p>
@@ -4206,13 +4206,13 @@ colorer<span class="w"></span>
 </div>
 <h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
 <p>The <em>imports</em> section is an optional section immediately following the module definition. When specified it is given as:</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
-<span class="w">    </span>$Imports<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span>
+<span class="w">    </span>$Imports
 </code></pre></div>
 <p>For example, to import <code>editor/Syntax.esv</code> and <code>editor/Analysis.esv</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">imports</span><span class="w"></span>
-<span class="w">    </span>Syntax<span class="w"></span>
-<span class="w">    </span>Analysis<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">imports</span>
+<span class="w">    </span>Syntax
+<span class="w">    </span>Analysis
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Imports are transitive.</p>
@@ -4222,9 +4222,9 @@ colorer<span class="w"></span>
 </div>
 <h3 id="configuration-sections">Configuration Sections<a class="headerlink" href="#configuration-sections" title="Permanent link">&para;</a></h3>
 <p>The main body of an ESV file consists of any number of configuration sections. An example of a configuration section is:</p>
-<div class="highlight"><pre><span></span><code><span class="k">language</span><span class="w"></span>
-<span class="w">  </span><span class="k">line comment</span><span class=" -Punctuation">:</span><span class="w">  </span><span class="s">&quot;//&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="k">block comment</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class="s">&quot;*/&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">language</span>
+<span class="w">  </span><span class="k">line comment</span><span class=" -Punctuation">:</span><span class="w">  </span><span class="s">&quot;//&quot;</span>
+<span class="w">  </span><span class="k">block comment</span><span class=" -Punctuation">:</span><span class="w"> </span><span class="s">&quot;/*&quot;</span><span class="w"> </span><span class="s">&quot;*/&quot;</span>
 </code></pre></div>
 <p>The configuration sections are hard-coded in the ESV language, but mostly use a consistent syntax for the keys and values.</p>
 <p>The following configuration sections are currently defined:</p>
@@ -4272,7 +4272,7 @@ colorer<span class="w"></span>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4338,7 +4338,7 @@ colorer<span class="w"></span>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   

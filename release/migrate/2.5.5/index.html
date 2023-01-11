@@ -4192,11 +4192,11 @@ may require you to make small modifications to a specification:</p>
 <h3 id="functional-constraint-outputs">Functional constraint outputs<a class="headerlink" href="#functional-constraint-outputs" title="Permanent link">&para;</a></h3>
 <p>Functional constraints previously were allowed to have multiple output
 arguments, such as:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span>`<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span>`
 </code></pre></div>
 <p>This was sometimes indistinguishable from types with a single tuple
 output, such as:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="p">)</span>`<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="nv">T</span><span class="w"> </span>*<span class="w"> </span><span class="nv">T</span><span class="p">)</span>`
 </code></pre></div>
 <p>From now on, functional constraints can only have a single
 output. Constraints with multiple outputs need to be rewritten to
@@ -4204,52 +4204,52 @@ return a tuple instead.</p>
 <h3 id="query-parameters">Query parameters<a class="headerlink" href="#query-parameters" title="Permanent link">&para;</a></h3>
 <p>Queries would accept arbitrary predicates for the label regular
 expression and label order. For example, a query could be written as:</p>
-<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">myWf</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">      </span><span class="k">min</span><span class="w"> </span><span class="nv">myOrd</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
-<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">myWf</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">      </span><span class="k">min</span><span class="w"> </span><span class="nv">myOrd</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span>
+<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 <p>with</p>
-<div class="highlight"><pre><span></span><code><span class="nv">myWf</span><span class="p">(</span><span class="nv">ls</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">pathMatch</span>[<span class="nv">P</span>*]<span class="p">(</span><span class="nv">ls</span><span class="p">).</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">myWf</span><span class="p">(</span><span class="nv">ls</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">pathMatch</span>[<span class="nv">P</span>*]<span class="p">(</span><span class="nv">ls</span><span class="p">).</span>
 
-<span class="nv">myOrd</span><span class="p">(</span><span class="nv">l1</span><span class="p">,</span><span class="nv">l2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">pathLt</span>[$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span>]<span class="p">(</span><span class="nv">l1</span><span class="p">,</span><span class="nv">l2</span><span class="p">).</span><span class="w"></span>
+<span class="nv">myOrd</span><span class="p">(</span><span class="nv">l1</span><span class="p">,</span><span class="nv">l2</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="nv">-</span><span class="w"> </span><span class="nv">pathLt</span>[$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span>]<span class="p">(</span><span class="nv">l1</span><span class="p">,</span><span class="nv">l2</span><span class="p">).</span>
 </code></pre></div>
 <p>This is not possible anymore, instead the regular expression and label
 order must be direct parameters of the query. The query above should
 be directly written as:</p>
-<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">      </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
-<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">      </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span>
+<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 <p>The following syntax is still accepted, but deprecated:</p>
-<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">pathMatch</span>[<span class="nv">P</span>*]<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
-<span class="w">      </span><span class="k">min</span><span class="w"> </span><span class="nv">pathLt</span>[$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span>]<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
-<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">pathMatch</span>[<span class="nv">P</span>*]<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">true</span>
+<span class="w">      </span><span class="k">min</span><span class="w"> </span><span class="nv">pathLt</span>[$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span>]<span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">false</span>
+<span class="w">      </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 <h3 id="namespace-based-resolution-shorthands">Namespace-based resolution shorthands<a class="headerlink" href="#namespace-based-resolution-shorthands" title="Permanent link">&para;</a></h3>
 <p>The requirements for namespace-based resolution shorthands have become
 stricter.</p>
 <p>First, if they are used, ther emust be an explicit resolution policy
 for the namespace. For example, using a constraints such as:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
-<span class="nv">type</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
+<span class="nv">type</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 <p>requires in the signature at least:</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">name-resolution</span><span class="w"></span>
-<span class="w">    </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">name-resolution</span>
+<span class="w">    </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span>
 </code></pre></div>
 <p>A full resolution policy with regular expression and label order looks like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">signature</span><span class="w"></span>
-<span class="w">  </span><span class="k">name-resolution</span><span class="w"></span>
-<span class="w">    </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">signature</span>
+<span class="w">  </span><span class="k">name-resolution</span>
+<span class="w">    </span><span class="k">resolve</span><span class="w"> </span><span class="nv">Var</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="nv">P</span>*<span class="w"> </span><span class="k">min</span><span class="w"> </span>$<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">P</span>
 </code></pre></div>
 <p>Second, the namespace-based constraints require an occurrence
 literal. The following does not work anymore:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">d</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">},</span><span class="w"></span>
-<span class="nv">d</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">d</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">},</span>
+<span class="nv">d</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 <p>The occurrence has to be repeated in the constraints, as:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Var</span><span class="p">{</span><span class="nv">x</span>@<span class="nv">-</span><span class="p">}</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">|-&gt;</span><span class="w"> </span><span class="nv">_</span>
 </code></pre></div>
 
   <hr>
@@ -4257,7 +4257,7 @@ literal. The following does not work anymore:</p>
   <small>
     
       Last update:
-      2022-11-21
+      2023-01-11
     
   </small>
 </div>
@@ -4323,7 +4323,7 @@ literal. The following does not work anymore:</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2010-2021 Spoofax Team
+      Copyright &copy; 2010-2023 Spoofax Team
     </div>
   
   
