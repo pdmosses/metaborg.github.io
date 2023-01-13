@@ -131,6 +131,7 @@ nav:
       - background/bibliography/stratego.md
     - Static Semantics:
       - background/statix/index.md
+      - background/statix/rule-selection.md
     - Transformations:
       - background/stratego/index.md
       - Strategic Rewriting:
