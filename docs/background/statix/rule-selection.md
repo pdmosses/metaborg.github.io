@@ -2,12 +2,12 @@
 
 In this background article, we consider the precise semantics of
 Statix' rule selection, and motivate it. In [the first section](#the-anatomy-of-a-user-defined-constraint)
-we consider the components of which a Statix rule is composed. After
+we consider the components of which a user-defined constraint in Statix is composed. After
 that, we [consider how a constraint is solved](#solving-a-user-defined-constraint).
-Next, we [explain how Statix chooses an approapriate rule](#choosing-from-multiple-applicable-rules),
+Next, we [explain how Statix chooses an appropriate rule for a constraint](#choosing-from-multiple-applicable-rules),
 and finally, we [explain the analysis](#guaranteeing-rule-selection-uniqueness)
-Statix performs over specifications that guarantees that a unique rule
-is always available for ground arguments.
+Statix performs over specifications that guarantees that, for any
+constraint with ground arguments, at most one single rule is available.
 
 
 ## The Anatomy of a User-Defined Constraint
@@ -133,7 +133,7 @@ to become very bad in performance, limiting the scalability of Statix.
 
 _Specificity Ordering._
 Instead of backtracking, we employ a _committed choice_ approach. That is, once
-Statix selected a rule, it will never backtrack on that choice. The rule that is
+Statix selects a rule, it will never backtrack on that choice. The rule that is
 selected is not arbitrary, but instead Statix tries to find the _most specific_
 rule that applies to the constraint. More precisely, the 'most specific'
 rule to select is determined as follows. First, we call the collection of term
@@ -142,7 +142,7 @@ matches `NULL(INT())` and `NULL(BOOL())` (i.e., those are in the domain of
 `NULL(T)`), but not `INT()`. Second, we call a pattern P1 _more specific_ than
 another pattern P2 when the domain of P1 is strictly contained in the domain of
 P2. So, for example, the pattern `NULL(INT())` is more specific than `NULL(_)`,
-but of `FUN(T, INT())` and `FUN(INT(), T)`, neither is more specific than the
+but of `FUN(BOOL(), _)` and `FUN(INT(), _)`, neither is more specific than the
 other. We use this notion of pattern specificity to deterministically select a
 rule for a constraint as follows. When two rules (say R1 and R2) can both be
 used to solve a constraint C, we compare the argument patterns from R1 and R2
@@ -195,14 +195,9 @@ Applying the left-to-right comparison will regard the first two argument pairs
 equal, as both compare a wildcard with a new variable. When comparing the third
 pair of patterns (`T` and `T`), both of them are restricted by their earlier
 occurrence. In order to 'break ties' here, the rule in which the bound variable
-occurred the earliest is chosen. In this case, the `T` occurred at argument
+occurred _the earliest_ is chosen. In this case, the `T` occurred at argument
 position 1 in `C-1`, while it occurred at position 2 in `C-2`. Therefore, for
 this constraint, rule `C-1` is chosen.
-
-!!! note
-    The rule for comparing variables can be generalized slightly to: when
-    comparing two variables, the variable that occurs the earliest in the pattern
-    is considered the most specific.
 
 In summary, given two applicable rules for a constraint, the rule to choose is
 decided using the following rules:
@@ -256,7 +251,7 @@ In case the heads of a pair of rules have overlapping domains, but can not be
 ordered (such as `S-Eq` and `S-Null`), a static error is emitted.
 
 On the subset of possible rules that adheres to the static analysis described
-above, an ordering is defined on _any pair of rules with overlapping domain_.
+above, an ordering is defined on _any pair of rules with overlapping domains_.
 Therefore, for each constraint, a single rule is selected deterministically.
 This ensures constraints have a unique solution, giving Statix the desirable
 properties of confluence and efficiency.
