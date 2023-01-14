@@ -4196,12 +4196,12 @@
 <h1 id="the-semantics-of-rule-selection">The Semantics of Rule Selection<a class="headerlink" href="#the-semantics-of-rule-selection" title="Permanent link">&para;</a></h1>
 <p>In this background article, we consider the precise semantics of
 Statix' rule selection, and motivate it. In <a href="#the-anatomy-of-a-user-defined-constraint">the first section</a>
-we consider the components of which a Statix rule is composed. After
+we consider the components of which a user-defined constraint in Statix is composed. After
 that, we <a href="#solving-a-user-defined-constraint">consider how a constraint is solved</a>.
-Next, we <a href="#choosing-from-multiple-applicable-rules">explain how Statix chooses an approapriate rule</a>,
+Next, we <a href="#choosing-from-multiple-applicable-rules">explain how Statix chooses an appropriate rule for a constraint</a>,
 and finally, we <a href="#guaranteeing-rule-selection-uniqueness">explain the analysis</a>
-Statix performs over specifications that guarantees that a unique rule
-is always available for ground arguments.</p>
+Statix performs over specifications that guarantees that, for any
+constraint with ground arguments, at most one single rule is available.</p>
 <h2 id="the-anatomy-of-a-user-defined-constraint">The Anatomy of a User-Defined Constraint<a class="headerlink" href="#the-anatomy-of-a-user-defined-constraint" title="Permanent link">&para;</a></h2>
 <p>Statix allows users to define their own constraints. Before explaining how these
 constraints are evaluated, we explain the components of which user-defined
@@ -4303,7 +4303,7 @@ answers. Although it is never tried for Statix itself, we expect such operations
 to become very bad in performance, limiting the scalability of Statix.</p>
 <p><em>Specificity Ordering.</em>
 Instead of backtracking, we employ a <em>committed choice</em> approach. That is, once
-Statix selected a rule, it will never backtrack on that choice. The rule that is
+Statix selects a rule, it will never backtrack on that choice. The rule that is
 selected is not arbitrary, but instead Statix tries to find the <em>most specific</em>
 rule that applies to the constraint. More precisely, the 'most specific'
 rule to select is determined as follows. First, we call the collection of term
@@ -4312,7 +4312,7 @@ matches <code>NULL(INT())</code> and <code>NULL(BOOL())</code> (i.e., those are 
 <code>NULL(T)</code>), but not <code>INT()</code>. Second, we call a pattern P1 <em>more specific</em> than
 another pattern P2 when the domain of P1 is strictly contained in the domain of
 P2. So, for example, the pattern <code>NULL(INT())</code> is more specific than <code>NULL(_)</code>,
-but of <code>FUN(T, INT())</code> and <code>FUN(INT(), T)</code>, neither is more specific than the
+but of <code>FUN(BOOL(), _)</code> and <code>FUN(INT(), _)</code>, neither is more specific than the
 other. We use this notion of pattern specificity to deterministically select a
 rule for a constraint as follows. When two rules (say R1 and R2) can both be
 used to solve a constraint C, we compare the argument patterns from R1 and R2
@@ -4359,15 +4359,9 @@ Applying the left-to-right comparison will regard the first two argument pairs
 equal, as both compare a wildcard with a new variable. When comparing the third
 pair of patterns (<code>T</code> and <code>T</code>), both of them are restricted by their earlier
 occurrence. In order to 'break ties' here, the rule in which the bound variable
-occurred the earliest is chosen. In this case, the <code>T</code> occurred at argument
+occurred <em>the earliest</em> is chosen. In this case, the <code>T</code> occurred at argument
 position 1 in <code>C-1</code>, while it occurred at position 2 in <code>C-2</code>. Therefore, for
 this constraint, rule <code>C-1</code> is chosen.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The rule for comparing variables can be generalized slightly to: when
-comparing two variables, the variable that occurs the earliest in the pattern
-is considered the most specific.</p>
-</div>
 <p>In summary, given two applicable rules for a constraint, the rule to choose is
 decided using the following rules:</p>
 <ol>
@@ -4413,7 +4407,7 @@ Statix will statically compare all rule heads using the rules outlined above.
 In case the heads of a pair of rules have overlapping domains, but can not be
 ordered (such as <code>S-Eq</code> and <code>S-Null</code>), a static error is emitted.</p>
 <p>On the subset of possible rules that adheres to the static analysis described
-above, an ordering is defined on <em>any pair of rules with overlapping domain</em>.
+above, an ordering is defined on <em>any pair of rules with overlapping domains</em>.
 Therefore, for each constraint, a single rule is selected deterministically.
 This ensures constraints have a unique solution, giving Statix the desirable
 properties of confluence and efficiency.</p>
@@ -4431,7 +4425,7 @@ specification.</p>
   <small>
     
       Last update:
-      2023-01-13
+      2023-01-14
     
   </small>
 </div>
