@@ -1,3 +1,6 @@
+---
+title: "Requirements"
+---
 # Spoofax Development Requirements
 This how-to will instruct you which requirements you need to install to do Spoofax 2 development. Spoofax can be run on macOS, Linux, and Windows. Building is directly supported on macOS and Linux. Building on Windows is supported through the [Windows Subsystem for Linux (Bash on Windows)](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
 

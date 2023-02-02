@@ -1,4 +1,7 @@
-# Building Spoofax
+---
+title: "Building"
+---
+# How to build Spoofax
 This how-to guides you on how to build Spoofax from scratch, via the command-line.
 
 

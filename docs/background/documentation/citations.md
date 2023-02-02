@@ -1,4 +1,7 @@
-# Documentation Citations
+---
+title: "Citations"
+---
+# How to cite in documentation
 To cite a paper or work, first ensure the citation is in a bibliography (`.bib`) file in the `/bibliographies/` directory. For example, in the `bibliographies/spoofax.bib` file, we find:
 
 ```bib

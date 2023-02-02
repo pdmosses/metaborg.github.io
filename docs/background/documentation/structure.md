@@ -1,3 +1,6 @@
+---
+title: "Structure"
+---
 # Documentation Structure
 The structure of the documentation repository is as follows (hover over any of the files to see its description):
 

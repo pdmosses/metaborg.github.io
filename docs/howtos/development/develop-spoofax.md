@@ -1,4 +1,7 @@
-# Developing Spoofax
+---
+title: "Developing"
+---
+# How to develop Spoofax
 If you are developing a project that is included in Spoofax, it is recommended to set up a development environment. This how-to describes how to set up such a development environment.
 
 !!! note ""

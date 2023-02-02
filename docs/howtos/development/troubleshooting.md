@@ -1,4 +1,7 @@
-# Development Troubleshooting
+---
+title: "Troubleshooting"
+---
+# Spoofax development troubleshooting
 This page provides some troubleshooting information.
 
 
@@ -23,7 +26,7 @@ realpath -s .
 
 ### Mounts denied: The path is not shared the host and is not known to Docker
 ```
-Error response from daemon: Mounts denied: 
+Error response from daemon: Mounts denied:
 The path /var/folders/a_/foo0000bar/T/vfs_cache-345/tmp_123_macosx/sdf2table-macosx
 is not shared from the host and is not known to Docker.
 ```

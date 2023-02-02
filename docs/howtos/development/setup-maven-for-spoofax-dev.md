@@ -1,4 +1,7 @@
-# Spoofax Development Maven Setup
+---
+title: "Maven Setup"
+---
+# How to setup Maven for Spoofax development
 Maven is a project management and build tool for software projects. Most components in Spoofax are built with Maven. This how-to will guide you to setup Maven for Spoofax 2 development.
 
 

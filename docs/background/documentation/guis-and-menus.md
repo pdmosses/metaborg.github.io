@@ -1,4 +1,7 @@
-# Documentation GUIs and Menus
+---
+title: "GUIs and Menus"
+---
+# How to document GUIs and Menus
 To describe (a sequence of) menu items or GUI elements, you can format them using the `gui` inline language, and separate them with `>`. For example, this describes a preferences sequence in Eclipse:
 
 ```markdown

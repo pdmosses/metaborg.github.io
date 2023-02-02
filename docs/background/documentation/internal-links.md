@@ -1,4 +1,7 @@
-# Documentation Links
+---
+title: "Internal Links"
+---
+# How to write internal links
 Links to other parts of the documentation should be written as _relative_ links and point to specific Markdown files. For example, to add a link to `tutorials` from the `background/index.md` page, the link should read:
 
 ```markdown

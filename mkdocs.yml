@@ -39,12 +39,12 @@ nav:
       - howtos/editor-services/rename-refactoring.md
     - Development:
       - howtos/development/index.md
-      - Requirements: howtos/development/requirements.md
-      - Maven: howtos/development/maven.md
-      - Building: howtos/development/building.md
-      - Developing: howtos/development/developing.md
-      - Releasing: howtos/development/releasing.md
-      - Troubleshooting: howtos/development/troubleshooting.md
+      - howtos/development/spoofax-dev-requirements.md
+      - howtos/development/setup-maven-for-spoofax-dev.md
+      - howtos/development/build-spoofax.md
+      - howtos/development/develop-spoofax.md
+      - howtos/development/publish-spoofax.md
+      - howtos/development/troubleshooting.md
   - References:
     - references/index.md
     - Configuration:
@@ -147,13 +147,13 @@ nav:
       - background/stratego/origin-tracking.md
     - Documentation:
       - background/documentation/index.md
-      - Adding Pages: background/documentation/pages.md
-      - Links: background/documentation/links.md
+      - background/documentation/pages.md
+      - background/documentation/internal-links.md
       - background/documentation/code-highlighting.md
-      - GUIs and Menus: background/documentation/guis-and-menus.md
-      - Citations: background/documentation/citations.md
-      - Structure: background/documentation/structure.md
-      - Troubleshooting: background/documentation/troubleshooting.md
+      - background/documentation/guis-and-menus.md
+      - background/documentation/citations.md
+      - background/documentation/structure.md
+      - background/documentation/troubleshooting.md
   - Support:
     - support/index.md
     - support/contributions.md

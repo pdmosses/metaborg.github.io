@@ -1,4 +1,7 @@
-# Releasing Spoofax
+---
+title: "Publish"
+---
+# How to publish a new release of Spoofax
 This how-to describes how to release Spoofax.
 
 
@@ -38,7 +41,7 @@ To publish releases, you will need write access to the [`spoofax-releng`](https:
         ```
 
     3.  To enable Git pushing without having to supply a username and password via Git over HTTPS, run the following command to set the submodule remotes to SSH URLs:
-    
+
         ```bash
         ./b set-remote -s
         ```
@@ -62,7 +65,7 @@ To publish releases, you will need write access to the [`spoofax-releng`](https:
     3.  If there are new submodules repositories, follow the steps for preparing new submodules below.
 
     4.  To enable Git pushing without having to supply a username and password via Git over HTTPS, run the following command to set the submodule remotes to SSH URLs:
-    
+
         ```bash
         ./b set-remote -s
         ```
