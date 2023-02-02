@@ -45,6 +45,7 @@ nav:
       - howtos/development/develop-spoofax.md
       - howtos/development/publish-spoofax.md
       - howtos/development/troubleshooting.md
+      - howtos/development/custom-configuration.md
   - References:
     - references/index.md
     - Configuration:
