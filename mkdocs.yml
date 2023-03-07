@@ -66,6 +66,9 @@ nav:
       - references/syntax/layout-sensitivity.md
       - references/syntax/recovery.md
       - references/syntax/configuration.md
+    - Terms:
+      - references/terms/index.md
+      - references/terms/text-format.md
     - Static Semantics:
       - references/statix/index.md
       - references/statix/concepts.md
