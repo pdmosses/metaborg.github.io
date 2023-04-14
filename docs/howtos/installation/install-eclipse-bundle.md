@@ -22,6 +22,20 @@ Install an Eclipse instance with the latest stable release of the Spoofax plugin
 [Development releases](../../release/develop.md).
 
 ## Troubleshooting
+### Unresolveable build extension: Plugin
+When building a Spoofax project, if you get this error:
+
+```
+Could not download sources or javadoc
+Could not read maven project
+Some problems were encountered while processing the POMs:
+[ERROR] Unresolveable build extension: Plugin
+Could not find artifact com.sun:tools.jar:1.8.0 at specified path Spoofax.app/jre/Contents/Home/../lib/tools.jar
+```
+
+Then you have used the embedded JRE on an ARM macOS, which is not supported.
+See [how to install Spoofax on macOS M1/M2](install-spoofax-on-macos-arm.md) for details.
+
 
 ### {{ os.macos }}: "Eclipse" cannot be opened because the developer could not be verified
 macOS puts unverified binaries in 'quarantine' and disallows their execution. To remove the `com.apple.quarantine` attribute, do:
@@ -35,7 +49,7 @@ Download the Eclipse bundle _with embedded JRE_. Otherwise, ensure you have [a d
 
 ```
 -vm
-/Users/myusername/.sdkman/candidates/java/current/jre/lib/jli/libjli.dylib
+/Users/myusername/.sdkman/candidates/java/current/lib/jli/libjli.dylib
 ```
 
 
