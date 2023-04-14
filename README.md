@@ -1,8 +1,8 @@
 # Spoofax Documentation
 
-[![Build](https://github.com/metaborg/metaborg.github.io/actions/workflows/docs.yml/badge.svg)](https://github.com/metaborg/metaborg.github.io/actions)
-[![Docs](https://img.shields.io/badge/docs-latest-brightgreen)](https://www.spoofax.dev/)
-[![GitHub](https://img.shields.io/github/license/metaborg/metaborg.github.io)](https://github.com/metaborg/metaborg.github.io/blob/main/LICENSE)
+[![Build][badge-build-img]][badge-build-link]
+[![Documentation][badge-docs-img]][badge-docs-link]
+[![GitHub][badge-github-img]][badge-github-link]
 
 This is the repository for the [Spoofax documentation](https://www.spoofax.dev/).
 This documentation uses [MkDocs Material][1].
@@ -42,3 +42,9 @@ pcu -u mkdocs_requirements.txt
 
 
 [1]: https://squidfunk.github.io/
+[badge-build-link]: https://github.com/metaborg/metaborg.github.io/actions
+[badge-build-img]: https://github.com/metaborg.github.io/actions/workflows/docs.yml/badge.svg
+[badge-docs-link]: https://www.spoofax.dev/
+[badge-docs-img]: https://img.shields.io/badge/docs-latest-brightgreen.svg
+[badge-github-link]: https://github.com/metaborg/metaborg.github.io/blob/main/LICENSE
+[badge-github-img]: https://img.shields.io/github/license/metaborg/metaborg.github.io
