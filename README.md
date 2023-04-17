@@ -43,7 +43,7 @@ pcu -u mkdocs_requirements.txt
 
 [1]: https://squidfunk.github.io/
 [badge-build-link]: https://github.com/metaborg/metaborg.github.io/actions
-[badge-build-img]: https://github.com/metaborg.github.io/actions/workflows/docs.yml/badge.svg
+[badge-build-img]: https://github.com/metaborg/metaborg.github.io/actions/workflows/docs.yml/badge.svg
 [badge-docs-link]: https://www.spoofax.dev/
 [badge-docs-img]: https://img.shields.io/badge/docs-latest-brightgreen.svg
 [badge-github-link]: https://github.com/metaborg/metaborg.github.io/blob/main/LICENSE
