@@ -40,6 +40,3 @@ The following tools are required to build and develop Spoofax:
 ??? summary "Docker"
     Required on macOS Catalina, Big Sur, Monterey, and newer to be able to run the `sdf2table` and `implodePT` legacy binaries. On macOS, install it though the [Docker for Mac](https://docs.docker.com/docker-for-mac/install/) website.
 
-
-??? summary "Coreutils"
-    Required on macOS to be able to run the `sdf2table` and `implodePT` legacy binaries. On macOS with [Homebrew](https://brew.sh/) installed, you can install them by running `brew install coreutils`.

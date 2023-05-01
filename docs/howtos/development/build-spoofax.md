@@ -15,7 +15,7 @@ Clone the source code from the [`spoofax-releng`](https://github.com/metaborg/sp
     ```
 
     !!! warning "{{ os.macos }} Catalina, Big Sur, or newer"
-        On macOS Catalina, Big Sur, or newer, you have to install `coreutils` and Docker to be able to build Spoofax. This is temporary, until the 32-bit binaries for `sdf2table` and `implodePT` have been phased out.
+        On macOS Catalina, Big Sur, or newer, you have to install Docker to be able to build Spoofax. This is temporary, until the 32-bit binaries for `sdf2table` and `implodePT` have been phased out.
 
         See the [requirements for Spoofax Development](requirements.md) for more information.
 
