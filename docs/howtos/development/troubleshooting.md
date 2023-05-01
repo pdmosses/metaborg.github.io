@@ -69,6 +69,12 @@ Now, we need to modify the path to include the `/usr/local/bin`, or wherever Doc
 sudo launchctl config user path /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
+It will print:
+
+```
+Configuration applied. You must reboot for changes to take effect.
+```
+
 Finally, reboot the computer. Until the system has been rebooted, these changes are not applied. After rebooting, we can verify that the `$PATH` for graphical applications has been set correctly:
 
 ```shell
