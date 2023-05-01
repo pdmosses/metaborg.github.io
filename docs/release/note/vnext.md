@@ -7,3 +7,4 @@ See the corresponding [migration guide](../migrate/vnext.md) for migrating from 
 ## Changes
 
 - Remove `sdf2table` and `implodePT` dependencies on CoreUtils.
+- Print `sdf2table` and `implodePT` output to `/tmp/sdf2table.log` and `/tmp/implodePT.log` respectively.
