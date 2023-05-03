@@ -87,6 +87,10 @@ This should print:
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
+!!! warn "Reopen windows when logging back in"
+    If the option to _Reopen windows when logging back in_ is enabled when restarting, any running Eclipse instance will be restored with the original (incomplete) `$PATH`.
+    Make sure to close any running instance of Spoofax Eclipse, verify that it has quit completely, then start it again.
+
 
 #### Cannot connect to the Docker daemon
 The following error indicates that the Docker daemon might not be running.  Ensure Docker has been started.
