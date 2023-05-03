@@ -17,6 +17,12 @@ nav:
     - getting-started.md
   - Tutorials:
     - tutorials/index.md
+  - Languages:
+    - languages/index.md
+    - SDF3:
+      - languages/sdf3/index.md
+    - SDF2:
+      - languages/sdf2/index.md
   - How-Tos:
     - howtos/index.md
     - Installation:

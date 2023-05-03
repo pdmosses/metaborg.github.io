@@ -5,11 +5,16 @@ These are some How-To's that help you to get to a specific goal or result with S
 - [Install the Eclipse with Spoofax Plugin Bundle](installation/install-eclipse-bundle.md)
 - [Install the Spoofax Eclipse Plugin Manually](installation/install-eclipse-plugin-manually.md)
 - [Install Spoofax from Source](installation/install-from-source.md)
+- [Install Spoofax on macOS M1/M2](installation/install-spoofax-on-macos-arm.md)
 
 ## Statix
 - [Debugging Statix Specifications](statix/debugging.md)
+- [Migrating from NaBL2](statix/migrating-from-nabl2.md)
+- [Migrating to the Concurrent Solver](statix/migrating-to-concurrent-solver.md)
+- [Enable the Signature Generator](statix/signature-generator.md)
 
 ## Stratego
+- How to [use concrete syntax](stratego/concrete-syntax.md)
 - How to [generate Stratego signatures](stratego/generate-signature.md)
 - How to [run Stratego programs](stratego/run-stratego-programs.md)
 - How to [generate pretty-printers](stratego/generate-pretty-printer.md)
