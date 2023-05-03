@@ -4,7 +4,7 @@ Spoofax is an open source project. We welcome contributions from the community.
 Spoofax is developed by the [TU Delft Programming Languages group][1]. We do our best to make Spoofax usable by everyone and to help you when you encounter issues. However, our resources are limited, so please be patient.
 
 
-#### :fontawesome-solid-question-circle:&nbsp; I have a question
+#### :fontawesome-solid-circle-question:&nbsp; I have a question
 The search functionality of this documentation should bring you right to a relevant [How-to](../howtos/index.md) or [Reference](../references/index.md) page.
 
 If this doesn't answer your question, please join us in the [SLDE/#spoofax-users](https://slde.slack.com/archives/C7254SF60) Slack channel and ask your question there. To get access, drop [us](https://eelcovisser.org/) a line.
@@ -36,11 +36,11 @@ Please do not submit pull requests for cosmetic changes,
 such as whitespace and formatting changes.
 
 
-#### :fontawesome-solid-band-aid:&nbsp; I wrote a patch with a bug fix
+#### :fontawesome-solid-bandage:&nbsp; I wrote a patch with a bug fix
 Thank you! Please open a GitHub pull request with the patch.
 
 
-#### :fontawesome-solid-first-aid:&nbsp; I wrote a patch that adds a new feature or changes an existing one
+#### :fontawesome-solid-briefcase-medical:&nbsp; I wrote a patch that adds a new feature or changes an existing one
 Please open an issue _first_, so we can discuss the change.
 
 
