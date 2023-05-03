@@ -87,9 +87,11 @@ This should print:
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-!!! warn "Reopen windows when logging back in"
+!!! warning "Reopen windows when logging back in"
     If the option to _Reopen windows when logging back in_ is enabled when restarting, any running Eclipse instance will be restored with the original (incomplete) `$PATH`.
     Make sure to close any running instance of Spoofax Eclipse, verify that it has quit completely, then start it again.
+
+    ![macOS Restart Dialog](macos-restart.png){ width="350" }
 
 
 #### Cannot connect to the Docker daemon
