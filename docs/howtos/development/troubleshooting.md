@@ -18,7 +18,7 @@ Refer to the [Requirements](requirements.md) page for more information and insta
 Errors with `sdf2table` or `implodePT` similar to the following:
 
 ```
-Exception thrown during build. Required builder failed. Error occurred in build step "Compile grammar to parse table": org.sugarj.common.Exec$ExecutionError: Command failed:  sdf2table -t -i myproject/src-gen/syntax/myproject-permissive.def -m CBS -o myproject/target/metaborg/sdf.tbl
+Exception thrown during build. Required builder failed. Error occurred in build step "Compile grammar to parse table": org.sugarj.common.Exec$ExecutionError: Command failed:  sdf2table -t -i myproject/src-gen/syntax/myproject-permissive.def -m myproject -o myproject/target/metaborg/sdf.tbl
 ```
 
 These are usually caused by Docker not being available on the `$PATH` in Eclipse.  Inspect the log on the command-line, or in `/tmp/sdf2table.log` or `/tmp/implodePT.log` for more details.  The two most common errors found in the log are:
