@@ -6,5 +6,11 @@ See the corresponding [migration guide](../migrate/vnext.md) for migrating from 
 
 ## Changes
 
+### 32-bit binary support
+
 - Remove `sdf2table` and `implodePT` dependencies on CoreUtils.
 - Print `sdf2table` and `implodePT` output to `/tmp/sdf2table.log` and `/tmp/implodePT.log` respectively.
+
+### Stratego 2
+
+- Improved performance of clean build by reusing more work between compilation and analysis in the editor.
