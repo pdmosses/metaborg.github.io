@@ -27,7 +27,7 @@ This will download and install Eclipse into `~/eclipse/spoofax-dev` with the rig
     If you get an error _"Installation failed. Cannot complete the install because of a conflicting dependency."_, then make sure there is not an existing Eclipse instance at the destination.
 
 ??? info "{{os.macos}}: To open “Eclipse” you need to install the legacy Java SE 6 runtime"
-    If upon starting Eclipse you get the error _"To open “Eclipse” you need to install the legacy Java SE 6 runtime"_, then you should install a Java JDK 8 or newer for Eclipse to use. If you installed one through [SDKMAN!](https://sdkman.io/) then you have to point Eclipse to it. To do this, edit the `Contents/Eclipse/eclipse.ini` file in the Eclipse application package content. Add the following lines at the start of the file, where <USERNAME> is your username:
+    If upon starting Eclipse you get the error _"To open “Eclipse” you need to install the legacy Java SE 6 runtime"_, then you should install a Java JDK 8 or newer for Eclipse to use (Java 11 or newer is recommended). If you installed one through [SDKMAN!](https://sdkman.io/) then you have to point Eclipse to it. To do this, edit the `Contents/Eclipse/eclipse.ini` file in the Eclipse application package content. Add the following lines at the start of the file, where <USERNAME> is your username:
 
     ```ini
     -vm

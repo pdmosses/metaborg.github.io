@@ -20,7 +20,7 @@ To configure Eclipse to use an installed JDK:
 
 
 ## Using macOS default JDK
-If you want to use the default JDK that is installed with macOS, it should be version 8.  You can verify this:
+If you want to use the default JDK 8 that is installed with macOS, you can verify its version number:
 
 ```shell
 java -version
@@ -50,7 +50,7 @@ To install and use a custom JDK for Spoofax, we recommend using [SDKman](https:/
 3.  Save and close the file.
 4.  Restart your terminal to apply the changes.
 
-Now you can install a JDK.  We tested this with JDK 11 but Java 8 and newer should work.  For example:
+Now you can install a JDK.  We tested this with JDK 11 (recommended) but Java 8 and newer should work.  For example:
 
 ```shell
 sdk install java 11.0.18-tem
