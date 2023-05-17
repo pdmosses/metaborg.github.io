@@ -11,7 +11,7 @@ Due to some legacy 32-bit binaries (`sdf2table` and `implodePT`) that are requir
 - `coreutils`
 - Docker for Mac
 
-Refer to the [Requirements](requirements.md) page for more information and installation instructions. The following subsections detail some problems that can occur when developing on macOS Catalina or newer.
+Refer to the [Requirements](./spoofax-dev-requirements.md) page for more information and installation instructions. The following subsections detail some problems that can occur when developing on macOS Catalina or newer.
 
 
 ### Command failed: sdf2table

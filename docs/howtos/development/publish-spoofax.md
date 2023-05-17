@@ -6,7 +6,7 @@ This how-to describes how to release Spoofax.
 
 
 ## Requirements
-To release Spoofax, you must first be able to build Spoofax. Follow the [Maven](maven.md) and [Building](building.md) guides first.
+To release Spoofax, you must first be able to build Spoofax. Follow the [Maven](./setup-maven-for-spoofax-dev.md) and [Building](./build-spoofax.md) guides first.
 
 To publish releases, you will need write access to the [`spoofax-releng`](https://github.com/metaborg/spoofax-releng) repository, to all submodule repositories in that repository, and to this documentation repository. An account with deploy access to our [artifact server](https://artifacts.metaborg.org/) is required. Ask an administrator of the Programming Languages group to get access to the repositories and artifact server.
 
@@ -32,7 +32,7 @@ To publish releases, you will need write access to the [`spoofax-releng`](https:
 
 2.  Prepare the repository containing the build scripts.
 
-    1.  Clone or re-use an existing clone of [`spoofax-releng`](https://github.com/metaborg/spoofax-releng) on the `master` branch. See [Cloning the source code](building.md#cloning-the-source-code).
+    1.  Clone or re-use an existing clone of [`spoofax-releng`](https://github.com/metaborg/spoofax-releng) on the `master` branch. See [Cloning the source code](./build-spoofax.md#cloning-the-source-code).
 
     2.  Update it to the latest commit with:
 
@@ -48,7 +48,7 @@ To publish releases, you will need write access to the [`spoofax-releng`](https:
 
 3.  Prepare the source code repository.
 
-    1.  Make a separate clone (or re-use an existing one if you have released Spoofax before) of the `spoofax-release` branch of [`spoofax-releng`](https://github.com/metaborg/spoofax-releng). This must be a separate clone in a different directory from the first one. See [Cloning the source code](building.md#cloning-the-source-code).
+    1.  Make a separate clone (or re-use an existing one if you have released Spoofax before) of the `spoofax-release` branch of [`spoofax-releng`](https://github.com/metaborg/spoofax-releng). This must be a separate clone in a different directory from the first one. See [Cloning the source code](./build-spoofax.md#cloning-the-source-code).
 
     ??? info "Why two separate clones of `spoofax-releng`?"
         The reason for two separate clones of [`spoofax-releng`](https://github.com/metaborg/spoofax-releng) is that the release script will modify the files in the repository, which could include files of the release script itself. Therefore, we make a separate clone which the release script acts upon, so that it does not interfere with itself.

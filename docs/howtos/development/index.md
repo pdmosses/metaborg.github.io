@@ -31,8 +31,8 @@ Furthermore, this repository contains a Bash script `./b` that redirects into th
 
 The following how-tos explain how to set up Maven and other required tools for building and developing Spoofax, how to build and develop Spoofax, how to write this documentation, and explains some of the internals of Spoofax components.
 
-- [Requirements](requirements.md)
-- [Maven](maven.md)
-- [Building](building.md)
-- [Developing](developing.md)
-- [Releasing](releasing.md)
+- [Install Requirements for Spoofax development](./spoofax-dev-requirements.md)
+- [Install Maven for Spoofax](./setup-maven-for-spoofax-dev.md)
+- [Build Spoofax](./build-spoofax.md)
+- [Develop Spoofax](./develop-spoofax.md)
+- [Publish Spoofax](./publish-spoofax.md)

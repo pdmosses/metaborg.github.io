@@ -31,7 +31,7 @@ The following tools are required to build and develop Spoofax:
 
 
 ??? summary "Maven 3.5.4 or newer (except Maven 3.6.1 and 3.6.2)"
-    Maven is required to build most components of Spoofax. Our Maven artifact server must also be registered with Maven since the build depends on artifacts from previous builds for bootstrapping purposes. We explain how to install and set up Maven in [this how-to](maven.md).
+    Maven is required to build most components of Spoofax. Our Maven artifact server must also be registered with Maven since the build depends on artifacts from previous builds for bootstrapping purposes. We explain how to install and set up Maven in [this how-to](./setup-maven-for-spoofax-dev.md).
 
     !!! warning ""
         Spoofax cannot be built using Maven 3.6.1 or 3.6.2 due to bugs [MNG-6642](https://issues.apache.org/jira/browse/MNG-6642) and [MNG-6765](https://issues.apache.org/jira/browse/MNG-6765).

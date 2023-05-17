@@ -27,8 +27,8 @@ These are some How-To's that help you to get to a specific goal or result with S
 - [Add Rename Refactoring to an Existing Project](editor-services/rename-refactoring.md)
 
 ## Spoofax Development
-- [Install Requirements for Spoofax](development/requirements.md)
-- [Install Maven for Spoofax](development/maven.md)
-- [Build Spoofax](development/building.md)
-- [Develop Spoofax](development/developing.md)
-- [Release Spoofax](development/releasing.md)
+- [Install Requirements for Spoofax development](development/spoofax-dev-requirements.md)
+- [Install Maven for Spoofax](development/setup-maven-for-spoofax-dev.md)
+- [Build Spoofax](development/build-spoofax.md)
+- [Develop Spoofax](development/develop-spoofax.md)
+- [Publish Spoofax](development/publish-spoofax.md)

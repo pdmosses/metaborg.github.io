@@ -5,7 +5,7 @@ title: "Developing"
 If you are developing a project that is included in Spoofax, it is recommended to set up a development environment. This how-to describes how to set up such a development environment.
 
 !!! note ""
-    A working Spoofax build is required before being able to develop. You must be able to successfully build Spoofax by running `./b build all`. Do not continue if this does not work. See the [instructions on how to build Spoofax](building.md).
+    A working Spoofax build is required before being able to develop. You must be able to successfully build Spoofax by running `./b build all`. Do not continue if this does not work. See the [instructions on how to build Spoofax](./build-spoofax.md).
 
 
 ## Eclipse

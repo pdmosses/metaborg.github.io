@@ -265,10 +265,10 @@ nav:
     - background/index.md
     - Bibliography:
       - background/bibliography/index.md
-      # - background/bibliography/references.md
       - background/bibliography/sdf3.md
       - background/bibliography/statix.md
       - background/bibliography/stratego.md
+      - background/bibliography/references.md
     - Static Semantics:
       - background/statix/index.md
       - background/statix/rule-selection.md
