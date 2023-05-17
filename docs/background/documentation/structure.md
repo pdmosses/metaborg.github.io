@@ -30,7 +30,7 @@ The structure of the documentation repository is as follows (hover over any of t
  ┣ <span title="Dockerfile">📜 Dockerfile</span>
  ┣ <span title="License">📜 LICENSE</span>
  ┣ <span title="Makefile">📜 Makefile</span>
- ┣ <span title="MkDocs Python Requirements">📜 mkdocs_requirements.txt</span>
+ ┣ <span title="MkDocs Python Requirements">📜 requirements.txt</span>
  ┣ <span title="MkDocs configuration">📜 mkdocs.yml</span>
  ┗ <span title="Readme">📜 README.md</span>
 </pre>

@@ -21,7 +21,7 @@ Or using [Python 3](https://www.python.org/), creating and activating a _virtual
 virtualenv venv                 # Create a virtual environment
 source venv/bin/activate        # Activate the virtual environment
 
-pip install -r mkdocs_requirements.txt # Install dependencies
+pip install -r requirements.txt # Install dependencies
 mkdocs serve                    # Serve the documentation
 
 deactivate                      # Deactivate the virtual environment
@@ -46,13 +46,13 @@ pip install pip-check-updates
 Usage:
 
 ```shell
-pcu mkdocs_requirements.txt
+pcu requirements.txt
 ```
 
 And update the dependencies to their latest versions using:
 
 ```shell
-pcu -u mkdocs_requirements.txt
+pcu -u requirements.txt
 ```
 
 

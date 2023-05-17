@@ -8,8 +8,8 @@ DOCKERFILE   ?= ${ROOT}/Dockerfile
 PORT         ?= 8000
 # The path to the tools/ directory, relative to ${ROOT}
 TOOLS        ?= tools/
-# The path to the mkdocs_requirements.txt file, relative to ${ROOT}
-REQUIREMENTS ?= mkdocs_requirements.txt
+# The path to the requirements.txt file, relative to ${ROOT}
+REQUIREMENTS ?= requirements.txt
 # The Researchr bibliography to get
 RESEARCHR    ?= metaborg-spoofax
 # The path to where the Researchr bibliography should be stored
