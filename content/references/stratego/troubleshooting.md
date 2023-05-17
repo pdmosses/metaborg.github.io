@@ -1,3 +1,6 @@
+---
+title: "Troubleshooting"
+---
 # Stratego Troubleshooting
 
 ## UnsupportedClassVersionError: InteropRegisterer

@@ -1,7 +1,16 @@
-# Stratego
+---
+title: "Stratego"
+---
+# Stratego — Term Transformations
 
-The Stratego language caters for the definition of program transformations.
+The Stratego term transformation language caters for the definition of program transformations.
 
+[:material-message-question: How-tos](../../howtos/stratego/index.md){ .md-button }
+[:material-file-cog: Reference](../../references/stratego/index.md){ .md-button }
+[:material-source-branch: Sources](#sources){ .md-button }
+
+
+## Structure
 Transformations operate on the abstract syntax trees of programs.
 Abstract syntax trees are represented by means of first-order [terms](terms.md).
 
@@ -16,7 +25,6 @@ Starting with Stratego 2, terms and transformation strategies are (gradually) [t
 
 
 ## Placeholder Convention
-
 In this reference manual we use placeholders to indicate the syntactic structure of language constructs.
 For example, a rewrite rule has the form
 
@@ -33,12 +41,10 @@ As a side effect, the schema also shows the preferred indentation of language co
 ## Not in Reference Manual
 
 ### Concrete Syntax  
-
 By using the [concrete syntax](../../howtos/stratego/concrete-syntax.md) of a language, transformations can be expressed in the native syntax of the language under transformation, rather than using abstract syntax.
 
 
 ### Library
-
 The Stratego standard library is a collection of modules that are available with each Stratego program and on which the runtime library relies.
 
 Find automatically generated documentation at the following sites:
@@ -47,10 +53,10 @@ Find automatically generated documentation at the following sites:
 - https://stratego.martijndwars.nl/
 
 
-## Source
+## Sources
+The sources of the different Stratego components can be found at:
 
-The sources of the Stratego implementation can be found at
+- [metaborg/stratego :material-source-branch: stratego.lang](https://github.com/metaborg/stratego/tree/master/stratego.lang): Stratego language specification
+- [metaborg/stratego :material-source-branch: strategolib](https://github.com/metaborg/stratego/tree/master/strategolib): Stratego core library
+- [metaborg/strategoxt :material-source-branch: *](https://github.com/metaborg/strategoxt): Stratego/XT ecosystem
 
-- https://github.com/metaborg/stratego: The Stratego language implementation
-
-- https://github.com/metaborg/strategoxt: The Stratego/XT ecosystem

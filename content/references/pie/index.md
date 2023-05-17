@@ -1,25 +1,19 @@
-# Pipelines for Interactive Environments
-Pipelines for interactive Environments (PIE) is the build system for Spoofax 3.
-PIE consists of two parts: a Java framework, a Java runtime and the PIE Domain Specific Language (DSL).
-This reference documentation is for the PIE DSL and will only provide some high level information about the framework and runtime to provide context.
+---
+title: "PIE"
+---
+# PIE — Pipelines for Interactive Environments
+Pipelines for interactive Environments (PIE) is the build system for Spoofax 3.  PIE consists of two parts: a Java framework, a Java runtime and the PIE Domain Specific Language (DSL).  This reference documentation is for the PIE DSL and will only provide some high level information about the framework and runtime to provide context.
 
-PIE uses tasks to compose pipelines.
-Each task has 0 or more inputs and one output.
-Each task can depend on files or on other tasks.
-Tasks can be marked as explicitly observed to indicate that we want the output of these tasks to stay up to date.
-The PIE runtime executes tasks incrementally, which means that it only executes tasks that are no longer up to date and that are required for a task which is explicitly observed.
+<!-- [:material-message-question: How-tos](../../howtos/){ .md-button } -->
+[:material-file-cog: Reference](../../references/pie/index.md){ .md-button }
+[:material-source-branch: Sources](#sources){ .md-button }
 
-Tasks can be written in Java, but this involves a lot of boilerplate.
-Tasks can also be written in the PIE DSL.
-The PIE DSL is specifically made for PIE, so it has little boilerplate.
-Tasks written in the PIE DSL are compiled to Java.
+PIE uses tasks to compose pipelines.  Each task has 0 or more inputs and one output, and each task can depend on files or on other tasks.  Tasks can be marked as explicitly observed to indicate that we want the output of these tasks to stay up to date.  The PIE runtime executes tasks incrementally, which means that it only executes tasks that are no longer up to date and that are required for a task which is explicitly observed.
 
+Tasks can be written in Java, but this involves a lot of boilerplate, but tasks can also be written in the PIE DSL.
+The PIE DSL is specifically made for PIE, so it has little boilerplate.  Tasks written in the PIE DSL are compiled to Java.
 
-## The PIE DSL
-
-PIE models a pipeline as tasks that call each other.
-The PIE DSL calls these tasks "functions", because each task has inputs and an output.
-A PIE DSL program consists of one or more files.
+PIE models a pipeline as tasks that call each other.  The PIE DSL calls these tasks "functions", because each task has inputs and an output.  A PIE DSL program consists of one or more files.
 
 
 ### File structure
@@ -98,3 +92,11 @@ A complete overview of functions is given in [Functions](functions/).
 Java and C use the function called `main` with a certain signature as the entry point to the program.
 A PIE program does not have a set entry point.
 The entry point is whatever function is called from the PIE runtime.
+
+
+## Sources
+The sources of the different PIE components can be found at:
+
+- [metaborg/pie :material-source-branch: pie.lang](https://github.com/metaborg/pie/tree/develop/lang/lang): PIE language specification
+- [metaborg/pie :material-source-branch: pie.runtime](https://github.com/metaborg/pie/tree/develop/core/runtime): PIE runtime implementation
+- [metaborg/pie :material-source-branch: pie.api](https://github.com/metaborg/pie/tree/develop/core/api): PIE API implementation

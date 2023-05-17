@@ -1,6 +1,28 @@
-# ESV
+---
+title: "ESV"
+---
+# ESV — Editor Service Specification
 
-The _Editor Service (ESV)_ language is a declarative meta-language for configuring the editor services of a language. For example, the following ESV code fragment configures the syntax highlighting for a language, based on the types of tokens:
+The _Editor Service (ESV)_ language is a declarative meta-language for configuring the editor services of a language.Most editor services are configured in an [ESV file](esv.md). This way the following editor services can be defined:
+
+- [Action Menus](./menus.md)
+- [Analysis](./analysis.md)
+- [File Extensions](./file-extensions.md)
+- [Hover Tooltips](./hover.md)
+- [On-Save Handlers](./on-save.md)
+- [Outline View](./outline.md)
+- [Parsing](./parsing.md)
+- [Reference Resolution](./reference-resolution.md)
+- [Stratego Strategies](./stratego.md)
+- [Syntax Highlighting](./syntax-highlighting.md)
+
+<!--[:material-message-question: How-tos](../../howtos/){ .md-button }-->
+[:material-file-cog: Reference](../../references/esv/index.md){ .md-button }
+[:material-source-branch: Sources](#sources){ .md-button }
+
+
+## Structure
+ESV files end with the `.esv` extension, and are by convention placed in the `editor/` folder of a language project. Each ESV file defines a module for the file, followed by import statements and then the main configuration sections. Each section consists of a number of keys and values. For example, the following ESV code fragment configures the syntax highlighting for a language, based on the types of tokens:
 
 ```esv
 module color
@@ -14,10 +36,6 @@ colorer
   operator   : black
   layout     : 63 127 95 italic
 ```
-
-
-## Structure
-ESV files end with the `.esv` extension, and are by convention placed in the `editor/` folder of a language project. Each ESV file defines a module for the file, followed by import statements and then the main configuration sections. Each section consists of a number of keys and values.
 
 !!! note "Main File"
     By convention, the main ESV file of a language project must live at `editor/Main.esv` (default) or `editor/main.esv`. Other ESV files can be (transitively) imported from the main ESV file.
@@ -103,3 +121,9 @@ The following sections have been deprecated:
 - `folding`
 - `outliner`
 - `refactorings`
+
+
+## Sources
+The sources of ESV can be found at:
+
+- [metaborg/esv :material-source-branch: esv.lang](https://github.com/metaborg/esv/tree/master/org.metaborg.meta.lang.esv): ESV language specification
