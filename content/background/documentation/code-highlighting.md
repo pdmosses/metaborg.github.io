@@ -46,7 +46,7 @@ Additionally, in this Spoofax documentation these [Spoofax languages](https://gi
 | ------------- | ------------------------------------------------ |
 | `aterm`       | [ATerms](../../references/stratego/terms.md).    |
 | `dynsem`      | DynSem.                                          |
-| `esv`         | [ESV](../../references/esv/esv.md).              |
+| `esv`         | [ESV](../../references/esv/index.md).            |
 | `flowspec`    | [FlowSpec](../../references/flowspec/index.md).  |
 | `nabl`        | NaBL.                                            |
 | `nabl2`       | NaBL2.                                           |
