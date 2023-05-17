@@ -187,20 +187,20 @@ nav:
       - references/config/index.md
       - references/config/language.md
       - references/config/project.md
-    - Syntax:
-      - references/syntax/index.md
-      - references/syntax/modules.md
-      - references/syntax/symbols.md
-      - references/syntax/productions.md
-      - references/syntax/lexical-syntax.md
-      - references/syntax/context-free-syntax.md
-      - references/syntax/kernel-syntax.md
-      - references/syntax/start-symbols.md
-      - references/syntax/templates.md
-      - references/syntax/disambiguation.md
-      - references/syntax/layout-sensitivity.md
-      - references/syntax/recovery.md
-      - references/syntax/configuration.md
+    - SDF3:
+      - references/sdf3/index.md
+      - references/sdf3/modules.md
+      - references/sdf3/symbols.md
+      - references/sdf3/productions.md
+      - references/sdf3/lexical-syntax.md
+      - references/sdf3/context-free-syntax.md
+      - references/sdf3/kernel-syntax.md
+      - references/sdf3/start-symbols.md
+      - references/sdf3/templates.md
+      - references/sdf3/disambiguation.md
+      - references/sdf3/layout-sensitivity.md
+      - references/sdf3/recovery.md
+      - references/sdf3/configuration.md
     - Terms:
       - references/terms/index.md
       - references/terms/text-format.md
