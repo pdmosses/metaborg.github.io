@@ -13,7 +13,7 @@ copyright: "Copyright &copy; 2010-2023 Spoofax Team"
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
 edit_uri: https://github.com/metaborg/metaborg.github.io/edit/main/docs
-docs_dir: docs/
+docs_dir: content/
 
 
 # Configuration

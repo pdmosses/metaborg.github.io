@@ -4,7 +4,7 @@ title: "Adding Pages"
 # How to add a new documentation page
 To add a new page to the documentation:
 
-1.  Create a [Markdown](https://daringfireball.net/projects/markdown/) (`.md`) file in an appropriate location in the `docs/` folder;
+1.  Create a [Markdown](https://daringfireball.net/projects/markdown/) (`.md`) file in an appropriate location in the `content/` folder;
 2.  Add the page to the `nav` element in the `mkdocs.yml` file in the root of the repository.
 
     ??? tip "Overriding the title"
