@@ -3,13 +3,122 @@ site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
 site_url: https://www.spoofax.dev/
-
 copyright: "Copyright &copy; 2010-2023 Spoofax Team"
+
 
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
 edit_uri: https://github.com/metaborg/metaborg.github.io/edit/main/docs
 docs_dir: docs/
+
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
+  icon:
+    logo: fontawesome/solid/sticky-note
+    repo: fontawesome/brands/github
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  font:
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+
+
+extra_css:
+  - assets/styles.css
+
+
+extra_javascript:
+  - assets/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+plugins:
+  - tags:
+      enabled: !ENV [CI, false]
+  - search
+  - git-revision-date:
+      enabled_if_env: CI
+  - macros:
+      module_name: tools/macro
+      include_dir: include
+  - bibtex:
+      bib_dir: "bibliographies"
+      cite_style: "pandoc"
+
+
+extra:
+  tags:
+    Spoofax 2: spoofax2
+    Spoofax 3: spoofax3
+
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.highlight:
+      guess_lang: false
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: gui
+          class: guilabel
+          format: !!python/name:formatters.inline_span_format
+  - pymdownx.keys:
+      key_map:
+        click: "Click"
+        left-click: "Left Click"
+        right-click: "Right Click"
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
 
 nav:
   - Home:
@@ -218,95 +327,3 @@ nav:
       - release/migrate/2.0.0.md
       - release/migrate/march2016_project_structure.md
       - release/migrate/vnext.md
-
-theme:
-  name: material
-  custom_dir: overrides
-  language: en
-  logo: assets/logo.svg
-  favicon: assets/favicon.png
-  icon:
-    logo: fontawesome/solid/sticky-note
-    repo: fontawesome/brands/github
-  palette:
-    # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default #spoofax
-      primary: deep purple
-      accent: amber
-      toggle:
-        icon: material/lightbulb
-        name: Switch to dark mode
-    # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: deep purple
-      accent: amber
-      toggle:
-        icon: material/lightbulb-outline
-        name: Switch to light mode
-  font:
-    code: JetBrains Mono
-  features:
-    - navigation.tabs
-    #- navigation.tabs.sticky
-    - navigation.top
-    - navigation.indexes
-
-extra_css:
-  - assets/styles.css
-extra_javascript:
-  - assets/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-
-markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - toc:
-      permalink: true
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.highlight:
-      guess_lang: false
-  - pymdownx.inlinehilite:
-      custom_inline:
-        - name: gui
-          class: guilabel
-          format: !!python/name:formatters.inline_span_format
-  - pymdownx.keys:
-      key_map:
-        click: "Click"
-        left-click: "Left Click"
-        right-click: "Right Click"
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.saneheaders
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-plugins:
-  - search
-  - git-revision-date:
-      enabled_if_env: CI
-  - macros:
-      module_name: tools/macro
-      include_dir: include
-  - bibtex:
-      bib_dir: "bibliographies"
-      cite_style: "pandoc"
