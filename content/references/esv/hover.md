@@ -1,5 +1,5 @@
 # Hover Tooltips
-Hover tooltips show a textual tooltip with extra information, when hovering part of the text. Hover tooltips are created by a Stratego strategy, but are configured in an [ESV file](esv.md) under the `references` section:
+Hover tooltips show a textual tooltip with extra information, when hovering part of the text. Hover tooltips are created by a Stratego strategy, but are configured in an ESV file under the `references` section:
 
 ```esv
 references

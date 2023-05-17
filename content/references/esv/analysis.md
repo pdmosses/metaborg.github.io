@@ -1,5 +1,5 @@
 # Analysis
-The analyzer strategy is used to perform static analyses such as name and type analysis, on the AST that a parser produces. An analysis context provides a project-wide store to facilitate multi-file analysis and incrementality. There are four ways to configure the analysis, which set the analyzer strategy with the `observer` and `context` keys in an [ESV file](esv.md).
+The analyzer strategy is used to perform static analyses such as name and type analysis, on the AST that a parser produces. An analysis context provides a project-wide store to facilitate multi-file analysis and incrementality. There are four ways to configure the analysis, which set the analyzer strategy with the `observer` and `context` keys in an ESV file.
 
 ```esv
 language

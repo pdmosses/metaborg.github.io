@@ -1,5 +1,5 @@
 # Parsing
-Parsing language files in an editor is configured in the `language` section of an [ESV file](../esv/esv.md). The syntax is as follows:
+Parsing language files in an editor is configured in the `language` section of an ESV file. The syntax is as follows:
 
 ```esv
 language

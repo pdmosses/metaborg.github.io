@@ -1,5 +1,5 @@
 # Syntax Highlighting
-Token-based syntax highlighting is configured in a `colorer` section of an [ESV file](esv.md). Such a section can contain style definitions and styling rules.
+Token-based syntax highlighting is configured in a `colorer` section of an ESV file. Such a section can contain style definitions and styling rules.
 
 
 ## Style Definitions

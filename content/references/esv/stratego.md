@@ -1,5 +1,5 @@
 # Stratego
-The Java JAR and CTree files that will be loaded into the Stratego runtime for your language can be configured with the `provider` key in an [ESV file](esv.md):
+The Java JAR and CTree files that will be loaded into the Stratego runtime for your language can be configured with the `provider` key in an ESV file:
 
 ```esv
 language

@@ -1,5 +1,5 @@
 # Reference Resolution
-Reference resolution takes an AST node containing a reference, and tries to resolve it to its definition. The resolution is performed by a Stratego strategy, but is configured in an [ESV file](esv.md) under the `references` section:
+Reference resolution takes an AST node containing a reference, and tries to resolve it to its definition. The resolution is performed by a Stratego strategy, but is configured in an ESV file under the `references` section:
 
 ```esv
 references

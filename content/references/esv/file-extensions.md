@@ -1,5 +1,5 @@
 # Language File Extensions
-The file extensions that the editor should recognize as files belonging to the language definition, are configured in the `language` section `extensions` key of an [ESV file](esv.md). They are specified without a leading dot:
+The file extensions that the editor should recognize as files belonging to the language definition, are configured in the `language` section `extensions` key of an ESV file. They are specified without a leading dot:
 
 ```esv
 language

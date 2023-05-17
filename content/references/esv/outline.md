@@ -1,5 +1,5 @@
 # Outline View
-An outline is a summary of the structure of a file, shown in a separate view next to a textual editor. An outline is created by a Stratego strategy, but is configured in an [ESV file](esv.md) under the `views` section:
+An outline is a summary of the structure of a file, shown in a separate view next to a textual editor. An outline is created by a Stratego strategy, but is configured in an ESV file under the `views` section:
 
 ```esv
 views
