@@ -1,26 +1,42 @@
-# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# Project Information
 site_name: Spoofax
 site_author: Spoofax Team
 site_description: Spoofax language workbench
 site_url: https://www.spoofax.dev/
+
+
+# Copyright
 copyright: "Copyright &copy; 2010-2023 Spoofax Team"
 
 
+# Repository
 repo_name: spoofax
 repo_url: https://github.com/metaborg/spoofax
 edit_uri: https://github.com/metaborg/metaborg.github.io/edit/main/docs
 docs_dir: docs/
 
 
+# Configuration
 theme:
   name: material
-  custom_dir: overrides
   language: en
+  custom_dir: overrides
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - content.action.edit
+    - content.code.select
+    - navigation.path
+
   logo: assets/logo.svg
   favicon: assets/favicon.png
   icon:
     logo: fontawesome/solid/sticky-note
     repo: fontawesome/brands/github
+  font:
+    code: JetBrains Mono
+
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
@@ -38,30 +54,29 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: Switch to light mode
-  font:
-    code: JetBrains Mono
-  features:
-    - navigation.tabs
-    - navigation.top
-    - navigation.indexes
 
 
+# Customization
+extra:
+  tags:
+    Spoofax 2: spoofax2
+    Spoofax 3: spoofax3
 extra_css:
   - assets/styles.css
-
-
 extra_javascript:
   - assets/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 
+# Plugins
 plugins:
   - tags:
       enabled: !ENV [CI, false]
-  - search
-  - git-revision-date:
-      enabled_if_env: CI
+  - search:
+  - git-revision-date-localized:
+      enable_creation_date: true
+      
   - macros:
       module_name: tools/macro
       include_dir: include
@@ -70,12 +85,7 @@ plugins:
       cite_style: "pandoc"
 
 
-extra:
-  tags:
-    Spoofax 2: spoofax2
-    Spoofax 3: spoofax3
-
-
+# Extensions
 markdown_extensions:
   - abbr
   - admonition
@@ -112,14 +122,22 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.saneheaders
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
 
 
+# Navigation
 nav:
   - Home:
     - index.md
