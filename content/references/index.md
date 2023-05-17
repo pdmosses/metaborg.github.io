@@ -1,4 +1,4 @@
-# References
+# Reference
 These are the Spoofax and meta-language references. For more background information on the ideas, architecture, and design decisions behind Spoofax and its meta-languages, see the [Background](../background/index.md) section.
 
 ## Spoofax meta-languages
