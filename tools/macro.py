@@ -1,17 +1,22 @@
 from typing import Optional
 
-trace_icon      = ":fontawesome-solid-route:"
-debug_icon      = ":fontawesome-solid-bug:"
-info_icon       = ":fontawesome-solid-circle-info:"
-warning_icon    = ":fontawesome-solid-triangle-exclamation:"
-error_icon      = ":fontawesome-solid-circle-exclamation:"
-stop_icon       = ":fontawesome-solid-circle-xmark:"
-true_icon       = ":fontawesome-solid-square-check:"
-false_icon      = ":fontawesome-solid-circle-times:"
+trace_icon          = ":fontawesome-solid-route:"
+debug_icon          = ":fontawesome-solid-bug:"
+info_icon           = ":fontawesome-solid-circle-info:"
+warning_icon        = ":fontawesome-solid-triangle-exclamation:"
+error_icon          = ":fontawesome-solid-circle-exclamation:"
+stop_icon           = ":fontawesome-solid-circle-xmark:"
+true_icon           = ":fontawesome-solid-square-check:"
+false_icon          = ":fontawesome-solid-circle-times:"
 
-windows_icon    = ":fontawesome-brands-windows:"
-macos_icon      = ":fontawesome-brands-apple:"
-linux_icon      = ":fontawesome-brands-linux:"
+windows_icon        = ":fontawesome-brands-windows:"
+macos_icon          = ":fontawesome-brands-apple:"
+linux_icon          = ":fontawesome-brands-linux:"
+
+recommended_icon    = ":material-check-circle-outline:"
+available_icon      = ":material-circle-outline:"
+deprecated_icon     = ":material-alert-circle-outline:"
+unsupported_icon    = ":material-close-circle-outline:"
 
 artifacts_url_base = 'https://artifacts.metaborg.org'
 artifacts_releases_url = f'{artifacts_url_base}/content/repositories/releases/org/metaborg/'
@@ -194,16 +199,21 @@ def define_env(env):
 
 
 def define_macros(vars):
-    vars['trace'] = f"{trace_icon}{{.trace}}"
-    vars['debug'] = f"{debug_icon}{{.debug}}"
-    vars['info'] = f"{info_icon}{{.info}}"
-    vars['warning'] = f"{warning_icon}{{.warning}}"
-    vars['error'] = f"{error_icon}{{.error}}"
-    vars['stop'] = f"{stop_icon}{{.stop}}"
+    vars['trace']       = f"{trace_icon}{{.trace}}"
+    vars['debug']       = f"{debug_icon}{{.debug}}"
+    vars['info']        = f"{info_icon}{{.info}}"
+    vars['warning']     = f"{warning_icon}{{.warning}}"
+    vars['error']       = f"{error_icon}{{.error}}"
+    vars['stop']        = f"{stop_icon}{{.stop}}"
 
     # NOTE: `true` and `false` are reserved keywords
-    vars['yes'] = f"{true_icon}{{.true}}"
-    vars['no'] = f"{false_icon}{{.false}}"
+    vars['yes']         = f"{true_icon}{{.true}}"
+    vars['no']          = f"{false_icon}{{.false}}"
+
+    vars['recommended'] = f"{recommended_icon}{{.recommended title=\"Recommended\"}}"
+    vars['available']   = f"{available_icon}{{.available title=\"Available\"}}"
+    vars['deprecated']  = f"{deprecated_icon}{{.deprecated title=\"Deprecated\"}}"
+    vars['unsupported'] = f"{unsupported_icon}{{.unsupported title=\"Unsupported\"}}"
 
     vars.os = dict(
         windows=f'{windows_icon} Windows',
