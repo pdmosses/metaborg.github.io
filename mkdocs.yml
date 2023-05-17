@@ -70,8 +70,7 @@ extra_javascript:
 
 # Plugins
 plugins:
-  - tags:
-      enabled: !ENV [CI, false]
+  - tags
   - search
   - git-revision-date-localized:
       enable_creation_date: true
@@ -81,7 +80,6 @@ plugins:
       include_dir: include
   - bibtex:
       bib_dir: "bibliographies"
-      cite_style: "pandoc"
 
 
 # Extensions
