@@ -204,7 +204,7 @@ nav:
     - Terms:
       - references/terms/index.md
       - references/terms/text-format.md
-    - Static Semantics:
+    - Statix:
       - references/statix/index.md
       - references/statix/concepts.md
       - references/statix/modules.md
@@ -215,14 +215,14 @@ nav:
       - references/statix/queries.md
       - references/statix/tests.md
       - references/statix/stratego-api.md
-    - Data Flow Analysis:
+    - FlowSpec:
       - references/flowspec/index.md
       - references/flowspec/structure.md
       - references/flowspec/Stratego_API.md
       - references/flowspec/configuration.md
       - references/flowspec/testing.md
       - references/flowspec/references.md
-    - Transformation:
+    - Stratego:
       - references/stratego/index.md
       - references/stratego/lexical.md
       - references/stratego/modules.md
@@ -252,14 +252,14 @@ nav:
       - references/editor-services/renaming.md
       - references/editor-services/stratego.md
       - references/editor-services/syntax-highlighting.md
-    - Pipelines:
-      - references/pipelines/index.md
-      - references/pipelines/modules.md
-      - references/pipelines/types.md
-      - references/pipelines/generics.md
-      - references/pipelines/functions.md
-      - references/pipelines/expressions.md
-      - references/pipelines/limitations.md
+    - PIE:
+      - references/pie/index.md
+      - references/pie/modules.md
+      - references/pie/types.md
+      - references/pie/generics.md
+      - references/pie/functions.md
+      - references/pie/expressions.md
+      - references/pie/limitations.md
   - Background:
     - background/index.md
     - Bibliography:
