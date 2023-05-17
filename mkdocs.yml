@@ -25,6 +25,7 @@ theme:
     - navigation.tabs
     - navigation.top
     - navigation.indexes
+    - content.action.view
     - content.action.edit
     - content.code.select
     - navigation.path
