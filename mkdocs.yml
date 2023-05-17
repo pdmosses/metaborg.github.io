@@ -236,20 +236,21 @@ nav:
       - references/spt/test-suites.md
       - references/spt/test-expectations.md
       - references/spt/running-tests.md
+    - ESV:
+      - references/esv/index.md
+      - references/esv/esv.md
+      - references/esv/analysis.md
+      - references/esv/file-extensions.md
+      - references/esv/hover.md
+      - references/esv/menus.md
+      - references/esv/on-save.md
+      - references/esv/outline.md
+      - references/esv/parsing.md
+      - references/esv/reference-resolution.md
+      - references/esv/stratego.md
+      - references/esv/syntax-highlighting.md
     - Editor Services:
-      - references/editor-services/index.md
-      - references/editor-services/esv.md
-      - references/editor-services/analysis.md
-      - references/editor-services/file-extensions.md
-      - references/editor-services/hover.md
-      - references/editor-services/menus.md
-      - references/editor-services/on-save.md
-      - references/editor-services/outline.md
-      - references/editor-services/parsing.md
-      - references/editor-services/reference-resolution.md
       - references/editor-services/renaming.md
-      - references/editor-services/stratego.md
-      - references/editor-services/syntax-highlighting.md
     - PIE:
       - references/pie/index.md
       - references/pie/modules.md

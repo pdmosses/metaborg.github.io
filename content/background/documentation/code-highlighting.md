@@ -46,10 +46,10 @@ Additionally, in this Spoofax documentation these [Spoofax languages](https://gi
 | ------------- | ------------------------------------------------ |
 | `aterm`       | [ATerms](../../references/stratego/terms.md).    |
 | `dynsem`      | DynSem.                                          |
-| `esv`         | [ESV](../../references/editor-services/esv.md).  |
+| `esv`         | [ESV](../../references/esv/esv.md).              |
 | `flowspec`    | [FlowSpec](../../references/flowspec/index.md).  |
 | `nabl`        | NaBL.                                            |
 | `nabl2`       | NaBL2.                                           |
-| `sdf3`        | [SDF3](../../references/sdf3/index.md).        |
+| `sdf3`        | [SDF3](../../references/sdf3/index.md).          |
 | `statix`      | [Statix](../../references/statix/index.md).      |
 | `stratego`    | [Stratego](../../references/stratego/index.md).  |
