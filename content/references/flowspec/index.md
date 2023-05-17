@@ -27,4 +27,4 @@ Examples of data-flow analysis include constant analysis which checks when varia
 ## Sources
 The sources of FlowSpec can be found at:
 
-- [metaborg/flowspec :material-source-branch: flowspec.lang](https://github.com/metaborg/flowspec/tree/master/flowspec.lang): FlowSpec language specification
+- [:material-source-branch: flowspec.lang](https://github.com/metaborg/flowspec/tree/master/flowspec.lang): FlowSpec language specification

@@ -56,7 +56,7 @@ Find automatically generated documentation at the following sites:
 ## Sources
 The sources of the different Stratego components can be found at:
 
-- [metaborg/stratego :material-source-branch: stratego.lang](https://github.com/metaborg/stratego/tree/master/stratego.lang): Stratego language specification
-- [metaborg/stratego :material-source-branch: strategolib](https://github.com/metaborg/stratego/tree/master/strategolib): Stratego core library
-- [metaborg/strategoxt :material-source-branch: *](https://github.com/metaborg/strategoxt): Stratego/XT ecosystem
+- [:material-source-branch: stratego.lang](https://github.com/metaborg/stratego/tree/master/stratego.lang): Stratego language specification
+- [:material-source-branch: strategolib](https://github.com/metaborg/stratego/tree/master/strategolib): Stratego core library
+- [:material-source-branch: strategoxt](https://github.com/metaborg/strategoxt): Stratego/XT ecosystem
 

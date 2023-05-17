@@ -13,4 +13,4 @@ The Spoofax Testing language (SPT) allows language developers to test their lang
 ## Sources
 The sources of SPT can be found at:
 
-- [metaborg/spt :material-source-branch: spt.lang](https://github.com/metaborg/spt/tree/master/org.metaborg.meta.lang.spt): SPT language specification
+- [:material-source-branch: spt.lang](https://github.com/metaborg/spt/tree/master/org.metaborg.meta.lang.spt): SPT language specification

@@ -26,6 +26,6 @@ Statix has a special [test format](tests.md), which can be used for isolating is
 ## Sources
 The sources of the different Statix components can be found at:
 
-- [metaborg/nabl :material-source-branch: statix.lang](https://github.com/metaborg/nabl/tree/master/statix.lang): Statix language specification
-- [metaborg/nabl :material-source-branch: statix.runtime](https://github.com/metaborg/nabl/tree/master/statix.runtime): Statix runtime implementation
-- [metaborg/nabl :material-source-branch: statix.solver](https://github.com/metaborg/nabl/tree/master/statix.solver): Statix solver implementation
+- [:material-source-branch: statix.lang](https://github.com/metaborg/nabl/tree/master/statix.lang): Statix language specification
+- [:material-source-branch: statix.runtime](https://github.com/metaborg/nabl/tree/master/statix.runtime): Statix runtime implementation
+- [:material-source-branch: statix.solver](https://github.com/metaborg/nabl/tree/master/statix.solver): Statix solver implementation

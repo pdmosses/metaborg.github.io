@@ -23,4 +23,4 @@ Several aspects related to syntax definition and parsing can be [configured](con
 ## Sources
 The sources of the SDF3 language can be found at:
 
-- [metaborg/sdf :material-source-branch: template.lang](https://github.com/metaborg/sdf/tree/master/org.metaborg.meta.lang.template): SDF3 language specification
+- [:material-source-branch: template.lang](https://github.com/metaborg/sdf/tree/master/org.metaborg.meta.lang.template): SDF3 language specification

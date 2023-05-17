@@ -97,6 +97,6 @@ The entry point is whatever function is called from the PIE runtime.
 ## Sources
 The sources of the different PIE components can be found at:
 
-- [metaborg/pie :material-source-branch: pie.lang](https://github.com/metaborg/pie/tree/develop/lang/lang): PIE language specification
-- [metaborg/pie :material-source-branch: pie.runtime](https://github.com/metaborg/pie/tree/develop/core/runtime): PIE runtime implementation
-- [metaborg/pie :material-source-branch: pie.api](https://github.com/metaborg/pie/tree/develop/core/api): PIE API implementation
+- [:material-source-branch: pie.lang](https://github.com/metaborg/pie/tree/develop/lang/lang): PIE language specification
+- [:material-source-branch: pie.runtime](https://github.com/metaborg/pie/tree/develop/core/runtime): PIE runtime implementation
+- [:material-source-branch: pie.api](https://github.com/metaborg/pie/tree/develop/core/api): PIE API implementation
