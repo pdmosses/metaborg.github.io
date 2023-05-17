@@ -2,7 +2,7 @@
  * Light theme
  * ===========
  */
-[data-md-color-scheme="default"] {
+ [data-md-color-scheme="default"] {
     --md-primary-fg-color: #8C2166;
     /* --md-primary-fg-color--light: #a7a4b2;
     --md-primary-fg-color--dark: #1b1632; */
@@ -38,6 +38,17 @@
 
     /* --md-typeset-a-color: var(--md-accent-fg-color); */
 }
+
+.md-typeset h1, .md-typeset h2 {
+    font-weight: 400;
+}
+.md-typeset h1 {
+    margin-bottom: 0.75em;
+}
+.md-typeset .md-button {
+    border-radius: 0.5rem;
+}
+
 
 .md-button-download {
     width: 200px;
