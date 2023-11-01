@@ -1,7 +1,0 @@
-./tools/
-mkdocs==1.4.2
-mkdocs-material==9.1.1
-mkdocs-macros-plugin==0.7.0
-mkdocs-git-revision-date-plugin==0.3.2
-mkdocs-bibtex==2.8.14
-git+https://github.com/metaborg/metaborg-pygments#egg=metaborg-pygments

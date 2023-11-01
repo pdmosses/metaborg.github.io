@@ -7,7 +7,7 @@ RUN apk upgrade --update-cache -a \
       openssh \
  && apk add --no-cache --virtual .build gcc musl-dev
 
-COPY mkdocs_requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 COPY tools/ tools/
 RUN pip install --no-cache-dir -r requirements.txt \
  && apk del .build gcc musl-dev \
